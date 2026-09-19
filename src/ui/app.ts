@@ -532,6 +532,7 @@ export class App {
     const cards = [...this.root.querySelectorAll<HTMLElement>('.cine-card')];
     let i = 0;
     let stopped = false;
+    let typing: (() => void) | null = null;
     const next = () => {
       if (stopped || this.screen !== 'briefing') return;
       const card = cards[i++];
@@ -541,12 +542,13 @@ export class App {
       const isTitle = card.classList.contains('cine-card--title');
       if (p && !isTitle) {
         const text = p.textContent || '';
-        this.cancelType = typewriter(p, text, { speed: 14, onDone: () => setTimeout(next, 700) });
+        typing = typewriter(p, text, { speed: 14, onDone: () => { typing = null; setTimeout(next, 700); } });
       } else {
         setTimeout(next, isTitle ? 1800 : 400);
       }
     };
-    this.cancelType = () => { stopped = true; cards.forEach((c) => { c.classList.add('is-on'); c.querySelectorAll('p').forEach((q) => { q.textContent = q.textContent; }); }); };
+    // Skipping: finish the card being typed and show the rest at once.
+    this.cancelType = () => { stopped = true; typing?.(); cards.forEach((c) => c.classList.add('is-on')); };
     setTimeout(next, 400);
   }
 
