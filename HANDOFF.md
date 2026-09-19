@@ -77,7 +77,7 @@ npm run voices -- --setup     # once: pip installs kokoro-onnx, downloads ~340 M
 npm run voices                # incremental; ~2100 clips, 13 sprite files, ~100 MB
 ```
 
-`public/voice/` is gitignored. Re-bake after any text change; the corpus
+The per-clip files in `public/voice/` are gitignored; the manifest and the sprite parts are committed (force-added) so a clone has the voice. Re-bake after any text change; the corpus
 test fails if a spoken fragment is not enumerable. There is no browser
 speech fallback once a pack exists (Anna's rule: never the robot voice).
 
