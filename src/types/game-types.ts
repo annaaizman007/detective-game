@@ -79,12 +79,41 @@ export interface LocationDef {
   district?: string;
 }
 
+/**
+ * A question you can put to somebody, and what they say. Free questions
+ * are story; a question that costs an hour usually gives something up.
+ * `about` makes it a question about another suspect, which the witness
+ * answers in their own words on top of the observation the rules give.
+ */
+export interface Topic {
+  id: string;
+  q: string;
+  a: string;
+  /** Hours it costs. Default 0. */
+  cost?: number;
+  effect?: UnlockEffect;
+  /** Only offered once this topic has been asked. */
+  after?: string;
+  /** Only offered while carrying this object. */
+  needs?: string;
+}
+
 export interface SuspectDef {
   id: string;
   name: string;
   role: string;
   blurb: string;
   motive: string;
+  /** Their side of it, in their own words. */
+  topics?: Topic[];
+  /** What they say about each other, by suspect id. */
+  opinions?: Record<string, string>;
+  /** Who they are. Shown in the dossier. */
+  bio?: string;
+  /** Where they say they were. Shown in the dossier. */
+  alibi?: string;
+  /** What they are hiding, whether or not they killed anyone. Shown at the end. */
+  secret?: string;
 }
 
 /**
@@ -108,6 +137,11 @@ export interface WitnessDef {
   leadLine: string;
   /** What they say when they have nothing left. */
   spentLine: string;
+  /** Who they are. Shown when you talk to them. */
+  bio?: string;
+  topics?: Topic[];
+  /** What they say about each suspect they know, by id. Read out with the observation. */
+  opinions?: Record<string, string>;
 }
 
 export interface DistrictLabel {
@@ -155,7 +189,52 @@ export interface CaseDef {
    * or misdirection. Telling the two apart is the job.
    */
   items: CaseItemDef[];
+  /**
+   * Things, not paper: a key, a glove, a matchbook. Carried by the table
+   * once found. Shown to the person they mean something to, they unlock a
+   * scene -- and something the scene gives up.
+   */
+  objects: CaseObjectDef[];
+  /** The long version of the case, for the case file you can open any time. */
+  story: CaseStory;
   epilogue: { win: string; loss: string };
+}
+
+export interface CaseStory {
+  /** What happened, as far as the police know it. Paragraphs. */
+  backstory: string[];
+  /** The night, hour by hour, as it has been pieced together. */
+  timeline: { time: string; text: string }[];
+  /** What really happened. Shown at the end. Paragraphs. */
+  truth: string[];
+}
+
+export type UnlockEffect =
+  | ItemEffect
+  /** They give up a fact about the killer. */
+  | { type: 'culpritTrait' }
+  /** Their story checks out; a suspect is cleared. */
+  | { type: 'clear'; suspectId: string };
+
+export interface ObjectUnlock {
+  /** Suspect or witness id. */
+  person: string;
+  /** What you say, handing it over. */
+  line: string;
+  /** What they say, holding it. */
+  reply: string;
+  effect: UnlockEffect;
+}
+
+export interface CaseObjectDef {
+  id: string;
+  at: string;
+  name: string;
+  desc: string;
+  /** A sketch id from ui/figures.ts. */
+  drawing: string;
+  spoken: string;
+  unlocks: ObjectUnlock[];
 }
 
 export type ItemEffect =
@@ -239,6 +318,14 @@ export interface WitnessState {
 export type EvidenceState =
   | {
       id: string;
+      kind: 'object';
+      object: string;
+      text: string;
+      found: boolean;
+      at: string;
+    }
+  | {
+      id: string;
       kind: 'item';
       /** Case-authored document id, e.g. 'item:orchid:love-letter'. */
       item: string;
@@ -307,6 +394,28 @@ export interface TestimonyState {
   exhibit?: string;
 }
 
+/** The last question put to somebody, and the answer. */
+export interface TalkingState {
+  personId: string;
+  kind: 'suspect' | 'witness';
+  topicId: string;
+  q: string;
+  a: string;
+  outcome?: string;
+}
+
+/** The last object shown to somebody, and what came of it. */
+export interface ShowingState {
+  objectId: string;
+  personId: string;
+  kind: 'suspect' | 'witness';
+  line: string;
+  reply: string;
+  /** True when the person recognised it and a scene played. */
+  unlocked: boolean;
+  outcome?: string;
+}
+
 /**
  * One line of the detectives' journal. Written by the reducer for every
  * action, so it is shared, ordered and deterministic. Players' own notes are
@@ -319,7 +428,7 @@ export interface JournalEntry {
   hour: number;
   round: number;
   playerId: string | null;
-  kind: 'open' | 'move' | 'search' | 'exhibit' | 'talk' | 'ask' | 'ability' | 'accuse' | 'event' | 'end' | 'note';
+  kind: 'open' | 'move' | 'search' | 'exhibit' | 'talk' | 'ask' | 'show' | 'question' | 'ability' | 'accuse' | 'event' | 'end' | 'note';
   text: string;
   /** Something the entry can open: an exhibit, a suspect, a location. */
   ref?: { exhibit?: string; suspect?: string; location?: string; witness?: string };
@@ -352,6 +461,12 @@ export interface GameState {
   exhibits: ExhibitInstance[];
   /** Locations a witness has pointed at. Cleared when searched. */
   leads: Record<string, true>;
+  /** Objects the table is carrying, by definition id. */
+  objects: string[];
+  /** Who each object has been shown to. */
+  shown: Record<string, string[]>;
+  /** Topics already asked, by person id. */
+  asked: Record<string, string[]>;
   cold: number;
   coldMax: number;
   round: number;
@@ -367,6 +482,8 @@ export interface GameState {
   lastEvent: string | null;
   conversation: ConversationState | null;
   testimony: TestimonyState | null;
+  showing: ShowingState | null;
+  talking: TalkingState | null;
   log: LogEntry[];
   journal: JournalEntry[];
   narration: NarrationLine[];
@@ -397,6 +514,8 @@ export type Action =
   | { type: 'SEARCH'; playerId: string }
   | { type: 'INTERROGATE'; playerId: string; suspectId: string; approach: ApproachId }
   | { type: 'ASK'; playerId: string; witnessId: string; question: WitnessQuestion; suspectId?: string }
+  | { type: 'SHOW'; playerId: string; objectId: string; personId: string }
+  | { type: 'TALK'; playerId: string; personId: string; topicId: string }
   | { type: 'ABILITY'; playerId: string; suspectId?: string; locationId?: string }
   | { type: 'ACCUSE'; playerId: string; suspectId: string }
   | { type: 'END_TURN'; playerId: string }

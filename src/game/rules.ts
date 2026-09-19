@@ -123,6 +123,41 @@ export function canAsk(s: GameState, p: PlayerState | null, view: WitnessView | 
   return view.canDescribe.length > 0 || view.canLead;
 }
 
+// --------------------------------------------------------------- objects
+
+export const objectDefs = (s: GameState) => caseById(s.caseId).objects;
+export const heldObjects = (s: GameState) => objectDefs(s).filter((o) => s.objects.includes(o.id));
+
+/** Objects you could hand this person right now: held, and not shown to them before. */
+export function showable(s: GameState, p: PlayerState | null, personId: string): ReturnType<typeof heldObjects> {
+  if (!p || s.phase !== 'play' || p.ap < 1) return [];
+  return heldObjects(s).filter((o) => !(s.shown[o.id] || []).includes(personId));
+}
+
+// ---------------------------------------------------------------- topics
+
+export interface TopicView { id: string; q: string; cost: number; asked: boolean }
+
+/** The questions you can still put to this person, in the order written. */
+export function topicsFor(s: GameState, personId: string): TopicView[] {
+  const c = caseById(s.caseId);
+  const def = c.suspects.find((x) => x.id === personId)?.topics ?? c.witnesses.find((w) => w.id === personId)?.topics ?? [];
+  const asked = s.asked[personId] || [];
+  return def
+    .filter((t) => !asked.includes(t.id))
+    .filter((t) => !t.after || asked.includes(t.after))
+    .filter((t) => !t.needs || s.objects.includes(t.needs))
+    .map((t) => ({ id: t.id, q: t.q, cost: t.cost ?? 0, asked: false }));
+}
+
+/** What has already been said, for reading back. */
+export function askedTopics(s: GameState, personId: string): { q: string; a: string }[] {
+  const c = caseById(s.caseId);
+  const def = c.suspects.find((x) => x.id === personId)?.topics ?? c.witnesses.find((w) => w.id === personId)?.topics ?? [];
+  const asked = s.asked[personId] || [];
+  return def.filter((t) => asked.includes(t.id)).map((t) => ({ q: t.q, a: t.a }));
+}
+
 export const canAccuse = (s: GameState, p: PlayerState | null): boolean =>
   !!p && s.phase === 'play' && p.ap >= ACCUSE_COST;
 export const canUseAbility = (s: GameState, p: PlayerState | null): boolean =>

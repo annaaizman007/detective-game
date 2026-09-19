@@ -29,7 +29,7 @@ import { exhibitById } from '../game/exhibits';
 import { STORAGE } from '../config/constants';
 
 type Screen = 'title' | 'setup' | 'briefing' | 'game' | 'end';
-type Modal = 'how' | 'settings' | 'location' | 'dialogue' | 'accuse' | 'ability' | 'exhibit-zoom' | null;
+type Modal = 'how' | 'settings' | 'location' | 'dialogue' | 'accuse' | 'ability' | 'exhibit-zoom' | 'casefile' | null;
 type Tab = 'notebook' | 'locker' | 'journal' | 'suspects' | 'log';
 
 interface UiState {
@@ -157,6 +157,7 @@ export class App {
         case 'find-me': if (p) this.board?.focus(p.at); return;
         case 'end-turn': return this.onAct('do-endturn', null);
         case 'help': return this.onAct('how', null);
+        case 'casefile': return this.onAct('casefile', null);
         default: return undefined;
       }
     });
@@ -191,6 +192,12 @@ export class App {
       this.modal = 'dialogue';
     } else if (next.testimony) {
       this.dialogue = { kind: 'witness', id: next.testimony.witnessId, stage: 'result' };
+      this.modal = 'dialogue';
+    } else if (next.showing) {
+      this.dialogue = { kind: next.showing.kind, id: next.showing.personId, stage: 'show-result' };
+      this.modal = 'dialogue';
+    } else if (next.talking) {
+      this.dialogue = { kind: next.talking.kind, id: next.talking.personId, stage: 'talk-result' };
       this.modal = 'dialogue';
     } else if (action.type === 'SEARCH' || action.type === 'ABILITY') {
       // A find opens the locker on what was just filed.
@@ -297,6 +304,15 @@ export class App {
       case 'open-suspect': return this.openSuspect(d('id'));
       case 'open-witness': return this.openWitness(d('id'));
       case 'witness-pick': this.dialogue = { kind: 'witness', id: d('id'), stage: 'pick-subject' }; this.modal = 'dialogue'; return this.renderModal();
+      case 'pick-object': this.dialogue = { kind: d('kind') as 'suspect' | 'witness', id: d('id'), stage: 'pick-object' }; this.modal = 'dialogue'; return this.renderModal();
+      case 'lean': this.dialogue = { kind: 'suspect', id: d('id'), stage: 'lean' }; this.modal = 'dialogue'; return this.renderModal();
+      case 'do-talk':
+        this.modal = null;
+        return p ? this.dispatch({ type: 'TALK', playerId: p.id, personId: d('id'), topicId: d('topic') }) : undefined;
+      case 'do-show':
+        this.modal = null;
+        return p ? this.dispatch({ type: 'SHOW', playerId: p.id, objectId: d('object'), personId: d('person') }) : undefined;
+      case 'casefile': this.modal = 'casefile'; return this.renderModal();
 
       case 'do-move': this.closeModal(); return p ? this.dispatch({ type: 'MOVE', playerId: p.id, to: d('id') }) : undefined;
       case 'do-search': this.closeModal(); return p ? this.dispatch({ type: 'SEARCH', playerId: p.id }) : undefined;
@@ -537,7 +553,7 @@ export class App {
     }
     this.cancelType?.(); this.cancelType = null;
     if (!this.modal) { host.innerHTML = ''; return; }
-    const wide = this.modal === 'dialogue' || this.modal === 'exhibit-zoom';
+    const wide = this.modal === 'dialogue' || this.modal === 'exhibit-zoom' || this.modal === 'casefile';
     host.innerHTML = `<div class="modal-back" data-act="close-modal"></div>
       <div class="modal ${wide ? 'modal--wide' : ''}" role="dialog" aria-modal="true">${this.modalBody()}</div>`;
     const target = host.querySelector<HTMLElement>('[data-type-target]');
@@ -552,6 +568,7 @@ export class App {
     switch (this.modal) {
       case 'how': return S.howToPlay();
       case 'settings': return S.settingsSheet(this.narrator, this.audio);
+      case 'casefile': return s ? S.caseFile(s, caseById(s.caseId)) : '';
       case 'location': return s && this.ui.selectedLocation ? locationPanel(s, this.ui.selectedLocation, this.profile()) : '';
       case 'dialogue': return s && this.dialogue ? renderDialogue(s, this.dialogue) : '';
       case 'accuse': return s ? accusePanel(s, this.profile()) : '';
@@ -597,6 +614,7 @@ export class App {
           <div class="trail-bar"><i style="width:${warmth * 100}%"></i></div>
         </div>
         <div class="topbar-r">
+          <button class="btn btn--small btn--ghost tb-casefile" data-act="casefile" title="The case file, any time">${icon('note')} Case file</button>
           <button class="icon-btn ${this.narrator.enabled ? 'is-on' : ''}" data-act="voice-quick" title="${this.narrator.enabled ? 'Narration on' : 'Narration off'}">${icon(this.narrator.enabled ? 'speaker' : 'mute')}</button>
           <button class="icon-btn ${this.audio.enabled ? 'is-on' : ''}" data-act="ambience-quick" title="${this.audio.enabled ? 'Room on' : 'Room off'}">${icon('rain')}</button>
           <button class="icon-btn" data-act="settings" title="Sound settings">${icon('badge')}</button>

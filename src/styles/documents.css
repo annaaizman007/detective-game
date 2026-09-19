@@ -115,3 +115,46 @@
 .wit-n i { display: block; font-style: normal; font-size: .76rem; color: var(--text-faint); }
 .wit-n em { display: block; font-style: normal; font-size: .7rem; color: var(--brass); margin-top: .15rem; }
 .minilist .ml-face .portrait { border-radius: 50%; }
+
+/* ---- objects in your pockets */
+.locker-h { margin: 0; padding: .7rem .8rem .2rem; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint); display: flex; gap: .4rem; align-items: center; }
+.locker-h .ico { width: 14px; height: 14px; }
+.objects { list-style: none; margin: 0; padding: .4rem .5rem; display: grid; gap: .4rem; }
+.obj { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: .6rem; align-items: center; padding: .5rem .6rem;
+  background: rgba(200,150,62,.06); border: 1px solid rgba(200,150,62,.25); border-radius: var(--r-s); }
+.obj-fig .fig { width: 96px; height: auto; }
+.obj-main b { display: block; font-size: .92rem; color: var(--brass-hi); }
+.obj-main i { display: block; font-style: normal; font-size: .78rem; color: var(--text-dim); }
+.obj-main em { display: block; font-style: normal; font-size: .72rem; color: var(--text-faint); margin-top: .25rem; }
+.choice--object .choice-face .fig { width: 72px; height: auto; }
+.choice--show { border-left-color: var(--brass); }
+.dlg-object { display: flex; align-items: center; gap: .8rem; }
+.dlg-object .fig { width: 120px; height: auto; }
+.dlg-object span { font-family: var(--display); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; color: var(--brass); }
+.dlg-bio { margin: 0; font-size: .82rem; color: var(--text-faint); }
+.dossier-notes { font-size: .84rem; color: var(--text-dim); }
+.dossier-notes summary { cursor: pointer; color: var(--brass); font-family: var(--display); font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; display: flex; gap: .35rem; align-items: center; }
+.dossier-notes summary .ico { width: 13px; height: 13px; }
+.dossier-notes p { margin: .4rem 0 0; }
+
+/* ---- the case file */
+.sheet--casefile { width: min(760px, 100%); }
+.dossier-facts--tight { margin: .6rem 0 .2rem; }
+.cf-body { font-family: var(--type); font-size: .9rem; line-height: 1.7; color: var(--paper); margin: 0 0 .6rem; }
+.cf-timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
+.cf-timeline li { display: grid; grid-template-columns: 72px 1fr; gap: .6rem; }
+.cf-timeline span { font-family: var(--type); color: var(--brass); font-size: .82rem; }
+.cf-timeline p { margin: 0; font-size: .86rem; }
+.cf-radio { margin: 0; padding-left: 1.1rem; font-family: var(--type); font-size: .84rem; color: var(--text-dim); }
+.cf-suspects { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.cf-sus { display: grid; grid-template-columns: 48px 1fr; gap: .7rem; align-items: start; padding: .5rem .6rem; background: var(--panel-2); border: 1px solid var(--line-soft); border-radius: var(--r-s); }
+.cf-sus b { display: block; } .cf-sus i { display: block; font-style: normal; font-size: .76rem; color: var(--text-faint); }
+.cf-sus p { margin: .3rem 0 0; font-size: .82rem; color: var(--text-dim); }
+.cf-alibi b { display: inline; color: var(--brass); }
+.tb-casefile { white-space: nowrap; }
+.end-truth { text-align: left; margin: 1rem 0; padding: .8rem 1rem; background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-s); }
+.end-truth summary { cursor: pointer; font-family: var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--brass-hi); font-size: .82rem; }
+.end-truth p { font-family: var(--type); font-size: .9rem; line-height: 1.7; color: var(--paper); }
+.end-secrets { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.end-secrets li { display: grid; grid-template-columns: 40px 1fr; gap: .6rem; align-items: start; }
+.end-secrets b { display: block; font-size: .88rem; } .end-secrets p { margin: .15rem 0 0; font-size: .82rem; }

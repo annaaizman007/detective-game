@@ -87,6 +87,7 @@ const STOCK = [
   'It points at',
   'It saves you time.',
   'It costs you time.',
+  'It gives something away.',
   'Ashgrave Bay, two in the morning, and it is still raining.',
   'Dispatch to all cars. A woman is dead at the Gilded Hotel, and nobody heard a thing. Take it slow, detective — this one has lawyers.',
 ];
@@ -143,6 +144,18 @@ export function collectLines(): CorpusLine[] {
       add(w.aboutLine, 'witness');
       add(w.leadLine, 'witness');
       add(w.spentLine, 'witness');
+    });
+    c.witnesses.forEach((w) => {
+      Object.values(w.opinions ?? {}).forEach((o) => add(o, 'witness'));
+      (w.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'witness'); });
+    });
+    c.suspects.forEach((x) => {
+      Object.values(x.opinions ?? {}).forEach((o) => add(o, 'dialogue'));
+      (x.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'dialogue'); });
+    });
+    c.objects.forEach((o) => {
+      add(o.spoken, 'evidence');
+      o.unlocks.forEach((u) => { add(u.line, 'dialogue'); add(u.reply, 'dialogue'); });
     });
   }
 

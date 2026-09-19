@@ -374,7 +374,10 @@ export class Narrator {
           const pause = last ? (/[?!]$/.test(r.text) ? 520 : 400) : /[,:;]$/.test(r.text) ? 190 : 150;
           await sleep(pause);
         }
-      } else if (this.settings.enabled && this.supported && this.voice) {
+      } else if (this.settings.enabled && this.supported && this.voice && !this.recorded) {
+        // Browser speech only when there is no recorded pack at all. A pack
+        // with a line missing (new text, not yet baked) reads as subtitles
+        // rather than switching to a synthesiser mid-scene.
         const phrases = toPhrases(item.line);
         const tone = TONES[item.tone] || TONES.narrator;
         for (let i = 0; i < phrases.length; i++) {

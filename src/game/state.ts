@@ -8,7 +8,7 @@
 
 import type {
   Action, CaseDef, CharacterDef, EvidenceState, GameState, JournalEntry, LogKind, NewGameOptions, PlayerState,
-  SuspectState, Tone, TraitId, WitnessDef,
+  SuspectState, Tone, TraitId, UnlockEffect, WitnessDef,
 } from '../types/game-types';
 import { drawInt, drawPick, drawShuffle } from './rng';
 import { TRAITS, traitValue, traitLabel } from './traits';
@@ -19,7 +19,7 @@ import { EVENTS, type EventApi, type Spoken } from './events';
 import { approachById, replyFor, spentReply } from './dialogue';
 import { traitFact, traitPhrase } from './lines';
 import { exhibitById, itemById } from './exhibits';
-import { WITNESS_ASKS } from './witnesses';
+import { WITNESS_ASKS, SHOW_LINES } from './witnesses';
 
 export const ACCUSE_COST = 2;
 export const ABILITY_COST = 1;
@@ -75,6 +75,9 @@ export function createGame({ caseId, difficulty = 'detective', seed, players = [
     knownCulprit: Object.fromEntries(built.chosenTraits.map((t) => [t, null])) as Record<TraitId, string | null>,
     exhibits: [],
     leads: {},
+    objects: [],
+    shown: {},
+    asked: {},
     cold: 0,
     coldMax: DIFFICULTIES[difficulty].budget,
 
@@ -92,6 +95,8 @@ export function createGame({ caseId, difficulty = 'detective', seed, players = [
     lastEvent: null,
     conversation: null,
     testimony: null,
+    showing: null,
+    talking: null,
     log: [],
     journal: [],
     narration: [],
@@ -111,6 +116,7 @@ const locName = (s: GameState, id: string) => loc(s, id)?.name ?? id;
 const sus = (s: GameState, id: string) => s.suspects.find((x) => x.id === id);
 const player = (s: GameState, id: string) => s.players.find((p) => p.id === id);
 const witnessDef = (s: GameState, id: string): WitnessDef | undefined => caseById(s.caseId).witnesses.find((w) => w.id === id);
+const objectById = (s: GameState, id: string) => caseById(s.caseId).objects.find((o) => o.id === id);
 
 function pushLog(s: GameState, text: string, kind: LogKind = 'info', actor: string | null = null) {
   s.log.unshift({ round: s.round, text, kind, actor });
@@ -227,6 +233,15 @@ function file(s: GameState, p: PlayerState | null, defId: string, at: string, da
 
 function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
   ev.found = true;
+  if (ev.kind === 'object') {
+    const obj = objectById(s, ev.object);
+    if (!obj) return;
+    s.objects.push(obj.id);
+    tell(s, obj.spoken, 'clue', 'clue');
+    pushLog(s, `Found — ${obj.name}. You are carrying it.`, 'fact');
+    journal(s, p, 'exhibit', `Picked up ${obj.name.toLowerCase()} at ${locName(s, p.at)}. Somebody in this city will know it.`, { location: p.at });
+    return;
+  }
   const def = exhibitById(ev.exhibit);
   if (ev.kind === 'clue') {
     s.knownCulprit[ev.trait] = ev.value;
@@ -388,6 +403,8 @@ export function applyAction(prev: GameState, action: Action): GameState {
   s.narration = [];
   s.conversation = null;
   s.testimony = null;
+  s.showing = null;
+  s.talking = null;
   if (s.phase === 'over') return s;
   const apBefore = s.players.reduce((n, x) => n + x.ap, 0);
 
@@ -508,9 +525,11 @@ export function applyAction(prev: GameState, action: Action): GameState {
           subject.known[t] = true;
           const said = traitValue(t, subject.traits[t]).tell;
           const surname = subject.name.split(' ').slice(-1)[0];
-          const reply = `${subject.name}? ${def.aboutLine} ${surname} ${said}`;
+          // Their own words about the person first, then what they noticed.
+          const opinion = def.opinions?.[subject.id] ?? def.aboutLine;
+          const reply = `${subject.name}? ${opinion} ${surname} ${said}`;
           s.testimony = { witnessId: w.id, question: 'about', ask, reply, subjectId: subject.id, trait: t };
-          tell(s, reply, 'witness', 'witness', [subject.name, def.aboutLine, surname, said]);
+          tell(s, reply, 'witness', 'witness', [subject.name, opinion, surname, said]);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
             text: reply,
@@ -550,6 +569,73 @@ export function applyAction(prev: GameState, action: Action): GameState {
         }
       }
       if (!caseDef) return s;
+      break;
+    }
+
+    case 'SHOW': {
+      if (p.ap < 1) return s;
+      if (!s.objects.includes(action.objectId)) return s;
+      const obj = objectById(s, action.objectId);
+      if (!obj) return s;
+      const shownTo = s.shown[obj.id] || (s.shown[obj.id] = []);
+      if (shownTo.includes(action.personId)) return s;
+      // The person has to be in front of you: a suspect standing here, or
+      // the witness who lives here.
+      const suspect = sus(s, action.personId);
+      const wdef = witnessDef(s, action.personId);
+      const wstate = s.witnesses.find((w) => w.id === action.personId);
+      const here = suspect ? !suspect.dead && suspect.at === p.at : !!wstate && wstate.at === p.at;
+      if (!here) return s;
+      const who = suspect ? suspect.name : wdef?.name ?? action.personId;
+      const kind: 'suspect' | 'witness' = suspect ? 'suspect' : 'witness';
+      p.ap -= 1;
+      shownTo.push(action.personId);
+      pushLog(s, `${p.name} shows ${who} ${obj.name.toLowerCase()}.`, 'action', p.id);
+      const unlock = obj.unlocks.find((u) => u.person === action.personId);
+      if (!unlock) {
+        const line = SHOW_LINES.ask[drawInt(s, SHOW_LINES.ask.length)];
+        const reply = SHOW_LINES.shrug[drawInt(s, SHOW_LINES.shrug.length)];
+        s.showing = { objectId: obj.id, personId: action.personId, kind, line, reply, unlocked: false };
+        tell(s, line, 'talk', 'ask');
+        tell(s, reply, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+        journal(s, p, 'show', `Showed ${who} ${obj.name.toLowerCase()}. It meant nothing to them.`, suspect ? { suspect: suspect.id } : { witness: action.personId });
+        break;
+      }
+      s.showing = { objectId: obj.id, personId: action.personId, kind, line: unlock.line, reply: unlock.reply, unlocked: true };
+      tell(s, unlock.line, 'talk', 'ask');
+      tell(s, unlock.reply, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+      const outcome = applyUnlock(s, p, unlock.effect);
+      s.showing.outcome = outcome;
+      journal(s, p, 'show', `Showed ${who} ${obj.name.toLowerCase()}. ${unlock.reply} ${outcome}`.trim(), suspect ? { suspect: suspect.id } : { witness: action.personId });
+      break;
+    }
+
+    case 'TALK': {
+      const suspect = sus(s, action.personId);
+      const wdef = witnessDef(s, action.personId);
+      const wstate = s.witnesses.find((w) => w.id === action.personId);
+      const sdef = suspect ? caseById(s.caseId).suspects.find((d) => d.id === suspect.id) : undefined;
+      const topics = (suspect ? sdef?.topics : wdef?.topics) ?? [];
+      const topic = topics.find((t) => t.id === action.topicId);
+      if (!topic) return s;
+      const here = suspect ? !suspect.dead && suspect.at === p.at : !!wstate && wstate.at === p.at;
+      if (!here) return s;
+      const asked = s.asked[action.personId] || (s.asked[action.personId] = []);
+      if (asked.includes(topic.id)) return s;
+      if (topic.after && !asked.includes(topic.after)) return s;
+      if (topic.needs && !s.objects.includes(topic.needs)) return s;
+      const cost = topic.cost ?? 0;
+      if (p.ap < cost) return s;
+      p.ap -= cost;
+      asked.push(topic.id);
+      const who = suspect ? suspect.name : wdef?.name ?? action.personId;
+      const kind: 'suspect' | 'witness' = suspect ? 'suspect' : 'witness';
+      pushLog(s, `${p.name} asks ${who}: ${topic.q}`, 'talk', p.id);
+      tell(s, topic.q, 'talk', 'ask');
+      tell(s, topic.a, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+      s.talking = { personId: action.personId, kind, topicId: topic.id, q: topic.q, a: topic.a };
+      if (topic.effect) s.talking.outcome = applyUnlock(s, p, topic.effect);
+      journal(s, p, 'question', `${who}, asked "${topic.q}": ${topic.a}${s.talking.outcome ? ` ${s.talking.outcome}` : ''}`, suspect ? { suspect: suspect.id } : { witness: action.personId });
       break;
     }
 
@@ -608,6 +694,54 @@ export function applyAction(prev: GameState, action: Action): GameState {
 
   if (p.ap <= 0) advanceTurn(s);
   return s;
+}
+
+/** What a scene gives up: a fact, a habit, a place, an alibi, time. Returns a line for the journal. */
+function applyUnlock(s: GameState, p: PlayerState, fx: UnlockEffect): string {
+  switch (fx.type) {
+    case 'culpritTrait': {
+      const r = revealCulpritTrait(s);
+      if (r) { tellResult(s, 'It comes out.', r); return r.text; }
+      tell(s, 'It confirms what you already had.', 'fact');
+      return 'Nothing new.';
+    }
+    case 'suspectTrait': {
+      const r = revealSuspectTrait(s, fx.suspectId);
+      if (r) { tellResult(s, 'It gives something away.', r); return r.text; }
+      tell(s, 'It confirms what you already had.', 'fact');
+      return 'Nothing new.';
+    }
+    case 'clear': {
+      const x = sus(s, fx.suspectId);
+      if (!x) return '';
+      if (x.id === s.culpritId) {
+        // The killer's story cannot hold. Something slips instead.
+        const r = revealCulpritTrait(s);
+        tell(s, `${x.name} tells it well. It does not hold.`, 'bad', 'narrator', [x.name, 'tells it well. It does not hold.']);
+        if (r) { tellResult(s, 'It comes out.', r); return r.text; }
+        return 'Their story does not hold.';
+      }
+      if (x.cleared) return '';
+      x.cleared = true;
+      tell(s, `${x.name} is cleared. Their story holds.`, 'good', 'narrator', [x.name, 'is cleared. Their story holds.']);
+      return `${x.name} is cleared.`;
+    }
+    case 'lead': {
+      const candidates = s.evidence.filter((e) => !e.found && e.at !== p.at && e.kind !== 'item' && !s.leads[e.at]);
+      const target = candidates.length ? drawPick(s, candidates) : null;
+      if (!target) return '';
+      s.leads[target.at] = true;
+      tell(s, `It points at ${locName(s, target.at)}.`, 'lead', 'narrator', ['It points at', locName(s, target.at)]);
+      return `Lead: ${locName(s, target.at)}.`;
+    }
+    case 'time': {
+      s.cold = fx.hours < 0 ? Math.max(0, s.cold + fx.hours) : Math.min(s.coldMax, s.cold + fx.hours);
+      tell(s, fx.hours < 0 ? 'It saves you time.' : 'It costs you time.', fx.hours < 0 ? 'good' : 'bad');
+      return fx.hours < 0 ? 'Time saved.' : 'Time lost.';
+    }
+    default:
+      return '';
+  }
 }
 
 function runAbility(s: GameState, p: PlayerState, ch: CharacterDef, action: Extract<Action, { type: 'ABILITY' }>): boolean {

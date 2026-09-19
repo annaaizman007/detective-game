@@ -124,4 +124,31 @@ export const FIGURES: Record<string, string> = {
   'footprint-large': footprint('12 in', 'no. 1'),
 };
 
-export const figure = (id: string | undefined): string => (id && FIGURES[id]) || '';
+// ---- objects: the things you carry, sketched on an evidence tag.
+const tag = (body: string, caption: string) => wrap(320, 190, `
+  <path d="M40 40h200l30 55-30 55H40z" fill="#efe6d2" stroke="${INK}" stroke-width="1.4"/><circle cx="258" cy="95" r="5"/>
+  <path d="M263 95q30-20 40 10" stroke-width="1.2" fill="none"/>
+  ${body}${label(60, 140, caption, 9)}`);
+
+export const OBJECTS: Record<string, string> = {
+  key: tag(`<circle cx="90" cy="88" r="16"/><circle cx="90" cy="88" r="6"/><path d="M104 88h70M160 88v12M172 88v10M148 88v8" stroke-width="5" stroke-linecap="round"/>`, 'brass, stamped'),
+  glove: tag(`<path d="M80 122v-30c0-14 10-16 16-14v-16c0-5 8-5 8 0v18h5v-22c0-5 8-5 8 0v22h5v-18c0-5 8-5 8 0v20h5v-10c0-5 8-5 8 0v26c0 18-12 30-30 30z" fill="#2b221b" fill-opacity=".15"/>`, 'leather, right hand'),
+  matchbook: tag(`<rect x="70" y="60" width="60" height="70" rx="3" fill="#8b2f3d" fill-opacity=".8"/><rect x="70" y="112" width="60" height="18" fill="${INK}" fill-opacity=".8"/><path d="M80 90h40M80 100h28" stroke="#f2ecdf" stroke-width="2"/>${label(150, 100, 'ROSIE’S', 12)}`, 'half the matches gone'),
+  ring: tag(`<ellipse cx="100" cy="95" rx="30" ry="24" stroke-width="7"/><path d="M92 68l8-10 8 10z" fill="#b8791f"/><path d="M100 58l-3 6h6z" fill="#f2ecdf"/>`, 'gold, setting bent'),
+  stub: tag(`<path d="M60 70h120l-4 10 4 10-4 10 4 10-4 10 4 10-4 10 4 10H60z" fill="#efe4c8" stroke-dasharray="3 2"/>${label(70, 92, 'ADMIT ONE', 11)}${label(70, 112, 'BOX C', 10)}${label(70, 128, 'NOV 3 — EVE.', 8)}`, 'never torn'),
+  photo: tag(`<rect x="60" y="56" width="110" height="80" fill="#1a1a1a" stroke="#f2ecdf" stroke-width="5"/><ellipse cx="115" cy="96" rx="22" ry="26" fill="#3a3a3a"/><ellipse cx="115" cy="86" rx="9" ry="10" fill="#6a6a6a"/>`, 'a face, half in shadow'),
+  cufflink: tag(`<circle cx="90" cy="90" r="14" fill="#b8791f" fill-opacity=".8"/><circle cx="130" cy="90" r="14" fill="#b8791f" fill-opacity=".8"/>${label(90, 94, 'R', 12, 'middle')}${label(130, 94, 'V', 12, 'middle')}`, 'engraved, one of a pair'),
+  locket: tag(`<circle cx="100" cy="98" r="22" fill="#b8791f" fill-opacity=".5"/><path d="M100 76v-10M92 62a8 8 0 0 1 16 0" stroke-width="2"/><path d="M100 78v40M86 98h28" stroke="#f2ecdf" stroke-width="1"/>`, 'a lock of hair inside'),
+  rosary: tag(`<path d="M70 70q40-20 80 0t60 30" stroke-dasharray="1 7" stroke-width="7" stroke-linecap="round"/><path d="M170 100v30M160 118h20" stroke-width="4"/>`, 'beads wet, cross bent'),
+  knife: tag(`<path d="M60 96h90l30-6-30-6H60z" fill="#d8d2c4" stroke-width="1.5"/><rect x="40" y="82" width="30" height="28" rx="4" fill="#e9dfc8"/><path d="M45 88h20M45 96h20M45 104h20" stroke-width="1"/>`, 'rigging knife, bone handle'),
+  watch: tag(`<circle cx="100" cy="96" r="30" fill="#f2ecdf"/><circle cx="100" cy="96" r="26"/><path d="M100 96v-18M100 96l12 8" stroke-width="2.5"/><rect x="96" y="58" width="8" height="8"/>`, 'stopped at 1:52'),
+  lighter: tag(`<rect x="80" y="60" width="40" height="70" rx="4" fill="#b8791f" fill-opacity=".6"/><rect x="80" y="60" width="40" height="18" rx="4" fill="#b8791f" fill-opacity=".9"/><path d="M100 60c-6-10 4-14 0-22 6 8 10 14 0 22z" fill="#e0632a"/>${label(84, 118, 'E.S.', 9)}`, 'initials on the base'),
+  flask: tag(`<path d="M84 128v-44c0-8 6-12 10-12h12c4 0 10 4 10 12v44z" fill="#8a8a80" fill-opacity=".5"/><rect x="94" y="60" width="12" height="12" rx="2"/>${label(88, 108, 'RYE', 9)}`, 'half full, dented'),
+  scarf: tag(`<path d="M70 70c30 10 60-10 90 0s40 30 20 50-50 0-70 10-40-10-40-60z" fill="#8b2f3d" fill-opacity=".7"/>`, 'silk, orchid scent'),
+  card: tag(`<rect x="70" y="66" width="80" height="50" rx="3" fill="#f2ecdf"/>${label(80, 84, 'MARROW HOUSE', 8)}${label(80, 100, 'VISITOR — B. AYRE', 8)}`, 'a visitor’s pass'),
+  button: tag(`<circle cx="100" cy="96" r="22" fill="#3d2e22"/><circle cx="92" cy="90" r="2.5" fill="#f2ecdf"/><circle cx="108" cy="90" r="2.5" fill="#f2ecdf"/><circle cx="92" cy="102" r="2.5" fill="#f2ecdf"/><circle cx="108" cy="102" r="2.5" fill="#f2ecdf"/><path d="M122 84c8-4 12 0 14 6" stroke-width="1.5" fill="none"/>`, 'brass, with thread'),
+  eyepiece: tag(`<rect x="70" y="80" width="70" height="32" rx="6" fill="#b8791f" fill-opacity=".6"/><rect x="140" y="86" width="20" height="20" rx="3" fill="#b8791f" fill-opacity=".9"/><circle cx="160" cy="96" r="7" fill="#e8f0f5"/>${label(78, 100, 'H.Q.', 9)}`, 'brass, engraved'),
+  ticket: tag(`<path d="M60 74h110v44H60z" fill="#efe4c8"/><path d="M60 96a6 6 0 0 0 0 0M170 96a6 6 0 0 1 0 0" /><path d="M110 74v44" stroke-dasharray="3 3"/>${label(68, 92, 'PAWN', 9)}${label(68, 108, 'No. 3391', 9)}`, 'redeemed by another hand'),
+};
+
+export const figure = (id: string | undefined): string => (id && (FIGURES[id] || OBJECTS[id])) || '';

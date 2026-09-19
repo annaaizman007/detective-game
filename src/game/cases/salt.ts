@@ -396,6 +396,9 @@ const def: CaseDef = {
       reading: 'A last argument, and a cabman who knows the shortcuts. Time saved.', about: ['hollis'], effect: { type: 'time', hours: -2 } },
   ],
 
+  objects: [],
+  story: { backstory: [], timeline: [], truth: [] },
+
   epilogue: {
     win: `You make the arrest at the Hall, an hour before the vote, in front of three hundred
       longshoremen who go very quiet all at once. Somebody at the back starts clapping and

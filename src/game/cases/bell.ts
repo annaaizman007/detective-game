@@ -403,6 +403,9 @@ const def: CaseDef = {
       reading: 'It was the drunk who says that every night. An hour gone.', effect: { type: 'time', hours: 1 } },
   ],
 
+  objects: [],
+  story: { backstory: [], timeline: [], truth: [] },
+
   epilogue: {
     win: `They ring twelve at midnight again, and the hill pretends that settles it. You stand
       in the wet grass under two hundred and eleven steps of cold stone and you count to nine,

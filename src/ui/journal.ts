@@ -21,7 +21,7 @@ export interface JournalView {
 }
 
 const KIND_ICON: Record<JournalEntry['kind'], string> = {
-  open: 'badge', move: 'pin', search: 'lead', exhibit: 'note', talk: 'eye', ask: 'eye', ability: 'badge',
+  open: 'badge', move: 'pin', search: 'lead', exhibit: 'note', talk: 'eye', ask: 'eye', show: 'hand', question: 'eye', ability: 'badge',
   accuse: 'skull', event: 'clock', end: 'badge', note: 'book',
 };
 
@@ -30,7 +30,7 @@ const dayOf = (hour: number) => Math.floor((2 + hour) / 24) + 1;
 export function renderJournal(s: GameState, v: JournalView): string {
   const entries = s.journal.filter((e) => {
     if (v.filter === 'finds') return e.kind === 'exhibit' || e.kind === 'search';
-    if (v.filter === 'people') return e.kind === 'talk' || e.kind === 'ask';
+    if (v.filter === 'people') return e.kind === 'talk' || e.kind === 'ask' || e.kind === 'show' || e.kind === 'question';
     if (v.filter === 'mine') return e.playerId === s.players[s.turn]?.id;
     return true;
   });

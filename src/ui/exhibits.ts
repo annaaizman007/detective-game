@@ -10,7 +10,7 @@ import type { ExhibitInstance, GameState, TraitId } from '../types/game-types';
 import { exhibitById, fill, type ExhibitDef } from '../game/exhibits';
 import { TRAITS, traitLabel } from '../game/traits';
 import { caseById } from '../game/cases/index';
-import { clockAt, locationById } from '../game/rules';
+import { clockAt, locationById, heldObjects } from '../game/rules';
 import { figure } from './figures';
 import { icon } from './icons';
 import { esc } from './fx';
@@ -35,10 +35,26 @@ function dataFor(inst: ExhibitInstance, s: GameState): Record<string, string> {
   return { victim: c.victim, scene: locationById(s, c.scene)?.name ?? c.scene, ...(inst.data ?? {}) };
 }
 
+/** The things the table is carrying. */
+function objectsHtml(s: GameState): string {
+  const held = heldObjects(s);
+  if (!held.length) return '';
+  return `<h4 class="locker-h">${icon('hand')} In your pockets</h4>
+    <ul class="objects">${held.map((o) => {
+      const shownTo = (s.shown[o.id] || []).length;
+      return `<li class="obj">
+        <span class="obj-fig">${figure(o.drawing)}</span>
+        <span class="obj-main"><b>${esc(o.name)}</b><i>${esc(o.desc)}</i>
+          <em>${shownTo ? `Shown to ${shownTo} ${shownTo === 1 ? 'person' : 'people'}.` : 'Show it to somebody. The right somebody will know it.'}</em></span>
+      </li>`;
+    }).join('')}</ul>`;
+}
+
 /** The list: everything filed, newest last, lettered. */
 export function lockerList(s: GameState, v: LockerView): string {
+  const objects = objectsHtml(s);
   if (!s.exhibits.length) {
-    return `<div class="locker-empty">${icon('lead')}<p>Nothing filed yet. Search a location, or ask around; whatever you find ends up here as a document you can open.</p></div>`;
+    return `${objects}<div class="locker-empty">${icon('lead')}<p>Nothing filed yet. Search a location, or ask around; whatever you find ends up here as a document you can open.</p></div>`;
   }
   const rows = s.exhibits.map((inst, i) => {
     const def = exhibitById(inst.def);
@@ -54,7 +70,7 @@ export function lockerList(s: GameState, v: LockerView): string {
       <span class="ex-flag">${def.trait ? (marked ? `<em class="is-marked">${icon(TRAITS[def.trait].icon)} noted</em>` : `<em>${icon(TRAITS[def.trait].icon)} unread</em>`) : def.id === 'statement' ? '<em>testimony</em>' : ''}</span>
     </li>`;
   }).join('');
-  return `<ul class="locker">${rows}</ul>`;
+  return `${objects}${objects ? `<h4 class="locker-h">${icon('note')} Filed</h4>` : ''}<ul class="locker">${rows}</ul>`;
 }
 
 /** One document, as paper. */

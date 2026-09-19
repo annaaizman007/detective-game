@@ -78,3 +78,13 @@
   .dlg-char .portrait { width: min(200px, 70%); }
   .dlg-box { padding: .9rem; }
 }
+
+/* ---- the conversation as a transcript */
+.transcript { display: grid; gap: .5rem; max-height: 34vh; overflow: auto; padding-right: .3rem; }
+.tr-q { margin: 0; font-family: var(--display); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brass); }
+.tr-a { margin: .15rem 0 0; font-family: var(--type); font-size: .92rem; line-height: 1.65; color: var(--paper); padding-left: .7rem; border-left: 2px solid var(--line); }
+.tr.is-latest .tr-a { border-left-color: var(--brass); }
+.choice--q b { font-family: var(--type); text-transform: none; letter-spacing: 0; font-size: .9rem; font-weight: 400; color: var(--paper); }
+.choice--lean { border-left-color: var(--crimson); }
+.dlg-patience { font-size: .72rem; color: var(--text-faint); font-style: italic; }
+.dlg-box .dlg-choices--grid { max-height: 40vh; overflow: auto; }

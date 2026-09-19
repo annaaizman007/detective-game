@@ -184,6 +184,11 @@ export function endScreen(s: GameState, caseDef: CaseDef): string {
       </div>
       <ul class="end-facts">${facts}</ul>
       <p class="end-epilogue">${esc((won ? caseDef.epilogue.win : caseDef.epilogue.loss).replace(/\s+/g, ' ').trim())}</p>
+      ${caseDef.story.truth.length ? `<details class="end-truth" ${won ? 'open' : ''}><summary>What really happened</summary>${caseDef.story.truth.map((par) => `<p>${esc(par)}</p>`).join('')}</details>` : ''}
+      ${s.suspects.some((x) => caseDef.suspects.find((d) => d.id === x.id)?.secret) ? `<details class="end-truth"><summary>What everybody was hiding</summary><ul class="end-secrets">${s.suspects.map((x) => {
+        const d = caseDef.suspects.find((q) => q.id === x.id);
+        return d?.secret ? `<li><span class="end-secret-face">${portraitSvg(x.id, { size: 40, frame: 'face', reveal: true, traits: x.traits })}</span><div><b>${esc(x.name)}</b><p>${esc(d.secret)}</p></div></li>` : '';
+      }).join('')}</ul></details>` : ''}
       <p class="end-stats">
         ${won && solver ? `Collared by <b>${esc(solver.name)}</b>. ` : ''}
         ${s.cold} of ${s.coldMax} hours spent · ${R.factsKnown(s)}/${s.chosenTraits.length} facts found · ${s.exhibits.length} exhibits filed
@@ -197,6 +202,43 @@ export function endScreen(s: GameState, caseDef: CaseDef): string {
       </div>
     </div>
   </section>`;
+}
+
+/** The whole case, any time: what is known, when it happened, who is in it. */
+export function caseFile(s: GameState, caseDef: CaseDef): string {
+  const st = caseDef.story;
+  const suspects = s.suspects.map((x) => {
+    const d = caseDef.suspects.find((q) => q.id === x.id);
+    return `<li class="cf-sus">
+      <span class="cf-face">${portraitSvg(x.id, { size: 48, frame: 'face', known: x.known, traits: x.traits })}</span>
+      <div><b>${esc(x.name)}</b><i>${esc(x.role)}</i>
+        ${d?.bio ? `<p>${esc(d.bio)}</p>` : ''}${d?.alibi ? `<p class="cf-alibi"><b>Says:</b> ${esc(d.alibi)}</p>` : ''}</div>
+    </li>`;
+  }).join('');
+  return `
+  <div class="sheet sheet--casefile">
+    <button class="sheet-x" data-act="close-modal" aria-label="Close">×</button>
+    <p class="dossier-dept">Ashgrave Bay Police · Case file</p>
+    <h3>${esc(caseDef.title)}</h3>
+    <p class="sheet-lead">${esc(caseDef.tagline)}</p>
+    <dl class="dossier-facts dossier-facts--tight">
+      <div><dt>Victim</dt><dd>${esc(caseDef.victim)}</dd></div>
+      <div><dt>Scene</dt><dd>${esc(R.locationById(s, caseDef.scene)?.name ?? caseDef.scene)}</dd></div>
+      <div><dt>On the clock</dt><dd>${Math.max(0, s.coldMax - s.cold)} of ${s.coldMax} hours</dd></div>
+    </dl>
+    <h4 class="sheet-h">The briefing</h4>
+    <p class="cf-body">${esc(caseDef.briefing.replace(/\s+/g, ' ').trim())}</p>
+    ${st.backstory.length ? `<h4 class="sheet-h">What is known</h4>${st.backstory.map((par) => `<p class="cf-body">${esc(par)}</p>`).join('')}` : ''}
+    ${st.timeline.length ? `<h4 class="sheet-h">The night</h4><ol class="cf-timeline">${st.timeline.map((t) => `<li><span>${esc(t.time)}</span><p>${esc(t.text)}</p></li>`).join('')}</ol>` : ''}
+    <h4 class="sheet-h">Dispatch</h4>
+    <ul class="cf-radio">${caseDef.radio.map((r) => `<li>${esc(r)}</li>`).join('')}</ul>
+    <h4 class="sheet-h">The suspects</h4>
+    <ul class="cf-suspects">${suspects}</ul>
+    <div class="sheet-actions">
+      <button class="btn btn--ghost" data-act="replay-brief">${icon('speaker')} Hear the briefing</button>
+      <button class="btn btn--hero" data-act="close-modal">Back to it</button>
+    </div>
+  </div>`;
 }
 
 export function howToPlay(): string {

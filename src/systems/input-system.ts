@@ -3,7 +3,7 @@
 // buttons dispatch, so a keyboard player never has to reach for the mouse.
 
 export type InputAction =
-  | 'escape' | 'search' | 'move' | 'talk' | 'journal' | 'notebook' | 'exhibits' | 'zoom-in' | 'zoom-out' | 'find-me' | 'end-turn' | 'help';
+  | 'escape' | 'search' | 'move' | 'talk' | 'journal' | 'notebook' | 'exhibits' | 'zoom-in' | 'zoom-out' | 'find-me' | 'end-turn' | 'help' | 'casefile';
 
 const KEYS: Record<string, InputAction> = {
   Escape: 'escape',
@@ -16,6 +16,7 @@ const KEYS: Record<string, InputAction> = {
   '+': 'zoom-in', '=': 'zoom-in',
   '-': 'zoom-out', '_': 'zoom-out',
   f: 'find-me',
+  c: 'casefile',
   '?': 'help',
 };
 

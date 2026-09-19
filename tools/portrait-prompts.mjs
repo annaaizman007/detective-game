@@ -26,14 +26,14 @@ for (const c of CASES) {
   for (const w of c.witnesses) people.push({ id: w.id, name: w.name, role: w.role.toLowerCase(), kind: 'witness' });
 }
 
-const STYLE = '1950s pulp crime paperback cover art, oil painting, chiaroscuro light from the left, muted colours, dark smoky background, bust portrait, looking at viewer, 1940s clothing';
-const NEGATIVE = 'photograph, photorealistic, modern clothes, text, letters, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border';
+const STYLE = 'solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer';
+const NEGATIVE = 'two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border';
 
 const out = people.map((p) => {
   const l = lookFor(p.id);
   const who = l.fem ? 'woman' : 'man';
   const bits = [
-    `portrait of a ${who} ${AGE[l.age]}, ${p.role}`,
+    `portrait of one ${who} ${AGE[l.age]}, ${p.role.split(',')[0]}`,
     HAIR[l.hair], HAT[l.hat], l.fem ? '' : BEARD[l.beard], l.glasses ? 'round wire glasses' : '',
     COAT[l.coat], MOOD[l.mood], SMOKE[l.smoke],
   ].filter(Boolean).join(', ');

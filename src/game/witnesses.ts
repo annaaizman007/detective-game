@@ -17,6 +17,21 @@ export const WITNESS_ASKS = {
   noLead: 'Nothing that walked out of here tonight is still worth walking after.',
 };
 
+/** Handing somebody an object that means nothing to them. */
+export const SHOW_LINES = {
+  ask: [
+    'Seen this before?',
+    'This mean anything to you?',
+    'Take a look. Take your time.',
+  ],
+  shrug: [
+    'A long look, and a shrug. Nothing.',
+    '"No. Should it?"',
+    'They turn it over twice and hand it back.',
+  ],
+};
+
 export function allWitnessLines(): string[] {
-  return [...WITNESS_ASKS.about, ...WITNESS_ASKS.lead, WITNESS_ASKS.nothing, WITNESS_ASKS.noLead];
+  return [...WITNESS_ASKS.about, ...WITNESS_ASKS.lead, WITNESS_ASKS.nothing, WITNESS_ASKS.noLead, ...SHOW_LINES.ask, ...SHOW_LINES.shrug,
+    'It comes out.', 'It confirms what you already had.', 'is cleared. Their story holds.', 'tells it well. It does not hold.'];
 }

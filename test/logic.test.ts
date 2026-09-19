@@ -243,6 +243,51 @@ describe('THE ASHGRAVE FILES -- logic suite', () => {
     expect(R.witnessAt(s, 'gilded')!.state.patience).toBe(0);
   });
 
+  it('people answer their own questions, once, and a paid one gives something up', () => {
+    let s = createGame({ caseId: 'orchid', difficulty: 'commissioner', seed: 'talk-topics', players: [{ id: 'p0', charId: 'quist', name: 'Quist' }] });
+    const p = s.players[0];
+    p.at = 'trust';
+    const free = R.topicsFor(s, 'vine').find((t) => t.cost === 0)!;
+    s = applyAction(s, { type: 'TALK', playerId: p.id, personId: 'vine', topicId: free.id });
+    expect(s.talking?.q).toBe(free.q);
+    expect(s.players[0].ap).toBe(p.ap);
+    expect(R.topicsFor(s, 'vine').some((t) => t.id === free.id)).toBe(false);
+    const again = applyAction(s, { type: 'TALK', playerId: p.id, personId: 'vine', topicId: free.id });
+    expect(again.talking).toBeNull();
+    const paid = R.topicsFor(s, 'vine').find((t) => t.cost > 0)!;
+    const before = s.suspects.map((x) => s.chosenTraits.filter((t) => x.known[t]).length).reduce((a, b) => a + b, 0);
+    s = applyAction(s, { type: 'TALK', playerId: p.id, personId: 'vine', topicId: paid.id });
+    expect(s.players[0].ap).toBe(p.ap - 1);
+    const after = s.suspects.map((x) => s.chosenTraits.filter((t) => x.known[t]).length).reduce((a, b) => a + b, 0);
+    expect(after).toBeGreaterThanOrEqual(before);
+    expect(s.journal.at(-1)?.kind).toBe('question');
+    // Nobody answers from across town.
+    const far = createGame({ caseId: 'orchid', difficulty: 'rookie', seed: 'talk-far', players: [{ id: 'p0', charId: 'hale', name: 'Hale' }] });
+    expect(applyAction(far, { type: 'TALK', playerId: 'p0', personId: 'vine', topicId: 'night' }).talking).toBeNull();
+  });
+
+  it('an object shown to the right person unlocks a scene, and a wrong one is a shrug', () => {
+    let s = createGame({ caseId: 'orchid', difficulty: 'commissioner', seed: 'objects', players: [{ id: 'p0', charId: 'hale', name: 'Hale' }] });
+    const p = s.players[0];
+    const obj = CASES[0].objects[0];
+    s.objects.push(obj.id);
+    const target = obj.unlocks[0];
+    const w = s.witnesses.find((x) => x.id === target.person);
+    const x = s.suspects.find((y) => y.id === target.person);
+    p.at = w ? w.at : x ? x.at : p.at;
+    s = applyAction(s, { type: 'SHOW', playerId: p.id, objectId: obj.id, personId: target.person });
+    expect(s.showing?.unlocked).toBe(true);
+    expect(s.showing?.reply).toBe(target.reply);
+    expect(s.shown[obj.id]).toContain(target.person);
+    const again = applyAction(s, { type: 'SHOW', playerId: p.id, objectId: obj.id, personId: target.person });
+    expect(again.showing).toBeNull();
+    // Somebody it means nothing to.
+    const other = s.witnesses.find((y) => y.id !== target.person && !obj.unlocks.some((u) => u.person === y.id))!;
+    s.players[0].at = other.at; s.players[0].ap = 2;
+    s = applyAction(s, { type: 'SHOW', playerId: p.id, objectId: obj.id, personId: other.id });
+    expect(s.showing?.unlocked).toBe(false);
+  });
+
   it('every collected clue is a document in the locker, and the locker has no holes', () => {
     expect(missingExhibits()).toEqual([]);
     for (const ex of Object.values(EXHIBITS)) {

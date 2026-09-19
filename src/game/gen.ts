@@ -153,6 +153,10 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
     evidence.push({ id: `item-${item.id}`, kind: 'item', item: item.id, text: item.spoken, exhibit: item.id, found: false, at: item.at });
   }
 
+  for (const obj of caseDef.objects) {
+    evidence.push({ id: `object-${obj.id}`, kind: 'object', object: obj.id, text: obj.spoken, found: false, at: obj.at });
+  }
+
   // Spread finds across the city. The crime scene always holds one.
   const capacity: Record<string, number> = {};
   caseDef.locations.forEach((l) => { capacity[l.id] = 0; });
