@@ -103,6 +103,13 @@ Piper if it is on your PATH, or macOS `say` as a last resort. Clips land in
 incremental, and a half-finished render still works — the game falls back per
 line.
 
+If `ffmpeg` is installed the clips are compressed to mp3 and also packed into
+one **sprite** per narrative group under `voice/sprites/` — ten files instead
+of three hundred — with each clip's offset in the manifest. The game plays
+those slices through Web Audio, and falls back to the individual files if a
+sprite will not load. The sprites plus `voice/manifest.json` are all a hosted
+copy needs.
+
 The trick that makes this possible is that composite lines are narrated as
 **fragments**. "Vera Lang strikes the match left-handed" would need every name
 times every tell — thousands of files. Split into `["Vera Lang", "strikes the

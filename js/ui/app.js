@@ -137,7 +137,12 @@ export class App {
 
     switch (act) {
       case 'goto-title': this.screen = 'title'; this.modal = null; this.narrator.stop(); return this.render();
-      case 'goto-setup': this.screen = 'setup'; this.modal = null; this.narrator.stop(); return this.render();
+      case 'goto-setup':
+        this.screen = 'setup'; this.modal = null; this.narrator.stop();
+        // Decode the first sprites now, while the players are still choosing
+        // detectives, so the briefing starts the moment they press begin.
+        this.narrator.prefetch();
+        return this.render();
       case 'how': this.modal = 'how'; return this.renderModal();
       case 'settings': this.modal = 'settings'; return this.renderModal();
       case 'close-modal': return this.closeModal();

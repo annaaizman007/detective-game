@@ -101,15 +101,13 @@ npm run voices -- --engine=say  --voice="Daniel (Premium)"   # last resort
 `npm run voices -- --list` prints the whole script without rendering, if you
 want to read what the narrator says first.
 
-### What was and was not verified
+### Verified
 
-The pipeline is finished and tested end to end — the Node side, the Python
-batch renderer, the manifest, and the browser playback including fragment
-sequencing and the fallback — but with a stubbed model standing in for the
-real weights. The cloud sandbox this was built in cannot reach HuggingFace or
-GitHub release assets, so no neural weights could be downloaded there and no
-real speech was ever generated. Your Mac can reach both. If `--setup` works,
-everything downstream of it has been exercised.
+Done on the Mac on 2026-09-19: `--setup` installed and downloaded everything,
+all 302 clips rendered with the real weights, none failed, 8 MB as mp3, and
+the game plays them. A second `npm run voices` reuses the pack and finishes in
+seconds. The `voice/` directory is gitignored, so anyone else cloning this
+repeats the two commands above.
 
 ## 3. Publishing changes to the shared link
 
@@ -131,10 +129,13 @@ Two constraints worth knowing before you plan anything around it:
   download, no fetching anything. That is why baked audio is the only way to
   get a good voice onto the hosted link.
 - **A published artifact takes at most 255 files.** The voice pack is ~300
-  clips, so hosting it needs the clips concatenated into a handful of sprite
-  files with offsets in the manifest. That change is contained to
-  `tools/render-voices.mjs` and the playback block in `js/voice.js`, and has
-  not been done. Locally there is no limit, so `npm start` is unaffected.
+  clips, so the bake also packs them into one sprite per narrative group —
+  ten mp3s under `voice/sprites/`, 8.4 MB — with each clip's offset and
+  duration in the manifest. The game plays the slices through Web Audio and
+  prefetches the briefing, stock and name sprites while the players are still
+  on the setup screen. To host the voice, publish `voice/manifest.json` and
+  `voice/sprites/*.mp3` alongside the code. The per-clip files are not needed
+  on the hosted copy; locally they double as the cache the next bake reuses.
 
 ---
 
@@ -198,14 +199,17 @@ Three things hold the design together:
   and 100% narration coverage. Difficulty measured at ~98/81/56% bot win rate,
   flat from one to six players.
 
+- Voice baked locally with Kokoro and packed into sprites (sections 2 and 3).
+
 **Not done, in the order I would do them**
 
-1. **Bake the voice** (section 2). Biggest single improvement left.
-2. **Sprite the voice pack** so the hosted link gets it too (section 3).
-3. **Online multiplayer.** The reducer and transport seam are ready; what is
+1. **Republish the hosted link with the voice** — the sprites are built; the
+   artifact has not been updated since version 4 and still uses browser
+   synthesis.
+2. **Online multiplayer.** The reducer and transport seam are ready; what is
    missing is a ~60-line `ws` relay and a lobby screen. `js/net/README.md`
    spells it out.
-4. **More cases.** A case is one file in `js/cases/` — locations with x/y,
+3. **More cases.** A case is one file in `js/cases/` — locations with x/y,
    edges, suspects with motives, a briefing, terrain flags. The generator and
    the cartographer handle the rest, and the tests will tell you immediately
    if a map is disconnected or a board unsolvable.

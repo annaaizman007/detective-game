@@ -155,6 +155,9 @@ export function scoreVoice(v) {
   return score;
 }
 
+const SPRITE_CACHE = 4;
+const hasWebAudio = () => typeof window !== 'undefined' && !!(window.AudioContext || window.webkitAudioContext);
+
 export class Narrator {
   constructor() {
     this.supported = typeof window !== 'undefined' && 'speechSynthesis' in window;
@@ -169,6 +172,9 @@ export class Narrator {
     // Pre-rendered narration, if somebody has run `npm run voices`.
     this.clips = null;
     this.useClips = true;
+    // Sprite playback: one decoded AudioBuffer per group, a few at a time.
+    this._ctx = null;
+    this._sprites = new Map();
     try {
       if (localStorage.getItem('ashgrave.useClips') === '0') this.useClips = false;
     } catch { /* private mode */ }
@@ -204,6 +210,14 @@ export class Narrator {
         format: m.format || 'mp3',
         voice: m.voice || m.engine || 'recorded',
         ids: new Set(m.clips.map((c) => c.id)),
+        // The hosted build ships ~10 sprite files rather than 300 clips
+        // (a published page takes at most 255 files). Each clip is then a
+        // slice: which sprite, and where in it.
+        sprites: m.sprites && hasWebAudio() ? {
+          dir: m.sprites.dir || 'sprites/',
+          format: m.sprites.format || 'mp3',
+          slices: new Map(m.clips.filter((c) => c.sprite).map((c) => [c.id, c])),
+        } : null,
       };
       this._emit({ type: 'clips', count: this.clips.ids.size });
       return true;
@@ -226,9 +240,73 @@ export class Narrator {
     for (const part of parts) {
       const id = clipId(part);
       if (!this.clips.ids.has(id)) return null;
-      urls.push({ url: `${this.clips.base}${id}.${this.clips.format}`, text: normaliseLine(part) });
+      urls.push({
+        url: `${this.clips.base}${id}.${this.clips.format}`,
+        slice: this.clips.sprites?.slices.get(id) || null,
+        text: normaliseLine(part),
+      });
     }
     return urls;
+  }
+
+  /** The AudioContext is made on first use, which is always inside a click. */
+  _audioCtx() {
+    if (!this._ctx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      this._ctx = new Ctx();
+    }
+    if (this._ctx.state === 'suspended') this._ctx.resume().catch(() => {});
+    return this._ctx;
+  }
+
+  /**
+   * Fetch and decode one sprite, once. Decoded audio is about 6 MB a minute,
+   * so only the last few groups are kept; a game moves between groups
+   * slowly enough that this is rarely felt.
+   */
+  _spriteBuffer(name) {
+    const cache = this._sprites;
+    if (cache.has(name)) {
+      const hit = cache.get(name);
+      cache.delete(name); cache.set(name, hit); // most recent last
+      return hit;
+    }
+    const { dir, format } = this.clips.sprites;
+    const p = (async () => {
+      const res = await fetch(`${this.clips.base}${dir}${name}.${format}`);
+      if (!res.ok) throw new Error(`sprite ${name}: ${res.status}`);
+      return this._audioCtx().decodeAudioData(await res.arrayBuffer());
+    })();
+    p.catch(() => cache.delete(name)); // let a failed fetch be retried later
+    cache.set(name, p);
+    while (cache.size > SPRITE_CACHE) cache.delete(cache.keys().next().value);
+    return p;
+  }
+
+  /** Warm the sprites a case will need first, in the background. */
+  prefetch(groups = ['briefing', 'stock', 'name']) {
+    if (!this.clips?.sprites) return;
+    (async () => {
+      for (const g of groups) { try { await this._spriteBuffer(g); } catch { /* offline; play falls back */ } }
+    })();
+  }
+
+  async _playSlice(slice, token) {
+    const buffer = await this._spriteBuffer(slice.sprite);
+    if (token !== this._token) return;
+    const ctx = this._audioCtx();
+    await new Promise((resolve) => {
+      const src = ctx.createBufferSource();
+      src.buffer = buffer;
+      src.connect(ctx.destination);
+      let done = false;
+      const finish = () => { if (!done) { done = true; this._current = null; resolve(); } };
+      src.addEventListener('ended', finish, { once: true });
+      // Same shape as an <audio> element, so stop() can treat them alike.
+      this._current = { pause() { try { src.stop(); } catch { /* already stopped */ } } };
+      src.start(0, slice.start, slice.duration);
+      setTimeout(finish, slice.duration * 1000 + 500); // never wedge the queue
+    });
   }
 
   _playClip(url, token) {
@@ -339,7 +417,11 @@ export class Narrator {
         // punctuation-weighted pauses the synthesiser would have used.
         for (let i = 0; i < recorded.length; i++) {
           if (token !== this._token) return;
-          await this._playClip(recorded[i].url, token);
+          if (recorded[i].slice) {
+            try { await this._playSlice(recorded[i].slice, token); } catch { await this._playClip(recorded[i].url, token); }
+          } else {
+            await this._playClip(recorded[i].url, token);
+          }
           if (token !== this._token) return;
           const last = i === recorded.length - 1;
           const t = recorded[i].text;

@@ -46,6 +46,18 @@ const run = (cmd, args, opts = {}) => new Promise((resolve, reject) => {
   ch.stdin?.end(); // never leave a child waiting on a pipe we will not write to
 });
 
+// Same, but hand back what the child wrote to stdout.
+const capture = (cmd, args, opts = {}) => new Promise((resolve, reject) => {
+  const ch = spawn(cmd, args, { stdio: ['pipe', 'pipe', 'pipe'] });
+  const out = []; let err = '';
+  ch.stdout.on('data', (d) => out.push(d));
+  ch.stderr.on('data', (d) => { err += d; });
+  ch.on('error', reject);
+  ch.on('close', (code) => (code === 0 ? resolve(Buffer.concat(out)) : reject(new Error(`${cmd} exited ${code}: ${err.slice(0, 300)}`))));
+  if (opts.input != null) ch.stdin.write(opts.input);
+  ch.stdin.end();
+});
+
 const has = async (cmd) => {
   try { await run(process.platform === 'win32' ? 'where' : 'which', [cmd]); return true; }
   catch { return false; }
@@ -417,6 +429,54 @@ const manifest = {
   generated: new Date().toISOString().slice(0, 10),
   clips: lines.map((l) => ({ id: l.id, group: l.group, text: l.text })),
 };
+
+// --- sprites ---------------------------------------------------------------
+// A published artifact takes at most 255 files and the script is 300 clips,
+// so for hosting, the clips of each group are concatenated into one file and
+// the manifest carries an offset and a duration per clip. The game plays the
+// slice through Web Audio. Every clip is decoded to raw PCM and joined here
+// with a quarter second of silence between, so the offsets are exact to the
+// sample rather than whatever an mp3 demuxer estimates.
+//
+// The per-clip files stay: they are the cache the next bake reuses.
+if (!flag('no-sprites') && failed === 0 && (await has('ffmpeg')) && (await has('ffprobe'))) {
+  console.log('  packing sprites, one per group');
+  const SPRITES = join(OUT, 'sprites');
+  await mkdir(SPRITES, { recursive: true });
+  const GAP = 0.25;
+  const first = join(OUT, `${lines[0].id}.${format}`);
+  const rate = Number((await capture('ffprobe', ['-v', 'error', '-select_streams', 'a:0',
+    '-show_entries', 'stream=sample_rate', '-of', 'csv=p=0', first])).toString().trim()) || 24000;
+  const byGroup = new Map();
+  for (const c of manifest.clips) (byGroup.get(c.group) ?? byGroup.set(c.group, []).get(c.group)).push(c);
+
+  const silence = Buffer.alloc(Math.round(GAP * rate) * 2); // s16le mono
+  let spriteBytes = 0;
+  for (const [group, clips] of byGroup) {
+    const chunks = [];
+    let samples = 0;
+    for (const c of clips) {
+      const pcm = await capture('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', join(OUT, `${c.id}.${format}`),
+        '-f', 's16le', '-ac', '1', '-ar', String(rate), '-']);
+      chunks.push(silence, pcm);
+      samples += silence.length / 2;
+      c.sprite = group;
+      c.start = samples / rate;
+      c.duration = pcm.length / 2 / rate;
+      samples += pcm.length / 2;
+    }
+    chunks.push(silence);
+    const file = join(SPRITES, `${group}.mp3`);
+    await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 's16le', '-ac', '1', '-ar', String(rate), '-i', '-',
+      '-codec:a', 'libmp3lame', '-b:a', '64k', file], { input: Buffer.concat(chunks) });
+    spriteBytes += (await stat(file)).size;
+    process.stdout.write(`\r    ${group}: ${clips.length} clips, ${(samples / rate).toFixed(0)} s   `);
+  }
+  process.stdout.write('\n');
+  manifest.sprites = { dir: 'sprites/', format: 'mp3', rate, groups: [...byGroup.keys()] };
+  console.log(`    ${byGroup.size} sprite files, ${(spriteBytes / 1e6).toFixed(1)} MB -- these plus the manifest are what to publish`);
+}
+
 await writeFile(join(OUT, 'manifest.json'), `${JSON.stringify(manifest, null, 1)}\n`);
 
 let bytes = 0;
