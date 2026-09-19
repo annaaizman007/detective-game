@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node tools/prune-dist.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -15,7 +15,8 @@
     "format": "prettier --write \"src/**/*.{ts,css}\" \"test/**/*.ts\"",
     "typecheck": "tsc --noEmit",
     "voices": "vite-node tools/render-voices.mjs",
-    "deploy": "npm run build && npx gh-pages -d dist"
+    "deploy": "npm run build && npx gh-pages -d dist",
+    "zip": "npm run build && bash tools/pack-zip.sh"
   },
   "engines": {
     "node": ">=18"
