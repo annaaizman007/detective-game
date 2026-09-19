@@ -1,0 +1,13 @@
+{
+  "name": "ashgrave-files",
+  "version": "1.0.0",
+  "private": true,
+  "description": "THE ASHGRAVE FILES - a browser noir detective board game for 1-6 players.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test/logic.test.js"
+  },
+  "engines": { "node": ">=18" }
+}

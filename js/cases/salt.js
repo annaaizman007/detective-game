@@ -1,0 +1,87 @@
+export default {
+  id: 'salt',
+  title: 'Salt and Silence',
+  subtitle: 'The Harbour District · February 1948',
+  tagline: 'They pulled the union boss out of the bay with his pockets sewn shut and full of salt.',
+  victim: 'Aurel Bask',
+  scene: 'pier9',
+  difficultyHint: 'Tight streets, fast tongues.',
+  publicTraits: ['build', 'hair'],
+  traitPool: ['hand', 'mark', 'vice', 'scent', 'shoe'],
+
+  briefing: `Low tide at Pier Nine gives up Aurel Bask, twenty years head of the longshoremen
+    and thirty hours dead. Somebody sewed his coat pockets shut and filled them with rock salt,
+    which is not how you sink a man -- it is how you tell three thousand dockers what happens
+    to a man who talks. The wound is under the ribs and it went up.
+    Half this harbour wanted him gone and the other half worked for him. Nobody here talks to
+    police, so do not ask like police. Move before the tide turns twice.`,
+
+  radio: [
+    'Dispatch. Harbour Station. Do not go down to Pier Nine alone and do not go in uniform.',
+    'The union votes on a new boss Thursday. Every candidate is on your list.',
+    'Customs has been sitting on a manifest for six weeks. Lean on them.',
+  ],
+
+  locations: [
+    { id: 'station', name: 'Harbour Station', type: 'police', x: 480, y: 318, desc: 'Two desks, one cell, and a radiator that screams.' },
+    { id: 'pier9', name: 'Pier Nine', type: 'docks', x: 250, y: 168, desc: 'Where they found him. Still taped off, still stinking.' },
+    { id: 'customs', name: 'The Customs House', type: 'bank', x: 470, y: 118, desc: 'Every crate in this harbour is a line in a ledger here. Most lines are lies.' },
+    { id: 'hall', name: 'Longshoremen’s Hall', type: 'station', x: 712, y: 150, desc: 'Folding chairs, a dead man’s photograph, and an election on Thursday.' },
+    { id: 'light', name: 'Grieve Point Light', type: 'light', x: 900, y: 240, desc: 'One keeper, one lamp, and the best view of who comes in at night.' },
+    { id: 'brine', name: 'The Brine & Bell', type: 'bar', x: 168, y: 340, desc: 'Sawdust, rum, and forty men who saw nothing.' },
+    { id: 'chandler', name: 'Vetch & Son, Chandlers', type: 'shop', x: 650, y: 330, desc: 'Rope, oil, and every kind of hook a man could need.' },
+    { id: 'icehouse', name: 'The Ice House', type: 'warehouse', x: 862, y: 452, desc: 'Cold enough to keep a body honest.' },
+    { id: 'drydock', name: 'Number Four Drydock', type: 'factory', x: 330, y: 486, desc: 'A hull the size of a church, propped up on stilts.' },
+    { id: 'baths', name: 'Harbour Baths', type: 'bathhouse', x: 168, y: 578, desc: 'Steam, tile, and the only place in the district nobody wears a coat.' },
+    { id: 'trawler', name: 'The Trawler Berths', type: 'docks', x: 620, y: 566, desc: 'Nets, gulls, and boats that go out empty and come back heavy.' },
+    { id: 'morgue', name: 'Harbour Morgue', type: 'morgue', x: 896, y: 622, desc: 'Bask is on the third slab, and the salt is still in a bag beside him.' },
+  ],
+  edges: [
+    ['station', 'customs'], ['station', 'brine'], ['station', 'chandler'], ['station', 'drydock'],
+    ['pier9', 'customs'], ['pier9', 'brine'],
+    ['customs', 'hall'],
+    ['hall', 'light'], ['hall', 'chandler'],
+    ['light', 'icehouse'],
+    ['chandler', 'icehouse'], ['chandler', 'trawler'],
+    ['icehouse', 'morgue'],
+    ['trawler', 'morgue'], ['trawler', 'drydock'],
+    ['drydock', 'baths'], ['brine', 'baths'], ['baths', 'trawler'],
+  ],
+  start: 'station',
+
+  suspects: [
+    { id: 'hollis', name: 'Dov Hollis', role: 'Union vice-chair',
+      blurb: 'Second chair for eleven years. First chair as of Thursday.',
+      motive: 'because second chair for eleven years is its own kind of sentence.' },
+    { id: 'wren', name: 'Etta Wren', role: 'Customs inspector',
+      blurb: 'Signed off on six weeks of crates she never opened.',
+      motive: 'because the manifest he was carrying had her signature on every page.' },
+    { id: 'okafor', name: 'Bernard Okafor', role: 'Chandler, Vetch & Son',
+      blurb: 'Sells the rope. Keeps a list of who buys it.',
+      motive: 'because the debt was called in, and he had nothing left to pay it with.' },
+    { id: 'salvi', name: 'Nunzio Salvi', role: 'Shipping agent',
+      blurb: 'Three companies, one office, no employees.',
+      motive: 'because a strike would have cost him a season he could not afford to lose.' },
+    { id: 'tilda', name: 'Tilda Rask', role: 'Widow of the last boss',
+      blurb: 'Her husband went into the bay in ’41. Nobody was ever charged.',
+      motive: 'because seven years is a long time to hold a thing, and no time at all.' },
+    { id: 'keeper', name: 'Mr. Garrow', role: 'Lighthouse keeper',
+      blurb: 'Sees everything from Grieve Point and reports none of it.',
+      motive: 'because he saw the boat, and then he was in it.' },
+    { id: 'fenn', name: 'Dr. Ilse Fenn', role: 'Harbour surgeon',
+      blurb: 'Wrote the death certificate before the body was cold. Wrote it wrong.',
+      motive: 'because the wound went up, and only she knew what that meant.' },
+    { id: 'ledoux', name: 'Marcel Ledoux', role: 'Trawler skipper',
+      blurb: 'Goes out with an empty hold twice a week and comes back low in the water.',
+      motive: 'because Bask had started counting the boats, and the counting was nearly done.' },
+  ],
+
+  epilogue: {
+    win: `You make the arrest at the Hall, an hour before the vote, in front of three hundred
+      longshoremen who go very quiet all at once. Somebody at the back starts clapping and
+      thinks better of it. The tide comes in. It always does.`,
+    loss: `Thursday comes. They elect a new boss, and the new boss says all the right things
+      about Aurel Bask. The salt goes into an evidence locker, and the file goes into a drawer,
+      and the harbour goes back to being a place where nobody saw anything.`,
+  },
+};
