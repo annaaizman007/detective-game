@@ -40,11 +40,16 @@ export const liveSuspects = (s: GameState, profile: Profile = s.knownCulprit) =>
 export const factsKnown = (s: GameState): number => s.chosenTraits.filter((t) => s.knownCulprit[t]).length;
 
 /** The hour on the clock: the case opens at two in the morning. */
-export function clockAt(hour: number): string {
-  const h = (2 + hour) % 24;
+/** The hour the case opens, on the clock. Each city's night ends at a different time. */
+export const startHour = (s: GameState): number => caseById(s.caseId).startHour ?? 2;
+
+export function clockAt(hour: number, start = 2): string {
+  const h = (start + hour) % 24;
   const hh = h % 12 === 0 ? 12 : h % 12;
   return `${hh}:00 ${h < 12 ? 'AM' : 'PM'}`;
 }
+
+export const dayOf = (hour: number, start = 2): number => Math.floor((start + hour) / 24) + 1;
 
 export function moveOptions(s: GameState, p: PlayerState | null) {
   if (!p) return [];

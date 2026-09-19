@@ -71,7 +71,7 @@ function frame(s: GameState, who: Person, body: string, extraCls = ''): string {
   return `
     <div class="dlg dlg--${who.kind} ${extraCls}">
       <div class="dlg-stage">
-        <span class="dlg-where">${icon('pin')} ${esc(where)} · ${R.clockAt(s.cold)}</span>
+        <span class="dlg-where">${icon('pin')} ${esc(where)} · ${R.clockAt(s.cold, R.startHour(s))}</span>
         <div class="dlg-char">${who.portrait}</div>
       </div>
       ${p && ch ? `<div class="dlg-you" style="--seat:${ch.color}">${portraitSvg(ch.id, { size: 64, frame: 'face', reveal: true, accent: ch.color })}<span>${esc(p.name)}</span></div>` : ''}

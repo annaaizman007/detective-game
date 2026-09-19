@@ -4,7 +4,7 @@
 
 import type { GameState, JournalEntry } from '../types/game-types';
 import type { Note } from '../systems/save-manager';
-import { clockAt, locationById } from '../game/rules';
+import { clockAt, dayOf, startHour, locationById } from '../game/rules';
 import { caseById } from '../game/cases/index';
 import { characterById } from '../game/characters';
 import { exhibitById } from '../game/exhibits';
@@ -25,7 +25,7 @@ const KIND_ICON: Record<JournalEntry['kind'], string> = {
   accuse: 'skull', event: 'clock', end: 'badge', note: 'book',
 };
 
-const dayOf = (hour: number) => Math.floor((2 + hour) / 24) + 1;
+
 
 export function renderJournal(s: GameState, v: JournalView): string {
   const entries = s.journal.filter((e) => {
@@ -39,7 +39,7 @@ export function renderJournal(s: GameState, v: JournalView): string {
     const p = e.playerId ? s.players.find((x) => x.id === e.playerId) : null;
     const ch = p ? characterById(p.charId) : null;
     const notes = v.notes.filter((n) => n.entry === e.n);
-    const day = dayOf(e.hour);
+    const day = dayOf(e.hour, startHour(s));
     const dayHead = day !== lastDay ? `<li class="jr-day">${icon('clock')} Day ${day}</li>` : '';
     lastDay = day;
     const ref = e.ref?.exhibit
@@ -60,7 +60,7 @@ export function renderJournal(s: GameState, v: JournalView): string {
         </form>`
       : `<button class="jr-add" data-act="note-edit" data-entry="${e.n}">${icon('book')} Add a note</button>`;
     return `${dayHead}<li class="jr jr--${e.kind}" style="--seat:${ch?.color ?? 'var(--brass)'}">
-      <span class="jr-time">${clockAt(e.hour)}</span>
+      <span class="jr-time">${clockAt(e.hour, startHour(s))}</span>
       <span class="jr-ico">${icon(KIND_ICON[e.kind])}</span>
       <div class="jr-body">
         <p class="jr-text">${p ? `<b>${esc(p.name)}</b> ` : ''}${esc(e.text)}</p>
@@ -71,7 +71,7 @@ export function renderJournal(s: GameState, v: JournalView): string {
 
   const free = v.notes.filter((n) => n.entry === null);
   const freeRows = free.map((n) => `
-    <li class="jr jr--note"><span class="jr-time">${clockAt(n.hour)}</span><span class="jr-ico">${icon('book')}</span>
+    <li class="jr jr--note"><span class="jr-time">${clockAt(n.hour, startHour(s))}</span><span class="jr-ico">${icon('book')}</span>
       <div class="jr-body"><div class="jr-note"><span class="jr-note-t">${esc(n.text)}</span>
         <button class="jr-note-x" data-act="note-delete" data-id="${esc(n.id)}" aria-label="Delete note">×</button></div></div></li>`).join('');
 
@@ -108,15 +108,15 @@ export function exportJournal(s: GameState, notes: Note[], marks: Partial<Record
   out.push('JOURNAL');
   for (const e of s.journal) {
     const p = e.playerId ? s.players.find((x) => x.id === e.playerId) : null;
-    out.push(`  Day ${dayOf(e.hour)} ${clockAt(e.hour).padStart(8)}  ${p ? p.name + ': ' : ''}${e.text}`);
+    out.push(`  Day ${dayOf(e.hour, startHour(s))} ${clockAt(e.hour, startHour(s)).padStart(8)}  ${p ? p.name + ': ' : ''}${e.text}`);
     for (const n of notes.filter((x) => x.entry === e.n)) out.push(`             > ${n.text}`);
   }
   const free = notes.filter((n) => n.entry === null);
-  if (free.length) { out.push('', 'NOTES'); for (const n of free) out.push(`  ${clockAt(n.hour)}  ${n.text}`); }
+  if (free.length) { out.push('', 'NOTES'); for (const n of free) out.push(`  ${clockAt(n.hour, startHour(s))}  ${n.text}`); }
   out.push('', 'EXHIBITS');
   s.exhibits.forEach((inst, i) => {
     const def = exhibitById(inst.def, s.caseId);
-    out.push(`  ${letterOf(i)}. ${inst.label} — ${locationById(s, inst.at)?.name ?? inst.at}, ${clockAt(inst.hour)}`);
+    out.push(`  ${letterOf(i)}. ${inst.label} — ${locationById(s, inst.at)?.name ?? inst.at}, ${clockAt(inst.hour, startHour(s))}`);
     for (const line of def.body) out.push(`       ${line.replace(/\{(\w+)\}/g, (m, k: string) => inst.data?.[k] ?? (k === 'victim' ? c.victim : m))}`);
   });
   out.push('', 'NOTEBOOK — the killer, as marked');

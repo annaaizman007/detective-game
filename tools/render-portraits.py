@@ -29,8 +29,11 @@ print(f'{len(todo)} to render', flush=True)
 
 def write_manifest():
     have = sorted(p['id'] for p in prompts if os.path.exists(os.path.join(OUT, p['id'] + '.png')))
-    name = 'people.json' if OUT.endswith('people') else 'manifest.json'
-    json.dump({'people': have, 'ids': have}, open(os.path.join(OUT, name), 'w'))
+    # people.json lists portraits under 'people'; every other folder lists 'ids'.
+    if OUT.endswith('people'):
+        json.dump({'people': have}, open(os.path.join(OUT, 'people.json'), 'w'))
+    else:
+        json.dump({'ids': have}, open(os.path.join(OUT, 'manifest.json'), 'w'))
 
 if not todo:
     write_manifest(); sys.exit(0)

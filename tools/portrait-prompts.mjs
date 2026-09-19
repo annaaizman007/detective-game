@@ -34,10 +34,10 @@ const CASTING = {
   crane: { extra: 'a newspaper reporter in a rumpled grey suit, press card in the hat band', hair: 'dark' },
   kell: { extra: 'a Catholic priest in a black cassock with a white clerical collar', hair: 'grey', smoke: false, neg: 'hat, cigarette' },
   // the Orchid
-  vera: { extra: 'a nightclub singer in a buttoned dark velvet coat with a fur collar, gloved hands', hair: 'red', neg: 'cleavage, bare shoulders, dress, lingerie' },
+  vera: { extra: 'a nightclub singer with vivid copper red hair, in a buttoned dark velvet coat with a fur collar, gloved hands', hair: 'red', neg: 'cleavage, bare shoulders, dress, lingerie, black hair, dark hair', seed: 4401 },
   strand: { hair: 'dark' }, pike: { hair: 'grey' }, mireaux: { hair: 'dark' }, tovar: { hair: 'dark' },
   roland: { hair: 'dark' }, brandt: { hair: 'dark' }, shaw: { hair: 'dark' },
-  okonkwo: { extra: 'a Nigerian woman, dark skin, elegant, hostess of a night club', hair: 'dark' },
+  ruby: { extra: 'a Nigerian woman, dark skin, elegant, a fixer who knows every door in the city, in a dark tailored coat', hair: 'dark' },
   // Salt and Silence
   hollis: { hair: 'dark' }, wren: { hair: 'dark' },
   okafor: { extra: 'a Nigerian man of fifty-eight, dark skin, shopkeeper, chandler', hair: 'grey' },
@@ -45,7 +45,8 @@ const CASTING = {
   tilda: { extra: 'a widow of fifty in black', hair: 'grey' },
   keeper: { hair: 'grey' },
   fenn: { extra: 'a doctor, white coat under the overcoat, stethoscope', hair: 'fair' },
-  ledoux: { extra: 'a trawler skipper in a plain oilskin coat with no markings', hair: 'dark' },
+  ledoux: { extra: 'a trawler skipper in a plain dark oilskin coat, no markings, no text', hair: 'dark', neg: 'text, lettering, letters, logo, poster, title', seed: 9102 },
+  cotter: { extra: 'an old fisherman in a woollen jersey and oilskin, weathered face', hair: 'grey' },
   oyelaran: { extra: 'a Nigerian man, dark skin, retired customs officer, night watchman in a peaked cap', hair: 'grey' },
   // The Ninth Bell
   verger: { hair: 'grey' },
@@ -69,7 +70,7 @@ const out = people.map((p) => {
     hairWords, cast.extra ? '' : HAT[l.hat], l.fem ? '' : BEARD[l.beard], l.glasses ? 'round wire glasses' : '',
     cast.extra ? '' : COAT[l.coat], MOOD[l.mood], cast.smoke === false ? '' : SMOKE[l.smoke],
   ].filter(Boolean).join(', ');
-  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: cast.neg ? `${cast.neg}, ${NEGATIVE}` : NEGATIVE, seed: [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
+  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: cast.neg ? `${cast.neg}, ${NEGATIVE}` : NEGATIVE, seed: cast.seed ?? [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
 });
 
 await mkdir('public/assets/images/people', { recursive: true });

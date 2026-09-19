@@ -205,6 +205,8 @@ export interface CaseDef {
   tagline: string;
   victim: string;
   scene: string;
+  /** Hour of the day the investigation opens (24h). Default two in the morning. */
+  startHour?: number;
   difficultyHint: string;
   publicTraits: TraitId[];
   traitPool: TraitId[];
@@ -287,8 +289,11 @@ export type ItemEffect =
   | { type: 'none' }
   /** The document gives away one thing about a named suspect. */
   | { type: 'suspectTrait'; suspectId: string }
-  /** It points at where something else was left. */
-  | { type: 'lead' }
+  /**
+   * It points at where something else was left. With `at`, the place the
+   * text names; if that place has nothing left to find, somewhere that does.
+   */
+  | { type: 'lead'; at?: string }
   /** It saves or costs time on the clock. */
   | { type: 'time'; hours: number };
 

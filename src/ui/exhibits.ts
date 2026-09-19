@@ -11,7 +11,7 @@ import { exhibitById, fill, type ExhibitDef } from '../game/exhibits';
 import { searchNarrative } from '../game/search';
 import { TRAITS, traitLabel } from '../game/traits';
 import { caseById } from '../game/cases/index';
-import { clockAt, locationById, heldObjects } from '../game/rules';
+import { clockAt, startHour, locationById, heldObjects } from '../game/rules';
 import { figure } from './figures';
 import { icon } from './icons';
 import { esc } from './fx';
@@ -66,7 +66,7 @@ export function lockerList(s: GameState, v: LockerView): string {
       <span class="ex-letter">${letterOf(i)}</span>
       <span class="ex-main">
         <b>${esc(inst.label)}</b>
-        <i>${KIND_LABEL[def.kind] ?? def.kind} · ${esc(locationById(s, inst.at)?.name ?? inst.at)} · ${clockAt(inst.hour)}${by ? ` · ${esc(by)}` : ''}</i>
+        <i>${KIND_LABEL[def.kind] ?? def.kind} · ${esc(locationById(s, inst.at)?.name ?? inst.at)} · ${clockAt(inst.hour, startHour(s))}${by ? ` · ${esc(by)}` : ''}</i>
       </span>
       <span class="ex-flag">${def.trait ? (marked ? `<em class="is-marked">${icon(TRAITS[def.trait].icon)} noted</em>` : `<em>${icon(TRAITS[def.trait].icon)} unread</em>`) : def.id === 'statement' ? '<em>testimony</em>' : ''}</span>
     </li>`;
@@ -98,7 +98,7 @@ export function documentHtml(inst: ExhibitInstance, def: ExhibitDef, s: GameStat
     ${fig ? `<figure class="doc-fig">${fig}</figure>` : ''}
     <div class="doc-body">${body}</div>
     <footer class="doc-foot">
-      <span>${by ? `Found by ${esc(by)} at ${esc(where)}` : `From ${esc(where)}`}, ${clockAt(inst.hour)}</span>
+      <span>${by ? `Found by ${esc(by)} at ${esc(where)}` : `From ${esc(where)}`}, ${clockAt(inst.hour, startHour(s))}</span>
       <span class="doc-case">${esc(caseById(s.caseId).title)}</span>
     </footer>
     ${inst.how ? `<p class="doc-how"><b>How it came to hand.</b> ${esc(inst.how)}</p>` : ''}

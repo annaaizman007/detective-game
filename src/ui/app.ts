@@ -640,7 +640,7 @@ export class App {
     const ch = characterById(p.charId);
     const hoursLeft = Math.max(0, s.coldMax - s.cold);
     const warmth = Math.max(0, Math.min(1, hoursLeft / s.coldMax));
-    const day = Math.floor((2 + s.cold) / 24) + 1;
+    const day = R.dayOf(s.cold, R.startHour(s));
     const tabs: [Tab, string][] = [['notebook', 'Notebook'], ['locker', `Locker${s.exhibits.length ? ` (${s.exhibits.length})` : ''}`], ['suspects', 'Suspects']];
     if (this.ui.journal) tabs.push(['journal', 'Journal']);
     tabs.push(['log', 'Log']);
@@ -650,7 +650,7 @@ export class App {
       <header class="topbar">
         <div class="topbar-l">
           <span class="tb-case">${esc(def.title)}</span>
-          <span class="tb-sub">${esc(def.subtitle)} · Day ${day}, ${R.clockAt(s.cold)}</span>
+          <span class="tb-sub">${esc(def.subtitle)} · Day ${day}, ${R.clockAt(s.cold, R.startHour(s))}</span>
         </div>
         <div class="trail ${warmth < 0.26 ? 'is-critical' : warmth < 0.5 ? 'is-warning' : ''}">
           <div class="trail-meta">

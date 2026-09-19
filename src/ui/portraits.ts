@@ -129,6 +129,7 @@ const LOOKS: Record<string, Partial<Look>> = {
   rook: { fem: true, age: 1, hair: 2, hat: 4, coat: 2, collar: 0, mood: 1 },
   orme: { fem: false, age: 1, hair: 2, hat: 3, beard: 0, coat: 7, collar: 2, mood: 0 },
   fry: { fem: false, age: 2, hair: 6, hat: 0, beard: 2, coat: 0, collar: 5, mood: 0 },
+  cotter: { fem: false, age: 2, hair: 2, hat: 3, beard: 2, coat: 4, collar: 2, mood: 3 },
   ansell: { fem: false, age: 2, hair: 6, hat: 3, beard: 1, coat: 7, collar: 2, mood: 0 },
   pym: { fem: true, age: 2, hair: 4, hat: 0, coat: 6, collar: 1, glasses: true, mood: 0 },
   oakes: { fem: false, age: 1, hair: 1, hat: 0, beard: 0, coat: 6, collar: 3, glasses: true, mood: 3 },

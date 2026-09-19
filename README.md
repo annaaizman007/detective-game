@@ -69,9 +69,11 @@ in five quarters.
 - **Salt and Silence** — the union boss comes out of the bay with his pockets sewn shut.
 - **The Ninth Bell** — the cathedral bell rings nine at midnight; the ringer is dead by morning.
 
-The culprit is re-rolled every playthrough from a seed, so the same case never
-solves the same way twice, and a test asserts that exactly one suspect fits
-once every fact is known.
+Each case has a fixed culprit, so the story and the answer agree. What changes
+every playthrough is the proof: the trait table is dealt from a seed (build and
+hair are pinned to the portraits; the rest shuffles), and the evidence lands
+in different places. A test asserts that exactly one suspect fits once every
+fact is known.
 
 ## The people
 

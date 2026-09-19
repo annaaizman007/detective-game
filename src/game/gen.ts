@@ -1,8 +1,10 @@
 // Case generation.
 //
-// The culprit is re-rolled every playthrough, so the same case never solves the
-// same way twice. The one hard guarantee: after every clue on the map has been
-// found, exactly ONE suspect can still fit. No unsolvable nights.
+// The culprit is fixed by the case (the story has to agree with the answer);
+// the proof is what changes. Traits the writing has pinned stay put, the rest
+// are dealt from the seed, and the evidence is scattered fresh. The one hard
+// guarantee: after every clue on the map has been found, exactly ONE suspect
+// can still fit. No unsolvable nights.
 
 import type {
   BoonDef, BoonId, CaseDef, DifficultyDef, DifficultyId, EvidenceState, SuspectState, TraitId, WitnessState,

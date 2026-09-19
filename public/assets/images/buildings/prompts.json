@@ -212,21 +212,21 @@
  {
   "id": "salt-pier9",
   "name": "Pier Nine",
-  "prompt": "a harbour dock with a crane, wet planks and a moored boat, called Pier Nine, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a long wooden pier at night with one gas lamp at the end, storm boards, police tape and a ladder down to black water, called Pier Nine, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2238052026
  },
  {
   "id": "salt-harbourmaster",
   "name": "Harbourmaster’s Office",
-  "prompt": "a narrow office building with rows of lit windows, called Harbourmaster’s Office, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a harbourmaster's office on the end of a quay, a signal mast with flags, a wide lit window over the water and a slipway, called Harbourmaster’s Office, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1955969292
  },
  {
   "id": "salt-customs",
   "name": "The Customs House",
-  "prompt": "a granite bank with tall columns, called The Customs House, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a stone customs house with a clock tower, a flagpole, a colonnade and a lit brass-lamped doorway on the quay, called The Customs House, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 693329801
  },
@@ -310,7 +310,7 @@
  {
   "id": "salt-light",
   "name": "Grieve Point Light",
-  "prompt": "a lighthouse on a point with the beam on, called Grieve Point Light, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a tall white lighthouse on a rocky point with the beam sweeping over black water, called Grieve Point Light, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2234359613
  },
@@ -331,21 +331,21 @@
  {
   "id": "salt-coastguard",
   "name": "Coastguard Tower",
-  "prompt": "a tall brick water tower, called Coastguard Tower, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a square stone coastguard watch tower with a glass observation room, a radio mast and a searchlight, no lighthouse, called Coastguard Tower, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 689609736
  },
  {
   "id": "salt-icehouse",
   "name": "The Ice House",
-  "prompt": "a bonded warehouse with big loading doors, called The Ice House, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a windowless stone ice house on the water with a wide door, steps down to the harbour and a boat unloading, called The Ice House, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2678235118
  },
  {
   "id": "salt-brine",
   "name": "The Brine & Bell",
-  "prompt": "a small jazz bar with a neon sign and a lit doorway, called The Brine & Bell, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a low dockside pub with sawdust on the floor, a hanging brass bell over a plain wooden door, small yellow windows, no neon, called The Brine & Bell, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2225394615
  },
@@ -380,7 +380,7 @@
  {
   "id": "salt-saltworks",
   "name": "The Salt Works",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called The Salt Works, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a salt works with white salt heaps, brick kilns and sacks stacked under a lamp, called The Salt Works, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3603898259
  },
@@ -394,14 +394,14 @@
  {
   "id": "salt-trawler",
   "name": "The Trawler Berths",
-  "prompt": "a harbour dock with a crane, wet planks and a moored boat, called The Trawler Berths, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "trawler berths with three fishing boats tied up, nets hung to dry, gulls and a fish market shed, called The Trawler Berths, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2793565900
  },
  {
   "id": "salt-cannery",
   "name": "Narrows Cannery",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called Narrows Cannery, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "prompt": "a corrugated iron cannery on the water with FISH painted out, a conveyor, tin cans stacked and a chimney, boats alongside, called Narrows Cannery, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
   "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 115940981
  },

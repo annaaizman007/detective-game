@@ -52,7 +52,16 @@ re-bake renders only the new lines.
 - **Case documents** — 26 per city, some with effects (`suspectTrait`,
   `lead`, `time`), most only story.
 - **Thirty-location cities**, five quarters each, generated map.
-- **Portraits** (`src/ui/portraits.ts`) that fill in with known traits.
+- **Portraits**: painted with Stable Diffusion (`tools/portrait-prompts.mjs`
+  → `tools/render-portraits.py`, PNGs in `public/assets/images/people/`),
+  with the SVG bust in `src/ui/portraits.ts` as the fallback. Build and hair
+  in the notebook are pinned to the painting (`SuspectDef.traits`).
+- **Facades**: one painted building per location, same pipeline
+  (`tools/building-prompts.mjs`, `--dir public/assets/images/buildings`).
+- **Per-city evidence**: Salt and Bell carry their own 24 clue sheets
+  (`src/game/cases/*-clues.ts`); Orchid uses the shared set.
+- **Search narrative** (`src/game/search.ts`): where you looked, what looked
+  off, what turned up; every paper carries a "how it came to hand" line.
 - **Dialogue** presentation (`src/ui/dialogue.ts`).
 - **Detective's notebook** (manual marks, cross-outs from your marks) with
   an assisted mode.
@@ -83,8 +92,9 @@ shipped as files, which it is), 255 files and 64 MB per version.
    `src/net/README.md` the plan: a ~60-line `ws` relay and a lobby screen.
 3. **More cases.** One file in `src/game/cases/`. The tests catch a
    disconnected map, an unsolvable board, a witness at an unknown location.
-4. **Character art polish.** The paper-doll system works; more hair and hat
-   variants and per-character colour would go a long way.
+4. **Art polish.** Re-render any portrait or facade that reads wrong with
+   `python3 tools/render-portraits.py --force --only <id>` after editing the
+   casting notes in the prompt scripts. Eyeball with `public/dev/portraits.html`.
 
 ## 6. Known rough edges
 

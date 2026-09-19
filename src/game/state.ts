@@ -233,6 +233,19 @@ function file(s: GameState, p: PlayerState | null, defId: string, at: string, da
   return inst;
 }
 
+/**
+ * Where a lead points. The writing may name the place; it is honoured while
+ * there is still something there to find. Otherwise the city picks somewhere
+ * that has not been searched out, so a lead is never a dead end.
+ */
+function pickLead(s: GameState, p: PlayerState, at?: string): string | null {
+  const open = (id: string) => s.evidence.some((e) => e.at === id && !e.found);
+  if (at && at !== p.at && open(at)) return at;
+  const candidates = s.evidence.filter((e) => !e.found && e.at !== p.at && e.kind !== 'item' && !s.leads[e.at]);
+  const target = candidates.length ? drawPick(s, candidates) : null;
+  return target ? target.at : null;
+}
+
 function collect(s: GameState, p: PlayerState, ev: EvidenceState, how?: string) {
   ev.found = true;
   if (ev.kind === 'object') {
@@ -264,11 +277,10 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState, how?: string) 
       const r = revealSuspectTrait(s, fx.suspectId);
       if (r) tellResult(s, 'It gives something away.', r);
     } else if (fx?.type === 'lead') {
-      const candidates = s.evidence.filter((e) => !e.found && e.at !== p.at && e.kind !== 'item' && !s.leads[e.at]);
-      const target = candidates.length ? drawPick(s, candidates) : null;
+      const target = pickLead(s, p, fx.at);
       if (target) {
-        s.leads[target.at] = true;
-        tell(s, `It points at ${locName(s, target.at)}.`, 'lead', 'narrator', ['It points at', locName(s, target.at)]);
+        s.leads[target] = true;
+        tell(s, `It points at ${locName(s, target)}.`, 'lead', 'narrator', ['It points at', locName(s, target)]);
       }
     } else if (fx?.type === 'time') {
       if (fx.hours < 0) s.cold = Math.max(0, s.cold + fx.hours);
@@ -734,12 +746,11 @@ function applyUnlock(s: GameState, p: PlayerState, fx: UnlockEffect): string {
       return `${x.name} is cleared.`;
     }
     case 'lead': {
-      const candidates = s.evidence.filter((e) => !e.found && e.at !== p.at && e.kind !== 'item' && !s.leads[e.at]);
-      const target = candidates.length ? drawPick(s, candidates) : null;
+      const target = pickLead(s, p, fx.at);
       if (!target) return '';
-      s.leads[target.at] = true;
-      tell(s, `It points at ${locName(s, target.at)}.`, 'lead', 'narrator', ['It points at', locName(s, target.at)]);
-      return `Lead: ${locName(s, target.at)}.`;
+      s.leads[target] = true;
+      tell(s, `It points at ${locName(s, target)}.`, 'lead', 'narrator', ['It points at', locName(s, target)]);
+      return `Lead: ${locName(s, target)}.`;
     }
     case 'time': {
       s.cold = fx.hours < 0 ? Math.max(0, s.cold + fx.hours) : Math.min(s.coldMax, s.cold + fx.hours);

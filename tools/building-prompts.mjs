@@ -27,10 +27,26 @@ const WHAT = {
 const STYLE = '1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people';
 const NEGATIVE = 'text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame';
 
+// Places the generic type does not describe well enough to be recognised.
+// Keyed `case-location`; the text replaces the type description.
+const LANDMARKS = {
+  'salt-brine': 'a low dockside pub with sawdust on the floor, a hanging brass bell over a plain wooden door, small yellow windows, no neon',
+  'salt-customs': 'a stone customs house with a clock tower, a flagpole, a colonnade and a lit brass-lamped doorway on the quay',
+  'salt-harbourmaster': 'a harbourmaster\'s office on the end of a quay, a signal mast with flags, a wide lit window over the water and a slipway',
+  'salt-cannery': 'a corrugated iron cannery on the water with FISH painted out, a conveyor, tin cans stacked and a chimney, boats alongside',
+  'salt-coastguard': 'a square stone coastguard watch tower with a glass observation room, a radio mast and a searchlight, no lighthouse',
+  'salt-light': 'a tall white lighthouse on a rocky point with the beam sweeping over black water',
+  'salt-trawler': 'trawler berths with three fishing boats tied up, nets hung to dry, gulls and a fish market shed',
+  'salt-pier9': 'a long wooden pier at night with one gas lamp at the end, storm boards, police tape and a ladder down to black water',
+  'salt-icehouse': 'a windowless stone ice house on the water with a wide door, steps down to the harbour and a boat unloading',
+  'salt-saltworks': 'a salt works with white salt heaps, brick kilns and sacks stacked under a lamp',
+};
+
 const out = [];
 for (const c of CASES) {
   for (const l of c.locations) {
-    out.push({ id: `${c.id}-${l.id}`, name: l.name, prompt: `${WHAT[l.type] ?? 'a city building'}, called ${l.name}, in ${l.district ?? 'the city'}, ${STYLE}`, negative: NEGATIVE,
+    const what = LANDMARKS[`${c.id}-${l.id}`] ?? WHAT[l.type] ?? 'a city building';
+    out.push({ id: `${c.id}-${l.id}`, name: l.name, prompt: `${what}, called ${l.name}, in ${l.district ?? 'the city'}, ${STYLE}`, negative: NEGATIVE,
       seed: [...`${c.id}:${l.id}`].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 11) });
   }
 }
