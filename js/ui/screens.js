@@ -265,6 +265,12 @@ export function settingsSheet(narrator, ambience) {
       <input type="checkbox" data-act="toggle-ambience" ${ambience?.enabled ? 'checked' : ''}>
       <span>Rain and precinct radio <i>(the narrator comes in over the wire)</i></span>
     </label>
+    <label class="field">
+      <span>Rain volume</span>
+      <input type="range" data-act="set-ambience-vol" id="rain-vol" min="0" max="1.6" step="0.05"
+             value="${ambience?.volume ?? 1}">
+      <em class="field-ends"><span>Distant</span><span>Against the window</span></em>
+    </label>
     <label class="switch">
       <input type="checkbox" data-act="toggle-motion" ${localStorage.getItem('ashgrave.motion') !== 'off' ? 'checked' : ''}>
       <span>On-screen rain, grain and typewriter effects</span>

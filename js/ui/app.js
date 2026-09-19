@@ -168,6 +168,7 @@ export class App {
           'brief',
         );
       case 'toggle-ambience': this.ambience.setEnabled(el.checked); return;
+      case 'set-ambience-vol': this.ambience.setVolume(el.value); return;
       case 'toggle-motion': {
         try { localStorage.setItem('ashgrave.motion', el.checked ? 'on' : 'off'); } catch { /* ignore */ }
         return window.location.reload();
