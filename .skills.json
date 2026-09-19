@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "web-game": {
+      "version": "2.0.1",
+      "installedAt": "2026-09-19T11:27:50.717Z",
+      "platform": "claude-code"
+    }
+  }
+}

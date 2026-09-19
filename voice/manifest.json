@@ -1,0 +1,2442 @@
+{
+ "version": 1,
+ "engine": "kokoro",
+ "voice": "bm_george",
+ "format": "mp3",
+ "generated": "2026-09-19",
+ "clips": [
+  {
+   "id": "d6e0cba8",
+   "group": "stock",
+   "text": "The note says nothing you had not already worked out.",
+   "sprite": "stock",
+   "start": 0.25,
+   "duration": 3.2
+  },
+  {
+   "id": "29b2047a",
+   "group": "stock",
+   "text": "The note names a fact about your killer.",
+   "sprite": "stock",
+   "start": 3.7,
+   "duration": 2.7946666666666666
+  },
+  {
+   "id": "2a33ac57",
+   "group": "stock",
+   "text": "The trail warms up. You have bought yourself time.",
+   "sprite": "stock",
+   "start": 6.744666666666666,
+   "duration": 3.3493333333333335
+  },
+  {
+   "id": "cc4b9ba2",
+   "group": "stock",
+   "text": "A second wind. One more action, and it costs nothing.",
+   "sprite": "stock",
+   "start": 10.344,
+   "duration": 3.776
+  },
+  {
+   "id": "1d840b40",
+   "group": "stock",
+   "text": "The ledger gives somebody up.",
+   "sprite": "stock",
+   "start": 14.37,
+   "duration": 2.176
+  },
+  {
+   "id": "e96735a1",
+   "group": "stock",
+   "text": "The ledger tells you nothing new.",
+   "sprite": "stock",
+   "start": 16.796,
+   "duration": 2.3893333333333335
+  },
+  {
+   "id": "d3ba7420",
+   "group": "stock",
+   "text": "It has been turned over twice already.",
+   "sprite": "stock",
+   "start": 19.435333333333332,
+   "duration": 2.9226666666666667
+  },
+  {
+   "id": "c6ccc42c",
+   "group": "stock",
+   "text": "Nothing left at",
+   "sprite": "stock",
+   "start": 22.608,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "428c9eed",
+   "group": "stock",
+   "text": "has nothing left to give. You already have all of it.",
+   "sprite": "stock",
+   "start": 24.244666666666667,
+   "duration": 3.2853333333333334
+  },
+  {
+   "id": "33a51aca",
+   "group": "stock",
+   "text": "by the sound of it,",
+   "sprite": "stock",
+   "start": 27.78,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "2ac3d3b8",
+   "group": "stock",
+   "text": "does not deny it.",
+   "sprite": "stock",
+   "start": 29.459333333333333,
+   "duration": 1.728
+  },
+  {
+   "id": "2f57efe7",
+   "group": "stock",
+   "text": "did it",
+   "sprite": "stock",
+   "start": 31.437333333333335,
+   "duration": 0.8746666666666667
+  },
+  {
+   "id": "c09b9955",
+   "group": "stock",
+   "text": "is not your killer, and now every lawyer in Ashgrave knows your name. Three more hours gone.",
+   "sprite": "stock",
+   "start": 32.562,
+   "duration": 6.1226666666666665
+  },
+  {
+   "id": "4ea10ba2",
+   "group": "stock",
+   "text": "Hale looks at",
+   "sprite": "stock",
+   "start": 38.934666666666665,
+   "duration": 1.1093333333333333
+  },
+  {
+   "id": "73fb3191",
+   "group": "stock",
+   "text": "for a long moment and says nothing at all. It is them. Everything about them matches.",
+   "sprite": "stock",
+   "start": 40.294,
+   "duration": 5.717333333333333
+  },
+  {
+   "id": "da764d7b",
+   "group": "stock",
+   "text": "Thirty-one years of instinct says",
+   "sprite": "stock",
+   "start": 46.26133333333333,
+   "duration": 2.7093333333333334
+  },
+  {
+   "id": "cf1b7cad",
+   "group": "stock",
+   "text": "did not do this. Cross them off.",
+   "sprite": "stock",
+   "start": 49.220666666666666,
+   "duration": 2.2826666666666666
+  },
+  {
+   "id": "2ccca48c",
+   "group": "stock",
+   "text": "Vale goes back to the body and finds what the first pass missed.",
+   "sprite": "stock",
+   "start": 51.75333333333333,
+   "duration": 4.437333333333333
+  },
+  {
+   "id": "389f9a4a",
+   "group": "stock",
+   "text": "The body has nothing left to say.",
+   "sprite": "stock",
+   "start": 56.440666666666665,
+   "duration": 2.3893333333333335
+  },
+  {
+   "id": "2a29dedb",
+   "group": "stock",
+   "text": "Crane puts it above the fold. The whole city is looking now, and looking buys you time.",
+   "sprite": "stock",
+   "start": 59.08,
+   "duration": 5.930666666666666
+  },
+  {
+   "id": "c5d95a43",
+   "group": "stock",
+   "text": "has already told you everything. Kell gives them absolution anyway.",
+   "sprite": "stock",
+   "start": 65.26066666666667,
+   "duration": 4.714666666666667
+  },
+  {
+   "id": "13e2ecba",
+   "group": "stock",
+   "text": "tells Kell all of it:",
+   "sprite": "stock",
+   "start": 70.22533333333334,
+   "duration": 1.664
+  },
+  {
+   "id": "1cd689b2",
+   "group": "stock",
+   "text": "Quist puts out the bulletin. Two hours later",
+   "sprite": "stock",
+   "start": 72.13933333333334,
+   "duration": 3.050666666666667
+  },
+  {
+   "id": "e274830e",
+   "group": "stock",
+   "text": "is sitting across from her at",
+   "sprite": "stock",
+   "start": 75.44,
+   "duration": 2.0693333333333332
+  },
+  {
+   "id": "ce26af38",
+   "group": "stock",
+   "text": "and not going anywhere.",
+   "sprite": "stock",
+   "start": 77.75933333333333,
+   "duration": 1.728
+  },
+  {
+   "id": "7ac61af1",
+   "group": "stock",
+   "text": "The caller told you nothing you did not already have.",
+   "sprite": "stock",
+   "start": 79.73733333333334,
+   "duration": 3.6266666666666665
+  },
+  {
+   "id": "27bc168a",
+   "group": "stock",
+   "text": "The caller knew something:",
+   "sprite": "stock",
+   "start": 83.614,
+   "duration": 1.856
+  },
+  {
+   "id": "bc7e2598",
+   "group": "stock",
+   "text": "Nothing in it you had not already written down.",
+   "sprite": "stock",
+   "start": 85.72,
+   "duration": 3.1146666666666665
+  },
+  {
+   "id": "5e4032fc",
+   "group": "stock",
+   "text": "This time the body is nobody you were looking for.",
+   "sprite": "stock",
+   "start": 89.08466666666666,
+   "duration": 3.328
+  },
+  {
+   "id": "fb00a1ae",
+   "group": "stock",
+   "text": "is dead. Whoever you are hunting, it was not them.",
+   "sprite": "stock",
+   "start": 92.66266666666667,
+   "duration": 3.3066666666666666
+  },
+  {
+   "id": "efc4d2d4",
+   "group": "stock",
+   "text": "is sealed off.",
+   "sprite": "stock",
+   "start": 96.21933333333334,
+   "duration": 1.2373333333333334
+  },
+  {
+   "id": "bad7484a",
+   "group": "stock",
+   "text": "Moving costs one extra action next round.",
+   "sprite": "stock",
+   "start": 97.70666666666666,
+   "duration": 3.4346666666666668
+  },
+  {
+   "id": "eccad058",
+   "group": "stock",
+   "text": "The trail cools by an extra step.",
+   "sprite": "stock",
+   "start": 101.39133333333334,
+   "duration": 2.6453333333333333
+  },
+  {
+   "id": "5add896c",
+   "group": "stock",
+   "text": "Every suspect has moved twice.",
+   "sprite": "stock",
+   "start": 104.28666666666666,
+   "duration": 2.496
+  },
+  {
+   "id": "b7318fce",
+   "group": "stock",
+   "text": "Every detective works one action short next round.",
+   "sprite": "stock",
+   "start": 107.03266666666667,
+   "duration": 3.7546666666666666
+  },
+  {
+   "id": "4f8770f9",
+   "group": "evidence",
+   "text": "The sill was scuffed where someone slim slipped through a nine-inch gap. Our killer is slight.",
+   "sprite": "evidence",
+   "start": 0.25,
+   "duration": 5.952
+  },
+  {
+   "id": "cca0888f",
+   "group": "tell",
+   "text": "slips sideways through the doorway without turning -- slight enough to.",
+   "sprite": "tell",
+   "start": 0.25,
+   "duration": 3.9466666666666668
+  },
+  {
+   "id": "f90b49dc",
+   "group": "fact",
+   "text": "Build: Slight.",
+   "sprite": "fact",
+   "start": 0.25,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "fefd5780",
+   "group": "fact",
+   "text": "build, slight",
+   "sprite": "fact",
+   "start": 1.8226666666666667,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "a69cb630",
+   "group": "evidence",
+   "text": "The door frame is split at the shoulder height of a heavy man. Our killer is broad.",
+   "sprite": "evidence",
+   "start": 6.452,
+   "duration": 5.141333333333334
+  },
+  {
+   "id": "0e35c0ba",
+   "group": "tell",
+   "text": "fills the whole doorway, shoulders squared. Broad as a barn.",
+   "sprite": "tell",
+   "start": 4.446666666666666,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "d41eac63",
+   "group": "fact",
+   "text": "Build: Broad.",
+   "sprite": "fact",
+   "start": 3.374,
+   "duration": 1.344
+  },
+  {
+   "id": "a51bbb3d",
+   "group": "fact",
+   "text": "build, broad",
+   "sprite": "fact",
+   "start": 4.968,
+   "duration": 1.152
+  },
+  {
+   "id": "cf714371",
+   "group": "evidence",
+   "text": "The blood spatter arcs down from well above six feet. Our killer is tall.",
+   "sprite": "evidence",
+   "start": 11.843333333333334,
+   "duration": 4.8
+  },
+  {
+   "id": "caa43f06",
+   "group": "tell",
+   "text": "has to duck the lamp fixture. Tall.",
+   "sprite": "tell",
+   "start": 8.707333333333333,
+   "duration": 2.816
+  },
+  {
+   "id": "a67e26bc",
+   "group": "fact",
+   "text": "Build: Tall.",
+   "sprite": "fact",
+   "start": 6.37,
+   "duration": 1.28
+  },
+  {
+   "id": "42a78570",
+   "group": "fact",
+   "text": "build, tall",
+   "sprite": "fact",
+   "start": 7.9,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "b1402bc2",
+   "group": "evidence",
+   "text": "A single dark hair, caught in the victim's ring.",
+   "sprite": "evidence",
+   "start": 16.893333333333334,
+   "duration": 3.2
+  },
+  {
+   "id": "23d7a991",
+   "group": "tell",
+   "text": "dark, oiled flat under the hat.",
+   "sprite": "tell",
+   "start": 11.773333333333333,
+   "duration": 2.3893333333333335
+  },
+  {
+   "id": "8834d45f",
+   "group": "fact",
+   "text": "Hair: Dark.",
+   "sprite": "fact",
+   "start": 9.451333333333332,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "641231cd",
+   "group": "fact",
+   "text": "hair, dark",
+   "sprite": "fact",
+   "start": 10.896,
+   "duration": 1.024
+  },
+  {
+   "id": "9813247f",
+   "group": "evidence",
+   "text": "A pale hair on the collar, fair as winter straw.",
+   "sprite": "evidence",
+   "start": 20.343333333333334,
+   "duration": 3.4133333333333336
+  },
+  {
+   "id": "7b4be6a8",
+   "group": "tell",
+   "text": "fair, going white at the temples.",
+   "sprite": "tell",
+   "start": 14.412666666666667,
+   "duration": 2.453333333333333
+  },
+  {
+   "id": "30df0b85",
+   "group": "fact",
+   "text": "Hair: Fair.",
+   "sprite": "fact",
+   "start": 12.17,
+   "duration": 1.2373333333333334
+  },
+  {
+   "id": "3d56905b",
+   "group": "fact",
+   "text": "hair, fair",
+   "sprite": "fact",
+   "start": 13.657333333333334,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "a68724d0",
+   "group": "evidence",
+   "text": "One red hair on the pillow. Copper, unmistakable.",
+   "sprite": "evidence",
+   "start": 24.006666666666668,
+   "duration": 4.032
+  },
+  {
+   "id": "447e413a",
+   "group": "tell",
+   "text": "copper red, badly hidden under the brim.",
+   "sprite": "tell",
+   "start": 17.116,
+   "duration": 2.816
+  },
+  {
+   "id": "c5a2096c",
+   "group": "fact",
+   "text": "Hair: Red.",
+   "sprite": "fact",
+   "start": 15.102,
+   "duration": 1.152
+  },
+  {
+   "id": "e05a70e4",
+   "group": "fact",
+   "text": "hair, red",
+   "sprite": "fact",
+   "start": 16.504,
+   "duration": 0.9173333333333333
+  },
+  {
+   "id": "bfacfa8e",
+   "group": "evidence",
+   "text": "Grey hairs in the struggle -- too many to be the victim's.",
+   "sprite": "evidence",
+   "start": 28.288666666666668,
+   "duration": 3.6693333333333333
+  },
+  {
+   "id": "d3e915b5",
+   "group": "tell",
+   "text": "iron grey, cropped close.",
+   "sprite": "tell",
+   "start": 20.182,
+   "duration": 2.048
+  },
+  {
+   "id": "93e5213e",
+   "group": "fact",
+   "text": "Hair: Grey.",
+   "sprite": "fact",
+   "start": 17.671333333333333,
+   "duration": 1.2586666666666666
+  },
+  {
+   "id": "312945ee",
+   "group": "fact",
+   "text": "hair, grey",
+   "sprite": "fact",
+   "start": 19.18,
+   "duration": 1.216
+  },
+  {
+   "id": "26fb3ba6",
+   "group": "evidence",
+   "text": "The blow came across from the left. Our killer is left-handed.",
+   "sprite": "evidence",
+   "start": 32.208,
+   "duration": 4.16
+  },
+  {
+   "id": "1581b252",
+   "group": "tell",
+   "text": "strikes the match left-handed without thinking about it.",
+   "sprite": "tell",
+   "start": 22.48,
+   "duration": 3.712
+  },
+  {
+   "id": "8a90fb22",
+   "group": "fact",
+   "text": "Handedness: Left-handed.",
+   "sprite": "fact",
+   "start": 20.646,
+   "duration": 1.984
+  },
+  {
+   "id": "9f3255a2",
+   "group": "fact",
+   "text": "handedness, left-handed",
+   "sprite": "fact",
+   "start": 22.88,
+   "duration": 2.026666666666667
+  },
+  {
+   "id": "9fc61a55",
+   "group": "evidence",
+   "text": "Powder burns on the right glove. Our killer is right-handed.",
+   "sprite": "evidence",
+   "start": 36.618,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "df1a93e9",
+   "group": "tell",
+   "text": "signs the statement with the right hand, slow and careful.",
+   "sprite": "tell",
+   "start": 26.442,
+   "duration": 4.032
+  },
+  {
+   "id": "da8a9e79",
+   "group": "fact",
+   "text": "Handedness: Right-handed.",
+   "sprite": "fact",
+   "start": 25.156666666666666,
+   "duration": 2.005333333333333
+  },
+  {
+   "id": "abf3b7c7",
+   "group": "fact",
+   "text": "handedness, right-handed",
+   "sprite": "fact",
+   "start": 27.412,
+   "duration": 2.026666666666667
+  },
+  {
+   "id": "01d0d0cf",
+   "group": "evidence",
+   "text": "Skin under the fingernails, and with it a fleck of old scar tissue.",
+   "sprite": "evidence",
+   "start": 40.87866666666667,
+   "duration": 4.714666666666667
+  },
+  {
+   "id": "c5da5bb9",
+   "group": "tell",
+   "text": "a white scar running from ear to jaw, badly healed.",
+   "sprite": "tell",
+   "start": 30.724,
+   "duration": 3.712
+  },
+  {
+   "id": "b20c3c25",
+   "group": "fact",
+   "text": "Distinguishing mark: A scar.",
+   "sprite": "fact",
+   "start": 29.688666666666666,
+   "duration": 2.517333333333333
+  },
+  {
+   "id": "074bf15b",
+   "group": "fact",
+   "text": "distinguishing mark, a scar",
+   "sprite": "fact",
+   "start": 32.456,
+   "duration": 2.2826666666666666
+  },
+  {
+   "id": "e0782d85",
+   "group": "evidence",
+   "text": "A witness saw ink on the wrist as the hand came down.",
+   "sprite": "evidence",
+   "start": 45.843333333333334,
+   "duration": 3.989333333333333
+  },
+  {
+   "id": "88156468",
+   "group": "tell",
+   "text": "blue navy ink crawling out of the cuff.",
+   "sprite": "tell",
+   "start": 34.686,
+   "duration": 2.7093333333333334
+  },
+  {
+   "id": "00075455",
+   "group": "fact",
+   "text": "Distinguishing mark: A tattoo.",
+   "sprite": "fact",
+   "start": 34.98866666666667,
+   "duration": 2.624
+  },
+  {
+   "id": "fa78109f",
+   "group": "fact",
+   "text": "distinguishing mark, a tattoo",
+   "sprite": "fact",
+   "start": 37.86266666666667,
+   "duration": 2.474666666666667
+  },
+  {
+   "id": "14604466",
+   "group": "evidence",
+   "text": "The glove print on the glass shows four fingers. Only four.",
+   "sprite": "evidence",
+   "start": 50.08266666666667,
+   "duration": 4.096
+  },
+  {
+   "id": "e9592941",
+   "group": "tell",
+   "text": "the left hand is short a finger, and hides it.",
+   "sprite": "tell",
+   "start": 37.64533333333333,
+   "duration": 3.136
+  },
+  {
+   "id": "b9bc08a9",
+   "group": "fact",
+   "text": "Distinguishing mark: A missing finger.",
+   "sprite": "fact",
+   "start": 40.58733333333333,
+   "duration": 2.9013333333333335
+  },
+  {
+   "id": "f5ec4523",
+   "group": "fact",
+   "text": "distinguishing mark, a missing finger",
+   "sprite": "fact",
+   "start": 43.73866666666667,
+   "duration": 2.7733333333333334
+  },
+  {
+   "id": "3451a923",
+   "group": "evidence",
+   "text": "Not a mark, not a blemish -- the witness swears the face was clean.",
+   "sprite": "evidence",
+   "start": 54.428666666666665,
+   "duration": 4.288
+  },
+  {
+   "id": "be0e3faf",
+   "group": "tell",
+   "text": "unmarked. Nothing to describe, which is its own kind of description.",
+   "sprite": "tell",
+   "start": 41.031333333333336,
+   "duration": 4.458666666666667
+  },
+  {
+   "id": "519c2abc",
+   "group": "fact",
+   "text": "Distinguishing mark: Unmarked.",
+   "sprite": "fact",
+   "start": 46.762,
+   "duration": 2.538666666666667
+  },
+  {
+   "id": "e3b9880c",
+   "group": "fact",
+   "text": "distinguishing mark, unmarked",
+   "sprite": "fact",
+   "start": 49.550666666666665,
+   "duration": 2.453333333333333
+  },
+  {
+   "id": "3f25bfa1",
+   "group": "evidence",
+   "text": "A crumpled marker from a back-room game, dropped in the struggle.",
+   "sprite": "evidence",
+   "start": 58.96666666666667,
+   "duration": 4.074666666666666
+  },
+  {
+   "id": "465df396",
+   "group": "tell",
+   "text": "shuffles a deck through the whole conversation. Cards.",
+   "sprite": "tell",
+   "start": 45.74,
+   "duration": 3.8186666666666667
+  },
+  {
+   "id": "bdcfc499",
+   "group": "fact",
+   "text": "Vice: Cards.",
+   "sprite": "fact",
+   "start": 52.254,
+   "duration": 1.3653333333333333
+  },
+  {
+   "id": "531605bf",
+   "group": "fact",
+   "text": "vice, cards",
+   "sprite": "fact",
+   "start": 53.86933333333333,
+   "duration": 1.408
+  },
+  {
+   "id": "b2b0b9a2",
+   "group": "evidence",
+   "text": "Rye on the glass rim -- the second glass, the one that got away.",
+   "sprite": "evidence",
+   "start": 63.291333333333334,
+   "duration": 4.053333333333334
+  },
+  {
+   "id": "c352fc45",
+   "group": "tell",
+   "text": "hands shake until the second drink. Then they stop.",
+   "sprite": "tell",
+   "start": 49.80866666666667,
+   "duration": 3.712
+  },
+  {
+   "id": "7f38370a",
+   "group": "fact",
+   "text": "Vice: Drink.",
+   "sprite": "fact",
+   "start": 55.52733333333333,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "9c643262",
+   "group": "fact",
+   "text": "vice, drink",
+   "sprite": "fact",
+   "start": 57.1,
+   "duration": 1.088
+  },
+  {
+   "id": "2ce5606a",
+   "group": "evidence",
+   "text": "Sweet smoke in the curtains. Somebody here chases the dragon.",
+   "sprite": "evidence",
+   "start": 67.59466666666667,
+   "duration": 4.330666666666667
+  },
+  {
+   "id": "9a0c09bb",
+   "group": "tell",
+   "text": "pupils like pinheads, and that too-slow smile.",
+   "sprite": "tell",
+   "start": 53.77066666666666,
+   "duration": 3.3066666666666666
+  },
+  {
+   "id": "c183d167",
+   "group": "fact",
+   "text": "Vice: The pipe.",
+   "sprite": "fact",
+   "start": 58.438,
+   "duration": 1.408
+  },
+  {
+   "id": "482f9f35",
+   "group": "fact",
+   "text": "vice, the pipe",
+   "sprite": "fact",
+   "start": 60.096,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "38c103c5",
+   "group": "evidence",
+   "text": "No liquor, no markers, no smoke. Whoever did this keeps a clean house.",
+   "sprite": "evidence",
+   "start": 72.17533333333333,
+   "duration": 4.842666666666666
+  },
+  {
+   "id": "56ab2cf2",
+   "group": "tell",
+   "text": "no drink, no smoke, no cards. Unnervingly clean.",
+   "sprite": "tell",
+   "start": 57.327333333333335,
+   "duration": 4.16
+  },
+  {
+   "id": "4322c268",
+   "group": "fact",
+   "text": "Vice: No vice.",
+   "sprite": "fact",
+   "start": 61.66866666666667,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "31749504",
+   "group": "fact",
+   "text": "vice, no vice",
+   "sprite": "fact",
+   "start": 63.49733333333333,
+   "duration": 1.5573333333333332
+  },
+  {
+   "id": "3adc98e7",
+   "group": "evidence",
+   "text": "The room stinks of cheap tobacco, and the victim never smoked.",
+   "sprite": "evidence",
+   "start": 77.268,
+   "duration": 4.1386666666666665
+  },
+  {
+   "id": "40a0033f",
+   "group": "tell",
+   "text": "reeks of cheap tobacco, the kind sold by the pound.",
+   "sprite": "tell",
+   "start": 61.73733333333333,
+   "duration": 3.6906666666666665
+  },
+  {
+   "id": "e1c69b44",
+   "group": "fact",
+   "text": "Scent: Cheap tobacco.",
+   "sprite": "fact",
+   "start": 65.30466666666666,
+   "duration": 1.7706666666666666
+  },
+  {
+   "id": "c45ac4c8",
+   "group": "fact",
+   "text": "scent, cheap tobacco",
+   "sprite": "fact",
+   "start": 67.32533333333333,
+   "duration": 1.7066666666666668
+  },
+  {
+   "id": "582c3bc9",
+   "group": "evidence",
+   "text": "Orchid perfume on the victim's lapel. Somebody stood very close.",
+   "sprite": "evidence",
+   "start": 81.65666666666667,
+   "duration": 4.8
+  },
+  {
+   "id": "361f4ce2",
+   "group": "tell",
+   "text": "orchid perfume, laid on thick.",
+   "sprite": "tell",
+   "start": 65.678,
+   "duration": 2.3466666666666667
+  },
+  {
+   "id": "36b454a1",
+   "group": "fact",
+   "text": "Scent: Orchid perfume.",
+   "sprite": "fact",
+   "start": 69.282,
+   "duration": 1.856
+  },
+  {
+   "id": "21af6b6b",
+   "group": "fact",
+   "text": "scent, orchid perfume",
+   "sprite": "fact",
+   "start": 71.388,
+   "duration": 1.8346666666666667
+  },
+  {
+   "id": "5552e411",
+   "group": "evidence",
+   "text": "A thumbprint in machine oil on the door plate.",
+   "sprite": "evidence",
+   "start": 86.70666666666666,
+   "duration": 3.1786666666666665
+  },
+  {
+   "id": "f43ce059",
+   "group": "tell",
+   "text": "machine oil worked into the knuckles. It never washes out.",
+   "sprite": "tell",
+   "start": 68.27466666666666,
+   "duration": 3.968
+  },
+  {
+   "id": "aff74bdb",
+   "group": "fact",
+   "text": "Scent: Machine oil.",
+   "sprite": "fact",
+   "start": 73.47266666666667,
+   "duration": 1.6426666666666667
+  },
+  {
+   "id": "023df4c1",
+   "group": "fact",
+   "text": "scent, machine oil",
+   "sprite": "fact",
+   "start": 75.36533333333334,
+   "duration": 1.7066666666666668
+  },
+  {
+   "id": "2d50ac94",
+   "group": "evidence",
+   "text": "Ether. Faint, sickly, and hanging over everything.",
+   "sprite": "evidence",
+   "start": 90.13533333333334,
+   "duration": 3.4133333333333336
+  },
+  {
+   "id": "804fddaf",
+   "group": "tell",
+   "text": "the sweet ether smell of a hospital corridor.",
+   "sprite": "tell",
+   "start": 72.49266666666666,
+   "duration": 3.3493333333333335
+  },
+  {
+   "id": "b9fcc424",
+   "group": "fact",
+   "text": "Scent: Ether.",
+   "sprite": "fact",
+   "start": 77.322,
+   "duration": 1.344
+  },
+  {
+   "id": "aa7a22a4",
+   "group": "fact",
+   "text": "scent, ether",
+   "sprite": "fact",
+   "start": 78.916,
+   "duration": 1.408
+  },
+  {
+   "id": "0f4d9e57",
+   "group": "evidence",
+   "text": "A neat size eight pressed into the flowerbed.",
+   "sprite": "evidence",
+   "start": 93.79866666666666,
+   "duration": 2.9226666666666667
+  },
+  {
+   "id": "2e96f623",
+   "group": "tell",
+   "text": "small feet for the frame -- an eight at most.",
+   "sprite": "tell",
+   "start": 76.092,
+   "duration": 3.1573333333333333
+  },
+  {
+   "id": "190c6fd3",
+   "group": "fact",
+   "text": "Footprint: Size 8.",
+   "sprite": "fact",
+   "start": 80.574,
+   "duration": 1.8346666666666667
+  },
+  {
+   "id": "ba177369",
+   "group": "fact",
+   "text": "footprint, size 8",
+   "sprite": "fact",
+   "start": 82.65866666666666,
+   "duration": 1.728
+  },
+  {
+   "id": "db1a2d2d",
+   "group": "evidence",
+   "text": "Size ten, worn down hard on the outer heel.",
+   "sprite": "evidence",
+   "start": 96.97133333333333,
+   "duration": 3.3066666666666666
+  },
+  {
+   "id": "b977205b",
+   "group": "tell",
+   "text": "a plain size ten, heels worn to the nail.",
+   "sprite": "tell",
+   "start": 79.49933333333334,
+   "duration": 3.1786666666666665
+  },
+  {
+   "id": "c3de1e06",
+   "group": "fact",
+   "text": "Footprint: Size 10.",
+   "sprite": "fact",
+   "start": 84.63666666666667,
+   "duration": 1.8773333333333333
+  },
+  {
+   "id": "55fbedfa",
+   "group": "fact",
+   "text": "footprint, size 10",
+   "sprite": "fact",
+   "start": 86.764,
+   "duration": 1.792
+  },
+  {
+   "id": "eb63aa54",
+   "group": "evidence",
+   "text": "A size twelve in the wet ash by the back stair.",
+   "sprite": "evidence",
+   "start": 100.528,
+   "duration": 3.3493333333333335
+  },
+  {
+   "id": "7a862d65",
+   "group": "tell",
+   "text": "boats for feet. Twelves, easy.",
+   "sprite": "tell",
+   "start": 82.928,
+   "duration": 2.6666666666666665
+  },
+  {
+   "id": "e3e2cd94",
+   "group": "fact",
+   "text": "Footprint: Size 12.",
+   "sprite": "fact",
+   "start": 88.806,
+   "duration": 1.9626666666666666
+  },
+  {
+   "id": "53fbead4",
+   "group": "fact",
+   "text": "footprint, size 12",
+   "sprite": "fact",
+   "start": 91.01866666666666,
+   "duration": 1.9413333333333334
+  },
+  {
+   "id": "cdacfcd8",
+   "group": "event",
+   "text": "DOWNPOUR. Rain comes down like nails on a coffin lid. The whole city slows to a crawl.",
+   "sprite": "event",
+   "start": 0.25,
+   "duration": 5.952
+  },
+  {
+   "id": "f20c754c",
+   "group": "event",
+   "text": "CITY HALL LEANS IN. A telephone rings in an office you will never be invited into. The commissioner wants this closed, or buried.",
+   "sprite": "event",
+   "start": 6.452,
+   "duration": 9.045333333333334
+  },
+  {
+   "id": "81575fd0",
+   "group": "event",
+   "text": "SEALED OFF. Uniforms string a cordon and nobody in a cheap coat gets past it.",
+   "sprite": "event",
+   "start": 15.747333333333334,
+   "duration": 5.461333333333333
+  },
+  {
+   "id": "714d565d",
+   "group": "event",
+   "text": "THE CITY SCATTERS. Word gets around. Every guilty conscience in Ashgrave picks up its coat at once.",
+   "sprite": "event",
+   "start": 21.458666666666666,
+   "duration": 6.912
+  },
+  {
+   "id": "b7f7791f",
+   "group": "event",
+   "text": "BLACKOUT. The grid stutters and half the bay goes dark. You work the next hours by matchlight.",
+   "sprite": "event",
+   "start": 28.620666666666665,
+   "duration": 6.101333333333334
+  },
+  {
+   "id": "35667f98",
+   "group": "event",
+   "text": "AN ANONYMOUS CALL. The desk sergeant holds out the receiver. Nobody on the other end gives a name.",
+   "sprite": "event",
+   "start": 34.972,
+   "duration": 6.741333333333333
+  },
+  {
+   "id": "e39accf0",
+   "group": "event",
+   "text": "A LOOSE TONGUE. Somebody talks out of turn in a bar on Salt Street, and it gets back to you.",
+   "sprite": "event",
+   "start": 41.96333333333333,
+   "duration": 5.824
+  },
+  {
+   "id": "a4bc4473",
+   "group": "event",
+   "text": "A SECOND BODY. They pull another one out before dawn. Loose ends do not survive long in this city.",
+   "sprite": "event",
+   "start": 48.037333333333336,
+   "duration": 6.485333333333333
+  },
+  {
+   "id": "dc4f4389",
+   "group": "evidence",
+   "text": "A note in a dead man's handwriting, folded four times.",
+   "sprite": "evidence",
+   "start": 104.12733333333334,
+   "duration": 4.053333333333334
+  },
+  {
+   "id": "34ba7961",
+   "group": "evidence",
+   "text": "A name, an address, and a reason to hurry.",
+   "sprite": "evidence",
+   "start": 108.43066666666667,
+   "duration": 3.072
+  },
+  {
+   "id": "370c6577",
+   "group": "evidence",
+   "text": "Black coffee and a cigarette on somebody else's tab.",
+   "sprite": "evidence",
+   "start": 111.75266666666667,
+   "duration": 3.904
+  },
+  {
+   "id": "86a834a9",
+   "group": "evidence",
+   "text": "Somebody wrote down what they should have burned.",
+   "sprite": "evidence",
+   "start": 115.90666666666667,
+   "duration": 2.965333333333333
+  },
+  {
+   "id": "9776142e",
+   "group": "dialogue",
+   "text": "I am not here to make trouble. Walk me through your evening.",
+   "sprite": "dialogue",
+   "start": 0.25,
+   "duration": 3.7973333333333334
+  },
+  {
+   "id": "cccce734",
+   "group": "dialogue",
+   "text": "You can talk to me here, or downtown with a stenographer. Here is nicer.",
+   "sprite": "dialogue",
+   "start": 4.2973333333333334,
+   "duration": 4.970666666666666
+  },
+  {
+   "id": "0a2713f3",
+   "group": "dialogue",
+   "text": "Nobody is accusing anybody. I just need the hours accounted for.",
+   "sprite": "dialogue",
+   "start": 9.518,
+   "duration": 4.928
+  },
+  {
+   "id": "e391639a",
+   "group": "dialogue",
+   "text": "Sit down. You have been lying since the word hello, and we both know it.",
+   "sprite": "dialogue",
+   "start": 14.696,
+   "duration": 4.352
+  },
+  {
+   "id": "c6165678",
+   "group": "dialogue",
+   "text": "I have three people putting you six streets from where you say you were.",
+   "sprite": "dialogue",
+   "start": 19.298,
+   "duration": 4.352
+  },
+  {
+   "id": "626d4aa3",
+   "group": "dialogue",
+   "text": "Last chance to tell it your way before I write it mine.",
+   "sprite": "dialogue",
+   "start": 23.9,
+   "duration": 3.6693333333333333
+  },
+  {
+   "id": "17393b7d",
+   "group": "dialogue",
+   "text": "Forget yourself for a minute. Tell me who else was around.",
+   "sprite": "dialogue",
+   "start": 27.819333333333333,
+   "duration": 3.6266666666666665
+  },
+  {
+   "id": "1788b5e8",
+   "group": "dialogue",
+   "text": "You people all know each other. So tell me about the others.",
+   "sprite": "dialogue",
+   "start": 31.696,
+   "duration": 3.584
+  },
+  {
+   "id": "026f82be",
+   "group": "dialogue",
+   "text": "I am not interested in you. I am interested in who you drink with.",
+   "sprite": "dialogue",
+   "start": 35.53,
+   "duration": 4.416
+  },
+  {
+   "id": "bc859876",
+   "group": "dialogue",
+   "text": "A long look at the floor, and then: \"Fine. But you did not hear it from me.\"",
+   "sprite": "dialogue",
+   "start": 40.196,
+   "duration": 4.714666666666667
+  },
+  {
+   "id": "a23c96a4",
+   "group": "dialogue",
+   "text": "\"You want the truth or you want it tidy? They are not the same evening.\"",
+   "sprite": "dialogue",
+   "start": 45.160666666666664,
+   "duration": 4.352
+  },
+  {
+   "id": "16207acc",
+   "group": "dialogue",
+   "text": "\"I have told this to two of you already. It does not get better with telling.\"",
+   "sprite": "dialogue",
+   "start": 49.76266666666667,
+   "duration": 4.437333333333333
+  },
+  {
+   "id": "80564250",
+   "group": "dialogue",
+   "text": "\"Sit, then. I will give you what I have, which is less than you want.\"",
+   "sprite": "dialogue",
+   "start": 54.45,
+   "duration": 4.373333333333333
+  },
+  {
+   "id": "25563b66",
+   "group": "dialogue",
+   "text": "The jaw goes tight. \"You have got nothing, or you would not be shouting.\"",
+   "sprite": "dialogue",
+   "start": 59.07333333333333,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "7476b633",
+   "group": "dialogue",
+   "text": "\"All right. ALL RIGHT.\" The hands come up. \"Ask it again, slower.\"",
+   "sprite": "dialogue",
+   "start": 63.718,
+   "duration": 4.16
+  },
+  {
+   "id": "27b0cc80",
+   "group": "dialogue",
+   "text": "\"Say that in front of a lawyer and see how far you get.\" But they sit down.",
+   "sprite": "dialogue",
+   "start": 68.128,
+   "duration": 5.077333333333334
+  },
+  {
+   "id": "d4867a0c",
+   "group": "dialogue",
+   "text": "Silence, for a good ten seconds. Then, flatly: \"What do you want to know.\"",
+   "sprite": "dialogue",
+   "start": 73.45533333333333,
+   "duration": 4.928
+  },
+  {
+   "id": "0f74569b",
+   "group": "dialogue",
+   "text": "That gets a smile. People love to be asked about somebody else.",
+   "sprite": "dialogue",
+   "start": 78.63333333333334,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "1767fcb1",
+   "group": "dialogue",
+   "text": "\"Now that,\" they say, settling in, \"is a better question.\"",
+   "sprite": "dialogue",
+   "start": 83.00066666666666,
+   "duration": 3.776
+  },
+  {
+   "id": "5238107e",
+   "group": "dialogue",
+   "text": "\"You are asking the wrong person about the wrong person. But go on.\"",
+   "sprite": "dialogue",
+   "start": 87.02666666666667,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "a10d2a5d",
+   "group": "dialogue",
+   "text": "The relief is almost funny. \"Oh, THEM. Where would you like me to start.\"",
+   "sprite": "dialogue",
+   "start": 91.67133333333334,
+   "duration": 4.650666666666667
+  },
+  {
+   "id": "3a137df1",
+   "group": "dialogue",
+   "text": "\"I have said everything I am going to say to you.\"",
+   "sprite": "dialogue",
+   "start": 96.572,
+   "duration": 3.456
+  },
+  {
+   "id": "60faf0c8",
+   "group": "dialogue",
+   "text": "The door does not open the second time.",
+   "sprite": "dialogue",
+   "start": 100.278,
+   "duration": 2.7306666666666666
+  },
+  {
+   "id": "18ff2fac",
+   "group": "dialogue",
+   "text": "\"We are done. Go and be clever somewhere else.\"",
+   "sprite": "dialogue",
+   "start": 103.25866666666667,
+   "duration": 2.816
+  },
+  {
+   "id": "59eb197d",
+   "group": "name",
+   "text": "Hale",
+   "sprite": "name",
+   "start": 0.25,
+   "duration": 0.7893333333333333
+  },
+  {
+   "id": "d36c447b",
+   "group": "name",
+   "text": "Vale",
+   "sprite": "name",
+   "start": 1.2893333333333334,
+   "duration": 0.832
+  },
+  {
+   "id": "a8037726",
+   "group": "name",
+   "text": "Crane",
+   "sprite": "name",
+   "start": 2.3713333333333333,
+   "duration": 0.832
+  },
+  {
+   "id": "9c42ba6d",
+   "group": "name",
+   "text": "Ruby",
+   "sprite": "name",
+   "start": 3.453333333333333,
+   "duration": 0.832
+  },
+  {
+   "id": "474b5f3d",
+   "group": "name",
+   "text": "Kell",
+   "sprite": "name",
+   "start": 4.535333333333333,
+   "duration": 0.7466666666666667
+  },
+  {
+   "id": "941dc9a1",
+   "group": "name",
+   "text": "Quist",
+   "sprite": "name",
+   "start": 5.532,
+   "duration": 0.7253333333333334
+  },
+  {
+   "id": "c13499cc",
+   "group": "briefing",
+   "text": "Ashgrave Bay. The Ash and the Orchid.",
+   "sprite": "briefing",
+   "start": 0.25,
+   "duration": 2.8373333333333335
+  },
+  {
+   "id": "569249bc",
+   "group": "briefing",
+   "text": "Nine minutes past two, the house detective at the Gilded Hotel opens suite eleven-hundred and finds Lillian Voss face down in six hundred dollars of Chinese silk. No gunshot. No scream. The orchid on her dressing table has been snapped clean off at the stem, and somebody took the time to set it back in the vase. Eleven floors, forty-one guests, one night clerk, and not one of them heard a thing. You have until this story goes cold, detectives. In this city that is not very long.",
+   "sprite": "briefing",
+   "start": 3.3373333333333335,
+   "duration": 32.14333333333333
+  },
+  {
+   "id": "2e2a4344",
+   "group": "briefing",
+   "text": "Dispatch to all cars. The Gilded Hotel. Coroner is already inside.",
+   "sprite": "briefing",
+   "start": 35.730666666666664,
+   "duration": 5.0986666666666665
+  },
+  {
+   "id": "77184a27",
+   "group": "briefing",
+   "text": "The Voss family has lawyers awake at four in the morning. Consider that a warning.",
+   "sprite": "briefing",
+   "start": 41.07933333333333,
+   "duration": 5.397333333333333
+  },
+  {
+   "id": "252620e0",
+   "group": "briefing",
+   "text": "Herald has a man in the lobby. He was there before we were. Ask yourself how.",
+   "sprite": "briefing",
+   "start": 46.72666666666667,
+   "duration": 5.056
+  },
+  {
+   "id": "37457fc1",
+   "group": "epilogue",
+   "text": "The cuffs go on in the lobby of the Gilded, under the chandelier, with the morning edition already screaming it. Somebody sets the orchid back in the vase on the way out. Ashgrave will forget by Thursday. You will not.",
+   "sprite": "epilogue",
+   "start": 0.25,
+   "duration": 13.717333333333332
+  },
+  {
+   "id": "2d685dd5",
+   "group": "epilogue",
+   "text": "The Herald moves it to page nine, then page nineteen, then nowhere. The suite is let again by Christmas. Lillian Voss becomes a thing people almost remember, and the rain keeps on doing what rain does.",
+   "sprite": "epilogue",
+   "start": 14.217333333333332,
+   "duration": 13.696
+  },
+  {
+   "id": "3bc5f0f3",
+   "group": "name",
+   "text": "The Gilded Hotel",
+   "sprite": "name",
+   "start": 6.507333333333333,
+   "duration": 1.6853333333333333
+  },
+  {
+   "id": "412d23bd",
+   "group": "name",
+   "text": "The Ashgrave Herald",
+   "sprite": "name",
+   "start": 8.442666666666666,
+   "duration": 1.728
+  },
+  {
+   "id": "7074ce28",
+   "group": "name",
+   "text": "St. Ordell's",
+   "sprite": "name",
+   "start": 10.420666666666667,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "a2124593",
+   "group": "name",
+   "text": "Mercy Hospital",
+   "sprite": "name",
+   "start": 12.057333333333334,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "2617d808",
+   "group": "name",
+   "text": "The Blue Parrot",
+   "sprite": "name",
+   "start": 13.886,
+   "duration": 1.216
+  },
+  {
+   "id": "939b1482",
+   "group": "name",
+   "text": "Ashgrave Precinct",
+   "sprite": "name",
+   "start": 15.352,
+   "duration": 1.6
+  },
+  {
+   "id": "381c47e9",
+   "group": "name",
+   "text": "Lantern Market",
+   "sprite": "name",
+   "start": 17.202,
+   "duration": 1.5146666666666666
+  },
+  {
+   "id": "5dc9a94d",
+   "group": "name",
+   "text": "Cobb's Pawnshop",
+   "sprite": "name",
+   "start": 18.966666666666665,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "e66077bb",
+   "group": "name",
+   "text": "Tenement Row",
+   "sprite": "name",
+   "start": 20.60333333333333,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "7c71d354",
+   "group": "name",
+   "text": "Rainer Docks",
+   "sprite": "name",
+   "start": 22.176,
+   "duration": 1.216
+  },
+  {
+   "id": "3ec4eceb",
+   "group": "name",
+   "text": "The Old Cannery",
+   "sprite": "name",
+   "start": 23.642,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "80e7f119",
+   "group": "name",
+   "text": "Voss Manor",
+   "sprite": "name",
+   "start": 25.278666666666666,
+   "duration": 1.1306666666666667
+  },
+  {
+   "id": "2f67dca3",
+   "group": "name",
+   "text": "Vera Lang",
+   "sprite": "name",
+   "start": 26.659333333333333,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "f1168775",
+   "group": "name",
+   "text": "Lang",
+   "sprite": "name",
+   "start": 28.104,
+   "duration": 0.8106666666666666
+  },
+  {
+   "id": "7797eb49",
+   "group": "motive",
+   "text": "because the top of the bill only fits one name.",
+   "sprite": "motive",
+   "start": 0.25,
+   "duration": 3.2426666666666666
+  },
+  {
+   "id": "e4e83fd2",
+   "group": "name",
+   "text": "Emil Strand",
+   "sprite": "name",
+   "start": 29.164666666666665,
+   "duration": 1.3653333333333333
+  },
+  {
+   "id": "0c41be09",
+   "group": "name",
+   "text": "Strand",
+   "sprite": "name",
+   "start": 30.78,
+   "duration": 0.9173333333333333
+  },
+  {
+   "id": "f2d96d01",
+   "group": "motive",
+   "text": "because she knew which rooms he rented by the hour, and to whom.",
+   "sprite": "motive",
+   "start": 3.7426666666666666,
+   "duration": 4.032
+  },
+  {
+   "id": "489245e9",
+   "group": "name",
+   "text": "Dr. Aurelio Pike",
+   "sprite": "name",
+   "start": 31.947333333333333,
+   "duration": 1.8773333333333333
+  },
+  {
+   "id": "91afbe3a",
+   "group": "name",
+   "text": "Pike",
+   "sprite": "name",
+   "start": 34.074666666666666,
+   "duration": 0.64
+  },
+  {
+   "id": "b4e930ad",
+   "group": "motive",
+   "text": "because she was going to name his pharmacy in open court.",
+   "sprite": "motive",
+   "start": 8.024666666666667,
+   "duration": 3.6693333333333333
+  },
+  {
+   "id": "a5df44a4",
+   "group": "name",
+   "text": "Cass Mireaux",
+   "sprite": "name",
+   "start": 34.964666666666666,
+   "duration": 1.4506666666666668
+  },
+  {
+   "id": "dd0dd764",
+   "group": "name",
+   "text": "Mireaux",
+   "sprite": "name",
+   "start": 36.665333333333336,
+   "duration": 0.9386666666666666
+  },
+  {
+   "id": "b43d33cf",
+   "group": "motive",
+   "text": "because the orchids were never the cargo, and she had worked that out.",
+   "sprite": "motive",
+   "start": 11.944,
+   "duration": 4.373333333333333
+  },
+  {
+   "id": "69f2849c",
+   "group": "name",
+   "text": "Deacon Iris Tovar",
+   "sprite": "name",
+   "start": 37.854,
+   "duration": 1.9626666666666666
+  },
+  {
+   "id": "90351105",
+   "group": "name",
+   "text": "Tovar",
+   "sprite": "name",
+   "start": 40.06666666666667,
+   "duration": 0.8106666666666666
+  },
+  {
+   "id": "3bbeb348",
+   "group": "motive",
+   "text": "because the parish accounts only balanced while she stayed quiet.",
+   "sprite": "motive",
+   "start": 16.567333333333334,
+   "duration": 4.1386666666666665
+  },
+  {
+   "id": "b4c43088",
+   "group": "name",
+   "text": "Roland Voss",
+   "sprite": "name",
+   "start": 41.12733333333333,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "d5a2bea0",
+   "group": "name",
+   "text": "Voss",
+   "sprite": "name",
+   "start": 42.7,
+   "duration": 0.768
+  },
+  {
+   "id": "83cbf33b",
+   "group": "motive",
+   "text": "because the estate passes whole to the surviving child.",
+   "sprite": "motive",
+   "start": 20.956,
+   "duration": 3.584
+  },
+  {
+   "id": "0cb86093",
+   "group": "name",
+   "text": "Nikolai Brandt",
+   "sprite": "name",
+   "start": 43.718,
+   "duration": 1.4933333333333334
+  },
+  {
+   "id": "a5dbbdc6",
+   "group": "name",
+   "text": "Brandt",
+   "sprite": "name",
+   "start": 45.461333333333336,
+   "duration": 0.832
+  },
+  {
+   "id": "c76e0d80",
+   "group": "motive",
+   "text": "because somebody paid, and he has never once asked why.",
+   "sprite": "motive",
+   "start": 24.79,
+   "duration": 3.7546666666666666
+  },
+  {
+   "id": "d6157b02",
+   "group": "name",
+   "text": "Perpetua Shaw",
+   "sprite": "name",
+   "start": 46.54333333333334,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "3996d9ce",
+   "group": "name",
+   "text": "Shaw",
+   "sprite": "name",
+   "start": 48.18,
+   "duration": 0.704
+  },
+  {
+   "id": "7cc63a54",
+   "group": "motive",
+   "text": "because the column had run dry, and a dead heiress runs for a month.",
+   "sprite": "motive",
+   "start": 28.794666666666668,
+   "duration": 4.565333333333333
+  },
+  {
+   "id": "a4dd92d6",
+   "group": "briefing",
+   "text": "Ashgrave Bay. Salt and Silence.",
+   "sprite": "briefing",
+   "start": 52.032666666666664,
+   "duration": 2.538666666666667
+  },
+  {
+   "id": "f269e3dc",
+   "group": "briefing",
+   "text": "Low tide at Pier Nine gives up Aurel Bask, twenty years head of the longshoremen and thirty hours dead. Somebody sewed his coat pockets shut and filled them with rock salt, which is not how you sink a man -- it is how you tell three thousand dockers what happens to a man who talks. The wound is under the ribs and it went up. Half this harbour wanted him gone and the other half worked for him. Nobody here talks to police, so do not ask like police. Move before the tide turns twice.",
+   "sprite": "briefing",
+   "start": 54.821333333333335,
+   "duration": 26.069333333333333
+  },
+  {
+   "id": "c6ab7cce",
+   "group": "briefing",
+   "text": "Dispatch. Harbour Station. Do not go down to Pier Nine alone and do not go in uniform.",
+   "sprite": "briefing",
+   "start": 81.14066666666666,
+   "duration": 6.101333333333334
+  },
+  {
+   "id": "ce43d469",
+   "group": "briefing",
+   "text": "The union votes on a new boss Thursday. Every candidate is on your list.",
+   "sprite": "briefing",
+   "start": 87.492,
+   "duration": 5.226666666666667
+  },
+  {
+   "id": "77ded57d",
+   "group": "briefing",
+   "text": "Customs has been sitting on a manifest for six weeks. Lean on them.",
+   "sprite": "briefing",
+   "start": 92.96866666666666,
+   "duration": 4.352
+  },
+  {
+   "id": "1a6c950d",
+   "group": "epilogue",
+   "text": "You make the arrest at the Hall, an hour before the vote, in front of three hundred longshoremen who go very quiet all at once. Somebody at the back starts clapping and thinks better of it. The tide comes in. It always does.",
+   "sprite": "epilogue",
+   "start": 28.163333333333334,
+   "duration": 14.122666666666667
+  },
+  {
+   "id": "d9260ad2",
+   "group": "epilogue",
+   "text": "Thursday comes. They elect a new boss, and the new boss says all the right things about Aurel Bask. The salt goes into an evidence locker, and the file goes into a drawer, and the harbour goes back to being a place where nobody saw anything.",
+   "sprite": "epilogue",
+   "start": 42.536,
+   "duration": 15.274666666666667
+  },
+  {
+   "id": "8f2984c4",
+   "group": "name",
+   "text": "Harbour Station",
+   "sprite": "name",
+   "start": 49.134,
+   "duration": 1.408
+  },
+  {
+   "id": "48afe52f",
+   "group": "name",
+   "text": "Pier Nine",
+   "sprite": "name",
+   "start": 50.792,
+   "duration": 1.152
+  },
+  {
+   "id": "8683b5a0",
+   "group": "name",
+   "text": "The Customs House",
+   "sprite": "name",
+   "start": 52.194,
+   "duration": 1.7706666666666666
+  },
+  {
+   "id": "4bda90b9",
+   "group": "name",
+   "text": "Longshoremen's Hall",
+   "sprite": "name",
+   "start": 54.214666666666666,
+   "duration": 1.4933333333333334
+  },
+  {
+   "id": "d77eeacd",
+   "group": "name",
+   "text": "Grieve Point Light",
+   "sprite": "name",
+   "start": 55.958,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "e88ae44d",
+   "group": "name",
+   "text": "The Brine & Bell",
+   "sprite": "name",
+   "start": 57.63733333333333,
+   "duration": 1.216
+  },
+  {
+   "id": "e93d27cf",
+   "group": "name",
+   "text": "Vetch & Son, Chandlers",
+   "sprite": "name",
+   "start": 59.10333333333333,
+   "duration": 2.112
+  },
+  {
+   "id": "81251897",
+   "group": "name",
+   "text": "The Ice House",
+   "sprite": "name",
+   "start": 61.465333333333334,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "6661a8d2",
+   "group": "name",
+   "text": "Number Four Drydock",
+   "sprite": "name",
+   "start": 63.038,
+   "duration": 1.8346666666666667
+  },
+  {
+   "id": "2f58a29e",
+   "group": "name",
+   "text": "Harbour Baths",
+   "sprite": "name",
+   "start": 65.12266666666666,
+   "duration": 1.216
+  },
+  {
+   "id": "9c889ec5",
+   "group": "name",
+   "text": "The Trawler Berths",
+   "sprite": "name",
+   "start": 66.58866666666667,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "7b621385",
+   "group": "name",
+   "text": "Harbour Morgue",
+   "sprite": "name",
+   "start": 68.268,
+   "duration": 1.2586666666666666
+  },
+  {
+   "id": "38d45de7",
+   "group": "name",
+   "text": "Dov Hollis",
+   "sprite": "name",
+   "start": 69.77666666666667,
+   "duration": 1.216
+  },
+  {
+   "id": "bb2a7768",
+   "group": "name",
+   "text": "Hollis",
+   "sprite": "name",
+   "start": 71.24266666666666,
+   "duration": 0.9173333333333333
+  },
+  {
+   "id": "6612c466",
+   "group": "motive",
+   "text": "because second chair for eleven years is its own kind of sentence.",
+   "sprite": "motive",
+   "start": 33.61,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "252d0193",
+   "group": "name",
+   "text": "Etta Wren",
+   "sprite": "name",
+   "start": 72.41,
+   "duration": 1.152
+  },
+  {
+   "id": "f1fd9d5f",
+   "group": "name",
+   "text": "Wren",
+   "sprite": "name",
+   "start": 73.812,
+   "duration": 0.8106666666666666
+  },
+  {
+   "id": "9cd49d33",
+   "group": "motive",
+   "text": "because the manifest he was carrying had her signature on every page.",
+   "sprite": "motive",
+   "start": 38.254666666666665,
+   "duration": 4.693333333333333
+  },
+  {
+   "id": "5635da17",
+   "group": "name",
+   "text": "Bernard Okafor",
+   "sprite": "name",
+   "start": 74.87266666666666,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "dd680619",
+   "group": "name",
+   "text": "Okafor",
+   "sprite": "name",
+   "start": 76.70133333333334,
+   "duration": 1.024
+  },
+  {
+   "id": "7e6859d7",
+   "group": "motive",
+   "text": "because the debt was called in, and he had nothing left to pay it with.",
+   "sprite": "motive",
+   "start": 43.198,
+   "duration": 4.266666666666667
+  },
+  {
+   "id": "7ad7cdad",
+   "group": "name",
+   "text": "Nunzio Salvi",
+   "sprite": "name",
+   "start": 77.97533333333334,
+   "duration": 1.5146666666666666
+  },
+  {
+   "id": "30f6c556",
+   "group": "name",
+   "text": "Salvi",
+   "sprite": "name",
+   "start": 79.74,
+   "duration": 0.96
+  },
+  {
+   "id": "7f73ca8b",
+   "group": "motive",
+   "text": "because a strike would have cost him a season he could not afford to lose.",
+   "sprite": "motive",
+   "start": 47.714666666666666,
+   "duration": 4.544
+  },
+  {
+   "id": "0c752708",
+   "group": "name",
+   "text": "Tilda Rask",
+   "sprite": "name",
+   "start": 80.95,
+   "duration": 1.2373333333333334
+  },
+  {
+   "id": "2cc12e82",
+   "group": "name",
+   "text": "Rask",
+   "sprite": "name",
+   "start": 82.43733333333333,
+   "duration": 0.768
+  },
+  {
+   "id": "059378ba",
+   "group": "motive",
+   "text": "because seven years is a long time to hold a thing, and no time at all.",
+   "sprite": "motive",
+   "start": 52.50866666666667,
+   "duration": 4.864
+  },
+  {
+   "id": "0a135e36",
+   "group": "name",
+   "text": "Mr. Garrow",
+   "sprite": "name",
+   "start": 83.45533333333333,
+   "duration": 1.408
+  },
+  {
+   "id": "5d5cd5ab",
+   "group": "name",
+   "text": "Garrow",
+   "sprite": "name",
+   "start": 85.11333333333333,
+   "duration": 0.8746666666666667
+  },
+  {
+   "id": "18c434e6",
+   "group": "motive",
+   "text": "because he saw the boat, and then he was in it.",
+   "sprite": "motive",
+   "start": 57.62266666666667,
+   "duration": 2.88
+  },
+  {
+   "id": "fd585011",
+   "group": "name",
+   "text": "Dr. Ilse Fenn",
+   "sprite": "name",
+   "start": 86.238,
+   "duration": 1.5146666666666666
+  },
+  {
+   "id": "2f777ee0",
+   "group": "name",
+   "text": "Fenn",
+   "sprite": "name",
+   "start": 88.00266666666667,
+   "duration": 0.768
+  },
+  {
+   "id": "d112e526",
+   "group": "motive",
+   "text": "because the wound went up, and only she knew what that meant.",
+   "sprite": "motive",
+   "start": 60.75266666666667,
+   "duration": 3.562666666666667
+  },
+  {
+   "id": "25262e7c",
+   "group": "name",
+   "text": "Marcel Ledoux",
+   "sprite": "name",
+   "start": 89.02066666666667,
+   "duration": 1.536
+  },
+  {
+   "id": "d7d1b012",
+   "group": "name",
+   "text": "Ledoux",
+   "sprite": "name",
+   "start": 90.80666666666667,
+   "duration": 0.832
+  },
+  {
+   "id": "f4679104",
+   "group": "motive",
+   "text": "because Bask had started counting the boats, and the counting was nearly done.",
+   "sprite": "motive",
+   "start": 64.56533333333333,
+   "duration": 4.928
+  },
+  {
+   "id": "aa680be1",
+   "group": "briefing",
+   "text": "Ashgrave Bay. The Ninth Bell.",
+   "sprite": "briefing",
+   "start": 97.57066666666667,
+   "duration": 2.3253333333333335
+  },
+  {
+   "id": "01cce078",
+   "group": "briefing",
+   "text": "At midnight the bell of St. Ordell's rang nine times. It has rung twelve at midnight for a hundred and four years. At six in the morning the verger finds Sister Constance Ayre at the foot of the tower stair with her keys still in her hand and the back of her skull opened up. She did not fall. The stair turns the wrong way for that. And somebody climbed two hundred and eleven steps in the dark to ring a number that means something to exactly one person on this hill. Find out who counts to nine.",
+   "sprite": "briefing",
+   "start": 100.146,
+   "duration": 32.122
+  },
+  {
+   "id": "5246f07e",
+   "group": "briefing",
+   "text": "Dispatch to Hill Division. The diocese has asked for discretion. Note the request and ignore it.",
+   "sprite": "briefing",
+   "start": 132.518,
+   "duration": 6.933333333333334
+  },
+  {
+   "id": "5b7c175e",
+   "group": "briefing",
+   "text": "The asylum logged an open gate at eleven-forty. They logged it closed again at one.",
+   "sprite": "briefing",
+   "start": 139.70133333333334,
+   "duration": 6.058666666666666
+  },
+  {
+   "id": "4ec813df",
+   "group": "briefing",
+   "text": "The bell rope is cut clean. Whoever went up did not come down the stair.",
+   "sprite": "briefing",
+   "start": 146.01,
+   "duration": 4.501333333333333
+  },
+  {
+   "id": "0d537204",
+   "group": "epilogue",
+   "text": "They ring twelve at midnight again, and the hill pretends that settles it. You stand in the wet grass under two hundred and eleven steps of cold stone and you count to nine, once, for Constance Ayre, and then you go home.",
+   "sprite": "epilogue",
+   "start": 58.06066666666667,
+   "duration": 13.610666666666667
+  },
+  {
+   "id": "def52536",
+   "group": "epilogue",
+   "text": "The diocese gets its discretion. Accidental fall, says the certificate, on a stair that turns the wrong way. The bell rings twelve. Somebody on this hill hears nine every night for the rest of their life, and it is not you.",
+   "sprite": "epilogue",
+   "start": 71.92133333333334,
+   "duration": 14.634666666666666
+  },
+  {
+   "id": "8409b70c",
+   "group": "name",
+   "text": "The Bell Tower",
+   "sprite": "name",
+   "start": 91.88866666666667,
+   "duration": 1.344
+  },
+  {
+   "id": "157d2ad2",
+   "group": "name",
+   "text": "The Rectory",
+   "sprite": "name",
+   "start": 93.48266666666666,
+   "duration": 1.1093333333333333
+  },
+  {
+   "id": "850bf1c5",
+   "group": "name",
+   "text": "Ordell Academy",
+   "sprite": "name",
+   "start": 94.842,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "ee202edc",
+   "group": "name",
+   "text": "The Observatory",
+   "sprite": "name",
+   "start": 96.67066666666666,
+   "duration": 1.344
+  },
+  {
+   "id": "31193129",
+   "group": "name",
+   "text": "Hill Division",
+   "sprite": "name",
+   "start": 98.26466666666667,
+   "duration": 1.344
+  },
+  {
+   "id": "e4e92f03",
+   "group": "name",
+   "text": "The Almshouse",
+   "sprite": "name",
+   "start": 99.85866666666666,
+   "duration": 1.2586666666666666
+  },
+  {
+   "id": "e267b3bc",
+   "group": "name",
+   "text": "The Glasshouse",
+   "sprite": "name",
+   "start": 101.36733333333333,
+   "duration": 1.216
+  },
+  {
+   "id": "def4473d",
+   "group": "name",
+   "text": "Marrow House",
+   "sprite": "name",
+   "start": 102.83333333333333,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "61872639",
+   "group": "name",
+   "text": "Ordell Cemetery",
+   "sprite": "name",
+   "start": 104.38466666666666,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "a1db5692",
+   "group": "name",
+   "text": "The Tram Depot",
+   "sprite": "name",
+   "start": 106.064,
+   "duration": 1.536
+  },
+  {
+   "id": "ec86c469",
+   "group": "name",
+   "text": "The Reservoir",
+   "sprite": "name",
+   "start": 107.85,
+   "duration": 1.2373333333333334
+  },
+  {
+   "id": "f61473e8",
+   "group": "name",
+   "text": "The Crypt",
+   "sprite": "name",
+   "start": 109.33733333333333,
+   "duration": 0.9173333333333333
+  },
+  {
+   "id": "50d6afcd",
+   "group": "name",
+   "text": "Cormac Ill",
+   "sprite": "name",
+   "start": 110.50466666666667,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "fc6f9f1c",
+   "group": "name",
+   "text": "Ill",
+   "sprite": "name",
+   "start": 111.94933333333333,
+   "duration": 0.704
+  },
+  {
+   "id": "58a7c425",
+   "group": "motive",
+   "text": "because she had begun to ask what he does with the keys at night.",
+   "sprite": "motive",
+   "start": 69.74333333333334,
+   "duration": 3.989333333333333
+  },
+  {
+   "id": "56579e25",
+   "group": "name",
+   "text": "Canon Aldritch",
+   "sprite": "name",
+   "start": 112.90333333333334,
+   "duration": 1.5573333333333332
+  },
+  {
+   "id": "a105d90c",
+   "group": "name",
+   "text": "Aldritch",
+   "sprite": "name",
+   "start": 114.71066666666667,
+   "duration": 0.96
+  },
+  {
+   "id": "1e95a254",
+   "group": "motive",
+   "text": "because the crypt ledgers do not survive an honest reading.",
+   "sprite": "motive",
+   "start": 73.98266666666666,
+   "duration": 4.053333333333334
+  },
+  {
+   "id": "abcb9f03",
+   "group": "name",
+   "text": "Matron Sybil Crake",
+   "sprite": "name",
+   "start": 115.92066666666666,
+   "duration": 1.7493333333333334
+  },
+  {
+   "id": "b3f85117",
+   "group": "name",
+   "text": "Crake",
+   "sprite": "name",
+   "start": 117.92,
+   "duration": 0.7253333333333334
+  },
+  {
+   "id": "35687643",
+   "group": "motive",
+   "text": "because one of her patients is not a patient, and Constance had worked it out.",
+   "sprite": "motive",
+   "start": 78.286,
+   "duration": 4.992
+  },
+  {
+   "id": "671de5b6",
+   "group": "name",
+   "text": "Mr. Ewan Blake",
+   "sprite": "name",
+   "start": 118.89533333333334,
+   "duration": 1.664
+  },
+  {
+   "id": "30f0b8fe",
+   "group": "name",
+   "text": "Blake",
+   "sprite": "name",
+   "start": 120.80933333333333,
+   "duration": 0.64
+  },
+  {
+   "id": "fd71a684",
+   "group": "motive",
+   "text": "because she wrote a letter to the diocese and never posted it.",
+   "sprite": "motive",
+   "start": 83.528,
+   "duration": 4.096
+  },
+  {
+   "id": "cdc015e2",
+   "group": "name",
+   "text": "Dr. Halla Quint",
+   "sprite": "name",
+   "start": 121.69933333333333,
+   "duration": 1.6853333333333333
+  },
+  {
+   "id": "8dfd6c84",
+   "group": "name",
+   "text": "Quint",
+   "sprite": "name",
+   "start": 123.63466666666666,
+   "duration": 0.6613333333333333
+  },
+  {
+   "id": "052dcdc8",
+   "group": "motive",
+   "text": "because through that telescope she had watched something she could not unsee.",
+   "sprite": "motive",
+   "start": 87.874,
+   "duration": 4.48
+  },
+  {
+   "id": "48ae629b",
+   "group": "name",
+   "text": "Peter Nane",
+   "sprite": "name",
+   "start": 124.546,
+   "duration": 1.2586666666666666
+  },
+  {
+   "id": "3fe2fd2d",
+   "group": "name",
+   "text": "Nane",
+   "sprite": "name",
+   "start": 126.05466666666666,
+   "duration": 0.832
+  },
+  {
+   "id": "db5c7c53",
+   "group": "motive",
+   "text": "because the grave was dug on Tuesday and the death was on Friday.",
+   "sprite": "motive",
+   "start": 92.604,
+   "duration": 4.608
+  },
+  {
+   "id": "96b795d7",
+   "group": "name",
+   "text": "Rosalind Fay",
+   "sprite": "name",
+   "start": 127.13666666666667,
+   "duration": 1.536
+  },
+  {
+   "id": "16843663",
+   "group": "name",
+   "text": "Fay",
+   "sprite": "name",
+   "start": 128.92266666666666,
+   "duration": 0.7466666666666667
+  },
+  {
+   "id": "4f03428f",
+   "group": "motive",
+   "text": "because the last car up the hill carried a passenger she was paid to forget.",
+   "sprite": "motive",
+   "start": 97.462,
+   "duration": 4.864
+  },
+  {
+   "id": "de07c111",
+   "group": "name",
+   "text": "Sister Beatrix Ayre",
+   "sprite": "name",
+   "start": 129.91933333333333,
+   "duration": 1.9626666666666666
+  },
+  {
+   "id": "37d4cae6",
+   "group": "name",
+   "text": "Ayre",
+   "sprite": "name",
+   "start": 132.132,
+   "duration": 0.704
+  },
+  {
+   "id": "d164796a",
+   "group": "motive",
+   "text": "because nine is how many years Constance let her rot in Marrow House.",
+   "sprite": "motive",
+   "start": 102.576,
+   "duration": 5.141333333333334
+  }
+ ],
+ "sprites": {
+  "dir": "sprites/",
+  "format": "mp3",
+  "rate": 24000,
+  "groups": [
+   "stock",
+   "evidence",
+   "tell",
+   "fact",
+   "event",
+   "dialogue",
+   "name",
+   "briefing",
+   "epilogue",
+   "motive"
+  ]
+ }
+}
