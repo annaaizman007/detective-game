@@ -2,7 +2,7 @@
    Scenes and the three-column board.
 --------------------------------------------------------------------------- */
 
-.scene { min-height: 100vh; min-height: 100dvh; display: grid; padding: 2rem 1.2rem; }
+.scene { min-height: 100%; display: grid; padding-block: 2rem; padding-inline: 1.2rem; }
 
 /* ----------------------------------------------------------- title scene */
 
@@ -159,7 +159,7 @@
   grid-template-columns: 318px minmax(0, 1fr) 404px;
   grid-template-rows: auto minmax(0, 1fr);
   grid-template-areas: 'top top top' 'crew board book';
-  height: 100vh; height: 100dvh;
+  height: 100%;
   gap: .7rem; padding: .7rem;
 }
 
@@ -472,7 +472,7 @@
   .topbar { flex-wrap: wrap; gap: .5rem .8rem; }
   .trail { order: 3; flex-basis: 100%; max-width: none; }
   .acts { grid-template-columns: 1fr 1fr; }
-  .scene { padding: 1.2rem .8rem; }
+  .scene { padding-block: 1.2rem; padding-inline: .8rem; }
   .dossier { transform: none; padding: 1.6rem 1.1rem; }
   .end-reveal { flex-direction: column; text-align: center; }
   .modal { padding: .6rem; align-items: end; }
