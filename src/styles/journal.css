@@ -1,0 +1,52 @@
+/* ---------------------------------------------------------------------------
+   The journal: a timeline of every step, with the table's own notes.
+--------------------------------------------------------------------------- */
+
+.journal { display: flex; flex-direction: column; min-height: 100%; }
+.jr-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; padding: .5rem .6rem;
+  border-bottom: 1px solid var(--line-soft); position: sticky; top: 0; background: var(--panel); z-index: 2; }
+.jr-filters { display: flex; gap: .25rem; flex-wrap: wrap; }
+.jr-filter { padding: .3rem .6rem; background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  color: var(--text-faint); font-family: var(--display); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.jr-filter.is-on { color: var(--brass-hi); border-color: var(--brass-dim); background: rgba(200,150,62,.08); }
+.jr-tools { margin-left: auto; display: flex; gap: .3rem; }
+
+.jr-list { list-style: none; margin: 0; padding: .6rem .6rem 1.2rem; display: grid; gap: .35rem; }
+.jr-day { padding: .6rem .2rem .2rem; font-family: var(--display); font-size: .7rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--brass); display: flex; gap: .35rem; align-items: center; }
+.jr-day .ico { width: 14px; height: 14px; }
+.jr { display: grid; grid-template-columns: 62px 18px minmax(0,1fr); gap: .5rem; align-items: start;
+  padding: .5rem .6rem; background: var(--panel-2); border: 1px solid var(--line-soft); border-left: 3px solid var(--seat, var(--line));
+  border-radius: var(--r-s); }
+.jr-time { font-family: var(--type); font-size: .74rem; color: var(--text-faint); padding-top: .15rem; }
+.jr-ico .ico { width: 16px; height: 16px; color: var(--text-faint); margin-top: .15rem; }
+.jr--exhibit { border-left-color: var(--brass); }
+.jr--exhibit .jr-ico .ico, .jr--ask .jr-ico .ico { color: var(--brass); }
+.jr--accuse { border-left-color: var(--crimson); }
+.jr--event { background: rgba(217,79,69,.05); }
+.jr--end { border-left-color: var(--neon); }
+.jr-body { min-width: 0; display: grid; gap: .35rem; }
+.jr-text { margin: 0; font-size: .86rem; line-height: 1.5; }
+.jr-text b { color: var(--seat, var(--brass-hi)); }
+.jr-ref { display: inline-flex; align-items: center; gap: .3rem; justify-self: start; padding: .25rem .55rem;
+  background: transparent; border: 1px solid var(--line); border-radius: 999px; color: var(--text-dim);
+  font-size: .72rem; cursor: pointer; }
+.jr-ref:hover { border-color: var(--brass); color: var(--brass-hi); }
+.jr-ref .ico { width: 13px; height: 13px; }
+.jr-note { display: flex; gap: .5rem; align-items: flex-start; padding: .45rem .6rem; background: rgba(200,150,62,.06);
+  border-left: 2px solid var(--brass-dim); border-radius: var(--r-s); font-family: var(--type); font-size: .84rem; color: var(--paper); }
+.jr-note-t { flex: 1; white-space: pre-wrap; }
+.jr-note-x { background: none; border: 0; color: var(--text-faint); cursor: pointer; font-size: 1rem; line-height: 1; }
+.jr-note-x:hover { color: var(--crimson-hi); }
+.jr-add { justify-self: start; background: none; border: 0; padding: 0; color: var(--text-faint); font-size: .72rem;
+  display: inline-flex; align-items: center; gap: .3rem; cursor: pointer; }
+.jr-add:hover { color: var(--brass-hi); }
+.jr-add .ico { width: 12px; height: 12px; }
+.jr-editor { display: grid; gap: .4rem; }
+.jr-editor--new { padding: .6rem .6rem 0; }
+.jr-editor textarea { width: 100%; padding: .5rem .6rem; background: var(--panel); color: var(--paper);
+  border: 1px solid var(--brass-dim); border-radius: var(--r-s); font-family: var(--type); font-size: .88rem; resize: vertical; }
+.jr-editor span { display: flex; gap: .4rem; }
+.jr--note { border-left-color: var(--brass-dim); }
+
+.log-list { list-style: none; margin: 0; padding: .5rem; display: grid; gap: .25rem; }

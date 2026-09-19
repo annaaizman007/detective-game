@@ -1,0 +1,80 @@
+/* ---------------------------------------------------------------------------
+   Talking to people. The character is drawn large on the left with the place
+   behind them; their lines are typed underneath on the right; the choices
+   are what you say next.
+--------------------------------------------------------------------------- */
+
+.modal--wide { width: min(980px, 100%); }
+
+.dlg { display: grid; grid-template-columns: minmax(240px, 38%) minmax(0, 1fr); min-height: 440px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+  box-shadow: var(--shadow); position: relative; }
+.dlg-stage { position: relative; display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
+  background:
+    radial-gradient(60% 50% at 50% 100%, rgba(200,150,62,.22), transparent 70%),
+    linear-gradient(180deg, #0c1016, #161c27 60%, #0c1016);
+  border-right: 1px solid var(--line-soft); }
+.dlg-stage::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,0,0,.08) 3px 4px); }
+.dlg-where { position: absolute; top: .7rem; left: .8rem; right: .8rem; display: flex; gap: .35rem; align-items: center;
+  font-family: var(--display); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--brass); z-index: 1; }
+.dlg-where .ico { width: 14px; height: 14px; }
+.dlg-char { line-height: 0; transform-origin: bottom center; animation: dlg-enter .5s cubic-bezier(.2,.8,.2,1); filter: drop-shadow(0 18px 30px rgba(0,0,0,.6)); }
+.dlg-char .portrait { width: min(260px, 90%); height: auto; }
+.dlg.is-out .dlg-char { filter: grayscale(.8) drop-shadow(0 18px 30px rgba(0,0,0,.6)); opacity: .8; }
+@keyframes dlg-enter { from { transform: translateY(24px) scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.dlg-you { position: absolute; left: .7rem; bottom: .7rem; display: flex; align-items: center; gap: .4rem; z-index: 2;
+  padding: .25rem .6rem .25rem .25rem; background: rgba(10,13,19,.8); border: 1px solid var(--seat, var(--brass));
+  border-radius: 999px; font-family: var(--display); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; }
+.dlg-you .portrait { width: 30px; height: 30px; border-radius: 50%; }
+
+.dlg-box { display: flex; flex-direction: column; gap: .7rem; padding: 1.1rem 1.2rem 1.2rem; min-width: 0; }
+.dlg-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; padding-bottom: .5rem; border-bottom: 1px solid var(--line-soft); }
+.dlg-name b { font-family: var(--display); font-size: 1.5rem; font-weight: 500; letter-spacing: .04em; color: var(--brass-hi); }
+.dlg-name i { font-style: normal; font-size: .8rem; color: var(--text-faint); }
+.dlg-ask { margin: 0; padding: .55rem .8rem; background: rgba(200,150,62,.07); border-left: 2px solid var(--brass);
+  border-radius: var(--r-s); font-family: var(--type); font-size: .86rem; color: var(--text-dim); }
+.dlg-ask-who { display: block; font-family: var(--display); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--brass); margin-bottom: .2rem; }
+.dlg-line { margin: 0; min-height: 3.2em; font-family: var(--type); font-size: 1.02rem; line-height: 1.75; color: var(--paper); cursor: pointer; }
+.dlg-note { margin: 0; font-size: .84rem; color: var(--text-faint); }
+.dlg-warn { margin: 0; font-size: .82rem; color: var(--crimson-hi); border-left: 2px solid var(--crimson); padding-left: .7rem; }
+.dlg-h { margin: .2rem 0 0; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint); display: flex; justify-content: space-between; }
+.dlg-known { display: flex; flex-wrap: wrap; gap: .35rem; }
+.chip { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .55rem; border-radius: 999px;
+  background: var(--panel-2); border: 1px solid var(--line); font-size: .74rem; color: var(--text-faint); }
+.chip .ico { width: 13px; height: 13px; }
+.chip.is-known { color: var(--text); border-color: var(--brass-dim); }
+
+.dlg-choices { margin-top: auto; display: flex; flex-wrap: wrap; gap: .5rem; justify-content: flex-end; }
+.dlg-choices--grid { display: grid; grid-template-columns: 1fr; gap: .45rem; justify-content: stretch; }
+.choice { display: grid; gap: .12rem; padding: .7rem .85rem; text-align: left; cursor: pointer;
+  background: var(--panel-2); border: 1px solid var(--line); border-left: 3px solid var(--brass-dim);
+  border-radius: var(--r-s); color: var(--text); transition: .16s; }
+.choice:hover:not(:disabled) { border-color: var(--brass); border-left-color: var(--brass); background: var(--panel-3); transform: translateX(2px); }
+.choice b { font-family: var(--display); font-size: .98rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 500; }
+.choice i { font-style: normal; font-size: .76rem; color: var(--text-faint); }
+.choice.is-off { opacity: .55; cursor: not-allowed; }
+.choice--leave { border-left-color: var(--line); color: var(--text-dim); }
+.choice--person { grid-template-columns: auto 1fr; grid-template-areas: 'face name' 'face role'; column-gap: .7rem; align-items: center; }
+.choice--person .choice-face { grid-area: face; line-height: 0; }
+.choice--person .choice-face .portrait { border-radius: 50%; border: 2px solid var(--brass-dim); }
+.choice--person b { grid-area: name; }
+.choice--person i { grid-area: role; }
+
+.learned { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.learn { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: .7rem; align-items: center; padding: .55rem .7rem;
+  background: rgba(200,150,62,.07); border: 1px solid rgba(200,150,62,.22); border-radius: var(--r-s); }
+.learn-face { line-height: 0; }
+.learn-face .portrait { border-radius: 50%; }
+.learn-face .ico { width: 24px; height: 24px; color: var(--crimson-hi); }
+.learn-body b { display: block; font-size: .86rem; color: var(--brass-hi); font-weight: 600; }
+.learn-body i { display: block; font-style: normal; font-size: .8rem; color: var(--text-dim); margin-top: .15rem; }
+.learn--lead { border-color: rgba(217,79,69,.4); background: rgba(217,79,69,.08); }
+
+@media (max-width: 760px) {
+  .dlg { grid-template-columns: 1fr; grid-template-rows: 240px auto; min-height: 0; }
+  .dlg-stage { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+  .dlg-char .portrait { width: min(200px, 70%); }
+  .dlg-box { padding: .9rem; }
+}

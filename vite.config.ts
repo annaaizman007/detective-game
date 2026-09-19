@@ -17,6 +17,7 @@ export default defineConfig({
   build: {
     target: 'es2020',
     sourcemap: false,
+    chunkSizeWarningLimit: 1600, // Phaser is one chunk, and it is that big
     assetsInlineLimit: 4096,
     rollupOptions: {
       output: {

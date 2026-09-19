@@ -14,7 +14,7 @@
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "format": "prettier --write \"src/**/*.{ts,css}\" \"test/**/*.ts\"",
     "typecheck": "tsc --noEmit",
-    "voices": "node tools/render-voices.mjs",
+    "voices": "vite-node tools/render-voices.mjs",
     "deploy": "npm run build && npx gh-pages -d dist"
   },
   "engines": {

@@ -13,3 +13,4 @@ public/voice/
 
 # Neural voice model, downloaded once by `npm run voices -- --setup`.
 models/
+public/dev/

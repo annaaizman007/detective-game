@@ -507,16 +507,17 @@ export function applyAction(prev: GameState, action: Action): GameState {
           const t = drawPick(s, open);
           subject.known[t] = true;
           const said = traitValue(t, subject.traits[t]).tell;
-          const reply = `${subject.name}? ${def.aboutLine} ${said}`;
+          const surname = subject.name.split(' ').slice(-1)[0];
+          const reply = `${subject.name}? ${def.aboutLine} ${surname} ${said}`;
           s.testimony = { witnessId: w.id, question: 'about', ask, reply, subjectId: subject.id, trait: t };
-          tell(s, reply, 'witness', 'witness', [subject.name, def.aboutLine, said]);
+          tell(s, reply, 'witness', 'witness', [subject.name, def.aboutLine, surname, said]);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
-            text: `${subject.name}? ${def.aboutLine} ${said}`,
+            text: reply,
             reading: `${subject.name} — ${traitPhrase(t, subject.traits[t])}.`,
           }, `Statement — ${def.name}`);
           s.testimony.exhibit = inst.key;
-          journal(s, p, 'ask', `Asked ${def.name} about ${subject.name}: ${subject.name} ${said}`, { witness: w.id, suspect: subject.id });
+          journal(s, p, 'ask', `Asked ${def.name} about ${subject.name}: ${surname} ${said}`, { witness: w.id, suspect: subject.id });
         }
       } else {
         if (w.leadGiven) return s;

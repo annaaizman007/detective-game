@@ -8,7 +8,7 @@
 // speech synthesiser is the weakest part of the whole project, and there is no
 // fixing it from inside the browser. A proper model produces narration that
 // sounds like a person; it just cannot run on the page. So the script is
-// enumerable ahead of time (see js/lines.js), rendered once here, and played
+// enumerable ahead of time (see src/game/lines.ts), rendered once here, and played
 // back as files. The game falls back to speech synthesis for anything missing,
 // so a half-finished render still works.
 //
@@ -28,7 +28,8 @@ import { fileURLToPath } from 'node:url';
 import { platform } from 'node:os';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = join(ROOT, 'voice');
+// Under public/ so Vite serves and ships it untouched.
+const OUT = join(ROOT, 'public', 'voice');
 
 const argv = process.argv.slice(2);
 const flag = (name, fallback = null) => {
@@ -277,7 +278,9 @@ if (flag('setup')) {
   process.exit(0);
 }
 
-const { collectLines } = await import(new URL('../js/lines.js', import.meta.url));
+// The corpus is TypeScript; `npm run voices` runs this through vite-node so
+// the import just works.
+const { collectLines } = await import(new URL('../src/game/lines.ts', import.meta.url));
 const lines = collectLines();
 
 if (flag('list')) {
@@ -483,5 +486,5 @@ let bytes = 0;
 for (const l of lines) {
   try { bytes += (await stat(join(OUT, `${l.id}.${format}`))).size; } catch { /* missing */ }
 }
-console.log(`\n  Wrote voice/manifest.json -- ${(bytes / 1e6).toFixed(1)} MB of audio.`);
+console.log(`\n  Wrote public/voice/manifest.json -- ${(bytes / 1e6).toFixed(1)} MB of audio.`);
 console.log('  Reload the game; it will use these instead of the browser voice.\n');

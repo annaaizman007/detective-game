@@ -4,8 +4,8 @@
     {
       "name": "ashgrave",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["start"],
-      "port": 8080
+      "runtimeArgs": ["run", "dev"],
+      "port": 5173
     }
   ]
 }

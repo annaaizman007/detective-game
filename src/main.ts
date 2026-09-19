@@ -1,0 +1,20 @@
+import './styles/core.css';
+import './styles/game.css';
+import './styles/documents.css';
+import './styles/dialogue.css';
+import './styles/journal.css';
+import { App } from './ui/app';
+
+const root = document.getElementById('app');
+const stage = document.getElementById('stage');
+if (root && stage) {
+  const app = new App(root, stage);
+  // For poking at from the console.
+  (window as unknown as { __ashgrave: App }).__ashgrave = app;
+}
+
+// Offline after the first visit. Registration is best-effort: a dev server
+// or a file:// open simply has no worker.
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
+}
