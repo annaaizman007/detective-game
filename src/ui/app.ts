@@ -18,6 +18,7 @@ import { gameConfig } from '../config/game-config';
 import { BoardScene, type BoardView } from '../scenes/board-scene';
 import { renderNotebook, profileOf } from './notebook';
 import { lockerList, exhibitView, documentHtml, letterOf, foundSheet } from './exhibits';
+import { introHtml, runIntro, type IntroRun } from './intro';
 import { renderJournal, exportJournal } from './journal';
 import { renderDialogue, type DialogueView } from './dialogue';
 import { locationPanel, accusePanel, abilityPanel } from './panels';
@@ -68,6 +69,9 @@ export class App {
   modal: Modal = null;
   dialogue: DialogueView | null = null;
   found: { location: string; exhibits: string[]; objects: string[]; by: string } | null = null;
+  /** The opening scene is playing over the briefing. */
+  introPending = false;
+  intro: IntroRun | null = null;
   subtitle = '';
   pendingHandoff: string | null = null;
   lastSeat: string | null = null;
@@ -259,6 +263,7 @@ export class App {
       case 'enter-game': this.screen = 'game'; this.narrator.stop(); this.board?.stopCinematic(); this.board?.reset(); return this.render();
       case 'skip-cards': this.cancelType?.(); this.cancelType = null; return;
       case 'replay-brief': return this.narrateBriefing();
+      case 'skip-intro': return this.intro?.cancel();
       case 'skip-voice': return this.narrator.stop();
       case 'handoff-ready': this.pendingHandoff = null; return this.render();
 
@@ -448,9 +453,10 @@ export class App {
     this.pendingHandoff = null;
     this.board?.reset();
     this.screen = 'briefing';
+    this.introPending = true;
     this.modal = null;
     this.render();
-    this.narrateBriefing();
+    // The narration starts when the receiver is lifted; see render().
   }
 
   resumeGame(): void {
@@ -474,8 +480,8 @@ export class App {
     const def = caseById(this.state.caseId);
     this.narrator.stop();
     this.narrator.say(`Ashgrave Bay. ${def.title}.`, 'title');
-    this.narrator.say(def.briefing, 'brief');
-    def.radio.forEach((line) => this.narrator.say(line, 'alert'));
+    // The station on the line: each thing they say is its own clip and card.
+    def.call.lines.forEach((line) => this.narrator.say(line, 'brief'));
   }
 
   openAbility(): void {
@@ -497,7 +503,7 @@ export class App {
     this.root.className = `screen-${this.screen}`;
     if (this.screen === 'title') this.root.innerHTML = S.titleScreen(this.saves.peek());
     else if (this.screen === 'setup') this.root.innerHTML = S.setupScreen(this.draft);
-    else if (this.screen === 'briefing' && this.state) this.root.innerHTML = S.briefingScreen(this.state, caseById(this.state.caseId));
+    else if (this.screen === 'briefing' && this.state) this.root.innerHTML = S.briefingScreen(this.state, caseById(this.state.caseId)) + (this.introPending ? introHtml() : '');
     else if (this.screen === 'end' && this.state) this.root.innerHTML = S.endScreen(this.state, caseById(this.state.caseId));
     else if (this.state) this.root.innerHTML = this.gameScreen();
 
@@ -519,7 +525,20 @@ export class App {
       if (body && prevScroll != null) body.scrollTop = prevScroll;
       this.paintSubtitle(this.narrator.speaking);
     }
-    if (this.screen === 'briefing') this.runCards();
+    if (this.screen === 'briefing') {
+      if (this.introPending && this.state) {
+        const def = caseById(this.state.caseId);
+        const caption = `${def.subtitle} · ${R.clockAt(0, def.startHour ?? 2)}`;
+        this.intro = runIntro(this.root, this.audio.foley(), caption, () => {
+          this.introPending = false;
+          this.intro = null;
+          this.narrateBriefing();
+          this.runCards();
+        });
+      } else {
+        this.runCards();
+      }
+    }
     if (boardOn && this.pendingHandoff && this.state) {
       const nextP = this.state.players.find((q) => q.id === this.pendingHandoff);
       if (nextP) this.root.insertAdjacentHTML('beforeend', S.handoffScreen(nextP, characterById(nextP.charId)));
@@ -538,6 +557,7 @@ export class App {
       const card = cards[i++];
       if (!card) return;
       card.classList.add('is-on');
+      card.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       const p = card.querySelector<HTMLElement>('p:not(.cine-kicker):not(.cine-sub)');
       const isTitle = card.classList.contains('cine-card--title');
       if (p && !isTitle) {

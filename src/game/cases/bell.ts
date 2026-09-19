@@ -17,15 +17,22 @@ const def: CaseDef = {
   publicTraits: ['build', 'hair'],
   traitPool: ['hand', 'mark', 'vice', 'scent', 'shoe'],
 
-  briefing: `At midnight the bell of St. Ordell’s rang nine times. It has rung twelve at midnight
-    for a hundred and four years. At six in the morning the verger found Sister Constance Ayre
-    at the bottom of the tower stairs. Her keys were still in her hand. The back of her skull was open.
-    She did not fall. The stairs turn the wrong way for that. Somebody climbed two hundred and
-    eleven steps in the dark to ring a number that means something to one person on this hill.
-    Find out who counts to nine.`,
+  briefing: `Sister Constance Ayre rang the cathedral bell at midnight for twenty years. Last night it rang nine times instead of twelve, badly. At six in the morning the verger found her dead at the bottom of the tower stairs, hit from behind. The bell rope was cut. Whoever did it climbed down the outside of the tower. Her sister has been locked in Marrow House asylum for nine years. Nine strokes for nine years.`,
+
+  call: {
+    from: 'Constable Ned Pardoe', role: 'Hill Division',
+    lines: [
+      'Inspector, this is Pardoe at Hill Division. The verger at St. Ordell’s found a nun dead at the bottom of the tower stairs an hour ago.',
+      'Sister Constance Ayre. Forty-four. She rang the cathedral bell at midnight every night for twenty years. Twelve strokes, never one more.',
+      'Last night the bell rang nine times, not twelve, and badly. Whoever rang it did not know how. By six this morning she was dead on the stairs with the back of her head broken and her keys still in her hand.',
+      'She did not fall. Somebody hit her from behind. The bell rope was cut on the ringing floor, and the person who did it did not come down the stairs. There are old iron rungs on the outside of the tower.',
+      'Her sister Beatrix has been a patient at Marrow House asylum for nine years, and the gate there was logged open at twenty to midnight. The Canon says the diocese would like discretion.',
+      'Note what the Canon wants, and then ignore it. You have two days. Start at the tower, and talk to the verger. He washed the stairs before we got there.',
+    ],
+  },
 
   radio: [
-    'Hill Division. The diocese has asked for discretion. Note the request. Ignore it.',
+    'Hill Division. The diocese has asked for discretion. Note it. Ignore it.',
     'Marrow House asylum logged its gate open at eleven-forty and closed again at one.',
     'The bell rope was cut clean. Whoever went up did not come down the stairs.',
   ],

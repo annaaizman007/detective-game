@@ -15,16 +15,24 @@ const def: CaseDef = {
   publicTraits: ['build', 'hair'],
   traitPool: ['hand', 'mark', 'vice', 'scent', 'shoe'],
 
-  briefing: `Two-oh-nine in the morning. The house detective opens suite eleven-hundred.
-    Lillian Voss is face down on the silk. No gun. No scream. The orchid on her table is
-    snapped at the stem, and somebody put it back in the vase.
-    Eleven floors. Forty-one guests. One night clerk. Nobody heard a thing.
-    The trail goes cold in two days. Work fast.`,
+  briefing: `A woman is dead at the Gilded Hotel. Lillian Voss, twenty-six, rich, a singer. Somebody hit her on the head in her suite at about two in the morning. The door was on the chain from the inside. An orchid on her table was snapped and put back in the vase. Nobody in the hotel heard anything. You have two days.`,
+
+  call: {
+    from: 'Sergeant Frank Mallory', role: 'night desk, Ashgrave Bay Police',
+    lines: [
+      'Sorry to wake you. This is Mallory at the night desk. We have a dead woman at the Gilded Hotel, up on the Heights.',
+      'Her name is Lillian Voss. Twenty-six years old. The rich Voss family, and she sang at the Jade Room. She kept suite eleven hundred, on the top floor.',
+      'The house detective opened her door at nine minutes past two because her light was on and she did not answer. She was on the bed, face down. Somebody hit her on the head. No gun, no knife, nothing stolen.',
+      'Two things are strange. The door was on the chain from the inside, so whoever did it did not leave by the door. And an orchid on her table was snapped at the stem and put back in the vase, as if somebody tidied up before they left.',
+      'Her brother argued with her at ten. The hotel manager was away from his desk. A singer from the Jade Room came in by the side door at half past one. That is all we have so far.',
+      'The family has lawyers and they will want this closed fast. You have two days before the trail goes cold. Go to the hotel first. Talk to everyone. And do not let anyone tell you she fell.',
+    ],
+  },
 
   radio: [
-    'All cars. The Gilded Hotel. The coroner is already inside.',
-    'The Voss lawyers are awake. That is a warning.',
-    'The Herald had a man in the lobby before we did. Ask how.',
+    'The Gilded Hotel. The coroner is already inside.',
+    'The Voss family lawyers are awake. That is a warning.',
+    'The Herald had a reporter in the lobby before we did. Ask how.',
   ],
 
   terrain: {

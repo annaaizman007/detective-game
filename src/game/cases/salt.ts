@@ -17,16 +17,23 @@ const def: CaseDef = {
   publicTraits: ['build', 'hair'],
   traitPool: ['hand', 'mark', 'vice', 'scent', 'shoe'],
 
-  briefing: `Low tide at Pier Nine gives up Aurel Bask. Twenty years head of the longshoremen.
-    Eight hours dead. Somebody sewed his coat pockets shut and filled them with rock salt.
-    That is not how you sink a man. That is how you tell three thousand dockers what happens
-    to one who talks. The wound is under the ribs. It went up.
-    Half this harbour wanted him gone. The other half worked for him. Nobody here talks to
-    police. Do not ask like police.`,
+  briefing: `Aurel Bask, head of the dockers’ union, was found under Pier Nine at low water. Stabbed once from below, his pockets sewn shut and filled with rock salt. That is a warning to anyone who talks. He was going to make a speech on Thursday about smuggling through the trawler berths. The union votes on Thursday. Nobody in the harbour talks to police.`,
+
+  call: {
+    from: 'Sergeant Ruth Dunmore', role: 'Harbour Station',
+    lines: [
+      'Inspector, this is Dunmore at Harbour Station. A fisherman found a body under Pier Nine at low water this morning, about ten to five.',
+      'It is Aurel Bask. Head of the longshoremen’s union for twenty years. Every docker in this harbour knew him, and most of them were afraid of him.',
+      'He was stabbed once, under the ribs, from below. Then somebody sewed his coat pockets shut, filled them with rock salt, and put him in the water. His watch stopped at twenty to midnight.',
+      'The salt is a message. In this harbour it means: this is what happens to a man who talks. Bask was going to make a speech on Thursday about the trawler berths and the smuggling everybody pretends not to see.',
+      'The union votes for a new boss on Thursday. Customs has been sitting on a ship’s manifest for six weeks. A trawler called the Marie-Louise went out last night with no cargo and came back heavy.',
+      'Nobody down there talks to police. Do not go to Pier Nine alone and do not go in uniform. You have until the vote. Start with the body at the morgue, or with the people who saw him last.',
+    ],
+  },
 
   radio: [
     'Harbour Station. Do not go to Pier Nine alone. Do not go in uniform.',
-    'The union votes Thursday. Every candidate is on your list.',
+    'The union votes on Thursday. Every candidate is on your list.',
     'Customs has sat on a manifest for six weeks. Lean on them.',
   ],
 

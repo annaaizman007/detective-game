@@ -122,11 +122,9 @@ export function setupScreen(draft: Draft): string {
 
 export function briefingScreen(s: GameState, caseDef: CaseDef): string {
   const diff = DIFFICULTIES[s.difficulty];
-  const paras = caseDef.briefing.replace(/\s+/g, ' ').trim().split(/(?<=[.!?])\s+(?=[A-Z])/);
-  // Group sentences into three or four cards so each reads as one beat.
-  const cards: string[] = [];
-  const per = Math.max(1, Math.ceil(paras.length / 4));
-  for (let i = 0; i < paras.length; i += per) cards.push(paras.slice(i, i + per).join(' '));
+  // The case opens with a telephone call from the station: one card per
+  // thing the caller says, typed as they say it.
+  const cards = caseDef.call.lines;
   return `
   <section class="scene scene--cine">
     <div class="cine-cards">
@@ -135,7 +133,10 @@ export function briefingScreen(s: GameState, caseDef: CaseDef): string {
         <h2>${esc(caseDef.title)}</h2>
         <p class="cine-sub">${esc(caseDef.subtitle)}</p>
       </div>
-      ${cards.map((c, i) => `<div class="cine-card" style="--i:${i + 1}"><p>${esc(c)}</p></div>`).join('')}
+      <div class="cine-card cine-card--caller" style="--i:1">
+        <p class="cine-sub">${icon('phone')} The telephone rings. ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}.</p>
+      </div>
+      ${cards.map((c, i) => `<div class="cine-card cine-card--line" style="--i:${i + 2}"><p>${esc(c)}</p></div>`).join('')}
       <div class="cine-card cine-card--facts" style="--i:${cards.length + 1}">
         <dl class="dossier-facts">
           <div><dt>Victim</dt><dd>${esc(caseDef.victim)}</dd></div>
@@ -231,6 +232,8 @@ export function caseFile(s: GameState, caseDef: CaseDef): string {
     </dl>
     <h4 class="sheet-h">The briefing</h4>
     <p class="cf-body">${esc(caseDef.briefing.replace(/\s+/g, ' ').trim())}</p>
+    <h4 class="sheet-h">The call from ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}</h4>
+    ${caseDef.call.lines.map((l) => `<p class="cf-body cf-call">${esc(l)}</p>`).join('')}
     ${st.backstory.length ? `<h4 class="sheet-h">What is known</h4>${st.backstory.map((par) => `<p class="cf-body">${esc(par)}</p>`).join('')}` : ''}
     ${st.timeline.length ? `<h4 class="sheet-h">The night</h4><ol class="cf-timeline">${st.timeline.map((t) => `<li><span>${esc(t.time)}</span><p>${esc(t.text)}</p></li>`).join('')}</ol>` : ''}
     <h4 class="sheet-h">Dispatch</h4>

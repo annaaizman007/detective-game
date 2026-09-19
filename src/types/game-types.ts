@@ -210,7 +210,14 @@ export interface CaseDef {
   difficultyHint: string;
   publicTraits: TraitId[];
   traitPool: TraitId[];
+  /** The short version, for the case file. Plain sentences. */
   briefing: string;
+  /**
+   * The telephone call that opens the case: somebody at the station tells
+   * you, in plain words, what happened and where to start. Read aloud, one
+   * card per line.
+   */
+  call: { from: string; role: string; lines: string[] };
   radio: string[];
   terrain: TerrainDef;
   locations: LocationDef[];

@@ -133,6 +133,7 @@ export function collectLines(): CorpusLine[] {
   for (const c of CASES) {
     add(`Ashgrave Bay. ${c.title}.`, 'briefing');
     add(c.briefing, 'briefing');
+    c.call.lines.forEach((l) => add(l, 'briefing'));
     add(c.victim, 'name');
     c.radio.forEach((r) => add(r, 'briefing'));
     add(c.epilogue.win, 'epilogue');

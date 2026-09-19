@@ -15,6 +15,7 @@ import { readJSON, writeJSON } from '../utils/storage';
 import { clamp } from '../utils/math-utils';
 import { rainBuffer, noiseBuffer, fireBuffer } from './synth-textures';
 import { NoirBand } from './synth-music';
+import { Foley } from './foley';
 
 const RAIN_IDLE = 0.13;
 const RAIN_DUCK = 0.075; // pull the rain back so the voice sits on top
@@ -398,6 +399,15 @@ export class AudioManager {
     if (name === 'music' && this.band) {
       if (c.on) this.band.start(); else this.band.stop();
     }
+  }
+
+  private foleyBox: Foley | null = null;
+
+  /** Sound effects for the opening scene. Null until the context exists. */
+  foley(): Foley | null {
+    if (!this.ctx || !this.master) return null;
+    if (!this.foleyBox) this.foleyBox = new Foley(this.ctx, this.master);
+    return this.foleyBox;
   }
 
   /** Something happened on the board: a small musical acknowledgement. */
