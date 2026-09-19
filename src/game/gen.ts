@@ -15,13 +15,19 @@ import { boonExhibitId, clueExhibitId } from './exhibits';
 // Counting actions rather than rounds is what keeps the case just as hard with
 // six detectives as with one -- six people simply burn the night six times
 // faster. Counting rounds instead made a full table trivial.
+//
+// The cities are thirty locations across five quarters now, so a case runs
+// over days rather than a night. The budgets were set against the test bot,
+// which solves a board in about thirty hours on the median: sixty gives a
+// rookie table room to be wrong, forty-four is a fair fight, and thirty-six
+// is lost more often than not. At a table that is a couple of hours of play.
 export const DIFFICULTIES: Record<DifficultyId, DifficultyDef> = {
-  rookie: { id: 'rookie', label: 'Rookie', traits: 4, suspects: 5, budget: 26,
-    note: 'Four facts, five suspects, twenty-six hours. Room to be wrong once.' },
-  detective: { id: 'detective', label: 'Detective', traits: 5, suspects: 6, budget: 19,
-    note: 'Five facts, six suspects, nineteen hours. The case as written.' },
-  commissioner: { id: 'commissioner', label: 'Commissioner', traits: 6, suspects: 8, budget: 15,
-    note: 'Six facts, eight suspects, fifteen hours. Most nights you lose.' },
+  rookie: { id: 'rookie', label: 'Rookie', traits: 4, suspects: 5, budget: 60,
+    note: 'Four facts, five suspects, sixty hours. Room to be wrong once.' },
+  detective: { id: 'detective', label: 'Detective', traits: 5, suspects: 6, budget: 44,
+    note: 'Five facts, six suspects, forty-four hours. The case as written.' },
+  commissioner: { id: 'commissioner', label: 'Commissioner', traits: 6, suspects: 8, budget: 36,
+    note: 'Six facts, eight suspects, thirty-six hours. Most cases you lose.' },
 };
 
 export const BOONS: Record<BoonId, BoonDef> = {

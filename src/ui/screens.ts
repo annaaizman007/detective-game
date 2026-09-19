@@ -32,7 +32,7 @@ export function titleScreen(save: SaveFile | null): string {
     <div class="title-wrap">
       <p class="title-kicker">A co-operative case for one to six detectives</p>
       <h1 class="title-neon"><span>The</span> Ashgrave <em>Files</em></h1>
-      <p class="title-sub">Three cases. Eight suspects. Seventy-two hours before the trail goes cold.</p>
+      <p class="title-sub">Three cases. Thirty streets each. Two days before the trail goes cold.</p>
       <div class="title-actions">
         ${save && c ? `<button class="btn btn--hero" data-act="resume-game">Resume — ${esc(c.title)} <small>${save.actions.length} steps in</small></button>` : ''}
         <button class="btn ${save ? 'btn--ghost' : 'btn--hero'}" data-act="goto-setup">${save ? 'New case' : 'Open a case file'}</button>

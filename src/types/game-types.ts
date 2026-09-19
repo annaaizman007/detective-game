@@ -16,7 +16,8 @@ export type Result = 'win' | 'loss' | null;
 export type LocationType =
   | 'hotel' | 'police' | 'bar' | 'shop' | 'docks' | 'factory' | 'church' | 'hospital' | 'press'
   | 'home' | 'market' | 'manor' | 'warehouse' | 'light' | 'morgue' | 'station' | 'bank' | 'school'
-  | 'bridge' | 'bathhouse';
+  | 'bridge' | 'bathhouse' | 'theatre' | 'cafe' | 'park' | 'office' | 'garage' | 'club' | 'library'
+  | 'pier' | 'florist' | 'tower' | 'cemetery' | 'tram' | 'radio';
 
 /** Tones drive both the narrator's delivery and the colour of the subtitle. */
 export type Tone =
@@ -74,6 +75,8 @@ export interface LocationDef {
   x: number;
   y: number;
   desc: string;
+  /** Which quarter of the city it sits in, for the dossier and the journal. */
+  district?: string;
 }
 
 export interface SuspectDef {

@@ -26,7 +26,7 @@ export const ABILITY_COST = 1;
 // One event fires every this many hours worked. Tying events to the clock
 // rather than to the turn order means a table of six sees exactly as much of
 // the city's night as a lone detective does.
-export const HOURS_PER_EVENT = 4;
+export const HOURS_PER_EVENT = 6;
 
 export function createGame({ caseId, difficulty = 'detective', seed, players = [], handoff = true }: NewGameOptions): GameState {
   const def = caseById(caseId);
