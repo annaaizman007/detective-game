@@ -89,6 +89,12 @@ speech fallback once a pack exists (Anna's rule: never the robot voice).
   Rebuild with `npm run build`; the server serves `dist/` directly.
 - Public without Tailscale on the other end: `tailscale funnel --bg 4173`
   (same URL, open to the internet; `tailscale funnel --bg off` to close).
+- **GitHub Pages (the link to give people):** https://annaaizman007.github.io/detective-game/
+  Rebuilt from `master` by `.github/workflows/pages.yml` on every push
+  (or by hand: push `dist/` to the `gh-pages` branch).
+- **Offline zip:** `npm run zip` → `build/the-ashgrave-files.zip` (game +
+  "Play on Mac.command" / "Play on Windows.bat"). Uploaded as a release:
+  https://github.com/annaaizman007/detective-game/releases
 - Claude artifact: https://claude.ai/artifact/U3tLGyS5AmBU12M345ogWK —
   publish `dist/artifact.html` (from `node tools/artifact-wrapper.mjs`) with
   `dist/assets/*`, `public/assets/*` and `public/voice/*` as files, in

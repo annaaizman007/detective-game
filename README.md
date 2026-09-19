@@ -1,5 +1,7 @@
 # The Ashgrave Files
 
+**Play it:** https://annaaizman007.github.io/detective-game/ · offline zip on the [releases page](https://github.com/annaaizman007/detective-game/releases).
+
 A co-operative noir detective game that runs entirely in a browser. One to six
 players work a 1940s murder case across a city of thirty streets, read the
 evidence as the documents it actually is, question the people who live there,
