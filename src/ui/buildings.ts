@@ -210,7 +210,7 @@ export async function loadPaintedBuildings(): Promise<Set<string>> {
 
 export const buildingKey = (caseId: string, locId: string): string => `${caseId}-${locId}`;
 export const isPaintedBuilding = (caseId: string, locId: string): boolean => PAINTED_BUILDINGS.has(buildingKey(caseId, locId));
-export const paintedBuildingUrl = (caseId: string, locId: string): string => `${BUILDINGS_BASE}${buildingKey(caseId, locId)}.png`;
+export const paintedBuildingUrl = (caseId: string, locId: string): string => `${BUILDINGS_BASE}${buildingKey(caseId, locId)}.jpg`;
 
 /** The picture of a place: the painting if there is one, the drawing otherwise. */
 export function buildingHtml(caseId: string, loc: { id: string; type: LocationType }, size = 200): string {

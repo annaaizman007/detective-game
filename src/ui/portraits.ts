@@ -269,7 +269,7 @@ function smokeShape(n: number): string {
 
 /**
  * Painted portraits, rendered by tools/render-portraits.py, live under
- * public/assets/images/people/<id>.png with people.json listing who has one.
+ * public/assets/images/people/<id>.jpg with people.json listing who has one.
  * When a person has a painting it is used everywhere; the drawing is the
  * fallback, and the only version that can change with what the table knows.
  */
@@ -288,7 +288,7 @@ export async function loadPainted(): Promise<Set<string>> {
 }
 
 export const isPainted = (id: string): boolean => PAINTED.has(id);
-export const paintedUrl = (id: string): string => `${PEOPLE_BASE}${id}.png`;
+export const paintedUrl = (id: string): string => `${PEOPLE_BASE}${id}.jpg`;
 
 export interface PortraitOptions {
   size?: number;

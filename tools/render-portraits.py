@@ -24,11 +24,11 @@ args = ap.parse_args()
 OUT = args.dir
 prompts = json.load(open(os.path.join(OUT, 'prompts.json')))
 only = set(filter(None, args.only.split(',')))
-todo = [p for p in prompts if (not only or p['id'] in only) and (args.force or not os.path.exists(os.path.join(OUT, p['id'] + '.png')))]
+todo = [p for p in prompts if (not only or p['id'] in only) and (args.force or not os.path.exists(os.path.join(OUT, p['id'] + '.jpg')))]
 print(f'{len(todo)} to render', flush=True)
 
 def write_manifest():
-    have = sorted(p['id'] for p in prompts if os.path.exists(os.path.join(OUT, p['id'] + '.png')))
+    have = sorted(p['id'] for p in prompts if os.path.exists(os.path.join(OUT, p['id'] + '.jpg')))
     # people.json lists portraits under 'people'; every other folder lists 'ids'.
     if OUT.endswith('people'):
         json.dump({'people': have}, open(os.path.join(OUT, 'people.json'), 'w'))
@@ -52,7 +52,7 @@ for i, p in enumerate(todo):
     t = time.time()
     g = torch.Generator(device='cpu').manual_seed(p['seed'])
     img = pipe(p['prompt'], negative_prompt=p['negative'], num_inference_steps=args.steps, guidance_scale=args.guidance, width=w, height=h, generator=g).images[0]
-    img.save(os.path.join(OUT, p['id'] + '.png'))
+    img.convert('RGB').save(os.path.join(OUT, p['id'] + '.jpg'), quality=90, optimize=True)
     write_manifest()
     print(f'{i + 1}/{len(todo)}  {p["id"]:<10} {time.time() - t:5.1f}s', flush=True)
 print('done')

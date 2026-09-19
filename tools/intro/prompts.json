@@ -1,0 +1,37 @@
+[
+ {
+  "id": "window",
+  "name": "window",
+  "prompt": "city skyline at night seen through a rain-streaked office window, water drops on the glass, distant neon signs and lit windows, a dark empty room in the foreground, 1940s film noir, painted illustration, pulp cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, detailed",
+  "negative": "person, man, woman, face, figure, silhouette, portrait, hand, hands, text, letters, watermark, blurry, deformed, cartoon, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 31337
+ },
+ {
+  "id": "corridor",
+  "name": "corridor",
+  "prompt": "a long dark police station corridor at night, a single bare bulb, wet floor tiles reflecting light, a frosted glass office door at the end, hat stand, 1940s film noir, painted illustration, pulp cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, detailed",
+  "negative": "person, man, woman, face, figure, silhouette, hand, hands, text, letters, watermark, blurry, deformed, cartoon, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 2202
+ },
+ {
+  "id": "door",
+  "name": "door",
+  "prompt": "a closed dark office door with a glowing frosted glass panel and a brass handle, empty corridor, wet floor, 1940s film noir, painted illustration, pulp cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, detailed",
+  "negative": "person, man, woman, face, figure, silhouette, hand, hands, text, letters, watermark, blurry, deformed, cartoon, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 3311
+ },
+ {
+  "id": "desk",
+  "name": "desk",
+  "prompt": "an empty detective desk at night lit by one green-shaded brass lamp, black bakelite telephone, scattered papers, a fedora, a whisky glass, rain on the window behind, 1940s film noir, painted illustration, pulp cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, detailed",
+  "negative": "person, man, woman, face, figure, silhouette, hand, hands, text, letters, watermark, blurry, deformed, cartoon, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 4409
+ },
+ {
+  "id": "phone",
+  "name": "phone",
+  "prompt": "extreme close-up of a black bakelite rotary telephone on a wooden desk in warm lamplight, the handset on its cradle, coiled cord, dust in the light, deep shadows, 1940s film noir, painted illustration, pulp cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, detailed",
+  "negative": "person, man, woman, face, figure, silhouette, hand, hands, text, letters, watermark, blurry, deformed, cartoon, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 5505
+ }
+]

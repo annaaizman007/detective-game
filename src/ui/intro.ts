@@ -8,6 +8,9 @@
 import type { Foley } from '../systems/foley';
 import { reduceMotion } from './fx';
 
+/** The painted film, cut by tools/make-intro.py. The SVG scene below is the fallback. */
+export const VIDEO_BASE = 'assets/video/';
+
 export function introHtml(): string {
   const streaks = Array.from({ length: 26 }, (_, i) => {
     const x = 44 + ((i * 37) % 300);
@@ -19,6 +22,7 @@ export function introHtml(): string {
   const blinds = Array.from({ length: 11 }, (_, i) => `<rect x="40" y="${58 + i * 22}" width="310" height="7" fill="#05060a" opacity=".85"/>`).join('');
   return `
   <div class="intro" data-act="skip-intro" role="button" aria-label="Skip the opening">
+    <video class="intro-video" src="${VIDEO_BASE}intro.mp4" playsinline preload="auto"></video>
     <svg class="intro-svg" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <radialGradient id="lampCone" cx="0.5" cy="0" r="0.9">
@@ -137,15 +141,36 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
     done = true;
     timers.forEach(clearTimeout);
     foley?.stop();
+    const v = el.querySelector<HTMLVideoElement>('.intro-video');
+    if (v) { try { v.pause(); } catch { /* ignore */ } }
     el.classList.add('is-over');
     setTimeout(() => el.remove(), 1300);
     onDone();
   };
 
-  // The timeline.
-  at(200, () => { el.classList.add('is-walking'); foley?.footsteps(7, 560); });
-  at(4400, () => { el.classList.add('is-lit'); foley?.lampClick(); });
-  at(5400, () => {
+  // The film, when it is there and the browser will play it. Its own foley
+  // is on the soundtrack, so the synthesised one stays quiet.
+  const video = el.querySelector<HTMLVideoElement>('.intro-video');
+  const drawn = () => { video?.remove(); el.classList.add('is-drawn'); drawnTimeline(); };
+  const drawnTimeline = () => {
+    at(200, () => { el.classList.add('is-walking'); foley?.footsteps(7, 560); });
+    at(4400, () => { el.classList.add('is-lit'); foley?.lampClick(); });
+    at(5400, () => ringAndAnswer());
+  };
+  if (video) {
+    let started = false;
+    video.addEventListener('ended', finish);
+    video.addEventListener('error', () => { if (!done && !started) drawn(); });
+    video.addEventListener('playing', () => { started = true; el.classList.add('is-film', 'is-walking'); });
+    const p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(() => { if (!done) drawn(); });
+    // If nothing has started in a few seconds (slow network), fall back.
+    at(4000, () => { if (!started && !done) drawn(); });
+    return { cancel: finish };
+  }
+
+  // The drawn timeline, when there is no film.
+  const ringAndAnswer = () => {
     const cadence = foley?.ring(3, (n) => {
       el.classList.add('is-ringing');
       timers.push(setTimeout(() => el.classList.remove('is-ringing'), 1100));
@@ -162,7 +187,8 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
       }
       at(2 * (cadence.on + cadence.off) + 600, () => { el.classList.add('is-answered'); timers.push(setTimeout(finish, 900)); });
     }
-  });
+  };
+  drawnTimeline();
 
   return { cancel: finish };
 }
