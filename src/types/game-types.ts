@@ -114,6 +114,11 @@ export interface SuspectDef {
   alibi?: string;
   /** What they are hiding, whether or not they killed anyone. Shown at the end. */
   secret?: string;
+  /**
+   * Traits fixed by the writing and the painting: a grey-haired man in the
+   * portrait is grey in the notebook. Anything not pinned here is dealt.
+   */
+  traits?: Partial<Record<TraitId, string>>;
 }
 
 /**
@@ -164,6 +169,35 @@ export interface TerrainDef {
   districts?: DistrictLabel[];
 }
 
+export type ExhibitKind =
+  | 'report' | 'lab' | 'photo' | 'statement' | 'telegram' | 'note' | 'ledger' | 'receipt' | 'cast' | 'card'
+  | 'letter' | 'clipping' | 'ticket';
+
+export interface ExhibitDef {
+  id: string;
+  kind: ExhibitKind;
+  /** Short label for lists and the journal. */
+  label: string;
+  /** Letterhead. */
+  source: string;
+  /** Typed heading on the document itself. */
+  title: string;
+  /** Form fields, rendered as a table on the paper. */
+  fields?: [string, string][];
+  /** Paragraphs. `{victim}`, `{scene}` and any instance data are substituted. */
+  body: string[];
+  /** A line diagram drawn by ui/figures.ts. */
+  figure?: string;
+  stamp?: 'EVIDENCE' | 'CONFIDENTIAL' | 'RECEIVED' | 'COPY' | 'PERSONAL';
+  /** The one sentence the narrator reads when it is filed. */
+  spoken: string;
+  /** What a careful reader should take from it. */
+  reading: string;
+  trait?: TraitId;
+  value?: string;
+  boon?: BoonId;
+}
+
 export interface CaseDef {
   id: string;
   title: string;
@@ -201,6 +235,12 @@ export interface CaseDef {
    * scene -- and something the scene gives up.
    */
   objects: CaseObjectDef[];
+  /**
+   * This city's own deduction paperwork: one document per trait value, keyed
+   * `clue:<trait>:<value>`. A case without them falls back to the Ashgrave
+   * Bay set, which is written for the Orchid.
+   */
+  clues?: ExhibitDef[];
   /** The long version of the case, for the case file you can open any time. */
   story: CaseStory;
   epilogue: { win: string; loss: string };

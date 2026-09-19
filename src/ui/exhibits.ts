@@ -58,7 +58,7 @@ export function lockerList(s: GameState, v: LockerView): string {
     return `${objects}<div class="locker-empty">${icon('lead')}<p>Nothing filed yet. Search a location, or ask around; whatever you find ends up here as a document you can open.</p></div>`;
   }
   const rows = s.exhibits.map((inst, i) => {
-    const def = exhibitById(inst.def);
+    const def = exhibitById(inst.def, s.caseId);
     const by = inst.by ? s.players.find((p) => p.id === inst.by)?.name : 'the city';
     const sel = v.selectedExhibit === inst.key;
     const marked = def.trait && v.marks[def.trait];
@@ -110,7 +110,7 @@ export function exhibitView(s: GameState, v: LockerView): string {
   const idx = s.exhibits.findIndex((e) => e.key === v.selectedExhibit);
   const inst = s.exhibits[idx];
   if (!inst) return '';
-  const def = exhibitById(inst.def);
+  const def = exhibitById(inst.def, s.caseId);
   const letter = letterOf(idx);
   const data = dataFor(inst, s);
   const prev = idx > 0 ? s.exhibits[idx - 1].key : null;
@@ -163,7 +163,7 @@ export function foundSheet(s: GameState, f: { location: string; exhibits: string
     const i = s.exhibits.findIndex((e) => e.key === key);
     const inst = s.exhibits[i];
     if (!inst) return '';
-    const def = exhibitById(inst.def);
+    const def = exhibitById(inst.def, s.caseId);
     const hint = def.trait ? 'Read it. Then mark what it says about the killer in the Notebook.'
       : def.id.startsWith('boon:') ? 'Read it in the Locker.' : 'Read it in the Locker. It may matter, or it may only be paper.';
     return `<li class="found-i">

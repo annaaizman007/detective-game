@@ -26,18 +26,50 @@ for (const c of CASES) {
   for (const w of c.witnesses) people.push({ id: w.id, name: w.name, role: w.role.toLowerCase(), kind: 'witness' });
 }
 
+// Casting notes the look table cannot carry: who the person is, what they
+// wear for their job, and the hair colour the notebook will pin them to.
+// Anything here is prepended, so it wins over the generic look.
+const CASTING = {
+  // detectives
+  crane: { extra: 'a newspaper reporter in a rumpled grey suit, press card in the hat band', hair: 'dark' },
+  kell: { extra: 'a Catholic priest in a black cassock with a white clerical collar', hair: 'grey', smoke: false, neg: 'hat, cigarette' },
+  // the Orchid
+  vera: { extra: 'a nightclub singer in a buttoned dark velvet coat with a fur collar, gloved hands', hair: 'red', neg: 'cleavage, bare shoulders, dress, lingerie' },
+  strand: { hair: 'dark' }, pike: { hair: 'grey' }, mireaux: { hair: 'dark' }, tovar: { hair: 'dark' },
+  roland: { hair: 'dark' }, brandt: { hair: 'dark' }, shaw: { hair: 'dark' },
+  okonkwo: { extra: 'a Nigerian woman, dark skin, elegant, hostess of a night club', hair: 'dark' },
+  // Salt and Silence
+  hollis: { hair: 'dark' }, wren: { hair: 'dark' },
+  okafor: { extra: 'a Nigerian man of fifty-eight, dark skin, shopkeeper, chandler', hair: 'grey' },
+  salvi: { hair: 'dark' },
+  tilda: { extra: 'a widow of fifty in black', hair: 'grey' },
+  keeper: { hair: 'grey' },
+  fenn: { extra: 'a doctor, white coat under the overcoat, stethoscope', hair: 'fair' },
+  ledoux: { extra: 'a trawler skipper in a plain oilskin coat with no markings', hair: 'dark' },
+  oyelaran: { extra: 'a Nigerian man, dark skin, retired customs officer, night watchman in a peaked cap', hair: 'grey' },
+  // The Ninth Bell
+  verger: { hair: 'grey' },
+  canon: { extra: 'an Anglican canon in a black cassock with a white clerical collar', hair: 'grey', smoke: false, neg: 'hat, cigarette, cigar' },
+  matron: { extra: 'an asylum matron in a starched grey nurse’s uniform with a white nurse’s cap and a watch pinned to the chest', hair: 'grey', smoke: false, neg: 'nun, habit, wimple, veil, rosary' },
+  tutor: { hair: 'fair' }, astro: { hair: 'dark' }, gardener: { hair: 'dark' },
+  driver: { extra: 'a tram driver in a dark uniform coat and peaked cap', hair: 'red' },
+  sister: { extra: 'a thin woman in a plain grey house dress and a cardigan, hair loose, a patient of an asylum', hair: 'dark', age: 1, smoke: false, neg: 'nun, habit, wimple, veil, rosary, cross, uniform' },
+};
+
 const STYLE = 'solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer';
-const NEGATIVE = 'two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border';
+const NEGATIVE = 'two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border';
 
 const out = people.map((p) => {
   const l = lookFor(p.id);
+  const cast = CASTING[p.id] ?? {};
   const who = l.fem ? 'woman' : 'man';
+  const hairWords = cast.hair ? `${cast.hair === 'fair' ? 'blond' : cast.hair === 'grey' ? 'grey' : cast.hair} ${HAIR[l.hair]}` : HAIR[l.hair];
   const bits = [
-    `portrait of one ${who} ${AGE[l.age]}, ${p.role.split(',')[0]}`,
-    HAIR[l.hair], HAT[l.hat], l.fem ? '' : BEARD[l.beard], l.glasses ? 'round wire glasses' : '',
-    COAT[l.coat], MOOD[l.mood], SMOKE[l.smoke],
+    `portrait of one ${who} ${AGE[cast.age ?? l.age]}, ${cast.extra ?? p.role.split(',')[0]}`,
+    hairWords, cast.extra ? '' : HAT[l.hat], l.fem ? '' : BEARD[l.beard], l.glasses ? 'round wire glasses' : '',
+    cast.extra ? '' : COAT[l.coat], MOOD[l.mood], cast.smoke === false ? '' : SMOKE[l.smoke],
   ].filter(Boolean).join(', ');
-  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: NEGATIVE, seed: [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
+  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: cast.neg ? `${cast.neg}, ${NEGATIVE}` : NEGATIVE, seed: [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
 });
 
 await mkdir('public/assets/images/people', { recursive: true });

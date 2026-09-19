@@ -1,4 +1,5 @@
 import type { CaseDef } from '../../types/game-types';
+import { SALT_CLUES } from './salt-clues';
 
 // Salt and Silence. The Harbour District: thirty locations from Customs Row
 // down to the Narrows, twenty people who will talk if you do not ask like
@@ -111,6 +112,7 @@ const def: CaseDef = {
 
   suspects: [
     { id: 'hollis', name: 'Dov Hollis', role: 'Union vice-chair',
+      traits: { build: 'tall', hair: 'dark' },
       blurb: 'Second in command of the union for eleven years. From Thursday, the boss.',
       motive: 'because second chair for eleven years is its own kind of sentence.',
       bio: 'Fifty-one. Loaded ships for twenty years, then ran the union’s elections. Bask’s right-hand man, and the man Bask never let take over. Everybody likes Dov. Nobody follows him.',
@@ -125,6 +127,7 @@ const def: CaseDef = {
         { id: 'bask', q: 'What was Bask like?', a: 'Hard. Fair. He never forgave anything. He knew who put Ambrose Rask in the bay, and he kept it to himself for seven years like a coin in his pocket.' },
       ] },
     { id: 'wren', name: 'Etta Wren', role: 'Customs inspector',
+      traits: { build: 'slight', hair: 'dark' },
       blurb: 'Customs inspector. She approved six weeks of crates without opening one.',
       motive: 'because the manifest he was carrying had her signature on every page.',
       bio: 'Thirty-nine. The first woman inspector in the harbour. She cannot afford a single mistake, so on paper she never makes one. Her initials are on every page of the Corvina manifest. She opened none of the crates.',
@@ -139,6 +142,7 @@ const def: CaseDef = {
         { id: 'bask', q: 'Did Bask come to see you?', a: 'On the 9th. He asked to see the Corvina manifest. I showed him. He read it and said: Etta, your name is on this. I said: I know.' },
       ] },
     { id: 'okafor', name: 'Bernard Okafor', role: 'Chandler, Vetch & Son',
+      traits: { build: 'broad', hair: 'grey' },
       blurb: 'Sells rope. Keeps a list of who buys it.',
       motive: 'because the debt was called in, and he had nothing left to pay it with.',
       bio: 'Fifty-eight. Runs the ship’s chandlery for old Vetch, who has not been in the shop since 1944. He owed Bask two thousand dollars from a boat that sank. Bask demanded the money on the 9th.',
@@ -152,6 +156,7 @@ const def: CaseDef = {
         { id: 'man', q: 'Describe the man.', a: 'He had a scar across his thumb. He kept that hand turned away. He smelled of the ice house.', after: 'line', cost: 1, effect: { type: 'lead' } },
       ] },
     { id: 'salvi', name: 'Nunzio Salvi', role: 'Shipping agent',
+      traits: { build: 'slight', hair: 'dark' },
       blurb: 'Shipping agent. Three companies, one office, no employees.',
       motive: 'because a strike would have cost him a season he could not afford to lose.',
       bio: 'Forty-five. Agent for the Corvina and two other ships that exist only on paper. He owes money in three ports. A strike on Thursday would finish him.',
@@ -166,6 +171,7 @@ const def: CaseDef = {
         { id: 'usual', q: '‘Stop at the usual place.’ That message went out from your office.', a: 'I don’t know what it means. He does know. He’s a bad liar and a good agent, which is a poor combination in a harbour.' },
       ] },
     { id: 'tilda', name: 'Tilda Rask', role: 'Widow of the last boss',
+      traits: { build: 'slight', hair: 'grey' },
       blurb: 'Widow of the last union boss. Her husband drowned in 1941. Nobody was ever charged.',
       motive: 'because seven years is a long time to hold a thing, and no time at all.',
       bio: 'Sixty. Her husband Ambrose ran the union before Bask. He went into the bay in 1941. Tilda has kept a lamp lit for him ever since, and a letter in a drawer.',
@@ -179,6 +185,7 @@ const def: CaseDef = {
         { id: 'letter', q: 'Tell me about the letter in your drawer, from 1941.', a: 'Ambrose wrote it the morning he went out. It says: if I end up in the water, it wasn’t the water. Ask Bask. So I asked Bask. For seven years I asked Bask.' },
       ] },
     { id: 'keeper', name: 'Mr. Garrow', role: 'Lighthouse keeper',
+      traits: { build: 'broad', hair: 'grey' },
       blurb: 'Lighthouse keeper. Sees everything from Grieve Point. Reports none of it.',
       motive: 'because he saw the boat, and then he was in it.',
       bio: 'Sixty-three. Keeper at Grieve Point for thirty years. He logs every light on the water and crosses out the ones he is paid to. He was on the boat with Ambrose Rask in 1941. He has never said what he saw.',
@@ -192,6 +199,7 @@ const def: CaseDef = {
         { id: 'rask', q: 'You were on Ambrose Rask’s boat.', a: 'I was. Ambrose went over the side. Bask was at the wheel. I was being sick in the bottom of the boat. I didn’t see who pushed him. I saw who didn’t pull him back.' },
       ] },
     { id: 'fenn', name: 'Dr. Ilse Fenn', role: 'Harbour surgeon',
+      traits: { build: 'slight', hair: 'fair' },
       blurb: 'Harbour surgeon. Signed the death certificate before the body was cold. Signed it wrong.',
       motive: 'because the wound went up, and only she knew what that meant.',
       bio: 'Forty-four. Came from Hamburg in 1938. The only surgeon in the district, and the only one who will sign a certificate at three in the morning. She wrote ‘drowning’. Then she crossed it out and wrote the truth.',
@@ -206,6 +214,7 @@ const def: CaseDef = {
         { id: 'knife', q: 'He once asked you how a man is killed with a knife under the ribs.', a: 'Over dinner, months ago. Ledoux was there too. I told them: from below, upward, toward the heart. I thought Bask was asking so he could see it coming. He didn’t see it coming. Somebody else at that table was listening better than he was.', after: 'bask', cost: 1, effect: { type: 'lead' } },
       ] },
     { id: 'ledoux', name: 'Marcel Ledoux', role: 'Trawler skipper',
+      traits: { build: 'tall', hair: 'dark' },
       blurb: 'Trawler captain. Big man, scar across his left thumb. Goes out empty, comes back full.',
       motive: 'because Bask had counted the boats, and on Thursday he was going to say the Marie-Louise out loud.',
       bio: 'Forty. Captain of the Marie-Louise. Big, with a scar across his left thumb from a winch cable. He goes out with no nets and comes back low in the water. Everyone in the harbour knows. Bask had started writing it down.',
@@ -222,6 +231,7 @@ const def: CaseDef = {
   ],
 
   culprit: 'ledoux',
+  clues: SALT_CLUES,
 
   witnesses: [
     { id: 'teague', at: 'brine', name: 'Mags Teague', role: 'landlady, the Brine & Bell',

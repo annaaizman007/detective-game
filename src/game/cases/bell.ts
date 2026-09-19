@@ -1,4 +1,5 @@
 import type { CaseDef } from '../../types/game-types';
+import { BELL_CLUES } from './bell-clues';
 
 // The Ninth Bell. Cathedral Hill: thirty locations from the tower down to the
 // water, twenty people who will talk if the diocese does not hear about it,
@@ -111,6 +112,7 @@ const def: CaseDef = {
 
   suspects: [
     { id: 'verger', name: 'Cormac Ill', role: 'The verger',
+      traits: { build: 'slight', hair: 'grey' },
       blurb: 'Found the body. Had washed the stairs before we arrived.',
       motive: 'because she had started asking what he does with the keys at night.',
       bio: 'Fifty-nine. Verger of St. Ordell’s for thirty years. He holds every key on the hill. He found Sister Constance at six and had scrubbed the stairs by seven.',
@@ -125,6 +127,7 @@ const def: CaseDef = {
         { id: 'constance', q: 'What was Sister Constance like?', a: 'Exact. She rang twelve strokes for twenty years and never one more or less. She counted everything. She had started counting the Canon’s money.' },
       ] },
     { id: 'canon', name: 'Canon Aldritch', role: 'Canon of St. Ordell’s',
+      traits: { build: 'broad', hair: 'grey' },
       blurb: 'Says he slept through it. His bedroom window faces the tower.',
       motive: 'because the crypt account books do not survive an honest reading.',
       bio: 'Sixty-four. Canon for twenty years. He runs the crypt restoration fund. Four hundred pounds is missing from it and every withdrawal slip has his signature. Sister Constance asked to see the fund box on Thursday.',
@@ -139,6 +142,7 @@ const def: CaseDef = {
         { id: 'constance', q: 'Tell me about her.', a: 'The best of us. She rang the bell for twenty years and never asked for a thing. Then she asked for the books. She was going to put everything right. On this hill, that is the one thing nobody can afford.' },
       ] },
     { id: 'matron', name: 'Matron Sybil Crake', role: 'Marrow House',
+      traits: { build: 'broad', hair: 'grey' },
       blurb: 'Logged the asylum gate open at eleven-forty. Will not say who went through it.',
       motive: 'because one of her patients is not really a patient, and Constance had worked it out.',
       bio: 'Fifty. Matron of Marrow House asylum for eleven years. She keeps one bed for a patient who has never been ill: Beatrix Ayre, Constance’s sister, kept there on the family’s money.',
@@ -152,6 +156,7 @@ const def: CaseDef = {
         { id: 'bag', q: 'What was in the bag?', a: 'Her things. And a rosary. And a letter from a schoolmaster that I did not read. She went down the hill toward the tram depot.', after: 'beatrix', cost: 1, effect: { type: 'lead' } },
       ] },
     { id: 'tutor', name: 'Mr. Ewan Blake', role: 'Master at Ordell Academy',
+      traits: { build: 'slight', hair: 'fair' },
       blurb: 'His boys were out of bed. He cannot say where he was.',
       motive: 'because she wrote a letter to the Dean about him and never posted it.',
       bio: 'Thirty-four. Teaches the third form at the Academy. Takes boys to the Observatory after lights-out. Sister Constance wrote a letter to the Dean about it. The letter was found in his desk.',
@@ -165,6 +170,7 @@ const def: CaseDef = {
         { id: 'boy', q: 'One of your boys had the tower key.', a: 'Harris. He meets a girl from Marrow House up there. He did not bring the key back on Friday because somebody took it from him on the path. He would not say who. He is fifteen and terrified.', after: 'observatory', cost: 1, effect: { type: 'lead' } },
       ] },
     { id: 'astro', name: 'Dr. Halla Quint', role: 'Astronomer',
+      traits: { build: 'slight', hair: 'dark' },
       blurb: 'Was awake. Was watching. Refuses to say what.',
       motive: 'because through that telescope she had seen something she could not unsee.',
       bio: 'Forty-one. Runs the Observatory. At midnight her telescope was not pointed at the sky. Her log says ‘tower’. Twice.',
@@ -178,6 +184,7 @@ const def: CaseDef = {
         { id: 'chloral', q: 'You sign for chloral at the dispensary.', a: 'For sleep. I cannot sleep. I have not slept properly since Wednesday, when Constance told me what this hill has been doing to her sister.', cost: 1, effect: { type: 'suspectTrait', suspectId: 'astro' } },
       ] },
     { id: 'gardener', name: 'Peter Nane', role: 'Glasshouse gardener',
+      traits: { build: 'tall', hair: 'dark' },
       blurb: 'Glasshouse gardener. Dug grave forty-four. Nobody is buried in it. Takes flowers to Marrow House every Sunday.',
       motive: 'because Constance signed Beatrix away, and four years of Sundays with flowers had made Beatrix his to avenge.',
       bio: 'Twenty-eight. Gardener at the Glasshouse. Digs graves for the parish when the gravedigger is drunk. He dug plot forty-four three days before anyone died.',
@@ -191,6 +198,7 @@ const def: CaseDef = {
         { id: 'her', q: 'Who did you tell?', a: 'Beatrix. On Sunday. I told her the Canon had buried money in the cemetery. I thought it would make her laugh. She did not laugh.', after: 'box', cost: 1, effect: { type: 'lead' } },
       ] },
     { id: 'driver', name: 'Rosalind Fay', role: 'Tram driver',
+      traits: { build: 'slight', hair: 'red' },
       blurb: 'Signed a tram out of the depot at midnight and brought it back wet.',
       motive: 'because the last tram up the hill carried a passenger she was paid to forget.',
       bio: 'Twenty-nine. Drives the hill tram. She took a car out at two minutes past midnight without permission and brought it back at ten to one, wet.',
@@ -204,6 +212,7 @@ const def: CaseDef = {
         { id: 'paid', q: 'Who promised the five pounds?', a: 'A note under the depot door. Five pounds to drive a patient to the Green at midnight, no questions. Handwriting like a schoolboy’s. I needed the money. I always need the money.' },
       ] },
     { id: 'sister', name: 'Sister Beatrix Ayre', role: 'The victim’s sister',
+      traits: { build: 'slight', hair: 'dark' },
       blurb: 'Arrived on the hill three days ago. Has not said why.',
       motive: 'because nine is how many years Constance let her rot in Marrow House.',
       bio: 'Thirty-six. Constance’s younger sister. She has been a patient at Marrow House for nine years. Three days ago she walked out. She says she was released. Marrow House says nothing.',
@@ -220,6 +229,7 @@ const def: CaseDef = {
   ],
 
   culprit: 'gardener',
+  clues: BELL_CLUES,
 
   witnesses: [
     { id: 'tull', at: 'rectory', name: 'Ivy Tull', role: 'housekeeper, the Rectory',

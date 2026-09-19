@@ -312,6 +312,20 @@ describe('THE ASHGRAVE FILES -- logic suite', () => {
     }
   });
 
+  it('the notebook agrees with the painting: pinned traits are never re-dealt', () => {
+    for (const c of CASES) {
+      for (const d of DIFFS) {
+        for (let i = 0; i < 6; i++) {
+          const s = newGame(c.id, d, `pin${i}`, 1);
+          for (const x of s.suspects) {
+            const def = c.suspects.find((y) => y.id === x.id)!;
+            for (const [t, v] of Object.entries(def.traits ?? {})) if (s.chosenTraits.includes(t as never)) expect(x.traits[t as keyof typeof x.traits]).toBe(v);
+          }
+        }
+      }
+    }
+  });
+
   it('a search tells the same story every time, and a document reads aloud from corpus clips', () => {
     const a = searchNarrative('tower', 'tower', 1, true);
     expect(a).toEqual(searchNarrative('tower', 'tower', 1, true));

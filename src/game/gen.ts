@@ -47,16 +47,20 @@ export const WITNESS_PATIENCE = 2;
 type Dealt = Record<string, Record<TraitId, string>>;
 
 /** Deal trait values so every category is genuinely spread across the suspects. */
-function dealTraits(rng: Stream, suspectIds: string[], traitIds: TraitId[]): Dealt {
+type Pins = Record<string, Partial<Record<TraitId, string>>>;
+
+function dealTraits(rng: Stream, suspectIds: string[], traitIds: TraitId[], pins: Pins): Dealt {
   const out: Dealt = {};
   suspectIds.forEach((id) => { out[id] = {} as Record<TraitId, string>; });
   for (const t of traitIds) {
     const vals = TRAITS[t].values.map((v) => v.id);
+    const open = suspectIds.filter((id) => !pins[id]?.[t]);
     const pool: string[] = [];
     // Cycle through a shuffled value list so no value dominates the table.
-    while (pool.length < suspectIds.length) pool.push(...rng.shuffle(vals));
-    const deal = rng.shuffle(pool.slice(0, suspectIds.length));
-    suspectIds.forEach((id, i) => { out[id][t] = deal[i]; });
+    while (pool.length < open.length) pool.push(...rng.shuffle(vals));
+    const deal = rng.shuffle(pool.slice(0, open.length));
+    suspectIds.forEach((id) => { const pin = pins[id]?.[t]; if (pin) out[id][t] = pin; });
+    open.forEach((id, i) => { out[id][t] = deal[i]; });
   }
   return out;
 }
@@ -91,10 +95,13 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   const roster = rng.shuffle([killer, ...others.slice(0, Math.min(diff.suspects, caseDef.suspects.length) - 1)]);
   const ids = roster.map((s) => s.id);
 
+  // What the writing has already decided about each person.
+  const pins: Pins = Object.fromEntries(roster.map((s) => [s.id, s.traits ?? {}]));
+
   let dealt: Dealt | null = null;
   const culpritId = killer.id;
   for (let attempt = 0; attempt < 400; attempt++) {
-    const candidate = dealTraits(rng, ids, chosenTraits);
+    const candidate = dealTraits(rng, ids, chosenTraits, pins);
     const mine = vectorOf(candidate[culpritId], chosenTraits);
     const unique = ids.every((id) => id === culpritId || vectorOf(candidate[id], chosenTraits) !== mine);
     if (unique) { dealt = candidate; break; }
@@ -102,10 +109,12 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   if (!dealt) {
     // Astronomically unlikely. Force uniqueness rather than ever shipping an
     // unsolvable board.
-    dealt = dealTraits(rng, ids, chosenTraits);
+    dealt = dealTraits(rng, ids, chosenTraits, pins);
     for (const id of ids.filter((x) => x !== culpritId)) {
       if (vectorOf(dealt[id], chosenTraits) === vectorOf(dealt[culpritId], chosenTraits)) {
-        const t = rng.pick(chosenTraits);
+        // Only an unpinned fact may be changed to force it.
+        const free = chosenTraits.filter((x) => !pins[id]?.[x]);
+        const t = rng.pick(free.length ? free : chosenTraits);
         const others = TRAITS[t].values.map((v) => v.id).filter((v) => v !== dealt![culpritId][t]);
         dealt[id][t] = rng.pick(others);
       }

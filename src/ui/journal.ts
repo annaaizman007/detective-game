@@ -115,7 +115,7 @@ export function exportJournal(s: GameState, notes: Note[], marks: Partial<Record
   if (free.length) { out.push('', 'NOTES'); for (const n of free) out.push(`  ${clockAt(n.hour)}  ${n.text}`); }
   out.push('', 'EXHIBITS');
   s.exhibits.forEach((inst, i) => {
-    const def = exhibitById(inst.def);
+    const def = exhibitById(inst.def, s.caseId);
     out.push(`  ${letterOf(i)}. ${inst.label} — ${locationById(s, inst.at)?.name ?? inst.at}, ${clockAt(inst.hour)}`);
     for (const line of def.body) out.push(`       ${line.replace(/\{(\w+)\}/g, (m, k: string) => inst.data?.[k] ?? (k === 'victim' ? c.victim : m))}`);
   });

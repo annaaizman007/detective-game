@@ -41,7 +41,7 @@ export const TRAITS: Record<TraitId, TraitDef> = {
   mark: {
     id: 'mark', label: 'Distinguishing mark', icon: 'mark',
     values: [
-      { id: 'scar', label: 'A scar', clue: 'Skin under the fingernails, and with it a fleck of old scar tissue.', tell: 'a white scar running from ear to jaw, badly healed.' },
+      { id: 'scar', label: 'A scar', clue: 'Skin under the fingernails, and with it a fleck of old scar tissue.', tell: 'a white scar, old and badly healed, kept turned away from you.' },
       { id: 'tattoo', label: 'A tattoo', clue: 'A witness saw ink on the wrist as the hand came down.', tell: 'blue navy ink crawling out of the cuff.' },
       { id: 'missing', label: 'A missing finger', clue: 'The glove print on the glass shows four fingers. Only four.', tell: 'the left hand is short a finger, and hides it.' },
       { id: 'clean', label: 'Unmarked', clue: 'Not a mark, not a blemish -- the witness swears the face was clean.', tell: 'unmarked. Nothing to describe, which is its own kind of description.' },

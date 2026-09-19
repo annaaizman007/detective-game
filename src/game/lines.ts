@@ -16,7 +16,7 @@ import { BOONS } from './gen';
 import { CHARACTERS } from './characters';
 import { CASES } from './cases/index';
 import { allDialogueLines } from './dialogue';
-import { EXHIBITS, allExhibitFragments } from './exhibits';
+import { allClueExhibits, allExhibitFragments } from './exhibits';
 import { allSearchLines } from './search';
 import { allWitnessLines } from './witnesses';
 
@@ -121,7 +121,7 @@ export function collectLines(): CorpusLine[] {
     }
   }
 
-  for (const ex of Object.values(EXHIBITS)) if (ex.spoken) add(ex.spoken, 'evidence');
+  for (const ex of allClueExhibits()) if (ex.spoken) add(ex.spoken, 'evidence');
   for (const frag of allExhibitFragments()) add(frag, 'paper');
   for (const line of allSearchLines()) add(line, 'search');
   for (const ev of EVENTS) add(`${ev.title.toUpperCase()}. ${ev.text}`, 'event');

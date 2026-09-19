@@ -10,44 +10,14 @@
 // and the game only shows it after you have committed to a mark in the
 // notebook (or straight away, in the assisted notebook).
 
-import type { BoonId, CaseItemDef, TraitId } from '../types/game-types';
+import type { BoonId, CaseItemDef, ExhibitDef, TraitId } from '../types/game-types';
 import { TRAITS, traitLabel } from './traits';
 import { CASES } from './cases/index';
+import { clue } from './clue';
 
-export type ExhibitKind =
-  | 'report' | 'lab' | 'photo' | 'statement' | 'telegram' | 'note' | 'ledger' | 'receipt' | 'cast' | 'card'
-  | 'letter' | 'clipping' | 'ticket';
+export type { ExhibitDef, ExhibitKind } from '../types/game-types';
 
-export interface ExhibitDef {
-  id: string;
-  kind: ExhibitKind;
-  /** Short label for lists and the journal. */
-  label: string;
-  /** Letterhead. */
-  source: string;
-  /** Typed heading on the document itself. */
-  title: string;
-  /** Form fields, rendered as a table on the paper. */
-  fields?: [string, string][];
-  /** Paragraphs. `{victim}`, `{scene}` and any instance data are substituted. */
-  body: string[];
-  /** A line diagram drawn by ui/figures.ts. */
-  figure?: string;
-  stamp?: 'EVIDENCE' | 'CONFIDENTIAL' | 'RECEIVED' | 'COPY' | 'PERSONAL';
-  /** The one sentence the narrator reads when it is filed. */
-  spoken: string;
-  /** What a careful reader should take from it. */
-  reading: string;
-  trait?: TraitId;
-  value?: string;
-  boon?: BoonId;
-}
 
-const clue = (
-  trait: TraitId,
-  value: string,
-  def: Omit<ExhibitDef, 'id' | 'trait' | 'value'>,
-): ExhibitDef => ({ id: `clue:${trait}:${value}`, trait, value, ...def });
 
 const CLUES: ExhibitDef[] = [
   // ---------------------------------------------------------------- build
@@ -346,7 +316,14 @@ export const EXHIBITS: Record<string, ExhibitDef> = Object.fromEntries(
 export const itemById = (id: string): CaseItemDef | undefined =>
   CASES.flatMap((c) => c.items).find((i) => i.id === id);
 
-export const exhibitById = (id: string): ExhibitDef => EXHIBITS[id] ?? STATEMENT;
+/** A case's own clue documents, by id. Built once. */
+const CASE_CLUES: Record<string, Record<string, ExhibitDef>> = Object.fromEntries(
+  CASES.map((c) => [c.id, Object.fromEntries((c.clues ?? []).map((e) => [e.id, e]))]),
+);
+
+/** The paper for an exhibit id: the case's own sheet first, then the shared locker. */
+export const exhibitById = (id: string, caseId?: string): ExhibitDef =>
+  (caseId && CASE_CLUES[caseId]?.[id]) || EXHIBITS[id] || STATEMENT;
 export const clueExhibitId = (trait: TraitId, value: string): string => `clue:${trait}:${value}`;
 export const boonExhibitId = (boon: BoonId): string => `boon:${boon}`;
 
@@ -355,6 +332,13 @@ export function missingExhibits(): string[] {
   const out: string[] = [];
   for (const t of Object.values(TRAITS)) {
     for (const v of t.values) if (!EXHIBITS[clueExhibitId(t.id, v.id)]) out.push(clueExhibitId(t.id, v.id));
+  }
+  // A case that brings its own paperwork must bring all of it.
+  for (const c of CASES) {
+    if (!c.clues) continue;
+    for (const t of Object.values(TRAITS)) {
+      for (const v of t.values) if (!CASE_CLUES[c.id][clueExhibitId(t.id, v.id)]) out.push(`${c.id}/${clueExhibitId(t.id, v.id)}`);
+    }
   }
   return out;
 }
@@ -398,9 +382,13 @@ export function readAloud(def: ExhibitDef, data: Record<string, string>): { text
 /** Every fixed fragment of every document, for the corpus. */
 export function allExhibitFragments(): string[] {
   const out: string[] = [];
-  for (const ex of Object.values(EXHIBITS)) for (const line of [ex.title, ...ex.body]) out.push(...fragmentsOf(line));
+  const all = [...Object.values(EXHIBITS), ...CASES.flatMap((c) => c.clues ?? [])];
+  for (const ex of all) for (const line of [ex.title, ...ex.body]) out.push(...fragmentsOf(line));
   return out;
 }
+
+/** Every clue sheet in every city, for the corpus. */
+export const allClueExhibits = (): ExhibitDef[] => [...Object.values(EXHIBITS), ...CASES.flatMap((c) => c.clues ?? [])];
 
 /** The plain-language conclusion for a clue exhibit, e.g. "Handedness: Left-handed." */
 export const conclusionOf = (def: ExhibitDef): string =>

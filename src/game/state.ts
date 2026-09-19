@@ -224,7 +224,7 @@ const eventApi = (s: GameState): EventApi => ({
 
 /** Put a document in the locker and note it in the journal. */
 function file(s: GameState, p: PlayerState | null, defId: string, at: string, data?: Record<string, string>, label?: string, how?: string) {
-  const def = exhibitById(defId);
+  const def = exhibitById(defId, s.caseId);
   const key = `${defId}#${s.exhibits.length + 1}`;
   const inst: ExhibitInstance = { key, def: defId, label: label || def.label, at, hour: s.cold, by: p?.id ?? null, ...(how ? { how } : {}), ...(data ? { data } : {}) };
   s.exhibits.push(inst);
@@ -244,7 +244,7 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState, how?: string) 
     journal(s, p, 'exhibit', `Picked up ${obj.name.toLowerCase()}. ${how ?? `At ${locName(s, p.at)}.`} Somebody in this city will know it.`, { location: p.at });
     return;
   }
-  const def = exhibitById(ev.exhibit);
+  const def = exhibitById(ev.exhibit, s.caseId);
   if (ev.kind === 'clue') {
     s.knownCulprit[ev.trait] = ev.value;
     // The narrator reads the observation. The conclusion is the table's job.

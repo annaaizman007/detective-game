@@ -385,7 +385,7 @@ export class App {
     const s = this.state;
     const inst = s?.exhibits.find((e) => e.key === key);
     if (!s || !inst) return;
-    const def = exhibitById(inst.def);
+    const def = exhibitById(inst.def, s.caseId);
     const c = caseById(s.caseId);
     const data = { victim: c.victim, scene: R.locationById(s, c.scene)?.name ?? c.scene, ...(inst.data ?? {}) };
     const { text, parts } = readAloud(def, data);
@@ -625,7 +625,7 @@ export class App {
         const inst = s.exhibits[idx];
         if (!inst) return '';
         return `<div class="sheet sheet--paper"><button class="sheet-x" data-act="close-modal" aria-label="Close">×</button>
-          <div class="paper-zoom">${documentHtml(inst, exhibitById(inst.def), s, letterOf(idx))}</div></div>`;
+          <div class="paper-zoom">${documentHtml(inst, exhibitById(inst.def, s.caseId), s, letterOf(idx))}</div></div>`;
       }
       default: return '';
     }
