@@ -1,13 +1,10 @@
 # The Ashgrave Files
 
 A co-operative noir detective game that runs entirely in a browser. One to six
-players work a 1940s murder case across a city map, cross suspects off a shared
-deduction board, and race a clock that burns an hour for every action anyone
-takes. A narrator reads the briefings, the clues and the nightly events aloud.
-
-No build step, no dependencies, no accounts, no network calls. Three files of
-markup and CSS, a folder of ES modules, and a 60-line static server that exists
-only because browsers will not load modules from `file://`.
+players work a 1940s murder case across a city of thirty streets, read the
+evidence as the documents it actually is, question the people who live there,
+fill in a notebook, and race a clock that burns an hour for every action anyone
+takes. A narrator reads every line aloud.
 
 Picking this up on another machine? Start with **[HANDOFF.md](HANDOFF.md)**.
 
@@ -16,27 +13,30 @@ Picking this up on another machine? Start with **[HANDOFF.md](HANDOFF.md)**.
 ```bash
 git clone https://github.com/annaaizman007/detective-game
 cd detective-game
-npm start          # then open http://localhost:8080
+npm install
+npm run dev        # http://localhost:5173
 ```
 
-No dependencies to install; Node 18+ is the only requirement.
-
-Any static host works too — it is a plain folder of files, so GitHub Pages or
-`npx serve` serve it just as well.
+Node 18+ is the only requirement. `npm run build` produces a static `dist/`
+that any host serves — Netlify (`netlify.toml` is included), GitHub Pages,
+itch.io (`.github/workflows/deploy-itch.yml`), or `npx serve dist`. The build
+is a PWA and works offline after the first visit.
 
 ## How the game works
 
 One of the people on your list killed somebody. Find out which, before the
-night runs out.
+trail goes cold.
 
 | | |
 |---|---|
-| **Search a location** | Evidence tells you a fact about the **killer** — left-handed, size twelve boots, smells of machine oil. |
-| **Talk to a suspect** | Standing with somebody, you choose how to play it, and they answer in character. What you get depends on the approach. |
-| **The notebook** | Does the crossing-off for you. A suspect whose known trait contradicts a known fact about the killer is out of the frame. |
+| **Search a location** | What you find is a document — a coroner's preliminary, a lab sheet, a plaster-cast card, a letter, a clipping. It goes in the **locker**, where you open and read it. Some say something about the killer; some are only paper. |
+| **Ask around** | At two-thirds of the locations there is somebody who will talk: a night clerk, a wireless operator, a gravedigger. They can describe a suspect they know, or point you at a place where something was dropped. Two questions and they tire. |
+| **Talk to a suspect** | Whoever you speak to is on stage, drawn large, with their lines typed underneath. You choose how to play it and they answer in character. |
+| **The notebook** | Yours to fill in. Mark what the exhibits tell you about the killer; suspects whose story cannot match get crossed off — by *your* marks, so read carefully. Or turn on the assisted notebook and let the evidence fill the top row. |
+| **The journal** | Every step is written down with the hour it happened. Add your own notes beside any of them and export the case file at the end. |
 | **Accuse** | Costs two hours. Wrong costs three more, and they walk. |
 
-### Three ways to ask
+### Three ways to ask a suspect
 
 | | You learn | It costs you |
 |---|---|---|
@@ -44,148 +44,102 @@ night runs out.
 | **Press hard** | Two things | They shut down for two rounds |
 | **Ask about somebody else** | One thing about a *different* suspect | Nothing |
 
-Both lines of the exchange are spoken aloud, the detective and the suspect in
-different registers.
-
 Each detective gets two actions a turn (three for Hale) plus one ability per
-case. Every action burns an hour off the clock, and every four hours the city
-does something about it — rain, a cordon, an anonymous call, a second body.
+case. Every action burns an hour, and every six hours the city does something
+about it — a downpour, a cordon, an anonymous call, a second body.
 
 ### Difficulty
 
 | | Facts | Suspects | Hours |
 |---|---|---|---|
-| Rookie | 4 | 5 | 26 |
-| Detective | 5 | 6 | 19 |
-| Commissioner | 6 | 8 | 15 |
+| Rookie | 4 | 5 | 60 |
+| Detective | 5 | 6 | 44 |
+| Commissioner | 6 | 8 | 36 |
 
-Because the clock counts **actions rather than rounds**, six detectives burn the
-night six times faster than one. A full table is louder, not easier.
+The budgets are calibrated against the test bot, which solves a board in about
+thirty hours on the median. A case at a table runs a couple of hours.
 
-### The cases
+## The cases
 
-- **The Ash and the Orchid** — a singer dies in the best suite in Ashgrave Bay.
-- **Salt and Silence** — the union boss comes out of the harbour with his pockets sewn shut.
-- **The Ninth Bell** — the bell rings nine at midnight and the ringer is dead by morning.
+Three cities, each generated from its case file: a coast, a river, parks, a
+street grid and several hundred blocks, with thirty locations pinned onto it
+in five quarters.
 
-Each ships with twelve locations, eight suspects and its own map. The culprit
-and the whole trait table are re-rolled from a seed every time you start, so a
-case never solves the same way twice.
+- **The Ash and the Orchid** — a singer dies in the best suite in the city.
+- **Salt and Silence** — the union boss comes out of the bay with his pockets sewn shut.
+- **The Ninth Bell** — the cathedral bell rings nine at midnight; the ringer is dead by morning.
 
-### Playing with friends
+The culprit is re-rolled every playthrough from a seed, so the same case never
+solves the same way twice, and a test asserts that exactly one suspect fits
+once every fact is known.
 
-It is co-operative and all knowledge is shared — the notebook belongs to the
-table, not to you. Pass one device around; the hand-off screen tells you whose
-turn it is. Argue about the board together.
+## The people
 
-## Narration
+Everyone — detectives, suspects, witnesses — is drawn from one layered figure
+(`src/ui/portraits.ts`): coat, collar, head, features, hair, hat, glasses. A
+suspect's portrait fills in as the table learns: hair is ink until a witness
+names the colour, a scar appears when it is mentioned, the shoulders widen
+when the build comes in.
 
-Every briefing, clue, exchange and event is narrated. There are two ways it
-can be voiced, and the game prefers the better one when it is available.
+## Sound
 
-### Baked audio (recommended)
+Rain, a fire in the grate, a slow band in the next room, thunder and a
+precinct radio that opens with a click when the narrator starts. All of it is
+synthesised unless you drop a recording in `public/assets/audio/`
+(`sfx/rain.ogg`, `sfx/fire.ogg`, `music/lounge.ogg`), in which case the
+recording is used.
 
-Browser speech synthesis is the weakest part of this project and there is no
-fixing it from inside a browser — the synthesiser belongs to the operating
-system. So the whole script is enumerable ahead of time (`js/lines.js` collects
-every line the narrator can say) and `tools/render-voices.mjs` bakes it with a
-real model:
+### The narrator
+
+Browser speech is the fallback. The real thing is baked: every line the
+narrator can say is enumerable ahead of time (`src/game/lines.ts`), so
+`tools/render-voices.mjs` renders the whole script with a neural model:
 
 ```bash
 npm run voices -- --setup     # installs Kokoro and downloads it, once
-npm run voices                # 302 clips, a few minutes
+npm run voices                # ~700 clips, a few minutes
 ```
 
-Kokoro is a neural TTS model that runs locally on the CPU — free, offline, no
-account. The tool will instead use ElevenLabs or OpenAI if you export a key,
-Piper if it is on your PATH, or macOS `say` as a last resort. Clips land in
-`voice/` with a manifest; reload and the game uses them. Rendering is
-incremental, and a half-finished render still works — the game falls back per
-line.
+Clips land in `public/voice/` with a manifest and are packed into one sprite
+per group; reload and the game uses them. Composite lines are narrated as
+fragments so a name times a tell is two clips, not thousands. A test asserts
+100% of the fragments spoken across 160 games exist in the corpus.
 
-If `ffmpeg` is installed the clips are compressed to mp3 and also packed into
-one **sprite** per narrative group under `voice/sprites/` — ten files instead
-of three hundred — with each clip's offset in the manifest. The game plays
-those slices through Web Audio, and falls back to the individual files if a
-sprite will not load. The sprites plus `voice/manifest.json` are all a hosted
-copy needs.
-
-The trick that makes this possible is that composite lines are narrated as
-**fragments**. "Vera Lang strikes the match left-handed" would need every name
-times every tell — thousands of files. Split into `["Vera Lang", "strikes the
-match left-handed"]` it is two clips from small closed sets. A test asserts
-that 100% of the fragments spoken across 160 real games exist in the corpus,
-so nothing falls back by accident.
-
-### Browser speech (the fallback)
-
-With no `voice/` directory the game synthesises, and `js/voice.js` works on
-the parts that are ours:
-
-- **Voice ranking.** Voices are scored by class (natural/neural, network,
-  standard), penalised if they are known low-fidelity engines, and nudged
-  toward English accents that suit the material. The best is picked
-  automatically; the settings list is grouped so you can see which of yours
-  are the good ones.
-- **No mangling.** Pitch-shifting a neural voice is exactly what makes it
-  sound synthetic, so prosody is per voice class.
-- **Phrasing.** Lines are split at sentence and clause boundaries and spoken
-  with silence between them, weighted by punctuation.
-- **A room to speak in.** `js/audio.js` puts rain under everything and a
-  precinct-radio carrier that opens with a relay click while the narrator
-  talks. Dry speech in silence reads as a machine; the same speech over a
-  radio in a rainy room does not.
-
-Subtitles show every line either way.
-
-## How it is built
+## Layout
 
 ```
-index.html          markup shell
-css/                core.css (tokens, atmosphere, components), game.css (scenes and board)
-js/
-  state.js          the rules engine: applyAction(state, action), pure
-  rules.js          read-only questions about a state ("can this player search?")
-  gen.js            case generation: culprit, trait table, evidence placement
-  rng.js            seeded PRNG; every draw is a function of (seed, tick)
-  traits.js         the deduction alphabet
-  characters.js     the six playable detectives
-  dialogue.js       how suspects answer, and what each approach costs
-  events.js         what the city does every four hours
-  voice.js          the narrator: voice ranking, prosody, phrase timing
-  audio.js          generated rain, thunder and precinct-radio ambience
-  cases/            three hand-authored cases with their maps
-  ui/               app.js (controller), cartography.js, map.js, notebook.js,
-                    screens.js, icons.js, fx.js
-  net/              the transport seam where online play plugs in
-server.js           zero-dependency static server
-test/logic.test.js  headless soak tests
+index.html                   the page; the Phaser canvas sits under the DOM
+src/
+  main.ts
+  config/                    game config, asset manifest, constants
+  scenes/                    boot, preload, the board, the weather; cartography
+  game/                      the rules engine: pure, seeded, typed
+    state.ts                 applyAction(state, action)
+    rules.ts                 read-only questions about a state
+    gen.ts                   case generation
+    exhibits.ts              every document a find can be
+    witnesses.ts             what you say to a witness
+    lines.ts                 the narration corpus
+    cases/                   three cities
+  systems/                   audio manager, synthesised textures and music,
+                             narrator, save manager, input
+  ui/                        the DOM: controller, screens, dialogue, locker,
+                             notebook, journal, portraits, icons
+  net/                       the seam where online play plugs in
+  styles/
+test/logic.test.ts           the soak suite (vitest)
+tools/render-voices.mjs      bakes the narration
+public/                      voice pack, PWA manifest, service worker, icons
 ```
 
-Three design decisions carry most of the weight:
+Three things hold the design together:
 
-Two design decisions carry most of the weight:
-
-**Everything is drawn, nothing is loaded.** Location icons and suspect
-portraits are generated SVG — a suspect's silhouette is a hash of their id, so
-they look like themselves every game. So is the rain, the thunder and the radio
-hiss, built from noise buffers and oscillators. There are no media assets at
-all.
-
-**The city is generated, not drawn by hand.** `ui/cartography.js` builds each
-board from the case id: a ragged coastline, a river relaxed away from every
-location it would otherwise drown, parks in the gaps, a skewed street grid and
-a few hundred blocks, all masked to the land. It is generated rather than
-authored because hand-fitting a coastline around twelve locations is fiddly and
-breaks the moment one moves — and because terrain built by pushing water *away*
-from the locations can never swallow one. Same case, same city, every time.
-
-**The reducer is pure and the randomness is seeded.** `applyAction` is a
-function of state and action; every random draw reads `state.seed` and
-`state.tick`. An ordered list of actions therefore determines the board
-completely, which is what makes multiplayer over a socket a matter of agreeing
-on order rather than serialising state. See [`js/net/README.md`](js/net/README.md)
-for what is left to build.
+1. **`applyAction` is pure and randomness is seeded.** Every draw reads
+   `state.seed` and `state.tick`, so an ordered action log fully determines
+   the board. That is what the save file is, and what online play would send.
+2. **Nothing is loaded.** Icons, portraits, the city map, the rain and the
+   music are all generated. The only files in `public/` are ones you make.
+3. **The narration script is finite**, which is what makes baking it possible.
 
 ## Tests
 
@@ -193,21 +147,8 @@ for what is left to build.
 npm test
 ```
 
-Plays hundreds of complete games with a bot that only knows what a player would
-know, and asserts:
-
-- every case builds at every difficulty and every player count
-- the culprit is always the **unique** fit once every fact is found — no
-  unsolvable boards (fuzzed over 2,700 generated cases)
-- every game terminates in a win or a loss, and the bot both wins and loses
-- identical action logs produce byte-identical states (the property online play
-  depends on)
-- illegal actions change nothing
-- every ability fires exactly once per case
-
-## Accessibility
-
-Keyboard navigation and focus rings throughout, map nodes reachable by tab and
-activated with Enter. `prefers-reduced-motion` is honoured, and rain, grain and
-the typewriter effect can be switched off under **Narration → Comfort**. All
-narration is subtitled.
+Sixteen checks: every case builds at every difficulty and player count; every
+map is connected; the culprit is always the unique fit; 400 bot games all
+terminate; identical action logs give byte-identical states; illegal actions
+are rejected; abilities, approaches, witnesses and the locker do what they
+promise; the journal is ordered; and every spoken fragment is pre-renderable.

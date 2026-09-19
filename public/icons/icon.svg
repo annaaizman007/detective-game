@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="96" fill="#0a0c10"/>
+<path d="M256 72l46 40 60-12 22 58 56 25-22 58 22 58-56 25-22 58-60-12-46 48-46-48-60 12-22-58-56-25 22-58-22-58 56-25 22-58 60 12z" fill="#c8963e"/>
+<path d="M256 120l34 30 45-9 16 43 42 19-16 44 16 44-42 19-16 43-45-9-34 36-34-36-45 9-16-43-42-19 16-44-16-44 42-19 16-43 45 9z" fill="#ecc06a"/>
+<circle cx="256" cy="256" r="74" fill="#0a0c10"/>
+<text x="256" y="292" text-anchor="middle" font-family="Oswald, Arial Narrow, sans-serif" font-size="104" font-weight="600" fill="#ecc06a">A</text>
+</svg>

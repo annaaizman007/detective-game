@@ -1,0 +1,26 @@
+# Push the built game to itch.io on a tag. Needs BUTLER_API_KEY in the repo
+# secrets and the target set to your own <user>/<game>.
+name: deploy-itch
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: manleydev/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
+          CHANNEL: html5
+          ITCH_GAME: ashgrave-files
+          ITCH_USER: your-itch-user
+          PACKAGE: dist

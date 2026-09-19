@@ -286,6 +286,54 @@
    "duration": 3.7546666666666666
   },
   {
+   "id": "62acf8ce",
+   "group": "stock",
+   "text": "It gives something away.",
+   "sprite": "stock",
+   "start": 111.03733333333334,
+   "duration": 1.664
+  },
+  {
+   "id": "a6b313c0",
+   "group": "stock",
+   "text": "It points at",
+   "sprite": "stock",
+   "start": 112.95133333333334,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "a7ed2c4c",
+   "group": "stock",
+   "text": "It saves you time.",
+   "sprite": "stock",
+   "start": 114.396,
+   "duration": 1.7706666666666666
+  },
+  {
+   "id": "968949a4",
+   "group": "stock",
+   "text": "It costs you time.",
+   "sprite": "stock",
+   "start": 116.41666666666667,
+   "duration": 1.7066666666666668
+  },
+  {
+   "id": "b37bb84a",
+   "group": "stock",
+   "text": "Ashgrave Bay, two in the morning, and it is still raining.",
+   "sprite": "stock",
+   "start": 118.37333333333333,
+   "duration": 3.6693333333333333
+  },
+  {
+   "id": "827beaf4",
+   "group": "stock",
+   "text": "Dispatch to all cars. A woman is dead at the Gilded Hotel, and nobody heard a thing. Take it slow, detective — this one has lawyers.",
+   "sprite": "stock",
+   "start": 122.29266666666666,
+   "duration": 9.066666666666666
+  },
+  {
    "id": "4f8770f9",
    "group": "evidence",
    "text": "The sill was scuffed where someone slim slipped through a nine-inch gap. Our killer is slight.",
@@ -1054,6 +1102,854 @@
    "duration": 1.9413333333333334
   },
   {
+   "id": "549f5eaf",
+   "group": "evidence",
+   "text": "The rear sash was jammed nine inches open, and somebody came through it as it stood.",
+   "sprite": "evidence",
+   "start": 104.12733333333334,
+   "duration": 5.8453333333333335
+  },
+  {
+   "id": "cbfcabb8",
+   "group": "evidence",
+   "text": "The door jamb is split at shoulder height, and it took weight to do it.",
+   "sprite": "evidence",
+   "start": 110.22266666666667,
+   "duration": 4.309333333333333
+  },
+  {
+   "id": "8b3702eb",
+   "group": "evidence",
+   "text": "The spatter starts seventy-four inches up the wall, and the blow came down from above her.",
+   "sprite": "evidence",
+   "start": 114.782,
+   "duration": 5.653333333333333
+  },
+  {
+   "id": "976b4e26",
+   "group": "evidence",
+   "text": "One hair caught in her ring, dark and natural, and it is not hers.",
+   "sprite": "evidence",
+   "start": 120.68533333333333,
+   "duration": 4.437333333333333
+  },
+  {
+   "id": "c6fe4f55",
+   "group": "evidence",
+   "text": "A pale hair on the inside of her collar, fair as winter straw.",
+   "sprite": "evidence",
+   "start": 125.37266666666666,
+   "duration": 4.266666666666667
+  },
+  {
+   "id": "e4396944",
+   "group": "evidence",
+   "text": "One red hair on the pillow. Copper, and not out of a bottle.",
+   "sprite": "evidence",
+   "start": 129.88933333333333,
+   "duration": 4.352
+  },
+  {
+   "id": "4ebb63bb",
+   "group": "evidence",
+   "text": "Seven grey hairs on the rug, pulled out by the roots, and she was twenty-six.",
+   "sprite": "evidence",
+   "start": 134.49133333333333,
+   "duration": 5.141333333333334
+  },
+  {
+   "id": "72f9dc0d",
+   "group": "evidence",
+   "text": "One blow to her right temple, from someone standing square in front of her.",
+   "sprite": "evidence",
+   "start": 139.88266666666667,
+   "duration": 4.714666666666667
+  },
+  {
+   "id": "35d1664c",
+   "group": "evidence",
+   "text": "A right-hand glove on the stairs, with powder in the web of the thumb.",
+   "sprite": "evidence",
+   "start": 144.84733333333332,
+   "duration": 4.373333333333333
+  },
+  {
+   "id": "f6319c81",
+   "group": "evidence",
+   "text": "Under her nails, fresh skin and a fleck of old scar tissue.",
+   "sprite": "evidence",
+   "start": 149.47066666666666,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "99d02c74",
+   "group": "evidence",
+   "text": "The lift attendant saw blue ink on the wrist as the hand came down.",
+   "sprite": "evidence",
+   "start": 153.838,
+   "duration": 4.629333333333333
+  },
+  {
+   "id": "7e99755f",
+   "group": "evidence",
+   "text": "A palm print in the dust, with four fingers and a clean space where the fifth should be.",
+   "sprite": "evidence",
+   "start": 158.71733333333333,
+   "duration": 5.781333333333333
+  },
+  {
+   "id": "c70dad65",
+   "group": "evidence",
+   "text": "The night clerk swears the face was clean, with not a mark to point to.",
+   "sprite": "evidence",
+   "start": 164.74866666666668,
+   "duration": 4.48
+  },
+  {
+   "id": "d8a09b93",
+   "group": "evidence",
+   "text": "A crumpled marker from a back-room card game, dropped in the struggle.",
+   "sprite": "evidence",
+   "start": 169.47866666666667,
+   "duration": 4.458666666666667
+  },
+  {
+   "id": "a1418215",
+   "group": "evidence",
+   "text": "Rye on the rim of the second glass. The one that got away.",
+   "sprite": "evidence",
+   "start": 174.18733333333333,
+   "duration": 3.904
+  },
+  {
+   "id": "aa69a063",
+   "group": "evidence",
+   "text": "Sweet smoke soaked into the curtains, and lamp soot on the sill.",
+   "sprite": "evidence",
+   "start": 178.34133333333332,
+   "duration": 4.032
+  },
+  {
+   "id": "29011719",
+   "group": "evidence",
+   "text": "No bottle, no markers, no smoke. Whoever did this keeps a clean house.",
+   "sprite": "evidence",
+   "start": 182.62333333333333,
+   "duration": 4.992
+  },
+  {
+   "id": "599556f7",
+   "group": "evidence",
+   "text": "Orchid perfume on her lapel, and she wore jasmine.",
+   "sprite": "evidence",
+   "start": 187.86533333333333,
+   "duration": 3.4133333333333336
+  },
+  {
+   "id": "8d203b85",
+   "group": "evidence",
+   "text": "A neat footprint pressed into the flowerbed, ten and a half inches heel to toe.",
+   "sprite": "evidence",
+   "start": 191.52866666666668,
+   "duration": 5.056
+  },
+  {
+   "id": "d4a86ebe",
+   "group": "evidence",
+   "text": "Eleven and a quarter inches, worn down hard on the outer heel.",
+   "sprite": "evidence",
+   "start": 196.83466666666666,
+   "duration": 4.373333333333333
+  },
+  {
+   "id": "074fc766",
+   "group": "evidence",
+   "text": "A footprint in the wet ash by the back stair, twelve inches even.",
+   "sprite": "evidence",
+   "start": 201.458,
+   "duration": 4.224
+  },
+  {
+   "id": "dc4f4389",
+   "group": "evidence",
+   "text": "A note in a dead man's handwriting, folded four times.",
+   "sprite": "evidence",
+   "start": 205.932,
+   "duration": 4.053333333333334
+  },
+  {
+   "id": "34ba7961",
+   "group": "evidence",
+   "text": "A name, an address, and a reason to hurry.",
+   "sprite": "evidence",
+   "start": 210.23533333333333,
+   "duration": 3.072
+  },
+  {
+   "id": "370c6577",
+   "group": "evidence",
+   "text": "Black coffee and a cigarette on somebody else's tab.",
+   "sprite": "evidence",
+   "start": 213.55733333333333,
+   "duration": 3.904
+  },
+  {
+   "id": "86a834a9",
+   "group": "evidence",
+   "text": "Somebody wrote down what they should have burned.",
+   "sprite": "evidence",
+   "start": 217.71133333333333,
+   "duration": 2.965333333333333
+  },
+  {
+   "id": "419c99e1",
+   "group": "evidence",
+   "text": "A society column, cut from the page, with the songbird of the Heights in it.",
+   "sprite": "evidence",
+   "start": 220.92666666666668,
+   "duration": 4.928
+  },
+  {
+   "id": "cf493cfb",
+   "group": "evidence",
+   "text": "A press photograph of the lobby, taken before the first uniform arrived.",
+   "sprite": "evidence",
+   "start": 226.10466666666667,
+   "duration": 4.949333333333334
+  },
+  {
+   "id": "89395f5b",
+   "group": "evidence",
+   "text": "A ticket for the Voss box, never torn.",
+   "sprite": "evidence",
+   "start": 231.304,
+   "duration": 2.9013333333333335
+  },
+  {
+   "id": "2d9f271b",
+   "group": "evidence",
+   "text": "A café check for two coffees at a quarter past one, signed E.S.",
+   "sprite": "evidence",
+   "start": 234.45533333333333,
+   "duration": 4.608
+  },
+  {
+   "id": "1c67ad44",
+   "group": "evidence",
+   "text": "A parish hymnal on the bandstand steps, with an orchid petal pressed inside.",
+   "sprite": "evidence",
+   "start": 239.31333333333333,
+   "duration": 5.248
+  },
+  {
+   "id": "0024b33e",
+   "group": "evidence",
+   "text": "The vault log: box one-fourteen, opened by R. Voss at ten to midnight.",
+   "sprite": "evidence",
+   "start": 244.81133333333332,
+   "duration": 5.205333333333333
+  },
+  {
+   "id": "f35e0d3f",
+   "group": "evidence",
+   "text": "A letter from Lillian to the Deacon about the parish books, and half a reply.",
+   "sprite": "evidence",
+   "start": 250.26666666666668,
+   "duration": 5.248
+  },
+  {
+   "id": "e3965d77",
+   "group": "evidence",
+   "text": "An admission slip: a man with a cut hand, stitched by Doctor Pike at three, and gone by four.",
+   "sprite": "evidence",
+   "start": 255.76466666666667,
+   "duration": 6.293333333333333
+  },
+  {
+   "id": "52e8158b",
+   "group": "evidence",
+   "text": "A cab chit, market to the Bluff at twenty past two, and the driver still on the rank.",
+   "sprite": "evidence",
+   "start": 262.308,
+   "duration": 5.717333333333333
+  },
+  {
+   "id": "e014aa73",
+   "group": "evidence",
+   "text": "A back number of the Herald, the cannery fire, with two names underlined.",
+   "sprite": "evidence",
+   "start": 268.2753333333333,
+   "duration": 5.013333333333334
+  },
+  {
+   "id": "d6a7250d",
+   "group": "evidence",
+   "text": "The operator's log: the last call from suite eleven-hundred, at eight minutes to two.",
+   "sprite": "evidence",
+   "start": 273.53866666666664,
+   "duration": 5.589333333333333
+  },
+  {
+   "id": "68c38fe2",
+   "group": "evidence",
+   "text": "The inventory of her effects: a bent ring, a brass key stamped one-fourteen, and no money.",
+   "sprite": "evidence",
+   "start": 279.378,
+   "duration": 6.336
+  },
+  {
+   "id": "6443d9e5",
+   "group": "evidence",
+   "text": "A tram transfer, punched at twenty past one on the last car to the Bluff.",
+   "sprite": "evidence",
+   "start": 285.964,
+   "duration": 5.034666666666666
+  },
+  {
+   "id": "59ac708a",
+   "group": "evidence",
+   "text": "A house photograph of Vera Lang on the Jade Room stage at eleven.",
+   "sprite": "evidence",
+   "start": 291.2486666666667,
+   "duration": 4.970666666666666
+  },
+  {
+   "id": "3c5192cc",
+   "group": "evidence",
+   "text": "An import manifest: forty crates of orchids, and twelve of them signed for at night.",
+   "sprite": "evidence",
+   "start": 296.46933333333334,
+   "duration": 5.653333333333333
+  },
+  {
+   "id": "77f4fa17",
+   "group": "evidence",
+   "text": "The poisons register: four ounces of ether, signed out by Doctor Pike at ten.",
+   "sprite": "evidence",
+   "start": 302.37266666666665,
+   "duration": 5.568
+  },
+  {
+   "id": "a9f9a22a",
+   "group": "evidence",
+   "text": "An unclaimed locker tag, and a wet coat with another tag in the pocket.",
+   "sprite": "evidence",
+   "start": 308.1906666666667,
+   "duration": 4.8853333333333335
+  },
+  {
+   "id": "28daf2c6",
+   "group": "evidence",
+   "text": "An unsigned threat on union paper, nailed to the cannery door.",
+   "sprite": "evidence",
+   "start": 313.326,
+   "duration": 4.522666666666667
+  },
+  {
+   "id": "33be02c4",
+   "group": "evidence",
+   "text": "A ticket for the last ferry, found by the rail.",
+   "sprite": "evidence",
+   "start": 318.09866666666665,
+   "duration": 3.3493333333333335
+  },
+  {
+   "id": "59001ed5",
+   "group": "evidence",
+   "text": "Vera Lang's set list, with a line at the bottom underlined hard enough to tear.",
+   "sprite": "evidence",
+   "start": 321.698,
+   "duration": 5.312
+  },
+  {
+   "id": "c1d1f355",
+   "group": "evidence",
+   "text": "A letter from Brandt's mother, folded small and read many times.",
+   "sprite": "evidence",
+   "start": 327.26,
+   "duration": 4.416
+  },
+  {
+   "id": "7ebbb693",
+   "group": "evidence",
+   "text": "A work order for the Voss Packard, brought in at ten to three with a wing stove in.",
+   "sprite": "evidence",
+   "start": 331.926,
+   "duration": 5.44
+  },
+  {
+   "id": "cc49cad1",
+   "group": "evidence",
+   "text": "The union dues ledger, every line in Brandt's hand.",
+   "sprite": "evidence",
+   "start": 337.616,
+   "duration": 3.648
+  },
+  {
+   "id": "236ad3e4",
+   "group": "evidence",
+   "text": "A cable from Marseille, for Cass Mireaux: do not let her see the manifest.",
+   "sprite": "evidence",
+   "start": 341.514,
+   "duration": 5.056
+  },
+  {
+   "id": "598b3319",
+   "group": "evidence",
+   "text": "A customs report: a seal broken and a crate gone, with cart tracks leading out of the yard.",
+   "sprite": "evidence",
+   "start": 346.82,
+   "duration": 6.336
+  },
+  {
+   "id": "6ba9855f",
+   "group": "evidence",
+   "text": "A prayer card in the Sailors' Chapel, for Lillian, who knew.",
+   "sprite": "evidence",
+   "start": 353.406,
+   "duration": 3.7973333333333334
+  },
+  {
+   "id": "ed90ac4e",
+   "group": "evidence",
+   "text": "An unfinished letter from Lillian to her brother about the will.",
+   "sprite": "evidence",
+   "start": 357.4533333333333,
+   "duration": 4.16
+  },
+  {
+   "id": "b52e8ffb",
+   "group": "evidence",
+   "text": "The keeper's log: a lantern on the cliff path at half past two, and again at five to three.",
+   "sprite": "evidence",
+   "start": 361.86333333333334,
+   "duration": 6.08
+  },
+  {
+   "id": "2696756b",
+   "group": "evidence",
+   "text": "A death certificate with drowning struck through and the truth written over it.",
+   "sprite": "evidence",
+   "start": 368.1933333333333,
+   "duration": 4.736
+  },
+  {
+   "id": "578e1022",
+   "group": "evidence",
+   "text": "The salt works tally, one bag short, and no cart used to carry it.",
+   "sprite": "evidence",
+   "start": 373.1793333333333,
+   "duration": 4.586666666666667
+  },
+  {
+   "id": "ef8ad30c",
+   "group": "evidence",
+   "text": "A draft ballot with the dead man's name crossed out hard enough to split the nib.",
+   "sprite": "evidence",
+   "start": 378.016,
+   "duration": 5.205333333333333
+  },
+  {
+   "id": "06587d3e",
+   "group": "evidence",
+   "text": "The manifest Customs sat on for six weeks, with a second set of initials added tonight.",
+   "sprite": "evidence",
+   "start": 383.47133333333335,
+   "duration": 5.973333333333334
+  },
+  {
+   "id": "64d923f4",
+   "group": "evidence",
+   "text": "The wireless log: stop at the usual, understood, and at three, all done.",
+   "sprite": "evidence",
+   "start": 389.69466666666665,
+   "duration": 4.970666666666666
+  },
+  {
+   "id": "81ddbbdd",
+   "group": "evidence",
+   "text": "A pawn ticket for a rigging knife, redeemed at midnight by somebody who did not pledge it.",
+   "sprite": "evidence",
+   "start": 394.9153333333333,
+   "duration": 5.717333333333333
+  },
+  {
+   "id": "80a16aaa",
+   "group": "evidence",
+   "text": "A notice pulled from the union paper at midnight, about the trawler berths.",
+   "sprite": "evidence",
+   "start": 400.8826666666667,
+   "duration": 4.693333333333333
+  },
+  {
+   "id": "4335060b",
+   "group": "evidence",
+   "text": "The movements log: a trawler out at eleven with nothing, and back at three riding low.",
+   "sprite": "evidence",
+   "start": 405.826,
+   "duration": 5.504
+  },
+  {
+   "id": "4a22a3d1",
+   "group": "evidence",
+   "text": "A letter from the widow's husband, written in 1941 and kept seven years.",
+   "sprite": "evidence",
+   "start": 411.58,
+   "duration": 6.378666666666667
+  },
+  {
+   "id": "584f1321",
+   "group": "evidence",
+   "text": "The keeper's log: a dinghy with two aboard going out, and one coming back. Crossed out.",
+   "sprite": "evidence",
+   "start": 418.20866666666666,
+   "duration": 5.653333333333333
+  },
+  {
+   "id": "bb92eaee",
+   "group": "evidence",
+   "text": "The chandler's sales book: forty feet of line and a sailmaker's needle, signed B.O.",
+   "sprite": "evidence",
+   "start": 424.112,
+   "duration": 5.952
+  },
+  {
+   "id": "8134e705",
+   "group": "evidence",
+   "text": "A cable to Salvi: if the strike vote passes we are finished. Do what you must.",
+   "sprite": "evidence",
+   "start": 430.314,
+   "duration": 5.077333333333334
+  },
+  {
+   "id": "25bbe371",
+   "group": "evidence",
+   "text": "The union account: four hundred dollars out on the tenth, signed by the vice-chair.",
+   "sprite": "evidence",
+   "start": 435.6413333333333,
+   "duration": 5.269333333333333
+  },
+  {
+   "id": "5cc2e6a8",
+   "group": "evidence",
+   "text": "A radiograph of the wound: under the ribs and upward, from below.",
+   "sprite": "evidence",
+   "start": 441.16066666666666,
+   "duration": 4.693333333333333
+  },
+  {
+   "id": "d5ab0024",
+   "group": "evidence",
+   "text": "The mission cot book: somebody in and out all night, and the word \"wet\" in the margin.",
+   "sprite": "evidence",
+   "start": 446.104,
+   "duration": 5.504
+  },
+  {
+   "id": "6b0dced5",
+   "group": "evidence",
+   "text": "A tram ticket punched at two minutes past midnight, dropped on the step.",
+   "sprite": "evidence",
+   "start": 451.858,
+   "duration": 4.693333333333333
+  },
+  {
+   "id": "f093b427",
+   "group": "evidence",
+   "text": "Chalk on the drydock hull, a foot high: Bask knew. So do we.",
+   "sprite": "evidence",
+   "start": 456.80133333333333,
+   "duration": 4.181333333333333
+  },
+  {
+   "id": "9506d3a8",
+   "group": "evidence",
+   "text": "A locker tag, an unclaimed coat, and a key sewn into the lining.",
+   "sprite": "evidence",
+   "start": 461.23266666666666,
+   "duration": 4.629333333333333
+  },
+  {
+   "id": "ce703f24",
+   "group": "evidence",
+   "text": "A needle count at the Ropewalk: one size fourteen missing since the tenth.",
+   "sprite": "evidence",
+   "start": 466.112,
+   "duration": 4.778666666666667
+  },
+  {
+   "id": "f2a203e8",
+   "group": "evidence",
+   "text": "A net tag from the Marie-Louise, found in the water off Pier Nine.",
+   "sprite": "evidence",
+   "start": 471.1406666666667,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "63a60149",
+   "group": "evidence",
+   "text": "A shift sheet with two men clocked in who never came to the line.",
+   "sprite": "evidence",
+   "start": 475.7853333333333,
+   "duration": 4.1386666666666665
+  },
+  {
+   "id": "0fec49bf",
+   "group": "evidence",
+   "text": "An ice order at three in the morning for a shipping office with no fish.",
+   "sprite": "evidence",
+   "start": 480.174,
+   "duration": 4.842666666666666
+  },
+  {
+   "id": "e8c1b08e",
+   "group": "evidence",
+   "text": "Bask's name in chalk on the chapel brass, written before the tide gave him up.",
+   "sprite": "evidence",
+   "start": 485.26666666666665,
+   "duration": 5.269333333333333
+  },
+  {
+   "id": "85d31842",
+   "group": "evidence",
+   "text": "A coastguard fix on a dinghy with no light, beached below the old salt stair.",
+   "sprite": "evidence",
+   "start": 490.786,
+   "duration": 5.077333333333334
+  },
+  {
+   "id": "cfd41f48",
+   "group": "evidence",
+   "text": "The ferry count: eleven across and ten back.",
+   "sprite": "evidence",
+   "start": 496.11333333333334,
+   "duration": 3.328
+  },
+  {
+   "id": "fd5adcdb",
+   "group": "evidence",
+   "text": "Bask's café tab: tea every morning for twenty years, and a last line about who he sat with.",
+   "sprite": "evidence",
+   "start": 499.6913333333333,
+   "duration": 6.1866666666666665
+  },
+  {
+   "id": "0281c49f",
+   "group": "evidence",
+   "text": "The bell rope, cut clean in one stroke from below, at five foot three.",
+   "sprite": "evidence",
+   "start": 506.128,
+   "duration": 4.672
+  },
+  {
+   "id": "e173e53b",
+   "group": "evidence",
+   "text": "The Canon's wine account, and a note about a returned cheque.",
+   "sprite": "evidence",
+   "start": 511.05,
+   "duration": 4.1386666666666665
+  },
+  {
+   "id": "ce7de1b0",
+   "group": "evidence",
+   "text": "The crypt ledger with a page razored out tonight, and a fingerprint in the glue.",
+   "sprite": "evidence",
+   "start": 515.4386666666667,
+   "duration": 5.312
+  },
+  {
+   "id": "28d7b4ad",
+   "group": "evidence",
+   "text": "The almshouse register: forty beds, thirty-nine names.",
+   "sprite": "evidence",
+   "start": 521.0006666666667,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "09eece39",
+   "group": "evidence",
+   "text": "The diocese asks for discretion, in writing, on behalf of the Canon and the Matron.",
+   "sprite": "evidence",
+   "start": 525.368,
+   "duration": 5.8453333333333335
+  },
+  {
+   "id": "fffc4bc8",
+   "group": "evidence",
+   "text": "The bell founder's note: rung by a hand that lets the rope go at the top of the stroke.",
+   "sprite": "evidence",
+   "start": 531.4633333333334,
+   "duration": 5.696
+  },
+  {
+   "id": "f1cc31f5",
+   "group": "evidence",
+   "text": "A photograph of the key board with the tower hook empty, and the verger in the doorway.",
+   "sprite": "evidence",
+   "start": 537.4093333333333,
+   "duration": 5.546666666666667
+  },
+  {
+   "id": "8ef35566",
+   "group": "evidence",
+   "text": "Nine, in chalk, on the sundial, with a small drawn bell.",
+   "sprite": "evidence",
+   "start": 543.206,
+   "duration": 4.181333333333333
+  },
+  {
+   "id": "76c716a0",
+   "group": "evidence",
+   "text": "Constance's letter to the Dean, sealed and never posted, found in Blake's own desk.",
+   "sprite": "evidence",
+   "start": 547.6373333333333,
+   "duration": 5.696
+  },
+  {
+   "id": "99972bb1",
+   "group": "evidence",
+   "text": "Plot forty-four: dug Tuesday, four feet deep, and a tin box in it emptied tonight.",
+   "sprite": "evidence",
+   "start": 553.5833333333334,
+   "duration": 5.76
+  },
+  {
+   "id": "93e246a8",
+   "group": "evidence",
+   "text": "The poisons book: chloral for Marrow House, signed by the Matron on the eighth.",
+   "sprite": "evidence",
+   "start": 559.5933333333334,
+   "duration": 5.12
+  },
+  {
+   "id": "9f6d7896",
+   "group": "evidence",
+   "text": "A pawn ticket for the astronomer's eyepiece, pledged by somebody else.",
+   "sprite": "evidence",
+   "start": 564.9633333333334,
+   "duration": 4.736
+  },
+  {
+   "id": "049127b6",
+   "group": "evidence",
+   "text": "The depot sheet: car seven out at two minutes past midnight, signed Fay, back at ten to one, wet.",
+   "sprite": "evidence",
+   "start": 569.9493333333334,
+   "duration": 6.549333333333333
+  },
+  {
+   "id": "a446b3ce",
+   "group": "evidence",
+   "text": "A note pinned to the Lower Chapel handbell: rung nine at midnight in answer.",
+   "sprite": "evidence",
+   "start": 576.7486666666666,
+   "duration": 5.141333333333334
+  },
+  {
+   "id": "efb637f4",
+   "group": "evidence",
+   "text": "A laundry ticket for a cassock with river mud to the knee, from the Rectory bundle.",
+   "sprite": "evidence",
+   "start": 582.14,
+   "duration": 5.504
+  },
+  {
+   "id": "e95c5b4e",
+   "group": "evidence",
+   "text": "A note pushed under a door on Tallow Street: I saw the light come down the outside.",
+   "sprite": "evidence",
+   "start": 587.894,
+   "duration": 5.504
+  },
+  {
+   "id": "077349c4",
+   "group": "evidence",
+   "text": "The valve key book: key three out at ten to midnight and back at three with the wrong initials.",
+   "sprite": "evidence",
+   "start": 593.648,
+   "duration": 6.08
+  },
+  {
+   "id": "d2020809",
+   "group": "evidence",
+   "text": "Prints along the reservoir wall, from the pump house toward the boathouse.",
+   "sprite": "evidence",
+   "start": 599.978,
+   "duration": 4.501333333333333
+  },
+  {
+   "id": "a8384e08",
+   "group": "evidence",
+   "text": "The missing oars on the far bank, and beside them a wet rosary with the cross bent.",
+   "sprite": "evidence",
+   "start": 604.7293333333333,
+   "duration": 5.738666666666667
+  },
+  {
+   "id": "63a6c16c",
+   "group": "evidence",
+   "text": "The engine log: the pumps stopped for four minutes at two minutes to midnight, to listen.",
+   "sprite": "evidence",
+   "start": 610.718,
+   "duration": 5.013333333333334
+  },
+  {
+   "id": "448e32f7",
+   "group": "evidence",
+   "text": "The crypt fund: four hundred pounds gone, one signature on every slip.",
+   "sprite": "evidence",
+   "start": 615.9813333333333,
+   "duration": 4.906666666666666
+  },
+  {
+   "id": "f4fcf129",
+   "group": "evidence",
+   "text": "A photograph from the water tower: iron rungs on the outside of the bell tower, the bottom one bright.",
+   "sprite": "evidence",
+   "start": 621.138,
+   "duration": 7.082666666666666
+  },
+  {
+   "id": "1edde108",
+   "group": "evidence",
+   "text": "The Marrow House gate log, with a rubbed-out name legible when the page is tilted.",
+   "sprite": "evidence",
+   "start": 628.4706666666667,
+   "duration": 5.376
+  },
+  {
+   "id": "7e333e4d",
+   "group": "evidence",
+   "text": "The observatory log: at midnight, not the sky. The tower. And a small figure drawn on a ladder.",
+   "sprite": "evidence",
+   "start": 634.0966666666667,
+   "duration": 6.506666666666667
+  },
+  {
+   "id": "bd05aaef",
+   "group": "evidence",
+   "text": "A left-hand glove, grey kid, left on a chair after words at four in the morning.",
+   "sprite": "evidence",
+   "start": 640.8533333333334,
+   "duration": 5.44
+  },
+  {
+   "id": "14ddb0a3",
+   "group": "evidence",
+   "text": "A diocesan report with the plates of the tower torn out in the shop doorway.",
+   "sprite": "evidence",
+   "start": 646.5433333333333,
+   "duration": 5.141333333333334
+  },
+  {
+   "id": "415ed023",
+   "group": "evidence",
+   "text": "The Lamplighter's slate: wet boots, two rums, and a man who said he had rung it and laughed.",
+   "sprite": "evidence",
+   "start": 651.9346666666667,
+   "duration": 5.973333333333334
+  },
+  {
    "id": "cdacfcd8",
    "group": "event",
    "text": "DOWNPOUR. Rain comes down like nails on a coffin lid. The whole city slows to a crawl.",
@@ -1116,38 +2012,6 @@
    "sprite": "event",
    "start": 48.037333333333336,
    "duration": 6.485333333333333
-  },
-  {
-   "id": "dc4f4389",
-   "group": "evidence",
-   "text": "A note in a dead man's handwriting, folded four times.",
-   "sprite": "evidence",
-   "start": 104.12733333333334,
-   "duration": 4.053333333333334
-  },
-  {
-   "id": "34ba7961",
-   "group": "evidence",
-   "text": "A name, an address, and a reason to hurry.",
-   "sprite": "evidence",
-   "start": 108.43066666666667,
-   "duration": 3.072
-  },
-  {
-   "id": "370c6577",
-   "group": "evidence",
-   "text": "Black coffee and a cigarette on somebody else's tab.",
-   "sprite": "evidence",
-   "start": 111.75266666666667,
-   "duration": 3.904
-  },
-  {
-   "id": "86a834a9",
-   "group": "evidence",
-   "text": "Somebody wrote down what they should have burned.",
-   "sprite": "evidence",
-   "start": 115.90666666666667,
-   "duration": 2.965333333333333
   },
   {
    "id": "9776142e",
@@ -1342,6 +2206,70 @@
    "duration": 2.816
   },
   {
+   "id": "00b9b16d",
+   "group": "witness",
+   "text": "You know them. Tell me one thing about them I could not read in a newspaper.",
+   "sprite": "witness",
+   "start": 0.25,
+   "duration": 4.992
+  },
+  {
+   "id": "575a4390",
+   "group": "witness",
+   "text": "I am not asking what they did. I am asking what they are like. Anything.",
+   "sprite": "witness",
+   "start": 5.492,
+   "duration": 4.693333333333333
+  },
+  {
+   "id": "52794812",
+   "group": "witness",
+   "text": "Describe them to me the way you would to somebody who had to pick them out of a crowd.",
+   "sprite": "witness",
+   "start": 10.435333333333332,
+   "duration": 5.397333333333333
+  },
+  {
+   "id": "e04ea5d5",
+   "group": "witness",
+   "text": "Something happened here tonight. Where should I be looking?",
+   "sprite": "witness",
+   "start": 16.082666666666668,
+   "duration": 3.2853333333333334
+  },
+  {
+   "id": "2b110829",
+   "group": "witness",
+   "text": "You see everything that comes through this door. What came through it tonight?",
+   "sprite": "witness",
+   "start": 19.618,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "02dd8729",
+   "group": "witness",
+   "text": "I do not need a name. I need a place.",
+   "sprite": "witness",
+   "start": 24.262666666666668,
+   "duration": 2.7306666666666666
+  },
+  {
+   "id": "8fbe015a",
+   "group": "witness",
+   "text": "I could tell you nothing about them you have not already written down.",
+   "sprite": "witness",
+   "start": 27.243333333333332,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "cd60315e",
+   "group": "witness",
+   "text": "Nothing that walked out of here tonight is still worth walking after.",
+   "sprite": "witness",
+   "start": 31.504,
+   "duration": 3.968
+  },
+  {
    "id": "59eb197d",
    "group": "name",
    "text": "Hale",
@@ -1462,11 +2390,51 @@
    "duration": 1.728
   },
   {
+   "id": "e6c41129",
+   "group": "name",
+   "text": "The Lyceum",
+   "sprite": "name",
+   "start": 10.420666666666667,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "5178bbdc",
+   "group": "name",
+   "text": "Café Belvedere",
+   "sprite": "name",
+   "start": 11.972,
+   "duration": 1.7066666666666668
+  },
+  {
+   "id": "9392f52d",
+   "group": "name",
+   "text": "Ordell Gardens",
+   "sprite": "name",
+   "start": 13.928666666666667,
+   "duration": 1.4933333333333334
+  },
+  {
+   "id": "64755f3e",
+   "group": "name",
+   "text": "Ashgrave Trust",
+   "sprite": "name",
+   "start": 15.672,
+   "duration": 1.344
+  },
+  {
+   "id": "939b1482",
+   "group": "name",
+   "text": "Ashgrave Precinct",
+   "sprite": "name",
+   "start": 17.266,
+   "duration": 1.6
+  },
+  {
    "id": "7074ce28",
    "group": "name",
    "text": "St. Ordell's",
    "sprite": "name",
-   "start": 10.420666666666667,
+   "start": 19.116,
    "duration": 1.3866666666666667
   },
   {
@@ -1474,79 +2442,183 @@
    "group": "name",
    "text": "Mercy Hospital",
    "sprite": "name",
-   "start": 12.057333333333334,
+   "start": 20.752666666666666,
    "duration": 1.5786666666666667
-  },
-  {
-   "id": "2617d808",
-   "group": "name",
-   "text": "The Blue Parrot",
-   "sprite": "name",
-   "start": 13.886,
-   "duration": 1.216
-  },
-  {
-   "id": "939b1482",
-   "group": "name",
-   "text": "Ashgrave Precinct",
-   "sprite": "name",
-   "start": 15.352,
-   "duration": 1.6
   },
   {
    "id": "381c47e9",
    "group": "name",
    "text": "Lantern Market",
    "sprite": "name",
-   "start": 17.202,
+   "start": 22.581333333333333,
    "duration": 1.5146666666666666
   },
   {
-   "id": "5dc9a94d",
+   "id": "3b4a328c",
    "group": "name",
-   "text": "Cobb's Pawnshop",
+   "text": "Carnegie Library",
    "sprite": "name",
-   "start": 18.966666666666665,
+   "start": 24.346,
+   "duration": 1.4933333333333334
+  },
+  {
+   "id": "a64428cf",
+   "group": "name",
+   "text": "Central Exchange",
+   "sprite": "name",
+   "start": 26.089333333333332,
+   "duration": 1.664
+  },
+  {
+   "id": "b16a9fd7",
+   "group": "name",
+   "text": "City Morgue",
+   "sprite": "name",
+   "start": 28.003333333333334,
+   "duration": 0.9813333333333333
+  },
+  {
+   "id": "94fbe7a2",
+   "group": "name",
+   "text": "Tram Terminus",
+   "sprite": "name",
+   "start": 29.234666666666666,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "221559a9",
+   "group": "name",
+   "text": "The Jade Room",
+   "sprite": "name",
+   "start": 30.786,
+   "duration": 1.3013333333333332
+  },
+  {
+   "id": "dbb1ea56",
+   "group": "name",
+   "text": "Mireaux Imports",
+   "sprite": "name",
+   "start": 32.33733333333333,
+   "duration": 1.728
+  },
+  {
+   "id": "72516fc1",
+   "group": "name",
+   "text": "Pike's Pharmacy",
+   "sprite": "name",
+   "start": 34.315333333333335,
    "duration": 1.3866666666666667
   },
   {
-   "id": "e66077bb",
+   "id": "51dca421",
    "group": "name",
-   "text": "Tenement Row",
+   "text": "Lantern Baths",
    "sprite": "name",
-   "start": 20.60333333333333,
+   "start": 35.952,
    "duration": 1.3226666666666667
-  },
-  {
-   "id": "7c71d354",
-   "group": "name",
-   "text": "Rainer Docks",
-   "sprite": "name",
-   "start": 22.176,
-   "duration": 1.216
   },
   {
    "id": "3ec4eceb",
    "group": "name",
    "text": "The Old Cannery",
    "sprite": "name",
-   "start": 23.642,
+   "start": 37.52466666666667,
    "duration": 1.3866666666666667
+  },
+  {
+   "id": "ef2196e8",
+   "group": "name",
+   "text": "Ferry Landing",
+   "sprite": "name",
+   "start": 39.16133333333333,
+   "duration": 1.28
+  },
+  {
+   "id": "2617d808",
+   "group": "name",
+   "text": "The Blue Parrot",
+   "sprite": "name",
+   "start": 40.69133333333333,
+   "duration": 1.216
+  },
+  {
+   "id": "e66077bb",
+   "group": "name",
+   "text": "Tenement Row",
+   "sprite": "name",
+   "start": 42.157333333333334,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "5dc9a94d",
+   "group": "name",
+   "text": "Cobb's Pawnshop",
+   "sprite": "name",
+   "start": 43.73,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "0d7855e5",
+   "group": "name",
+   "text": "Rainer Garage",
+   "sprite": "name",
+   "start": 45.36666666666667,
+   "duration": 1.3866666666666667
+  },
+  {
+   "id": "9b408107",
+   "group": "name",
+   "text": "Dockers' Union Hall",
+   "sprite": "name",
+   "start": 47.00333333333333,
+   "duration": 1.7066666666666668
+  },
+  {
+   "id": "7c71d354",
+   "group": "name",
+   "text": "Rainer Docks",
+   "sprite": "name",
+   "start": 48.96,
+   "duration": 1.216
+  },
+  {
+   "id": "79d87ea6",
+   "group": "name",
+   "text": "Bonded Warehouse 4",
+   "sprite": "name",
+   "start": 50.426,
+   "duration": 1.856
+  },
+  {
+   "id": "8040349a",
+   "group": "name",
+   "text": "Sailors' Chapel",
+   "sprite": "name",
+   "start": 52.532,
+   "duration": 1.4293333333333333
   },
   {
    "id": "80e7f119",
    "group": "name",
    "text": "Voss Manor",
    "sprite": "name",
-   "start": 25.278666666666666,
+   "start": 54.211333333333336,
    "duration": 1.1306666666666667
+  },
+  {
+   "id": "91d1d807",
+   "group": "name",
+   "text": "Bay Light",
+   "sprite": "name",
+   "start": 55.592,
+   "duration": 1.0453333333333332
   },
   {
    "id": "2f67dca3",
    "group": "name",
    "text": "Vera Lang",
    "sprite": "name",
-   "start": 26.659333333333333,
+   "start": 56.88733333333333,
    "duration": 1.1946666666666668
   },
   {
@@ -1554,7 +2626,7 @@
    "group": "name",
    "text": "Lang",
    "sprite": "name",
-   "start": 28.104,
+   "start": 58.332,
    "duration": 0.8106666666666666
   },
   {
@@ -1570,7 +2642,7 @@
    "group": "name",
    "text": "Emil Strand",
    "sprite": "name",
-   "start": 29.164666666666665,
+   "start": 59.39266666666666,
    "duration": 1.3653333333333333
   },
   {
@@ -1578,7 +2650,7 @@
    "group": "name",
    "text": "Strand",
    "sprite": "name",
-   "start": 30.78,
+   "start": 61.008,
    "duration": 0.9173333333333333
   },
   {
@@ -1594,7 +2666,7 @@
    "group": "name",
    "text": "Dr. Aurelio Pike",
    "sprite": "name",
-   "start": 31.947333333333333,
+   "start": 62.175333333333334,
    "duration": 1.8773333333333333
   },
   {
@@ -1602,7 +2674,7 @@
    "group": "name",
    "text": "Pike",
    "sprite": "name",
-   "start": 34.074666666666666,
+   "start": 64.30266666666667,
    "duration": 0.64
   },
   {
@@ -1618,7 +2690,7 @@
    "group": "name",
    "text": "Cass Mireaux",
    "sprite": "name",
-   "start": 34.964666666666666,
+   "start": 65.19266666666667,
    "duration": 1.4506666666666668
   },
   {
@@ -1626,7 +2698,7 @@
    "group": "name",
    "text": "Mireaux",
    "sprite": "name",
-   "start": 36.665333333333336,
+   "start": 66.89333333333333,
    "duration": 0.9386666666666666
   },
   {
@@ -1642,7 +2714,7 @@
    "group": "name",
    "text": "Deacon Iris Tovar",
    "sprite": "name",
-   "start": 37.854,
+   "start": 68.082,
    "duration": 1.9626666666666666
   },
   {
@@ -1650,7 +2722,7 @@
    "group": "name",
    "text": "Tovar",
    "sprite": "name",
-   "start": 40.06666666666667,
+   "start": 70.29466666666667,
    "duration": 0.8106666666666666
   },
   {
@@ -1666,7 +2738,7 @@
    "group": "name",
    "text": "Roland Voss",
    "sprite": "name",
-   "start": 41.12733333333333,
+   "start": 71.35533333333333,
    "duration": 1.3226666666666667
   },
   {
@@ -1674,7 +2746,7 @@
    "group": "name",
    "text": "Voss",
    "sprite": "name",
-   "start": 42.7,
+   "start": 72.928,
    "duration": 0.768
   },
   {
@@ -1690,7 +2762,7 @@
    "group": "name",
    "text": "Nikolai Brandt",
    "sprite": "name",
-   "start": 43.718,
+   "start": 73.946,
    "duration": 1.4933333333333334
   },
   {
@@ -1698,7 +2770,7 @@
    "group": "name",
    "text": "Brandt",
    "sprite": "name",
-   "start": 45.461333333333336,
+   "start": 75.68933333333334,
    "duration": 0.832
   },
   {
@@ -1714,7 +2786,7 @@
    "group": "name",
    "text": "Perpetua Shaw",
    "sprite": "name",
-   "start": 46.54333333333334,
+   "start": 76.77133333333333,
    "duration": 1.3866666666666667
   },
   {
@@ -1722,7 +2794,7 @@
    "group": "name",
    "text": "Shaw",
    "sprite": "name",
-   "start": 48.18,
+   "start": 78.408,
    "duration": 0.704
   },
   {
@@ -1732,6 +2804,646 @@
    "sprite": "motive",
    "start": 28.794666666666668,
    "duration": 4.565333333333333
+  },
+  {
+   "id": "59fd105c",
+   "group": "witness",
+   "text": "Ada Pruett. Night desk, eleven years. I see everyone who comes in the front, and most of the ones who use the side door.",
+   "sprite": "witness",
+   "start": 35.722,
+   "duration": 8.192
+  },
+  {
+   "id": "7242eb3e",
+   "group": "witness",
+   "text": "I know the face. I could tell you one thing about them, and I will.",
+   "sprite": "witness",
+   "start": 44.164,
+   "duration": 4.288
+  },
+  {
+   "id": "94170938",
+   "group": "witness",
+   "text": "Somebody left in a hurry and did not stop for what they dropped. If I were you I would look at",
+   "sprite": "witness",
+   "start": 48.702,
+   "duration": 5.8453333333333335
+  },
+  {
+   "id": "2ab03ce5",
+   "group": "witness",
+   "text": "I have a desk to mind and I have said enough for one night.",
+   "sprite": "witness",
+   "start": 54.797333333333334,
+   "duration": 3.562666666666667
+  },
+  {
+   "id": "010eb3de",
+   "group": "witness",
+   "text": "Bix. I pour, I listen, I forget. Tonight I will make an exception for one of those.",
+   "sprite": "witness",
+   "start": 58.61,
+   "duration": 5.610666666666667
+  },
+  {
+   "id": "6b4625b3",
+   "group": "witness",
+   "text": "Sits at my bar. You notice things across a bar.",
+   "sprite": "witness",
+   "start": 64.47066666666667,
+   "duration": 3.3066666666666666
+  },
+  {
+   "id": "0077667c",
+   "group": "witness",
+   "text": "A man came in white as a sheet and went straight out the back. Whatever he was carrying, he was not carrying it when he came back. Try",
+   "sprite": "witness",
+   "start": 68.02733333333333,
+   "duration": 8.448
+  },
+  {
+   "id": "0f25bec6",
+   "group": "witness",
+   "text": "Bar is closed, detective. So is my mouth.",
+   "sprite": "witness",
+   "start": 76.72533333333334,
+   "duration": 3.456
+  },
+  {
+   "id": "20ec7c79",
+   "group": "witness",
+   "text": "Sister Flett. Nights, ward four. People say things at three in the morning that they would never say by day.",
+   "sprite": "witness",
+   "start": 80.43133333333333,
+   "duration": 7.104
+  },
+  {
+   "id": "f9c8a326",
+   "group": "witness",
+   "text": "They have been through my ward. You do not forget a patient.",
+   "sprite": "witness",
+   "start": 87.78533333333333,
+   "duration": 3.562666666666667
+  },
+  {
+   "id": "73a81e33",
+   "group": "witness",
+   "text": "One of the porters found something in a coat left on the wards and was too frightened to hand it in. It went to",
+   "sprite": "witness",
+   "start": 91.598,
+   "duration": 6.912
+  },
+  {
+   "id": "6a0d7ba3",
+   "group": "witness",
+   "text": "I have patients. Come back with a warrant or a fever.",
+   "sprite": "witness",
+   "start": 98.76,
+   "duration": 3.541333333333333
+  },
+  {
+   "id": "fa70bfc5",
+   "group": "witness",
+   "text": "Rainer. No relation to the docks, whatever the sign says. I walk the wharf from ten till six and I count the boats.",
+   "sprite": "witness",
+   "start": 102.55133333333333,
+   "duration": 7.872
+  },
+  {
+   "id": "573da908",
+   "group": "witness",
+   "text": "Comes down here more than a person should. I have watched them.",
+   "sprite": "witness",
+   "start": 110.67333333333333,
+   "duration": 3.7333333333333334
+  },
+  {
+   "id": "76a0f584",
+   "group": "witness",
+   "text": "Something went into the water off the end of the pier tonight and something else went into a pocket. The pocket walked toward",
+   "sprite": "witness",
+   "start": 114.65666666666667,
+   "duration": 7.765333333333333
+  },
+  {
+   "id": "d2e9b1a2",
+   "group": "witness",
+   "text": "Shift is over. Go and bother somebody with a warm office.",
+   "sprite": "witness",
+   "start": 122.672,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "2683deef",
+   "group": "witness",
+   "text": "Wyn. I keep the doors and the graves. One of those is busier than the other.",
+   "sprite": "witness",
+   "start": 126.93266666666666,
+   "duration": 4.8213333333333335
+  },
+  {
+   "id": "c2b16135",
+   "group": "witness",
+   "text": "I have watched that one at prayer. You learn things about a person on their knees.",
+   "sprite": "witness",
+   "start": 132.004,
+   "duration": 4.608
+  },
+  {
+   "id": "9eba7042",
+   "group": "witness",
+   "text": "Somebody was in the vestry who should not have been, and left by the side gate toward",
+   "sprite": "witness",
+   "start": 136.862,
+   "duration": 5.504
+  },
+  {
+   "id": "71cf0076",
+   "group": "witness",
+   "text": "The church is closed to the police and to everybody else. Good night.",
+   "sprite": "witness",
+   "start": 142.616,
+   "duration": 4.544
+  },
+  {
+   "id": "18cce1b6",
+   "group": "witness",
+   "text": "Cobb. I buy what people cannot look at any more. You would be surprised what that is.",
+   "sprite": "witness",
+   "start": 147.41,
+   "duration": 5.226666666666667
+  },
+  {
+   "id": "53ebec8b",
+   "group": "witness",
+   "text": "Regular. I keep a book on regulars, and not only for the money.",
+   "sprite": "witness",
+   "start": 152.88666666666666,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "8498b090",
+   "group": "witness",
+   "text": "A ticket was redeemed tonight in a hurry, cash, no name. The ticket came in from",
+   "sprite": "witness",
+   "start": 157.254,
+   "duration": 5.376
+  },
+  {
+   "id": "dd115c7d",
+   "group": "witness",
+   "text": "I have told you what I sell. I do not sell more than that.",
+   "sprite": "witness",
+   "start": 162.88,
+   "duration": 3.4346666666666668
+  },
+  {
+   "id": "a06e56f4",
+   "group": "witness",
+   "text": "Dot. I show people to their seats and I know which ones leave before the last act. Tonight somebody left before the first.",
+   "sprite": "witness",
+   "start": 166.56466666666665,
+   "duration": 8.042666666666667
+  },
+  {
+   "id": "ff4f9ef0",
+   "group": "witness",
+   "text": "Regular in the boxes. You see a lot from the aisle with a torch.",
+   "sprite": "witness",
+   "start": 174.85733333333334,
+   "duration": 4.2026666666666666
+  },
+  {
+   "id": "dd96b4ed",
+   "group": "witness",
+   "text": "A coat was left over a seat in box C and somebody came back for it in a hurry. They went out toward",
+   "sprite": "witness",
+   "start": 179.31,
+   "duration": 6.72
+  },
+  {
+   "id": "47a7e0bd",
+   "group": "witness",
+   "text": "Curtain is down, detective. So am I.",
+   "sprite": "witness",
+   "start": 186.28,
+   "duration": 3.0933333333333333
+  },
+  {
+   "id": "8de0db66",
+   "group": "witness",
+   "text": "Pardo. Nights. I pour coffee for people who cannot sleep and I remember what they order, because it never changes.",
+   "sprite": "witness",
+   "start": 189.62333333333333,
+   "duration": 7.402666666666667
+  },
+  {
+   "id": "a7c87d60",
+   "group": "witness",
+   "text": "Table by the window, always. I have poured for them a hundred times.",
+   "sprite": "witness",
+   "start": 197.276,
+   "duration": 4.501333333333333
+  },
+  {
+   "id": "4e89cde6",
+   "group": "witness",
+   "text": "Two coffees were ordered at a quarter past one and only one was drunk. The other chair was still warm when its owner went toward",
+   "sprite": "witness",
+   "start": 202.02733333333333,
+   "duration": 8.170666666666667
+  },
+  {
+   "id": "0be54025",
+   "group": "witness",
+   "text": "The kitchen is closed and so is my memory. Come back for breakfast.",
+   "sprite": "witness",
+   "start": 210.448,
+   "duration": 4.736
+  },
+  {
+   "id": "987f5d5c",
+   "group": "witness",
+   "text": "Amory. I lock the gates at ten and open them at six, and in between I see who climbs the railings.",
+   "sprite": "witness",
+   "start": 215.434,
+   "duration": 6.826666666666667
+  },
+  {
+   "id": "97d4d73e",
+   "group": "witness",
+   "text": "Walks the paths at night. You learn a person by how they walk in the dark.",
+   "sprite": "witness",
+   "start": 222.51066666666668,
+   "duration": 4.842666666666666
+  },
+  {
+   "id": "8017db18",
+   "group": "witness",
+   "text": "Somebody sat on the bandstand steps for an hour and left something under them. When they went, they went toward",
+   "sprite": "witness",
+   "start": 227.60333333333332,
+   "duration": 6.997333333333334
+  },
+  {
+   "id": "61f845d8",
+   "group": "witness",
+   "text": "The gates are locked. That includes to you.",
+   "sprite": "witness",
+   "start": 234.85066666666665,
+   "duration": 2.688
+  },
+  {
+   "id": "fb5be224",
+   "group": "witness",
+   "text": "Miss Vine. Second window. I see the money come in and go out, and the faces it belongs to.",
+   "sprite": "witness",
+   "start": 237.78866666666667,
+   "duration": 6.101333333333334
+  },
+  {
+   "id": "1f8c8105",
+   "group": "witness",
+   "text": "Has an account with us. You notice a customer who counts twice.",
+   "sprite": "witness",
+   "start": 244.14,
+   "duration": 4.16
+  },
+  {
+   "id": "16064851",
+   "group": "witness",
+   "text": "A deposit box was opened at ten to midnight by somebody who should have been elsewhere. What came out of it went to",
+   "sprite": "witness",
+   "start": 248.55,
+   "duration": 7.125333333333334
+  },
+  {
+   "id": "e3796620",
+   "group": "witness",
+   "text": "The bank is closed. It was closed when you arrived.",
+   "sprite": "witness",
+   "start": 255.92533333333333,
+   "duration": 3.456
+  },
+  {
+   "id": "fbd267d2",
+   "group": "witness",
+   "text": "Quill. Board nine. I connect the calls and I am not supposed to listen. I am not supposed to do a lot of things.",
+   "sprite": "witness",
+   "start": 259.6313333333333,
+   "duration": 7.36
+  },
+  {
+   "id": "53f60366",
+   "group": "witness",
+   "text": "I know the voice. You can tell a great deal from a voice at two in the morning.",
+   "sprite": "witness",
+   "start": 267.24133333333333,
+   "duration": 4.842666666666666
+  },
+  {
+   "id": "1169ae40",
+   "group": "witness",
+   "text": "A call went out from suite eleven-hundred at eight minutes to two. The number it reached is at",
+   "sprite": "witness",
+   "start": 272.334,
+   "duration": 6.058666666666666
+  },
+  {
+   "id": "224b03ad",
+   "group": "witness",
+   "text": "Board is lit. I have nine calls waiting and none of them are yours.",
+   "sprite": "witness",
+   "start": 278.6426666666667,
+   "duration": 4.586666666666667
+  },
+  {
+   "id": "54051d67",
+   "group": "witness",
+   "text": "Marsh. Last car up the Bluff. I punch the tickets and I remember the ones who do not have one.",
+   "sprite": "witness",
+   "start": 283.47933333333333,
+   "duration": 6.442666666666667
+  },
+  {
+   "id": "c1c34783",
+   "group": "witness",
+   "text": "Rides my car. You get to know a person by which seat they take.",
+   "sprite": "witness",
+   "start": 290.172,
+   "duration": 4.16
+  },
+  {
+   "id": "61f29da1",
+   "group": "witness",
+   "text": "Somebody got off at the wrong stop and walked back the way we had come. They were headed for",
+   "sprite": "witness",
+   "start": 294.582,
+   "duration": 5.461333333333333
+  },
+  {
+   "id": "fa35a70c",
+   "group": "witness",
+   "text": "Depot is shut and I have been on my feet for fourteen hours.",
+   "sprite": "witness",
+   "start": 300.29333333333335,
+   "duration": 3.968
+  },
+  {
+   "id": "cfc8daaa",
+   "group": "witness",
+   "text": "Grey. The reading room stays open for the insomniacs and I stay open with it. I know what everybody in this city reads.",
+   "sprite": "witness",
+   "start": 304.5113333333333,
+   "duration": 8
+  },
+  {
+   "id": "1f2a26d3",
+   "group": "witness",
+   "text": "Reads here. You can tell a person by what they look up.",
+   "sprite": "witness",
+   "start": 312.7613333333333,
+   "duration": 3.584
+  },
+  {
+   "id": "47a36736",
+   "group": "witness",
+   "text": "A back number of the Herald was cut with a razor tonight and the reader left in a hurry toward",
+   "sprite": "witness",
+   "start": 316.5953333333333,
+   "duration": 5.973333333333334
+  },
+  {
+   "id": "f21930f9",
+   "group": "witness",
+   "text": "This is a library. Lower your voice and leave.",
+   "sprite": "witness",
+   "start": 322.8186666666667,
+   "duration": 3.3493333333333335
+  },
+  {
+   "id": "e59840b5",
+   "group": "witness",
+   "text": "Roe. I keep the register and I wash the dead. The dead are tidier.",
+   "sprite": "witness",
+   "start": 326.418,
+   "duration": 4.8213333333333335
+  },
+  {
+   "id": "80a1089d",
+   "group": "witness",
+   "text": "Has been down here to see her. People give themselves away over a slab.",
+   "sprite": "witness",
+   "start": 331.4893333333333,
+   "duration": 4.842666666666666
+  },
+  {
+   "id": "562487c2",
+   "group": "witness",
+   "text": "A visitor left something in the coat room and did not come back for it. It has been sent on to",
+   "sprite": "witness",
+   "start": 336.582,
+   "duration": 5.9093333333333335
+  },
+  {
+   "id": "5d30de65",
+   "group": "witness",
+   "text": "I have three to wash before morning. You can find your own way out.",
+   "sprite": "witness",
+   "start": 342.74133333333333,
+   "duration": 4.16
+  },
+  {
+   "id": "78481301",
+   "group": "witness",
+   "text": "Dunn. I dispense. I do not ask what it is for, and I do not forget who asked.",
+   "sprite": "witness",
+   "start": 347.15133333333335,
+   "duration": 5.1626666666666665
+  },
+  {
+   "id": "1d3c9a2e",
+   "group": "witness",
+   "text": "Customer. I have handed them their little bottles across this counter.",
+   "sprite": "witness",
+   "start": 352.564,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "0636db21",
+   "group": "witness",
+   "text": "Somebody bought bandages and iodine at midnight with a hand that shook. They went from here toward",
+   "sprite": "witness",
+   "start": 357.20866666666666,
+   "duration": 6.442666666666667
+  },
+  {
+   "id": "288f606c",
+   "group": "witness",
+   "text": "The shop is shut and the register is shut with it.",
+   "sprite": "witness",
+   "start": 363.90133333333335,
+   "duration": 3.2426666666666666
+  },
+  {
+   "id": "85db93cb",
+   "group": "witness",
+   "text": "Lulu. I have worked this bar since Lillian sang here, and I remember who came to hear her and who came to watch.",
+   "sprite": "witness",
+   "start": 367.394,
+   "duration": 7.061333333333334
+  },
+  {
+   "id": "f709867a",
+   "group": "witness",
+   "text": "Drinks here. Sits where they can see the door.",
+   "sprite": "witness",
+   "start": 374.70533333333333,
+   "duration": 2.9013333333333335
+  },
+  {
+   "id": "432014e4",
+   "group": "witness",
+   "text": "The telephone by the bar rang at two and whoever answered it left their drink and walked out toward",
+   "sprite": "witness",
+   "start": 377.8566666666667,
+   "duration": 6.357333333333333
+  },
+  {
+   "id": "bcd5aee7",
+   "group": "witness",
+   "text": "Last orders was at two. That goes for questions.",
+   "sprite": "witness",
+   "start": 384.464,
+   "duration": 3.3706666666666667
+  },
+  {
+   "id": "03124af2",
+   "group": "witness",
+   "text": "Vasko. If it has four wheels on the Bluff, I have had my hands in it. Tonight one came in with a wing stove in.",
+   "sprite": "witness",
+   "start": 388.0846666666667,
+   "duration": 7.445333333333333
+  },
+  {
+   "id": "db96d57c",
+   "group": "witness",
+   "text": "Brings the car here. You learn a person by what they do to a car.",
+   "sprite": "witness",
+   "start": 395.78,
+   "duration": 4.309333333333333
+  },
+  {
+   "id": "50e7fa55",
+   "group": "witness",
+   "text": "There was something in the glove box that was not the owner's and I put it back. The car went on to",
+   "sprite": "witness",
+   "start": 400.33933333333334,
+   "duration": 6.250666666666667
+  },
+  {
+   "id": "69b8ea13",
+   "group": "witness",
+   "text": "Shop is shut. I have a Packard to finish.",
+   "sprite": "witness",
+   "start": 406.84,
+   "duration": 2.7946666666666666
+  },
+  {
+   "id": "bb407e0d",
+   "group": "witness",
+   "text": "Latimer. Every crate in here has a seal and every seal has my initials. Tonight one of them has somebody else's.",
+   "sprite": "witness",
+   "start": 409.88466666666665,
+   "duration": 7.530666666666667
+  },
+  {
+   "id": "e6f075dc",
+   "group": "witness",
+   "text": "Signs my book. You notice the hand that signs.",
+   "sprite": "witness",
+   "start": 417.6653333333333,
+   "duration": 3.3706666666666667
+  },
+  {
+   "id": "c1b4d91a",
+   "group": "witness",
+   "text": "A crate went out at one without paperwork. The cart that took it went toward",
+   "sprite": "witness",
+   "start": 421.286,
+   "duration": 4.906666666666666
+  },
+  {
+   "id": "2fbe1b91",
+   "group": "witness",
+   "text": "I am a clerk. Clerks do not know things. Please close the door.",
+   "sprite": "witness",
+   "start": 426.44266666666664,
+   "duration": 4.330666666666667
+  },
+  {
+   "id": "2b73b34f",
+   "group": "witness",
+   "text": "Denk. Last crossing at one-forty. I do not know names but I never forget a face that comes across after midnight.",
+   "sprite": "witness",
+   "start": 431.0233333333333,
+   "duration": 8.021333333333333
+  },
+  {
+   "id": "10664f77",
+   "group": "witness",
+   "text": "Crosses with me. You get to know a person on a cold deck.",
+   "sprite": "witness",
+   "start": 439.29466666666667,
+   "duration": 3.8613333333333335
+  },
+  {
+   "id": "0d46cb6a",
+   "group": "witness",
+   "text": "Somebody came across on the last boat with a bundle and left without it. The bundle was carried up to",
+   "sprite": "witness",
+   "start": 443.406,
+   "duration": 6.613333333333333
+  },
+  {
+   "id": "70f54573",
+   "group": "witness",
+   "text": "The boat is tied up and so am I.",
+   "sprite": "witness",
+   "start": 450.26933333333335,
+   "duration": 2.7306666666666666
+  },
+  {
+   "id": "1586cb43",
+   "group": "witness",
+   "text": "Sorrel. I keep the lamp and I keep the log. Every light on the water and most of the ones on the Bluff go in it.",
+   "sprite": "witness",
+   "start": 453.25,
+   "duration": 7.530666666666667
+  },
+  {
+   "id": "ce1f8c5f",
+   "group": "witness",
+   "text": "Passes under my lamp. You learn a person by what they carry.",
+   "sprite": "witness",
+   "start": 461.03066666666666,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "a7c80883",
+   "group": "witness",
+   "text": "A lantern went along the cliff path at half past two, stopped, and came back without something. It stopped at",
+   "sprite": "witness",
+   "start": 465.29133333333334,
+   "duration": 6.890666666666666
+  },
+  {
+   "id": "4d32c27f",
+   "group": "witness",
+   "text": "The lamp needs trimming and you need to go.",
+   "sprite": "witness",
+   "start": 472.432,
+   "duration": 2.816
   },
   {
    "id": "a4dd92d6",
@@ -1790,75 +3502,187 @@
    "duration": 15.274666666666667
   },
   {
-   "id": "8f2984c4",
-   "group": "name",
-   "text": "Harbour Station",
-   "sprite": "name",
-   "start": 49.134,
-   "duration": 1.408
-  },
-  {
    "id": "48afe52f",
    "group": "name",
    "text": "Pier Nine",
    "sprite": "name",
-   "start": 50.792,
+   "start": 79.362,
    "duration": 1.152
+  },
+  {
+   "id": "ef91a5a8",
+   "group": "name",
+   "text": "Harbourmaster's Office",
+   "sprite": "name",
+   "start": 80.764,
+   "duration": 1.9626666666666666
   },
   {
    "id": "8683b5a0",
    "group": "name",
    "text": "The Customs House",
    "sprite": "name",
-   "start": 52.194,
+   "start": 82.97666666666667,
    "duration": 1.7706666666666666
+  },
+  {
+   "id": "a99d7114",
+   "group": "name",
+   "text": "Marconi Station",
+   "sprite": "name",
+   "start": 84.99733333333333,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "412f085a",
+   "group": "name",
+   "text": "Dockside Café",
+   "sprite": "name",
+   "start": 86.826,
+   "duration": 1.5573333333333332
+  },
+  {
+   "id": "6564ebc8",
+   "group": "name",
+   "text": "Bond Store 12",
+   "sprite": "name",
+   "start": 88.63333333333334,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "e14c4d9d",
+   "group": "name",
+   "text": "Lundy's Pawn",
+   "sprite": "name",
+   "start": 90.462,
+   "duration": 1.3866666666666667
   },
   {
    "id": "4bda90b9",
    "group": "name",
    "text": "Longshoremen's Hall",
    "sprite": "name",
-   "start": 54.214666666666666,
+   "start": 92.09866666666667,
    "duration": 1.4933333333333334
   },
   {
-   "id": "d77eeacd",
+   "id": "aae4dd58",
    "group": "name",
-   "text": "Grieve Point Light",
+   "text": "The Docker's Voice",
    "sprite": "name",
-   "start": 55.958,
-   "duration": 1.4293333333333333
+   "start": 93.842,
+   "duration": 1.5146666666666666
   },
   {
-   "id": "e88ae44d",
+   "id": "8f2984c4",
    "group": "name",
-   "text": "The Brine & Bell",
+   "text": "Harbour Station",
    "sprite": "name",
-   "start": 57.63733333333333,
-   "duration": 1.216
+   "start": 95.60666666666667,
+   "duration": 1.408
   },
   {
    "id": "e93d27cf",
    "group": "name",
    "text": "Vetch & Son, Chandlers",
    "sprite": "name",
-   "start": 59.10333333333333,
+   "start": 97.26466666666667,
    "duration": 2.112
+  },
+  {
+   "id": "915c30c0",
+   "group": "name",
+   "text": "Salvi Shipping",
+   "sprite": "name",
+   "start": 99.62666666666667,
+   "duration": 1.344
+  },
+  {
+   "id": "119db347",
+   "group": "name",
+   "text": "Harbour Savings",
+   "sprite": "name",
+   "start": 101.22066666666667,
+   "duration": 1.4506666666666668
+  },
+  {
+   "id": "5322178d",
+   "group": "name",
+   "text": "Seamen's Infirmary",
+   "sprite": "name",
+   "start": 102.92133333333334,
+   "duration": 1.8133333333333332
+  },
+  {
+   "id": "d77eeacd",
+   "group": "name",
+   "text": "Grieve Point Light",
+   "sprite": "name",
+   "start": 104.98466666666667,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "82f61fb3",
+   "group": "name",
+   "text": "The Rask House",
+   "sprite": "name",
+   "start": 106.664,
+   "duration": 1.2586666666666666
+  },
+  {
+   "id": "8695e685",
+   "group": "name",
+   "text": "Fishermen's Chapel",
+   "sprite": "name",
+   "start": 108.17266666666667,
+   "duration": 1.7493333333333334
+  },
+  {
+   "id": "06d593ff",
+   "group": "name",
+   "text": "Coastguard Tower",
+   "sprite": "name",
+   "start": 110.172,
+   "duration": 1.6426666666666667
   },
   {
    "id": "81251897",
    "group": "name",
    "text": "The Ice House",
    "sprite": "name",
-   "start": 61.465333333333334,
+   "start": 112.06466666666667,
    "duration": 1.3226666666666667
+  },
+  {
+   "id": "e88ae44d",
+   "group": "name",
+   "text": "The Brine & Bell",
+   "sprite": "name",
+   "start": 113.63733333333333,
+   "duration": 1.216
+  },
+  {
+   "id": "9bd31a5c",
+   "group": "name",
+   "text": "Seamen's Mission",
+   "sprite": "name",
+   "start": 115.10333333333334,
+   "duration": 1.536
+  },
+  {
+   "id": "287a021d",
+   "group": "name",
+   "text": "Quay Tram Stop",
+   "sprite": "name",
+   "start": 116.88933333333334,
+   "duration": 1.4506666666666668
   },
   {
    "id": "6661a8d2",
    "group": "name",
    "text": "Number Four Drydock",
    "sprite": "name",
-   "start": 63.038,
+   "start": 118.59,
    "duration": 1.8346666666666667
   },
   {
@@ -1866,31 +3690,63 @@
    "group": "name",
    "text": "Harbour Baths",
    "sprite": "name",
-   "start": 65.12266666666666,
+   "start": 120.67466666666667,
    "duration": 1.216
+  },
+  {
+   "id": "818a3fd6",
+   "group": "name",
+   "text": "The Salt Works",
+   "sprite": "name",
+   "start": 122.14066666666666,
+   "duration": 1.28
+  },
+  {
+   "id": "b223d471",
+   "group": "name",
+   "text": "The Ropewalk",
+   "sprite": "name",
+   "start": 123.67066666666666,
+   "duration": 1.0666666666666667
   },
   {
    "id": "9c889ec5",
    "group": "name",
    "text": "The Trawler Berths",
    "sprite": "name",
-   "start": 66.58866666666667,
+   "start": 124.98733333333334,
    "duration": 1.4293333333333333
+  },
+  {
+   "id": "afbfcbd5",
+   "group": "name",
+   "text": "Narrows Cannery",
+   "sprite": "name",
+   "start": 126.66666666666667,
+   "duration": 1.3866666666666667
   },
   {
    "id": "7b621385",
    "group": "name",
    "text": "Harbour Morgue",
    "sprite": "name",
-   "start": 68.268,
+   "start": 128.30333333333334,
    "duration": 1.2586666666666666
+  },
+  {
+   "id": "bb3dcd2f",
+   "group": "name",
+   "text": "Ferry Slip",
+   "sprite": "name",
+   "start": 129.812,
+   "duration": 1.1093333333333333
   },
   {
    "id": "38d45de7",
    "group": "name",
    "text": "Dov Hollis",
    "sprite": "name",
-   "start": 69.77666666666667,
+   "start": 131.17133333333334,
    "duration": 1.216
   },
   {
@@ -1898,7 +3754,7 @@
    "group": "name",
    "text": "Hollis",
    "sprite": "name",
-   "start": 71.24266666666666,
+   "start": 132.63733333333334,
    "duration": 0.9173333333333333
   },
   {
@@ -1914,7 +3770,7 @@
    "group": "name",
    "text": "Etta Wren",
    "sprite": "name",
-   "start": 72.41,
+   "start": 133.80466666666666,
    "duration": 1.152
   },
   {
@@ -1922,7 +3778,7 @@
    "group": "name",
    "text": "Wren",
    "sprite": "name",
-   "start": 73.812,
+   "start": 135.20666666666668,
    "duration": 0.8106666666666666
   },
   {
@@ -1938,7 +3794,7 @@
    "group": "name",
    "text": "Bernard Okafor",
    "sprite": "name",
-   "start": 74.87266666666666,
+   "start": 136.26733333333334,
    "duration": 1.5786666666666667
   },
   {
@@ -1946,7 +3802,7 @@
    "group": "name",
    "text": "Okafor",
    "sprite": "name",
-   "start": 76.70133333333334,
+   "start": 138.096,
    "duration": 1.024
   },
   {
@@ -1962,7 +3818,7 @@
    "group": "name",
    "text": "Nunzio Salvi",
    "sprite": "name",
-   "start": 77.97533333333334,
+   "start": 139.37,
    "duration": 1.5146666666666666
   },
   {
@@ -1970,7 +3826,7 @@
    "group": "name",
    "text": "Salvi",
    "sprite": "name",
-   "start": 79.74,
+   "start": 141.13466666666667,
    "duration": 0.96
   },
   {
@@ -1986,7 +3842,7 @@
    "group": "name",
    "text": "Tilda Rask",
    "sprite": "name",
-   "start": 80.95,
+   "start": 142.34466666666665,
    "duration": 1.2373333333333334
   },
   {
@@ -1994,7 +3850,7 @@
    "group": "name",
    "text": "Rask",
    "sprite": "name",
-   "start": 82.43733333333333,
+   "start": 143.832,
    "duration": 0.768
   },
   {
@@ -2010,7 +3866,7 @@
    "group": "name",
    "text": "Mr. Garrow",
    "sprite": "name",
-   "start": 83.45533333333333,
+   "start": 144.85,
    "duration": 1.408
   },
   {
@@ -2018,7 +3874,7 @@
    "group": "name",
    "text": "Garrow",
    "sprite": "name",
-   "start": 85.11333333333333,
+   "start": 146.508,
    "duration": 0.8746666666666667
   },
   {
@@ -2034,7 +3890,7 @@
    "group": "name",
    "text": "Dr. Ilse Fenn",
    "sprite": "name",
-   "start": 86.238,
+   "start": 147.63266666666667,
    "duration": 1.5146666666666666
   },
   {
@@ -2042,7 +3898,7 @@
    "group": "name",
    "text": "Fenn",
    "sprite": "name",
-   "start": 88.00266666666667,
+   "start": 149.39733333333334,
    "duration": 0.768
   },
   {
@@ -2058,7 +3914,7 @@
    "group": "name",
    "text": "Marcel Ledoux",
    "sprite": "name",
-   "start": 89.02066666666667,
+   "start": 150.41533333333334,
    "duration": 1.536
   },
   {
@@ -2066,7 +3922,7 @@
    "group": "name",
    "text": "Ledoux",
    "sprite": "name",
-   "start": 90.80666666666667,
+   "start": 152.20133333333334,
    "duration": 0.832
   },
   {
@@ -2076,6 +3932,622 @@
    "sprite": "motive",
    "start": 64.56533333333333,
    "duration": 4.928
+  },
+  {
+   "id": "657b6aea",
+   "group": "witness",
+   "text": "Mags. Forty men in here every night and I know what every one of them drinks and owes.",
+   "sprite": "witness",
+   "start": 475.498,
+   "duration": 5.568
+  },
+  {
+   "id": "2e2c13da",
+   "group": "witness",
+   "text": "Drinks in my house. I could draw them from memory.",
+   "sprite": "witness",
+   "start": 481.316,
+   "duration": 3.2
+  },
+  {
+   "id": "3af9a294",
+   "group": "witness",
+   "text": "Somebody settled a tab tonight that has been open since March. In coin. They came in from",
+   "sprite": "witness",
+   "start": 484.766,
+   "duration": 6.101333333333334
+  },
+  {
+   "id": "0dfb9d6d",
+   "group": "witness",
+   "text": "Last orders was an hour ago, detective. That goes for questions.",
+   "sprite": "witness",
+   "start": 491.1173333333333,
+   "duration": 4.629333333333333
+  },
+  {
+   "id": "00b58db2",
+   "group": "witness",
+   "text": "Aldous. I copy the manifests. Every crate in this harbour crosses my desk twice, once as it is and once as it is declared.",
+   "sprite": "witness",
+   "start": 495.99666666666667,
+   "duration": 8.746666666666666
+  },
+  {
+   "id": "84fdee00",
+   "group": "witness",
+   "text": "A manifest was altered tonight and the ink is still wet. The crate it describes is at",
+   "sprite": "witness",
+   "start": 504.99333333333334,
+   "duration": 5.781333333333333
+  },
+  {
+   "id": "534427c6",
+   "group": "witness",
+   "text": "Tom Vetch. The son on the sign. Everyone who works this harbour buys rope from us and I cut it for them.",
+   "sprite": "witness",
+   "start": 511.0246666666667,
+   "duration": 6.997333333333334
+  },
+  {
+   "id": "891273a6",
+   "group": "witness",
+   "text": "Customer. I measure their rope; I have measured them.",
+   "sprite": "witness",
+   "start": 518.272,
+   "duration": 3.2853333333333334
+  },
+  {
+   "id": "9e5c5269",
+   "group": "witness",
+   "text": "Somebody bought forty feet of line tonight and paid double to have it cut quiet. They took it down to",
+   "sprite": "witness",
+   "start": 521.8073333333333,
+   "duration": 6.464
+  },
+  {
+   "id": "07276c5f",
+   "group": "witness",
+   "text": "Dad says not to talk to police. I have talked enough.",
+   "sprite": "witness",
+   "start": 528.5213333333334,
+   "duration": 3.584
+  },
+  {
+   "id": "a8496cde",
+   "group": "witness",
+   "text": "Kite. I sit with the dead. They are better company than you would think and worse than you would hope.",
+   "sprite": "witness",
+   "start": 532.3553333333333,
+   "duration": 5.781333333333333
+  },
+  {
+   "id": "df895b1b",
+   "group": "witness",
+   "text": "Has been down to see Bask. People give themselves away over a slab.",
+   "sprite": "witness",
+   "start": 538.3866666666667,
+   "duration": 4.8
+  },
+  {
+   "id": "258eeee3",
+   "group": "witness",
+   "text": "A visitor left something in the coat room and did not come back for it. It was sent on to",
+   "sprite": "witness",
+   "start": 543.4366666666666,
+   "duration": 5.589333333333333
+  },
+  {
+   "id": "56cb5b96",
+   "group": "witness",
+   "text": "Pell. I mend nets and I keep my head down. Tonight I looked up once, which is once too often.",
+   "sprite": "witness",
+   "start": 549.276,
+   "duration": 6.549333333333333
+  },
+  {
+   "id": "ffab6e07",
+   "group": "witness",
+   "text": "Works the berths. You get to know a person by their walk on wet boards.",
+   "sprite": "witness",
+   "start": 556.0753333333333,
+   "duration": 4.522666666666667
+  },
+  {
+   "id": "314fe5d1",
+   "group": "witness",
+   "text": "Something was thrown from a boat and did not sink. It fetched up by",
+   "sprite": "witness",
+   "start": 560.848,
+   "duration": 4.309333333333333
+  },
+  {
+   "id": "1f5e9047",
+   "group": "witness",
+   "text": "I said I keep my head down. I am putting it back down now.",
+   "sprite": "witness",
+   "start": 565.4073333333333,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "3c59d9dd",
+   "group": "witness",
+   "text": "Nell Harrow. Towels and tickets. Nobody has any pockets in here, which is why they talk.",
+   "sprite": "witness",
+   "start": 569.668,
+   "duration": 6.1226666666666665
+  },
+  {
+   "id": "bc83c2b8",
+   "group": "witness",
+   "text": "Bathes here. You cannot hide much in a towel.",
+   "sprite": "witness",
+   "start": 576.0406666666667,
+   "duration": 3.0933333333333333
+  },
+  {
+   "id": "3cfe5635",
+   "group": "witness",
+   "text": "A coat was left in the changing room with something heavy in the lining. The owner ran toward",
+   "sprite": "witness",
+   "start": 579.384,
+   "duration": 6.336
+  },
+  {
+   "id": "554b28e9",
+   "group": "witness",
+   "text": "We close at two. That is all I have for you.",
+   "sprite": "witness",
+   "start": 585.97,
+   "duration": 2.965333333333333
+  },
+  {
+   "id": "5208da44",
+   "group": "witness",
+   "text": "Gault. I log the boats. In, out, tonnage, master. When the log and the water disagree, I write down the water.",
+   "sprite": "witness",
+   "start": 589.1853333333333,
+   "duration": 7.616
+  },
+  {
+   "id": "ba739050",
+   "group": "witness",
+   "text": "Comes to my counter. You learn a person by how they lie about tonnage.",
+   "sprite": "witness",
+   "start": 597.0513333333333,
+   "duration": 4.778666666666667
+  },
+  {
+   "id": "ceeada70",
+   "group": "witness",
+   "text": "A boat cleared out at eleven with no cargo declared and came back at three riding low. It tied up at",
+   "sprite": "witness",
+   "start": 602.08,
+   "duration": 6.933333333333334
+  },
+  {
+   "id": "765902cf",
+   "group": "witness",
+   "text": "The office is closed and the log is locked. Good night.",
+   "sprite": "witness",
+   "start": 609.2633333333333,
+   "duration": 3.8826666666666667
+  },
+  {
+   "id": "eb072344",
+   "group": "witness",
+   "text": "Sparks. Real name Tomasz, nobody uses it. Every message on the water comes through these headphones and most of them are about fish. Most.",
+   "sprite": "witness",
+   "start": 613.396,
+   "duration": 9.749333333333333
+  },
+  {
+   "id": "c5c879c1",
+   "group": "witness",
+   "text": "Sends through me. You can tell a person by their fist on a key.",
+   "sprite": "witness",
+   "start": 623.3953333333334,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "3f1209e1",
+   "group": "witness",
+   "text": "A message went out to a boat at one in the morning: STOP AT THE USUAL. The usual, in this harbour, is",
+   "sprite": "witness",
+   "start": 627.7626666666666,
+   "duration": 6.72
+  },
+  {
+   "id": "81abfa31",
+   "group": "witness",
+   "text": "I have a ship calling and you are not it.",
+   "sprite": "witness",
+   "start": 634.7326666666667,
+   "duration": 2.56
+  },
+  {
+   "id": "d932f918",
+   "group": "witness",
+   "text": "Brack. I sweep up after the meetings and I have swept up after every man who ever wanted to run this union.",
+   "sprite": "witness",
+   "start": 637.5426666666667,
+   "duration": 6.741333333333333
+  },
+  {
+   "id": "b3d7dcc2",
+   "group": "witness",
+   "text": "Sits in that hall every Thursday. I have swept around their feet for years.",
+   "sprite": "witness",
+   "start": 644.534,
+   "duration": 4.970666666666666
+  },
+  {
+   "id": "33595257",
+   "group": "witness",
+   "text": "The back office was opened after the meeting with a key that was not the vice-chair's. Whatever was taken went to",
+   "sprite": "witness",
+   "start": 649.7546666666667,
+   "duration": 7.189333333333333
+  },
+  {
+   "id": "8076b5ba",
+   "group": "witness",
+   "text": "The hall is locked and I am going home.",
+   "sprite": "witness",
+   "start": 657.194,
+   "duration": 2.8373333333333335
+  },
+  {
+   "id": "0c9d7b19",
+   "group": "witness",
+   "text": "Delacroix. I set the Voice by hand. I know every word before the union does, and I know who wanted which words changed.",
+   "sprite": "witness",
+   "start": 660.2813333333334,
+   "duration": 8.021333333333333
+  },
+  {
+   "id": "1a378613",
+   "group": "witness",
+   "text": "Brings me copy. You learn a person by what they cross out.",
+   "sprite": "witness",
+   "start": 668.5526666666667,
+   "duration": 3.8826666666666667
+  },
+  {
+   "id": "5a4b2a20",
+   "group": "witness",
+   "text": "A notice was pulled from tomorrow's edition at midnight by somebody who had no business in the shop. They left toward",
+   "sprite": "witness",
+   "start": 672.6853333333333,
+   "duration": 7.68
+  },
+  {
+   "id": "0bdcadb1",
+   "group": "witness",
+   "text": "The forme is locked and the press is running. Mind your fingers on the way out.",
+   "sprite": "witness",
+   "start": 680.6153333333333,
+   "duration": 5.077333333333334
+  },
+  {
+   "id": "b3ab0280",
+   "group": "witness",
+   "text": "Oyelaran. Six weeks I have watched these crates and six weeks nobody has come for them. Until tonight.",
+   "sprite": "witness",
+   "start": 685.9426666666667,
+   "duration": 6.762666666666667
+  },
+  {
+   "id": "4a140d23",
+   "group": "witness",
+   "text": "Comes to the seal. You learn a person by how they look at a seal they cannot break.",
+   "sprite": "witness",
+   "start": 692.9553333333333,
+   "duration": 5.184
+  },
+  {
+   "id": "b354c3b4",
+   "group": "witness",
+   "text": "One crate was opened and closed again badly. What came out of it went along the quay to",
+   "sprite": "witness",
+   "start": 698.3893333333333,
+   "duration": 5.8453333333333335
+  },
+  {
+   "id": "e0e4a4a5",
+   "group": "witness",
+   "text": "I have a store to watch. I am watching it.",
+   "sprite": "witness",
+   "start": 704.4846666666666,
+   "duration": 2.9013333333333335
+  },
+  {
+   "id": "cd63af05",
+   "group": "witness",
+   "text": "Nan. Tea at a penny, and for a penny more I will tell you who drank it. Bask drank it here every morning for twenty years.",
+   "sprite": "witness",
+   "start": 707.636,
+   "duration": 7.8293333333333335
+  },
+  {
+   "id": "a9336d59",
+   "group": "witness",
+   "text": "Takes tea here. I have set a cup in front of them a thousand times.",
+   "sprite": "witness",
+   "start": 715.7153333333333,
+   "duration": 4.458666666666667
+  },
+  {
+   "id": "e6bcf9c2",
+   "group": "witness",
+   "text": "Somebody left a newspaper folded round something heavy and did not come back. I put it aside, and then somebody else took it to",
+   "sprite": "witness",
+   "start": 720.424,
+   "duration": 8.469333333333333
+  },
+  {
+   "id": "f209b0f2",
+   "group": "witness",
+   "text": "Kettle is off. So am I.",
+   "sprite": "witness",
+   "start": 729.1433333333333,
+   "duration": 2.1973333333333334
+  },
+  {
+   "id": "646219e1",
+   "group": "witness",
+   "text": "Penrose. I keep the brass polished and the names read. There is a new name in chalk this week and I did not write it.",
+   "sprite": "witness",
+   "start": 731.5906666666667,
+   "duration": 7.552
+  },
+  {
+   "id": "b46c8ece",
+   "group": "witness",
+   "text": "Comes to the brass. You learn a person by which name they touch.",
+   "sprite": "witness",
+   "start": 739.3926666666666,
+   "duration": 3.968
+  },
+  {
+   "id": "a551ad42",
+   "group": "witness",
+   "text": "Somebody knelt here at four this morning with sand on their knees and left something in the poor box. It was carried off to",
+   "sprite": "witness",
+   "start": 743.6106666666667,
+   "duration": 7.317333333333333
+  },
+  {
+   "id": "402d3803",
+   "group": "witness",
+   "text": "The chapel is open to everyone. Everyone but you, tonight.",
+   "sprite": "witness",
+   "start": 751.178,
+   "duration": 4.1386666666666665
+  },
+  {
+   "id": "7974906b",
+   "group": "witness",
+   "text": "Sable. I log every hull that crosses the Narrows after dark and I know which ones are not in the log.",
+   "sprite": "witness",
+   "start": 755.5666666666667,
+   "duration": 6.634666666666667
+  },
+  {
+   "id": "8d77bc7f",
+   "group": "witness",
+   "text": "Passes under my glass. You learn a person by how they stand at a wheel.",
+   "sprite": "witness",
+   "start": 762.4513333333333,
+   "duration": 4.906666666666666
+  },
+  {
+   "id": "6ea91c2d",
+   "group": "witness",
+   "text": "A dinghy with no light crossed at half past two and beached below",
+   "sprite": "witness",
+   "start": 767.608,
+   "duration": 4.16
+  },
+  {
+   "id": "5c0d5c8b",
+   "group": "witness",
+   "text": "Watch changes at six. Come back then and ask somebody else.",
+   "sprite": "witness",
+   "start": 772.018,
+   "duration": 4.224
+  },
+  {
+   "id": "566b7a8a",
+   "group": "witness",
+   "text": "Nurse Ives. I keep Dr. Fenn's wards and I keep them better than she keeps her certificates.",
+   "sprite": "witness",
+   "start": 776.492,
+   "duration": 6.250666666666667
+  },
+  {
+   "id": "a264c482",
+   "group": "witness",
+   "text": "Been through my ward. You do not forget a patient, or a visitor.",
+   "sprite": "witness",
+   "start": 782.9926666666667,
+   "duration": 4.16
+  },
+  {
+   "id": "221aeb49",
+   "group": "witness",
+   "text": "A bag came in with a patient and went out without him. The porter carried it to",
+   "sprite": "witness",
+   "start": 787.4026666666666,
+   "duration": 5.0986666666666665
+  },
+  {
+   "id": "28907695",
+   "group": "witness",
+   "text": "Ward rounds. If you are not bleeding, out.",
+   "sprite": "witness",
+   "start": 792.7513333333334,
+   "duration": 2.7733333333333334
+  },
+  {
+   "id": "8895b9a7",
+   "group": "witness",
+   "text": "Cully. I cut ice and I stack it. Tonight a block came back to me with a hole cut in it the size of a man.",
+   "sprite": "witness",
+   "start": 795.7746666666667,
+   "duration": 7.488
+  },
+  {
+   "id": "51fecb0f",
+   "group": "witness",
+   "text": "Buys ice. You learn a person by what they need kept cold.",
+   "sprite": "witness",
+   "start": 803.5126666666666,
+   "duration": 3.968
+  },
+  {
+   "id": "219c5cf8",
+   "group": "witness",
+   "text": "A cart came for ice at three that had no business needing it. It went on toward",
+   "sprite": "witness",
+   "start": 807.7306666666667,
+   "duration": 5.482666666666667
+  },
+  {
+   "id": "5a2c097f",
+   "group": "witness",
+   "text": "Ice does not wait and neither do I.",
+   "sprite": "witness",
+   "start": 813.4633333333334,
+   "duration": 2.9013333333333335
+  },
+  {
+   "id": "cf6f112e",
+   "group": "witness",
+   "text": "Lundy. Everything in this harbour ends up in my window sooner or later. Tonight something came in that I would not put in the window.",
+   "sprite": "witness",
+   "start": 816.6146666666667,
+   "duration": 8.469333333333333
+  },
+  {
+   "id": "78ebf96d",
+   "group": "witness",
+   "text": "Pawns with me. I look at the hands that hand things over.",
+   "sprite": "witness",
+   "start": 825.334,
+   "duration": 3.8186666666666667
+  },
+  {
+   "id": "132ed5ea",
+   "group": "witness",
+   "text": "A ticket was redeemed for cash at midnight by somebody who was not the one who pledged it. They went to",
+   "sprite": "witness",
+   "start": 829.4026666666666,
+   "duration": 6.634666666666667
+  },
+  {
+   "id": "a6652355",
+   "group": "witness",
+   "text": "Shop is shut. I have said more than the sign allows.",
+   "sprite": "witness",
+   "start": 836.2873333333333,
+   "duration": 3.4133333333333336
+  },
+  {
+   "id": "cef1af3c",
+   "group": "witness",
+   "text": "Rook. Last car along the quay at midnight. I punch tickets and I remember who did not want to be remembered.",
+   "sprite": "witness",
+   "start": 839.9506666666666,
+   "duration": 6.8693333333333335
+  },
+  {
+   "id": "630e2b2c",
+   "group": "witness",
+   "text": "Rides my car. You learn a person by where they will not sit.",
+   "sprite": "witness",
+   "start": 847.07,
+   "duration": 3.968
+  },
+  {
+   "id": "067c625c",
+   "group": "witness",
+   "text": "Somebody rode to the end of the line and walked back the way we had come, toward",
+   "sprite": "witness",
+   "start": 851.288,
+   "duration": 4.48
+  },
+  {
+   "id": "32a325a8",
+   "group": "witness",
+   "text": "Car is in the shed. So am I.",
+   "sprite": "witness",
+   "start": 856.018,
+   "duration": 2.517333333333333
+  },
+  {
+   "id": "28619dac",
+   "group": "witness",
+   "text": "Orme. I bag salt. A hundredweight a bag, six hundred bags a night, and tonight I am one short.",
+   "sprite": "witness",
+   "start": 858.7853333333334,
+   "duration": 6.698666666666667
+  },
+  {
+   "id": "52ee3d67",
+   "group": "witness",
+   "text": "Comes for salt. You learn a person by how much they carry.",
+   "sprite": "witness",
+   "start": 865.734,
+   "duration": 3.84
+  },
+  {
+   "id": "8e7b286a",
+   "group": "witness",
+   "text": "The missing bag was carried out on a shoulder and the shoulder went up the lane toward",
+   "sprite": "witness",
+   "start": 869.824,
+   "duration": 5.226666666666667
+  },
+  {
+   "id": "0fc2a724",
+   "group": "witness",
+   "text": "The kilns need feeding. You do not.",
+   "sprite": "witness",
+   "start": 875.3006666666666,
+   "duration": 2.7093333333333334
+  },
+  {
+   "id": "a4726c7d",
+   "group": "witness",
+   "text": "Fry. Forty cots and a stove. I count them in at ten and I count them in the morning, and the numbers are not always the same.",
+   "sprite": "witness",
+   "start": 878.26,
+   "duration": 8.277333333333333
+  },
+  {
+   "id": "5c3c0aed",
+   "group": "witness",
+   "text": "Sleeps here sometimes, when there is nowhere else. You learn a person by what they dream about aloud.",
+   "sprite": "witness",
+   "start": 886.7873333333333,
+   "duration": 6.485333333333333
+  },
+  {
+   "id": "5c1d74dc",
+   "group": "witness",
+   "text": "A man came in at four with his boots full of water and went out again at five without his bundle. He went toward",
+   "sprite": "witness",
+   "start": 893.5226666666666,
+   "duration": 7.232
+  },
+  {
+   "id": "dd3d878a",
+   "group": "witness",
+   "text": "The men are sleeping. Lower your voice and go.",
+   "sprite": "witness",
+   "start": 901.0046666666667,
+   "duration": 3.3493333333333335
   },
   {
    "id": "aa680be1",
@@ -2138,7 +4610,7 @@
    "group": "name",
    "text": "The Bell Tower",
    "sprite": "name",
-   "start": 91.88866666666667,
+   "start": 153.28333333333333,
    "duration": 1.344
   },
   {
@@ -2146,47 +4618,103 @@
    "group": "name",
    "text": "The Rectory",
    "sprite": "name",
-   "start": 93.48266666666666,
+   "start": 154.87733333333333,
    "duration": 1.1093333333333333
   },
   {
-   "id": "850bf1c5",
+   "id": "a19bf1ad",
    "group": "name",
-   "text": "Ordell Academy",
+   "text": "The Chapter House",
    "sprite": "name",
-   "start": 94.842,
-   "duration": 1.5786666666666667
-  },
-  {
-   "id": "ee202edc",
-   "group": "name",
-   "text": "The Observatory",
-   "sprite": "name",
-   "start": 96.67066666666666,
-   "duration": 1.344
-  },
-  {
-   "id": "31193129",
-   "group": "name",
-   "text": "Hill Division",
-   "sprite": "name",
-   "start": 98.26466666666667,
-   "duration": 1.344
+   "start": 156.23666666666668,
+   "duration": 1.5573333333333332
   },
   {
    "id": "e4e92f03",
    "group": "name",
    "text": "The Almshouse",
    "sprite": "name",
-   "start": 99.85866666666666,
+   "start": 158.044,
    "duration": 1.2586666666666666
+  },
+  {
+   "id": "1c009075",
+   "group": "name",
+   "text": "Diocesan Office",
+   "sprite": "name",
+   "start": 159.55266666666665,
+   "duration": 1.728
+  },
+  {
+   "id": "4c0cdfa1",
+   "group": "name",
+   "text": "Ordell Bell Foundry",
+   "sprite": "name",
+   "start": 161.53066666666666,
+   "duration": 1.6853333333333333
+  },
+  {
+   "id": "31193129",
+   "group": "name",
+   "text": "Hill Division",
+   "sprite": "name",
+   "start": 163.466,
+   "duration": 1.344
+  },
+  {
+   "id": "91c3f687",
+   "group": "name",
+   "text": "Verger's Cottage",
+   "sprite": "name",
+   "start": 165.06,
+   "duration": 1.6853333333333333
+  },
+  {
+   "id": "e3f0c7eb",
+   "group": "name",
+   "text": "The Close Green",
+   "sprite": "name",
+   "start": 166.99533333333332,
+   "duration": 1.408
+  },
+  {
+   "id": "850bf1c5",
+   "group": "name",
+   "text": "Ordell Academy",
+   "sprite": "name",
+   "start": 168.65333333333334,
+   "duration": 1.5786666666666667
+  },
+  {
+   "id": "61872639",
+   "group": "name",
+   "text": "Ordell Cemetery",
+   "sprite": "name",
+   "start": 170.482,
+   "duration": 1.4293333333333333
+  },
+  {
+   "id": "99ccfa18",
+   "group": "name",
+   "text": "Hill Dispensary",
+   "sprite": "name",
+   "start": 172.16133333333335,
+   "duration": 1.536
+  },
+  {
+   "id": "ee202edc",
+   "group": "name",
+   "text": "The Observatory",
+   "sprite": "name",
+   "start": 173.94733333333335,
+   "duration": 1.344
   },
   {
    "id": "e267b3bc",
    "group": "name",
    "text": "The Glasshouse",
    "sprite": "name",
-   "start": 101.36733333333333,
+   "start": 175.54133333333334,
    "duration": 1.216
   },
   {
@@ -2194,47 +4722,135 @@
    "group": "name",
    "text": "Marrow House",
    "sprite": "name",
-   "start": 102.83333333333333,
+   "start": 177.00733333333332,
    "duration": 1.3013333333333332
   },
   {
-   "id": "61872639",
+   "id": "2fb60db2",
    "group": "name",
-   "text": "Ordell Cemetery",
+   "text": "The Lamplighter's Arms",
    "sprite": "name",
-   "start": 104.38466666666666,
-   "duration": 1.4293333333333333
+   "start": 178.55866666666665,
+   "duration": 1.984
+  },
+  {
+   "id": "72b7eff3",
+   "group": "name",
+   "text": "The Quint Villa",
+   "sprite": "name",
+   "start": 180.79266666666666,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "d10d4ae5",
+   "group": "name",
+   "text": "Amsel's Books",
+   "sprite": "name",
+   "start": 182.36533333333333,
+   "duration": 1.28
+  },
+  {
+   "id": "dc43906b",
+   "group": "name",
+   "text": "Terrace Tea Rooms",
+   "sprite": "name",
+   "start": 183.89533333333333,
+   "duration": 1.4506666666666668
   },
   {
    "id": "a1db5692",
    "group": "name",
    "text": "The Tram Depot",
    "sprite": "name",
-   "start": 106.064,
+   "start": 185.596,
    "duration": 1.536
+  },
+  {
+   "id": "249e4990",
+   "group": "name",
+   "text": "Hobb's Pawn",
+   "sprite": "name",
+   "start": 187.382,
+   "duration": 1.2373333333333334
+  },
+  {
+   "id": "b7fa9b35",
+   "group": "name",
+   "text": "Lower Chapel",
+   "sprite": "name",
+   "start": 188.86933333333334,
+   "duration": 1.3226666666666667
+  },
+  {
+   "id": "95d1b5e3",
+   "group": "name",
+   "text": "Hill Laundry",
+   "sprite": "name",
+   "start": 190.442,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "83e6008b",
+   "group": "name",
+   "text": "Tallow Street",
+   "sprite": "name",
+   "start": 191.88666666666666,
+   "duration": 1.1946666666666668
+  },
+  {
+   "id": "7519d878",
+   "group": "name",
+   "text": "Ordell Water Board",
+   "sprite": "name",
+   "start": 193.33133333333333,
+   "duration": 1.856
   },
   {
    "id": "ec86c469",
    "group": "name",
    "text": "The Reservoir",
    "sprite": "name",
-   "start": 107.85,
+   "start": 195.43733333333333,
    "duration": 1.2373333333333334
+  },
+  {
+   "id": "01c30714",
+   "group": "name",
+   "text": "Reservoir Boathouse",
+   "sprite": "name",
+   "start": 196.92466666666667,
+   "duration": 1.7493333333333334
+  },
+  {
+   "id": "1b448972",
+   "group": "name",
+   "text": "The Pump House",
+   "sprite": "name",
+   "start": 198.924,
+   "duration": 1.216
   },
   {
    "id": "f61473e8",
    "group": "name",
    "text": "The Crypt",
    "sprite": "name",
-   "start": 109.33733333333333,
+   "start": 200.39,
    "duration": 0.9173333333333333
+  },
+  {
+   "id": "7e38f92b",
+   "group": "name",
+   "text": "Waterworks Tower",
+   "sprite": "name",
+   "start": 201.55733333333333,
+   "duration": 1.4933333333333334
   },
   {
    "id": "50d6afcd",
    "group": "name",
    "text": "Cormac Ill",
    "sprite": "name",
-   "start": 110.50466666666667,
+   "start": 203.30066666666667,
    "duration": 1.1946666666666668
   },
   {
@@ -2242,7 +4858,7 @@
    "group": "name",
    "text": "Ill",
    "sprite": "name",
-   "start": 111.94933333333333,
+   "start": 204.74533333333332,
    "duration": 0.704
   },
   {
@@ -2258,7 +4874,7 @@
    "group": "name",
    "text": "Canon Aldritch",
    "sprite": "name",
-   "start": 112.90333333333334,
+   "start": 205.69933333333333,
    "duration": 1.5573333333333332
   },
   {
@@ -2266,7 +4882,7 @@
    "group": "name",
    "text": "Aldritch",
    "sprite": "name",
-   "start": 114.71066666666667,
+   "start": 207.50666666666666,
    "duration": 0.96
   },
   {
@@ -2282,7 +4898,7 @@
    "group": "name",
    "text": "Matron Sybil Crake",
    "sprite": "name",
-   "start": 115.92066666666666,
+   "start": 208.71666666666667,
    "duration": 1.7493333333333334
   },
   {
@@ -2290,7 +4906,7 @@
    "group": "name",
    "text": "Crake",
    "sprite": "name",
-   "start": 117.92,
+   "start": 210.716,
    "duration": 0.7253333333333334
   },
   {
@@ -2306,7 +4922,7 @@
    "group": "name",
    "text": "Mr. Ewan Blake",
    "sprite": "name",
-   "start": 118.89533333333334,
+   "start": 211.69133333333335,
    "duration": 1.664
   },
   {
@@ -2314,7 +4930,7 @@
    "group": "name",
    "text": "Blake",
    "sprite": "name",
-   "start": 120.80933333333333,
+   "start": 213.60533333333333,
    "duration": 0.64
   },
   {
@@ -2330,7 +4946,7 @@
    "group": "name",
    "text": "Dr. Halla Quint",
    "sprite": "name",
-   "start": 121.69933333333333,
+   "start": 214.49533333333332,
    "duration": 1.6853333333333333
   },
   {
@@ -2338,7 +4954,7 @@
    "group": "name",
    "text": "Quint",
    "sprite": "name",
-   "start": 123.63466666666666,
+   "start": 216.43066666666667,
    "duration": 0.6613333333333333
   },
   {
@@ -2354,7 +4970,7 @@
    "group": "name",
    "text": "Peter Nane",
    "sprite": "name",
-   "start": 124.546,
+   "start": 217.342,
    "duration": 1.2586666666666666
   },
   {
@@ -2362,7 +4978,7 @@
    "group": "name",
    "text": "Nane",
    "sprite": "name",
-   "start": 126.05466666666666,
+   "start": 218.85066666666665,
    "duration": 0.832
   },
   {
@@ -2378,7 +4994,7 @@
    "group": "name",
    "text": "Rosalind Fay",
    "sprite": "name",
-   "start": 127.13666666666667,
+   "start": 219.93266666666668,
    "duration": 1.536
   },
   {
@@ -2386,7 +5002,7 @@
    "group": "name",
    "text": "Fay",
    "sprite": "name",
-   "start": 128.92266666666666,
+   "start": 221.71866666666668,
    "duration": 0.7466666666666667
   },
   {
@@ -2402,7 +5018,7 @@
    "group": "name",
    "text": "Sister Beatrix Ayre",
    "sprite": "name",
-   "start": 129.91933333333333,
+   "start": 222.71533333333332,
    "duration": 1.9626666666666666
   },
   {
@@ -2410,7 +5026,7 @@
    "group": "name",
    "text": "Ayre",
    "sprite": "name",
-   "start": 132.132,
+   "start": 224.928,
    "duration": 0.704
   },
   {
@@ -2420,6 +5036,646 @@
    "sprite": "motive",
    "start": 102.576,
    "duration": 5.141333333333334
+  },
+  {
+   "id": "11bb1462",
+   "group": "witness",
+   "text": "Mrs. Tull. I keep the Canon's house, and I know who comes to his door and what they want from him.",
+   "sprite": "witness",
+   "start": 904.604,
+   "duration": 6.442666666666667
+  },
+  {
+   "id": "216d8543",
+   "group": "witness",
+   "text": "Takes tea in this house. I have poured it, and I have watched.",
+   "sprite": "witness",
+   "start": 911.2966666666666,
+   "duration": 3.6906666666666665
+  },
+  {
+   "id": "8c7294c6",
+   "group": "witness",
+   "text": "Somebody came down the hill in the dark and left by the garden. There were footprints toward",
+   "sprite": "witness",
+   "start": 915.2373333333334,
+   "duration": 5.674666666666667
+  },
+  {
+   "id": "58d1ad7a",
+   "group": "witness",
+   "text": "The Canon would not want me talking. Neither do I.",
+   "sprite": "witness",
+   "start": 921.162,
+   "duration": 3.541333333333333
+  },
+  {
+   "id": "c94304d8",
+   "group": "witness",
+   "text": "Wick. I lock the gates at ten. Tonight somebody had a key that was not mine.",
+   "sprite": "witness",
+   "start": 924.9533333333334,
+   "duration": 5.056
+  },
+  {
+   "id": "919c1632",
+   "group": "witness",
+   "text": "On the staff, or near enough. I see them every morning across the quad.",
+   "sprite": "witness",
+   "start": 930.2593333333333,
+   "duration": 4.650666666666667
+  },
+  {
+   "id": "5cdd289c",
+   "group": "witness",
+   "text": "A boy found something on the playing fields at dawn and was too frightened to say. It went to",
+   "sprite": "witness",
+   "start": 935.16,
+   "duration": 5.952
+  },
+  {
+   "id": "7801bb32",
+   "group": "witness",
+   "text": "The gate is shut and I have a bell to ring in three hours.",
+   "sprite": "witness",
+   "start": 941.362,
+   "duration": 3.8826666666666667
+  },
+  {
+   "id": "456d17d1",
+   "group": "witness",
+   "text": "They call me Mother Greer. Seventy-one years in this parish. I have buried two of the people you are looking for and will bury a third.",
+   "sprite": "witness",
+   "start": 945.4946666666667,
+   "duration": 8.128
+  },
+  {
+   "id": "5c672c25",
+   "group": "witness",
+   "text": "I have known that one since they were small. Small people become large people; they do not become different ones.",
+   "sprite": "witness",
+   "start": 953.8726666666666,
+   "duration": 6.912
+  },
+  {
+   "id": "c1e74375",
+   "group": "witness",
+   "text": "I do not sleep. I heard the side door and saw somebody carry a bundle toward",
+   "sprite": "witness",
+   "start": 961.0346666666667,
+   "duration": 5.226666666666667
+  },
+  {
+   "id": "68bfc4ed",
+   "group": "witness",
+   "text": "I am tired, child. Come back when it is light and bring biscuits.",
+   "sprite": "witness",
+   "start": 966.5113333333334,
+   "duration": 4.16
+  },
+  {
+   "id": "ee033ca0",
+   "group": "witness",
+   "text": "Marley. I sign the cars out and in. Last car is eleven. Tonight one went out at midnight and I did not sign it.",
+   "sprite": "witness",
+   "start": 970.9213333333333,
+   "duration": 7.637333333333333
+  },
+  {
+   "id": "0b451384",
+   "group": "witness",
+   "text": "Rides the last car. You learn a person by which seat they take.",
+   "sprite": "witness",
+   "start": 978.8086666666667,
+   "duration": 4.032
+  },
+  {
+   "id": "196411af",
+   "group": "witness",
+   "text": "A parcel came off the midnight car and was left on the bench. It was taken up to",
+   "sprite": "witness",
+   "start": 983.0906666666667,
+   "duration": 5.418666666666667
+  },
+  {
+   "id": "22528fce",
+   "group": "witness",
+   "text": "The schedule is the schedule and I have said what I know.",
+   "sprite": "witness",
+   "start": 988.7593333333333,
+   "duration": 3.52
+  },
+  {
+   "id": "062582c9",
+   "group": "witness",
+   "text": "Lister. I keep the boilers so the orchids do not freeze. It is warmer in here than anywhere in the parish, so people come.",
+   "sprite": "witness",
+   "start": 992.5293333333333,
+   "duration": 7.8933333333333335
+  },
+  {
+   "id": "a7cf287b",
+   "group": "witness",
+   "text": "Comes in to get warm. You see a person plainly in this light.",
+   "sprite": "witness",
+   "start": 1000.6726666666667,
+   "duration": 3.904
+  },
+  {
+   "id": "8dfb5af7",
+   "group": "witness",
+   "text": "Somebody burned something in my firebox tonight and did not burn all of it. What was left went up the hill to",
+   "sprite": "witness",
+   "start": 1004.8266666666667,
+   "duration": 6.890666666666666
+  },
+  {
+   "id": "cb8aaeb7",
+   "group": "witness",
+   "text": "The boilers need me. The police do not.",
+   "sprite": "witness",
+   "start": 1011.9673333333334,
+   "duration": 2.8373333333333335
+  },
+  {
+   "id": "5fb0a7ff",
+   "group": "witness",
+   "text": "Grimm. I dig. Tonight I found a hole I had not dug, and I want to know who did.",
+   "sprite": "witness",
+   "start": 1015.0546666666667,
+   "duration": 5.354666666666667
+  },
+  {
+   "id": "a025a23a",
+   "group": "witness",
+   "text": "Stands over graves I dig. You see what a person is at a funeral.",
+   "sprite": "witness",
+   "start": 1020.6593333333333,
+   "duration": 4.437333333333333
+  },
+  {
+   "id": "e47ec854",
+   "group": "witness",
+   "text": "Fresh earth was moved and something was taken out of it, not put in. The cart tracks run to",
+   "sprite": "witness",
+   "start": 1025.3466666666666,
+   "duration": 6.229333333333333
+  },
+  {
+   "id": "a4c835d1",
+   "group": "witness",
+   "text": "I have a hole to fill and I have already said too much.",
+   "sprite": "witness",
+   "start": 1031.826,
+   "duration": 3.456
+  },
+  {
+   "id": "0ce41480",
+   "group": "witness",
+   "text": "Ansell. My grandfather cast that bell and I have tuned it every Easter since I could hold a hammer. I know its voice. Last night it was rung by somebody who does not.",
+   "sprite": "witness",
+   "start": 1035.532,
+   "duration": 10.901333333333334
+  },
+  {
+   "id": "9ce7e493",
+   "group": "witness",
+   "text": "Has been up the tower with me. You learn a person by how they climb.",
+   "sprite": "witness",
+   "start": 1046.6833333333334,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "cf5f01cd",
+   "group": "witness",
+   "text": "A clapper bolt was taken from my bench last week and I found it this morning, dropped on the path toward",
+   "sprite": "witness",
+   "start": 1051.328,
+   "duration": 6.784
+  },
+  {
+   "id": "c53d13a8",
+   "group": "witness",
+   "text": "The furnace is lit and I am not.",
+   "sprite": "witness",
+   "start": 1058.362,
+   "duration": 2.5813333333333333
+  },
+  {
+   "id": "d26f1d90",
+   "group": "witness",
+   "text": "Miss Pym. Four hundred years of parish paper and I have read all of it. Sister Constance came to me last week for the crypt ledgers, and I gave them to her.",
+   "sprite": "witness",
+   "start": 1061.1933333333334,
+   "duration": 10.496
+  },
+  {
+   "id": "5b441cbb",
+   "group": "witness",
+   "text": "Reads here. You can tell a person by which volumes they ask for.",
+   "sprite": "witness",
+   "start": 1071.9393333333333,
+   "duration": 4.266666666666667
+  },
+  {
+   "id": "ad156280",
+   "group": "witness",
+   "text": "A page was razored from the 1939 register tonight by somebody who knew which page. They left toward",
+   "sprite": "witness",
+   "start": 1076.456,
+   "duration": 8.554666666666666
+  },
+  {
+   "id": "2956444d",
+   "group": "witness",
+   "text": "The reading room closes at dusk and it is well past dusk.",
+   "sprite": "witness",
+   "start": 1085.2606666666666,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "d8fc1bae",
+   "group": "witness",
+   "text": "Oakes. I type the diocese's letters, including the one asking you for discretion. I did not agree with it.",
+   "sprite": "witness",
+   "start": 1089.628,
+   "duration": 7.018666666666666
+  },
+  {
+   "id": "e74ea2e0",
+   "group": "witness",
+   "text": "Comes before the Dean. You notice a person who is nervous in front of a bishop.",
+   "sprite": "witness",
+   "start": 1096.8966666666668,
+   "duration": 5.269333333333333
+  },
+  {
+   "id": "4058f63f",
+   "group": "witness",
+   "text": "A letter arrived for the Dean by hand at one in the morning and was burned unread. The ash is at",
+   "sprite": "witness",
+   "start": 1102.416,
+   "duration": 6.250666666666667
+  },
+  {
+   "id": "bd6a4e25",
+   "group": "witness",
+   "text": "I have said more than the diocese would like. That is the end of it.",
+   "sprite": "witness",
+   "start": 1108.9166666666667,
+   "duration": 4.522666666666667
+  },
+  {
+   "id": "c68f7101",
+   "group": "witness",
+   "text": "Brannock. I do for the verger. I know which hook every key hangs on and which one has been empty since Thursday.",
+   "sprite": "witness",
+   "start": 1113.6893333333333,
+   "duration": 7.253333333333333
+  },
+  {
+   "id": "53861a33",
+   "group": "witness",
+   "text": "Comes to this kitchen. You learn a person by how they look at the key board.",
+   "sprite": "witness",
+   "start": 1121.1926666666666,
+   "duration": 4.736
+  },
+  {
+   "id": "e68c69cf",
+   "group": "witness",
+   "text": "The missing key came back this morning with river mud on it. The mud is from",
+   "sprite": "witness",
+   "start": 1126.1786666666667,
+   "duration": 4.992
+  },
+  {
+   "id": "c16d90c7",
+   "group": "witness",
+   "text": "The kitchen is mine and I am closing it.",
+   "sprite": "witness",
+   "start": 1131.4206666666666,
+   "duration": 3.072
+  },
+  {
+   "id": "2f8e69f8",
+   "group": "witness",
+   "text": "Lamb. I keep the poisons book for the hill. It is a short book with long names in it.",
+   "sprite": "witness",
+   "start": 1134.7426666666668,
+   "duration": 5.589333333333333
+  },
+  {
+   "id": "9f80e6ba",
+   "group": "witness",
+   "text": "Signs my book. You notice the hand that signs for chloral.",
+   "sprite": "witness",
+   "start": 1140.582,
+   "duration": 4.010666666666666
+  },
+  {
+   "id": "2486195a",
+   "group": "witness",
+   "text": "Somebody came in at dawn for lint and iodine and paid with a coin that was still wet. They went to",
+   "sprite": "witness",
+   "start": 1144.8426666666667,
+   "duration": 6.378666666666667
+  },
+  {
+   "id": "172785d7",
+   "group": "witness",
+   "text": "The shop is shut and the book is locked.",
+   "sprite": "witness",
+   "start": 1151.4713333333334,
+   "duration": 2.517333333333333
+  },
+  {
+   "id": "2d637398",
+   "group": "witness",
+   "text": "Quaile. Nights on the east ward. I know who is a patient here and who is only wearing the gown.",
+   "sprite": "witness",
+   "start": 1154.2386666666666,
+   "duration": 6.1866666666666665
+  },
+  {
+   "id": "ad29b115",
+   "group": "witness",
+   "text": "On my ward, or visiting it. You learn a person by how they behave behind a locked door.",
+   "sprite": "witness",
+   "start": 1160.6753333333334,
+   "duration": 6.101333333333334
+  },
+  {
+   "id": "b50c2bf1",
+   "group": "witness",
+   "text": "The gate was open at eleven-forty and somebody went out through it carrying a bag. They went down toward",
+   "sprite": "witness",
+   "start": 1167.0266666666666,
+   "duration": 6.72
+  },
+  {
+   "id": "080d75f2",
+   "group": "witness",
+   "text": "Matron would have my post for this. Out.",
+   "sprite": "witness",
+   "start": 1173.9966666666667,
+   "duration": 3.008
+  },
+  {
+   "id": "b4c006fe",
+   "group": "witness",
+   "text": "Hobb. Everything the hill is ashamed of comes through this door eventually. Last week it was a set of keys on a diocesan ring.",
+   "sprite": "witness",
+   "start": 1177.2546666666667,
+   "duration": 8.789333333333333
+  },
+  {
+   "id": "9bcc2b36",
+   "group": "witness",
+   "text": "Pledges with me. I look at the hands that push things across.",
+   "sprite": "witness",
+   "start": 1186.294,
+   "duration": 3.904
+  },
+  {
+   "id": "249b15e9",
+   "group": "witness",
+   "text": "The keys were redeemed at midnight by a different hand, and the hand went up the lane to",
+   "sprite": "witness",
+   "start": 1190.448,
+   "duration": 5.418666666666667
+  },
+  {
+   "id": "c60fd938",
+   "group": "witness",
+   "text": "Shop is shut. Come back with a pledge or not at all.",
+   "sprite": "witness",
+   "start": 1196.1166666666666,
+   "duration": 3.498666666666667
+  },
+  {
+   "id": "d5308e45",
+   "group": "witness",
+   "text": "Amsel. Second-hand. I sell the hill its own history back to it, and I know who buys which chapter.",
+   "sprite": "witness",
+   "start": 1199.8653333333334,
+   "duration": 6.549333333333333
+  },
+  {
+   "id": "a2984e02",
+   "group": "witness",
+   "text": "Browses here. You learn a person by what they do not buy.",
+   "sprite": "witness",
+   "start": 1206.6646666666666,
+   "duration": 3.8186666666666667
+  },
+  {
+   "id": "321c2e33",
+   "group": "witness",
+   "text": "A diocesan report was bought tonight and its plates torn out in my own doorway. The torn pages went toward",
+   "sprite": "witness",
+   "start": 1210.7333333333333,
+   "duration": 7.253333333333333
+  },
+  {
+   "id": "53f6ffef",
+   "group": "witness",
+   "text": "The shop is closed. So is the subject.",
+   "sprite": "witness",
+   "start": 1218.2366666666667,
+   "duration": 2.88
+  },
+  {
+   "id": "7ab80208",
+   "group": "witness",
+   "text": "Petty. Milk and two sugars for the whole hill, and every word said over it. I pour and I remember.",
+   "sprite": "witness",
+   "start": 1221.3666666666666,
+   "duration": 6.549333333333333
+  },
+  {
+   "id": "13cedfaf",
+   "group": "witness",
+   "text": "Takes tea here. I have set a cup down in front of them and watched them lift it.",
+   "sprite": "witness",
+   "start": 1228.166,
+   "duration": 4.928
+  },
+  {
+   "id": "e3fd1607",
+   "group": "witness",
+   "text": "Two women had words here at four and one of them left a glove on the chair. The glove was collected by somebody else, who went to",
+   "sprite": "witness",
+   "start": 1233.344,
+   "duration": 8.618666666666666
+  },
+  {
+   "id": "57a1bb13",
+   "group": "witness",
+   "text": "The urn is cold and so am I.",
+   "sprite": "witness",
+   "start": 1242.2126666666666,
+   "duration": 2.6666666666666665
+  },
+  {
+   "id": "b943654b",
+   "group": "witness",
+   "text": "Rudge. Only public house on the hill. Everything the hill says out loud, it says in here first.",
+   "sprite": "witness",
+   "start": 1245.1293333333333,
+   "duration": 6.784
+  },
+  {
+   "id": "3d85ba9c",
+   "group": "witness",
+   "text": "Drinks in my house. You see a person clearest after the third.",
+   "sprite": "witness",
+   "start": 1252.1633333333334,
+   "duration": 4.2026666666666666
+  },
+  {
+   "id": "352ef64b",
+   "group": "witness",
+   "text": "A man came in with wet boots and a dry throat and left without paying. He went out the back toward",
+   "sprite": "witness",
+   "start": 1256.616,
+   "duration": 6.677333333333333
+  },
+  {
+   "id": "f04c82a4",
+   "group": "witness",
+   "text": "Time, gentlemen. That includes you.",
+   "sprite": "witness",
+   "start": 1263.5433333333333,
+   "duration": 2.752
+  },
+  {
+   "id": "13826f88",
+   "group": "witness",
+   "text": "Shale. I keep the engines running all night. They are loud enough to cover a bell. Not nine of them.",
+   "sprite": "witness",
+   "start": 1266.5453333333332,
+   "duration": 6.058666666666666
+  },
+  {
+   "id": "54c139bc",
+   "group": "witness",
+   "text": "Passes the engine house at night. You learn a person by how they walk past a noise.",
+   "sprite": "witness",
+   "start": 1272.854,
+   "duration": 5.696
+  },
+  {
+   "id": "d883d126",
+   "group": "witness",
+   "text": "Somebody used the valve walkway at one in the morning and dropped something in the sluice. It fetched up at",
+   "sprite": "witness",
+   "start": 1278.8,
+   "duration": 6.229333333333333
+  },
+  {
+   "id": "9fa42d82",
+   "group": "witness",
+   "text": "The engines do not stop and neither can I.",
+   "sprite": "witness",
+   "start": 1285.2793333333334,
+   "duration": 3.2426666666666666
+  },
+  {
+   "id": "398059c0",
+   "group": "witness",
+   "text": "Ferris. Two skiffs and a tally. One skiff went out tonight without a tally and came back without its oars.",
+   "sprite": "witness",
+   "start": 1288.772,
+   "duration": 7.061333333333334
+  },
+  {
+   "id": "28b0ac15",
+   "group": "witness",
+   "text": "Takes a skiff out sometimes. You learn a person by how they row.",
+   "sprite": "witness",
+   "start": 1296.0833333333333,
+   "duration": 4.394666666666667
+  },
+  {
+   "id": "8c88fe5a",
+   "group": "witness",
+   "text": "The oars were found on the far bank this morning, and beside them a set of prints going up to",
+   "sprite": "witness",
+   "start": 1300.728,
+   "duration": 6.144
+  },
+  {
+   "id": "473c5a32",
+   "group": "witness",
+   "text": "The water is cold and I am colder. Go.",
+   "sprite": "witness",
+   "start": 1307.122,
+   "duration": 3.3706666666666667
+  },
+  {
+   "id": "2196cd92",
+   "group": "witness",
+   "text": "Sister Agnes. Every surplice and every sheet on the hill comes through my coppers. I see what people would rather I did not.",
+   "sprite": "witness",
+   "start": 1310.7426666666668,
+   "duration": 8.213333333333333
+  },
+  {
+   "id": "644e7625",
+   "group": "witness",
+   "text": "Sends their linen here. You learn a great deal from a person's linen.",
+   "sprite": "witness",
+   "start": 1319.206,
+   "duration": 4.117333333333334
+  },
+  {
+   "id": "bb43662a",
+   "group": "witness",
+   "text": "A cassock came in at dawn with mud to the knee and a tear at the shoulder. The bundle it came in was sent back to",
+   "sprite": "witness",
+   "start": 1323.5733333333333,
+   "duration": 7.466666666666667
+  },
+  {
+   "id": "f580da91",
+   "group": "witness",
+   "text": "The coppers are boiling and I have said my piece.",
+   "sprite": "witness",
+   "start": 1331.29,
+   "duration": 3.1146666666666665
+  },
+  {
+   "id": "f3e291fb",
+   "group": "witness",
+   "text": "Coyle. Every gallon that leaves the reservoir is a line in my book, and every key to the valves hangs behind me. One did not come back last night.",
+   "sprite": "witness",
+   "start": 1334.6546666666666,
+   "duration": 9.813333333333333
+  },
+  {
+   "id": "895c0034",
+   "group": "witness",
+   "text": "Comes for the valve key. You learn a person by how they sign for it.",
+   "sprite": "witness",
+   "start": 1344.718,
+   "duration": 4.266666666666667
+  },
+  {
+   "id": "73ae8142",
+   "group": "witness",
+   "text": "The valve key came back at three with somebody else's initials in the book. That somebody walked out toward",
+   "sprite": "witness",
+   "start": 1349.2346666666667,
+   "duration": 7.1466666666666665
+  },
+  {
+   "id": "01db2c11",
+   "group": "witness",
+   "text": "The board is closed. Good night.",
+   "sprite": "witness",
+   "start": 1356.6313333333333,
+   "duration": 2.3253333333333335
   }
  ],
  "sprites": {
@@ -2433,6 +5689,7 @@
    "fact",
    "event",
    "dialogue",
+   "witness",
    "name",
    "briefing",
    "epilogue",
