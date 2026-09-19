@@ -85,14 +85,16 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   const chosenTraits: TraitId[] = [...caseDef.publicTraits, ...hiddenTraits];
 
   // --- who is in the frame ------------------------------------------------
-  const roster = rng.shuffle(caseDef.suspects).slice(0, Math.min(diff.suspects, caseDef.suspects.length));
+  // The killer is always in it; the rest of the roster is drawn.
+  const others = rng.shuffle(caseDef.suspects.filter((x) => x.id !== caseDef.culprit));
+  const killer = caseDef.suspects.find((x) => x.id === caseDef.culprit) ?? caseDef.suspects[0];
+  const roster = rng.shuffle([killer, ...others.slice(0, Math.min(diff.suspects, caseDef.suspects.length) - 1)]);
   const ids = roster.map((s) => s.id);
 
   let dealt: Dealt | null = null;
-  let culpritId = rng.pick(ids);
+  const culpritId = killer.id;
   for (let attempt = 0; attempt < 400; attempt++) {
     const candidate = dealTraits(rng, ids, chosenTraits);
-    culpritId = rng.pick(ids);
     const mine = vectorOf(candidate[culpritId], chosenTraits);
     const unique = ids.every((id) => id === culpritId || vectorOf(candidate[id], chosenTraits) !== mine);
     if (unique) { dealt = candidate; break; }
@@ -101,8 +103,7 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
     // Astronomically unlikely. Force uniqueness rather than ever shipping an
     // unsolvable board.
     dealt = dealTraits(rng, ids, chosenTraits);
-    culpritId = ids[0];
-    for (const id of ids.slice(1)) {
+    for (const id of ids.filter((x) => x !== culpritId)) {
       if (vectorOf(dealt[id], chosenTraits) === vectorOf(dealt[culpritId], chosenTraits)) {
         const t = rng.pick(chosenTraits);
         const others = TRAITS[t].values.map((v) => v.id).filter((v) => v !== dealt![culpritId][t]);

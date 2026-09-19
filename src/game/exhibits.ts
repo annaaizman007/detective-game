@@ -61,7 +61,7 @@ const CLUES: ExhibitDef[] = [
     ],
     figure: 'sill', stamp: 'EVIDENCE',
     spoken: 'The rear sash was jammed nine inches open, and somebody came through it as it stood.',
-    reading: 'Nobody broad or tall passes through nine inches. The killer is slight.',
+    reading: 'Nobody broad or tall fits through a nine-inch gap. The killer is slight. Mark Build: Slight.',
   }),
   clue('build', 'broad', {
     kind: 'report', label: 'Scene examiner’s notes — the doorway', source: 'ASHGRAVE BAY POLICE · SCENE EXAMINATION',
@@ -73,7 +73,7 @@ const CLUES: ExhibitDef[] = [
     ],
     figure: 'doorframe', stamp: 'EVIDENCE',
     spoken: 'The door jamb is split at shoulder height, and it took weight to do it.',
-    reading: 'A shoulder that splits an oak jamb belongs to a heavy frame. Broad.',
+    reading: 'It takes a heavy shoulder to split an oak door frame. The killer is broad. Mark Build: Broad.',
   }),
   clue('build', 'tall', {
     kind: 'report', label: 'Coroner’s preliminary — spatter', source: 'MERCY HOSPITAL · OFFICE OF THE CORONER',
@@ -85,7 +85,7 @@ const CLUES: ExhibitDef[] = [
     ],
     figure: 'spatter', stamp: 'CONFIDENTIAL',
     spoken: 'The spatter starts seventy-four inches up the wall, and the blow came down from above her.',
-    reading: 'Seventy-four inches is over six feet. Tall.',
+    reading: 'Seventy-four inches is over six feet. The killer is tall. Mark Build: Tall.',
   }),
   // ----------------------------------------------------------------- hair
   clue('hair', 'dark', {
@@ -95,7 +95,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Not the deceased’s: hers is dyed auburn and shows it at the roots. This one has never seen a bottle. Caught in the setting when the ring hand was raised.'],
     figure: 'hair-dark', stamp: 'EVIDENCE',
     spoken: 'One hair caught in her ring, dark and natural, and it is not hers.',
-    reading: 'The hair is dark and it is not hers. Dark hair.',
+    reading: 'The hair is dark, and it isn’t hers. The killer has dark hair. Mark Hair: Dark.',
   }),
   clue('hair', 'fair', {
     kind: 'lab', label: 'Laboratory sheet — hair, one', source: 'MERCY HOSPITAL · LABORATORY',
@@ -104,7 +104,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Lifted from the inside of the collar, which means a head was close over hers. The deceased’s hair is dark; nobody on the hotel staff is fair.'],
     figure: 'hair-fair', stamp: 'EVIDENCE',
     spoken: 'A pale hair on the inside of her collar, fair as winter straw.',
-    reading: 'Fair hair.',
+    reading: 'The killer has fair hair. Mark Hair: Fair.',
   }),
   clue('hair', 'red', {
     kind: 'lab', label: 'Laboratory sheet — hair, one', source: 'MERCY HOSPITAL · LABORATORY',
@@ -113,7 +113,7 @@ const CLUES: ExhibitDef[] = [
     body: ['One red hair on the pillow, and nobody else in the building with a head like that. Copper, unmistakable, and not out of a bottle.'],
     figure: 'hair-red', stamp: 'EVIDENCE',
     spoken: 'One red hair on the pillow. Copper, and not out of a bottle.',
-    reading: 'Red hair.',
+    reading: 'The killer has red hair. Mark Hair: Red.',
   }),
   clue('hair', 'grey', {
     kind: 'lab', label: 'Laboratory sheet — hair, seven', source: 'MERCY HOSPITAL · LABORATORY',
@@ -122,7 +122,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Pulled out in the struggle, by the roots. The deceased was twenty-six and had not a grey hair on her. These came off the other head in the room.'],
     figure: 'hair-grey', stamp: 'EVIDENCE',
     spoken: 'Seven grey hairs on the rug, pulled out by the roots, and she was twenty-six.',
-    reading: 'Grey hair.',
+    reading: 'The killer has grey hair. Mark Hair: Grey.',
   }),
   // ----------------------------------------------------------------- hand
   clue('hand', 'left', {
@@ -135,7 +135,7 @@ const CLUES: ExhibitDef[] = [
     ],
     figure: 'wound-left', stamp: 'CONFIDENTIAL',
     spoken: 'One blow to her right temple, from someone standing square in front of her.',
-    reading: 'Facing her, a blow to her right temple is thrown with the left hand. Left-handed.',
+    reading: 'Somebody facing her who hits her right temple is using their left hand. The killer is left-handed. Mark Handedness: Left-handed.',
   }),
   clue('hand', 'right', {
     kind: 'lab', label: 'Laboratory sheet — the glove', source: 'MERCY HOSPITAL · LABORATORY',
@@ -144,7 +144,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Powder residue on the outer index finger and the web of the thumb, consistent with a small-calibre discharge. The interior is worn through at the fingertips: an old glove, and the working one.'],
     figure: 'glove', stamp: 'EVIDENCE',
     spoken: 'A right-hand glove on the stairs, with powder in the web of the thumb.',
-    reading: 'The trigger finger was in the right glove. Right-handed.',
+    reading: 'The trigger finger was in the right-hand glove. The killer is right-handed. Mark Handedness: Right-handed.',
   }),
   // ----------------------------------------------------------------- mark
   clue('mark', 'scar', {
@@ -154,7 +154,7 @@ const CLUES: ExhibitDef[] = [
     body: ['She marked whoever she fought. Among the fresh tissue under her nails is a fleck of old scar: fibrous, pale, years healed. She scratched somebody who had already been cut once.'],
     stamp: 'EVIDENCE',
     spoken: 'Under her nails, fresh skin and a fleck of old scar tissue.',
-    reading: 'She scratched somebody with an old scar.',
+    reading: 'She scratched somebody who already had an old scar. Mark Distinguishing mark: A scar.',
   }),
   clue('mark', 'tattoo', {
     kind: 'statement', label: 'Witness statement — lift attendant', source: 'ASHGRAVE BAY POLICE · STATEMENT FORM 9',
@@ -165,7 +165,7 @@ const CLUES: ExhibitDef[] = [
     ],
     figure: 'tattoo', stamp: 'COPY',
     spoken: 'The lift attendant saw blue ink on the wrist as the hand came down.',
-    reading: 'Somebody with a tattoo.',
+    reading: 'The killer has a tattoo. Mark Distinguishing mark: A tattoo.',
   }),
   clue('mark', 'missing', {
     kind: 'photo', label: 'Photograph — print in the dust', source: 'ASHGRAVE BAY POLICE · PHOTOGRAPHIC UNIT',
@@ -173,7 +173,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Print lifted from the dust on the sideboard where the tumbler was set down. Palm and four fingers, clear. Not a partial: the surface is clean where a fifth finger should have rested.'],
     figure: 'four-fingers', stamp: 'EVIDENCE',
     spoken: 'A palm print in the dust, with four fingers and a clean space where the fifth should be.',
-    reading: 'Four fingers. A missing finger.',
+    reading: 'Four fingers, not five. The killer is missing a finger. Mark Distinguishing mark: A missing finger.',
   }),
   clue('mark', 'clean', {
     kind: 'statement', label: 'Witness statement — the night clerk', source: 'ASHGRAVE BAY POLICE · STATEMENT FORM 9',
@@ -184,7 +184,7 @@ const CLUES: ExhibitDef[] = [
     ],
     stamp: 'COPY',
     spoken: 'The night clerk swears the face was clean, with not a mark to point to.',
-    reading: 'Unmarked. Nothing to describe, which is its own description.',
+    reading: 'The killer has no scar, tattoo or missing finger. Mark Distinguishing mark: Unmarked.',
   }),
   // ----------------------------------------------------------------- vice
   clue('vice', 'cards', {
@@ -193,7 +193,7 @@ const CLUES: ExhibitDef[] = [
     body: ['“I.O.U. $40 — Wed. — Rosie’s.” Creased in half, stepped on, and dropped in the struggle. Nobody who does not play carries a marker from Rosie’s.'],
     figure: 'marker', stamp: 'EVIDENCE',
     spoken: 'A crumpled marker from a back-room card game, dropped in the struggle.',
-    reading: 'Somebody who plays cards.',
+    reading: 'The killer plays cards. Mark Vice: Cards.',
   }),
   clue('vice', 'drink', {
     kind: 'photo', label: 'Photograph — the second glass', source: 'ASHGRAVE BAY POLICE · PHOTOGRAPHIC UNIT',
@@ -201,7 +201,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Two glasses. Hers has the lipstick. The other has a ring of rye still in it and a thumbprint we cannot match. The deceased kept no rye in the suite; somebody brought their own.'],
     figure: 'glasses', stamp: 'EVIDENCE',
     spoken: 'Rye on the rim of the second glass. The one that got away.',
-    reading: 'Drink.',
+    reading: 'The killer drinks. Mark Vice: Drink.',
   }),
   clue('vice', 'opium', {
     kind: 'lab', label: 'Laboratory sheet — curtain residue', source: 'MERCY HOSPITAL · LABORATORY',
@@ -210,7 +210,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Somebody in that room smoked a pipe that was not tobacco, and recently. The soot at the sill is from a small lamp. The deceased did not use; her doctor is emphatic.'],
     figure: 'pipe', stamp: 'EVIDENCE',
     spoken: 'Sweet smoke soaked into the curtains, and lamp soot on the sill.',
-    reading: 'The pipe.',
+    reading: 'The killer smokes opium. Mark Vice: The pipe.',
   }),
   clue('vice', 'clean', {
     kind: 'report', label: 'Inventory — the room', source: 'ASHGRAVE BAY POLICE · SCENE EXAMINATION',
@@ -219,7 +219,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Whoever spent the evening here left nothing of a habit behind, because they have none. In this city that is rarer than a fingerprint.'],
     stamp: 'EVIDENCE',
     spoken: 'No bottle, no markers, no smoke. Whoever did this keeps a clean house.',
-    reading: 'No vice.',
+    reading: 'The killer has no vice at all. Mark Vice: No vice.',
   }),
   // ---------------------------------------------------------------- scent
   clue('scent', 'tobacco', {
@@ -229,7 +229,7 @@ const CLUES: ExhibitDef[] = [
     body: ['The curtains and her lapel are saturated with it. The deceased did not smoke, and the hotel sells Turkish. Somebody stood close to her for a long time with the cheap stuff on their coat.'],
     stamp: 'EVIDENCE',
     spoken: 'The room stinks of cheap tobacco, and the victim never smoked.',
-    reading: 'Cheap tobacco.',
+    reading: 'The killer smells of cheap tobacco. Mark Scent: Cheap tobacco.',
   }),
   clue('scent', 'perfume', {
     kind: 'lab', label: 'Laboratory sheet — the lapel', source: 'MERCY HOSPITAL · LABORATORY',
@@ -238,7 +238,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Orchid, laid on thick and transferred by contact. Not hers: she wore jasmine and nothing else. Somebody stood very close.'],
     stamp: 'EVIDENCE',
     spoken: 'Orchid perfume on her lapel, and she wore jasmine.',
-    reading: 'Orchid perfume.',
+    reading: 'The killer smells of orchid perfume. Mark Scent: Orchid perfume.',
   }),
   clue('scent', 'oil', {
     kind: 'photo', label: 'Photograph — the door plate', source: 'ASHGRAVE BAY POLICE · PHOTOGRAPHIC UNIT',
@@ -246,7 +246,7 @@ const CLUES: ExhibitDef[] = [
     body: ['A thumbprint in machine oil on the brass. Somebody who works with machines and never quite gets it off, whatever they scrub with.'],
     figure: 'thumbprint', stamp: 'EVIDENCE',
     spoken: 'A thumbprint in machine oil on the door plate.',
-    reading: 'Machine oil.',
+    reading: 'The killer smells of machine oil. Mark Scent: Machine oil.',
   }),
   clue('scent', 'ether', {
     kind: 'lab', label: 'Laboratory sheet — the pillow', source: 'MERCY HOSPITAL · LABORATORY',
@@ -255,7 +255,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Faint, sickly, hanging over the pillow. Hospital ether, which nobody buys in a shop.'],
     stamp: 'EVIDENCE',
     spoken: 'Ether. Faint, sickly, and hanging over everything.',
-    reading: 'Ether.',
+    reading: 'The killer smells of ether. Mark Scent: Ether.',
   }),
   // ----------------------------------------------------------------- shoe
   clue('shoe', 'small', {
@@ -265,7 +265,7 @@ const CLUES: ExhibitDef[] = [
     body: ['A neat impression pressed into the flowerbed, the heel narrow. Shallow, too: not a heavy tread.'],
     figure: 'footprint-small', stamp: 'EVIDENCE',
     spoken: 'A neat footprint pressed into the flowerbed, ten and a half inches heel to toe.',
-    reading: 'Ten and a half inches is a size eight.',
+    reading: 'Ten and a half inches is a size eight shoe. Mark Footprint: Size 8.',
   }),
   clue('shoe', 'mid', {
     kind: 'cast', label: 'Plaster cast — the yard', source: 'ASHGRAVE BAY POLICE · CASTS AND IMPRESSIONS',
@@ -274,7 +274,7 @@ const CLUES: ExhibitDef[] = [
     body: ['A plain sole, worn down hard on the outer heel: somebody who walks a great deal and walks badly.'],
     figure: 'footprint-mid', stamp: 'EVIDENCE',
     spoken: 'Eleven and a quarter inches, worn down hard on the outer heel.',
-    reading: 'Eleven and a quarter is a size ten.',
+    reading: 'Eleven and a quarter inches is a size ten shoe. Mark Footprint: Size 10.',
   }),
   clue('shoe', 'large', {
     kind: 'cast', label: 'Plaster cast — the back stair', source: 'ASHGRAVE BAY POLICE · CASTS AND IMPRESSIONS',
@@ -283,7 +283,7 @@ const CLUES: ExhibitDef[] = [
     body: ['Pressed deep into the wet ash by the back stair. Twelve inches even, and a heel like a brick.'],
     figure: 'footprint-large', stamp: 'EVIDENCE',
     spoken: 'A footprint in the wet ash by the back stair, twelve inches even.',
-    reading: 'Twelve inches is a size twelve.',
+    reading: 'Twelve inches is a size twelve shoe. Mark Footprint: Size 12.',
   }),
 ];
 
@@ -294,7 +294,7 @@ const BOON_EXHIBITS: ExhibitDef[] = [
     body: ['Folded four times and soft at the creases. “If anything happens to me — {fact}”', 'The rest is water.'],
     stamp: 'EVIDENCE',
     spoken: 'A note in a dead man’s handwriting, folded four times.',
-    reading: 'The note names a fact about your killer.',
+    reading: 'The note gives you one fact about the killer. It is already in the Notebook.',
   },
   {
     id: 'boon:spur', boon: 'spur', kind: 'telegram', label: 'A telegram', source: 'WESTERN UNION · ASHGRAVE BAY OFFICE',
@@ -302,7 +302,7 @@ const BOON_EXHIBITS: ExhibitDef[] = [
     body: ['NAME IS KNOWN STOP ADDRESS FOLLOWS BY HAND STOP DO NOT WAIT FOR MORNING STOP'],
     stamp: 'RECEIVED',
     spoken: 'A name, an address, and a reason to hurry.',
-    reading: 'A fresh lead. The trail warms and you have bought time.',
+    reading: 'A fresh lead. Two hours back on the clock.',
   },
   {
     id: 'boon:coffee', boon: 'coffee', kind: 'receipt', label: 'An automat receipt', source: 'THE ALL-NIGHT AUTOMAT · SALT STREET',
@@ -310,7 +310,7 @@ const BOON_EXHIBITS: ExhibitDef[] = [
     fields: [['Coffee, black', '2'], ['Cigarettes', '1 pkt'], ['Paid', '“a friend”']],
     body: ['Somebody put it on their tab and did not leave a name.'],
     spoken: 'Black coffee and a cigarette on somebody else’s tab.',
-    reading: 'A second wind. One more action, and it costs nothing.',
+    reading: 'A second wind. One extra action this turn, free.',
   },
   {
     id: 'boon:ledger', boon: 'ledger', kind: 'ledger', label: 'A private ledger', source: 'PRIVATE ACCOUNT BOOK',
@@ -318,7 +318,7 @@ const BOON_EXHIBITS: ExhibitDef[] = [
     body: ['Amounts, initials, dates. And in the margin, in a different hand: “{who} — {phrase}.”', 'Somebody wrote down what they should have burned.'],
     stamp: 'EVIDENCE',
     spoken: 'Somebody wrote down what they should have burned.',
-    reading: 'The ledger gives somebody up.',
+    reading: 'The ledger tells you something about one suspect. Check the Notebook.',
   },
 ];
 

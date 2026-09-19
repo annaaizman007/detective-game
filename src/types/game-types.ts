@@ -181,6 +181,12 @@ export interface CaseDef {
   edges: [string, string][];
   start: string;
   suspects: SuspectDef[];
+  /**
+   * Who did it. Fixed, so the story and the answer agree: the trait table,
+   * the evidence and where it lies still shuffle every game, so the proof is
+   * different each time even when the answer is not.
+   */
+  culprit: string;
   witnesses: WitnessDef[];
   /**
    * Documents scattered across the city that belong to this case: letters,

@@ -158,3 +158,10 @@
 .end-secrets { list-style: none; margin: .6rem 0 0; padding: 0; display: grid; gap: .5rem; }
 .end-secrets li { display: grid; grid-template-columns: 40px 1fr; gap: .6rem; align-items: start; }
 .end-secrets b { display: block; font-size: .88rem; } .end-secrets p { margin: .15rem 0 0; font-size: .82rem; }
+
+.sheet--found { width: min(640px, 100%); }
+.found { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.found-i { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: .7rem; align-items: center; padding: .6rem .7rem;
+  background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-s); }
+.found-i .ex-main em { display: block; font-style: normal; font-size: .76rem; color: var(--brass); margin-top: .2rem; }
+.found-i .obj-fig .fig { width: 84px; height: auto; }

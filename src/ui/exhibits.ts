@@ -97,7 +97,7 @@ export function documentHtml(inst: ExhibitInstance, def: ExhibitDef, s: GameStat
     ${fig ? `<figure class="doc-fig">${fig}</figure>` : ''}
     <div class="doc-body">${body}</div>
     <footer class="doc-foot">
-      <span>${by ? `Filed by ${esc(by)}` : 'Filed'} · ${esc(where)} · ${clockAt(inst.hour)}</span>
+      <span>${by ? `Found by ${esc(by)} at ${esc(where)}` : `From ${esc(where)}`}, ${clockAt(inst.hour)}</span>
       <span class="doc-case">${esc(caseById(s.caseId).title)}</span>
     </footer>
   </article>`;
@@ -151,3 +151,46 @@ export function exhibitView(s: GameState, v: LockerView): string {
 }
 
 export const markLabel = (t: TraitId, v: string | null | undefined): string => (v ? traitLabel(t, v) : '—');
+
+/** Where you looked and what you found, before it goes in the locker. */
+export function foundSheet(s: GameState, f: { location: string; exhibits: string[]; objects: string[]; by: string }): string {
+  const loc = locationById(s, f.location);
+  const rec = s.searched[f.location] || { times: 0, empty: false };
+  const docs = f.exhibits.map((key) => {
+    const i = s.exhibits.findIndex((e) => e.key === key);
+    const inst = s.exhibits[i];
+    if (!inst) return '';
+    const def = exhibitById(inst.def);
+    const hint = def.trait ? 'Read it. Then mark what it says about the killer in the Notebook.'
+      : def.id.startsWith('boon:') ? 'Read it in the Locker.' : 'Read it in the Locker. It may matter, or it may only be paper.';
+    return `<li class="found-i">
+      <span class="ex-letter">${letterOf(i)}</span>
+      <span class="ex-main"><b>${esc(inst.label)}</b><i>${esc(KIND_LABEL[def.kind] ?? def.kind)}</i><em>${esc(hint)}</em></span>
+      <button class="btn btn--small btn--hero" data-act="open-exhibit" data-key="${esc(key)}">Open</button>
+    </li>`;
+  }).join('');
+  const objs = f.objects.map((id) => {
+    const o = heldObjects(s).find((x) => x.id === id);
+    if (!o) return '';
+    return `<li class="found-i">
+      <span class="obj-fig">${figure(o.drawing)}</span>
+      <span class="ex-main"><b>${esc(o.name)}</b><i>${esc(o.desc)}</i><em>You are carrying it. Show it to someone. The right person will recognise it.</em></span>
+    </li>`;
+  }).join('');
+  const nothing = !docs && !objs;
+  return `
+  <div class="sheet sheet--found">
+    <button class="sheet-x" data-act="close-modal" aria-label="Close">×</button>
+    <p class="dossier-dept">${esc(f.by)} searched</p>
+    <h3>${esc(loc?.name ?? f.location)}</h3>
+    <p class="sheet-lead">${nothing
+      ? (rec.empty ? 'Nothing here. The place is picked clean.' : 'Nothing this time.')
+      : `${f.exhibits.length + f.objects.length === 1 ? 'One thing' : `${f.exhibits.length + f.objects.length} things`} turned up${rec.empty ? '. That is everything this place had.' : '. There may be more; a second search would say.'}`}</p>
+    ${docs ? `<h4 class="sheet-h">Documents</h4><ul class="found">${docs}</ul>` : ''}
+    ${objs ? `<h4 class="sheet-h">Objects</h4><ul class="found">${objs}</ul>` : ''}
+    <div class="sheet-actions">
+      ${f.exhibits.length ? `<button class="btn btn--hero" data-act="open-exhibit" data-key="${esc(f.exhibits[0])}">Read the first one</button>` : ''}
+      <button class="btn btn--ghost" data-act="close-modal">Back to the map</button>
+    </div>
+  </div>`;
+}

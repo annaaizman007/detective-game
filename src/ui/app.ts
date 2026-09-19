@@ -17,7 +17,7 @@ import { LocalTransport } from '../net/transport';
 import { gameConfig } from '../config/game-config';
 import { BoardScene, type BoardView } from '../scenes/board-scene';
 import { renderNotebook, profileOf } from './notebook';
-import { lockerList, exhibitView, documentHtml, letterOf } from './exhibits';
+import { lockerList, exhibitView, documentHtml, letterOf, foundSheet } from './exhibits';
 import { renderJournal, exportJournal } from './journal';
 import { renderDialogue, type DialogueView } from './dialogue';
 import { locationPanel, accusePanel, abilityPanel } from './panels';
@@ -29,7 +29,7 @@ import { exhibitById } from '../game/exhibits';
 import { STORAGE } from '../config/constants';
 
 type Screen = 'title' | 'setup' | 'briefing' | 'game' | 'end';
-type Modal = 'how' | 'settings' | 'location' | 'dialogue' | 'accuse' | 'ability' | 'exhibit-zoom' | 'casefile' | null;
+type Modal = 'how' | 'settings' | 'location' | 'dialogue' | 'accuse' | 'ability' | 'exhibit-zoom' | 'casefile' | 'found' | null;
 type Tab = 'notebook' | 'locker' | 'journal' | 'suspects' | 'log';
 
 interface UiState {
@@ -67,6 +67,7 @@ export class App {
   screen: Screen = 'title';
   modal: Modal = null;
   dialogue: DialogueView | null = null;
+  found: { location: string; exhibits: string[]; objects: string[]; by: string } | null = null;
   subtitle = '';
   pendingHandoff: string | null = null;
   lastSeat: string | null = null;
@@ -199,14 +200,13 @@ export class App {
     } else if (next.talking) {
       this.dialogue = { kind: next.talking.kind, id: next.talking.personId, stage: 'talk-result' };
       this.modal = 'dialogue';
-    } else if (action.type === 'SEARCH' || action.type === 'ABILITY') {
-      // A find opens the locker on what was just filed.
-      const filed = next.exhibits.length - before.exhibits.length;
-      if (filed > 0) {
-        this.ui.tab = 'locker';
-        this.ui.selectedExhibit = next.exhibits[next.exhibits.length - filed].key;
-        this.ui.mobile = 'book';
-      }
+    } else if (action.type === 'SEARCH' || (action.type === 'ABILITY' && characterById(R.currentPlayer(before)?.charId ?? 'hale').ability === 'BREAKIN')) {
+      // A search gets its own screen: where you looked, what turned up.
+      const filed = next.exhibits.slice(before.exhibits.length);
+      const picked = next.objects.slice(before.objects.length);
+      this.found = { location: action.type === 'SEARCH' ? R.currentPlayer(before)?.at ?? '' : (action as { locationId?: string }).locationId ?? '', exhibits: filed.map((e) => e.key), objects: picked, by: R.currentPlayer(before)?.name ?? '' };
+      this.modal = 'found';
+      if (filed.length) { this.ui.tab = 'locker'; this.ui.selectedExhibit = filed[0].key; }
     }
     if (next.phase === 'over') {
       this.screen = 'end';
@@ -553,7 +553,7 @@ export class App {
     }
     this.cancelType?.(); this.cancelType = null;
     if (!this.modal) { host.innerHTML = ''; return; }
-    const wide = this.modal === 'dialogue' || this.modal === 'exhibit-zoom' || this.modal === 'casefile';
+    const wide = this.modal === 'dialogue' || this.modal === 'exhibit-zoom' || this.modal === 'casefile' || this.modal === 'found';
     host.innerHTML = `<div class="modal-back" data-act="close-modal"></div>
       <div class="modal ${wide ? 'modal--wide' : ''}" role="dialog" aria-modal="true">${this.modalBody()}</div>`;
     const target = host.querySelector<HTMLElement>('[data-type-target]');
@@ -569,6 +569,7 @@ export class App {
       case 'how': return S.howToPlay();
       case 'settings': return S.settingsSheet(this.narrator, this.audio);
       case 'casefile': return s ? S.caseFile(s, caseById(s.caseId)) : '';
+      case 'found': return s && this.found ? foundSheet(s, this.found) : '';
       case 'location': return s && this.ui.selectedLocation ? locationPanel(s, this.ui.selectedLocation, this.profile()) : '';
       case 'dialogue': return s && this.dialogue ? renderDialogue(s, this.dialogue) : '';
       case 'accuse': return s ? accusePanel(s, this.profile()) : '';
