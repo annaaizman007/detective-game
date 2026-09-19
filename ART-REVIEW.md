@@ -249,3 +249,37 @@ Coroner's Court, Holy Cross.
   or pin *dark*.
 - Suspect tokens on the map at ~28px: the busy ¾-body portraits (Ledoux,
   Gurney, Boyle) turn to mud — another reason to standardise the crop.
+
+---
+
+## Addressed (2026-09-20)
+
+**Portraits.** Every one of the 124 was re-rendered in one painted register
+(`tools/portrait-prompts.mjs`: oil on canvas, head and shoulders first in the
+prompt so CLIP does not truncate it, glamour and props in the negative, glasses
+only through casting). Bobby helmets defeated the model four times, so both
+young constables (`boyle`, `quist`) are now bare-headed in a dark tunic; Vera is
+unsmiling in black velvet; the `tilda` painting matches the *grey* pin.
+
+**Facades.** All 39 flagged ones were re-rendered, then the eight that came out
+black-and-white or with lettering were re-rendered again. The prompt no longer
+contains the location's name (that was what asked for signage), insists on
+colour and deep night, and the garage has a blank wall where the sign was.
+
+**Map.** Bridges are sampled along the playable roads; hills stay outside the
+city bbox; piers begin on the shore; the tram is a dashed pair; district names
+sit above the blocks at 40 % ink; plates relax apart. New in this pass: a
+density gradient (bigger, taller lots within ~140 px of a plate, thinning to
+60 % gaps at the edge) and open ground — one coarse cell in fourteen away from
+the plates is left as a yard. The camera fit frames the board between the hint
+pill and the narration bar so the edge names are not lost under either.
+
+**Film.** `squad3` replaces `squad2` in the cut. Each case has its own "tell"
+frame — Orchid's tweed sergeant, Salt's and Lamp's women sergeants, Bell's
+young constable — and `make-intro.py --case <id>` writes `intro-<id>.mp4`,
+which `intro.ts` loads. One grade (desaturate, contrast, vignette, grain) runs
+over every shot so the frames read as one film.
+
+**Not chased.** `run.jpg` remains 640×512 (Ken Burns hides it); the map tokens
+at 28 px are cut from the upper middle of each painting and read well enough
+now that the crop is uniform.
