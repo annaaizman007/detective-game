@@ -9,11 +9,17 @@ No build step, no dependencies, no accounts, no network calls. Three files of
 markup and CSS, a folder of ES modules, and a 60-line static server that exists
 only because browsers will not load modules from `file://`.
 
+Picking this up on another machine? Start with **[HANDOFF.md](HANDOFF.md)**.
+
 ## Play it
 
 ```bash
+git clone https://github.com/annaaizman007/detective-game
+cd detective-game
 npm start          # then open http://localhost:8080
 ```
+
+No dependencies to install; Node 18+ is the only requirement.
 
 Any static host works too — it is a plain folder of files, so GitHub Pages or
 `npx serve` serve it just as well.
