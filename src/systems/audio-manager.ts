@@ -140,11 +140,13 @@ export class AudioManager {
     return null;
   }
 
-  private loopSource(buffer: AudioBuffer, into: AudioNode, rate = 1, offset = 0): AudioBufferSourceNode {
+  private loopSource(buffer: AudioBuffer, into: AudioNode, rate = 1, offset = 0, trim = 0): AudioBufferSourceNode {
     const ctx = this.ctx as AudioContext;
     const src = ctx.createBufferSource();
     src.buffer = buffer;
     src.loop = true;
+    // A recording may carry encoder padding at either end; loop inside it.
+    if (trim > 0 && buffer.duration > trim * 4) { src.loopStart = trim; src.loopEnd = buffer.duration - trim; }
     src.playbackRate.value = rate;
     src.connect(into);
     src.start(ctx.currentTime, offset % buffer.duration);
@@ -165,7 +167,7 @@ export class AudioManager {
 
     if (file) {
       ch.source = 'file';
-      this.loopSource(file, glass);
+      this.loopSource(file, glass, 1, 0, 0.05);
       return;
     }
     ch.source = 'synth';
@@ -211,7 +213,7 @@ export class AudioManager {
     warm.connect(ch.gain);
     if (file) {
       ch.source = 'file';
-      this.loopSource(file, warm);
+      this.loopSource(file, warm, 1, 0, 0.05);
       return;
     }
     ch.source = 'synth';
@@ -241,7 +243,7 @@ export class AudioManager {
     wall.connect(ch.gain);
     if (file) {
       ch.source = 'file';
-      this.loopSource(file, wall);
+      this.loopSource(file, wall, 1, 0, 0.05);
       return;
     }
     ch.source = 'synth';

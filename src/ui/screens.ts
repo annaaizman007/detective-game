@@ -272,7 +272,7 @@ export function settingsSheet(narrator: Narrator, audio: AudioManager): string {
     ${channel('rain', 'Rain', 'against the window')}
     ${channel('fire', 'The fire', 'in the grate across the room')}
     ${channel('music', 'Music', 'a slow band in the next room')}
-    <p class="sheet-note">Drop a recording in <code>public/assets/audio/</code> — <code>sfx/rain.ogg</code>, <code>sfx/fire.ogg</code>, <code>music/lounge.ogg</code> — and it is used in place of the synthesised one.</p>
+    <p class="sheet-note">Drop a recording in <code>public/assets/audio/</code> — <code>sfx/rain</code>, <code>sfx/fire</code>, <code>music/lounge</code> as .mp3 or .ogg — and it is used in place of the synthesised one.</p>
 
     <h4>Narration</h4>
     ${narrator.supported || narrator.clips

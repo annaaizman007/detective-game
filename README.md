@@ -84,10 +84,10 @@ when the build comes in.
 ## Sound
 
 Rain, a fire in the grate, a slow band in the next room, thunder and a
-precinct radio that opens with a click when the narrator starts. All of it is
-synthesised unless you drop a recording in `public/assets/audio/`
-(`sfx/rain.ogg`, `sfx/fire.ogg`, `music/lounge.ogg`), in which case the
-recording is used.
+precinct radio that opens with a click when the narrator starts. Rain and the
+fire are recordings (`public/assets/audio/sfx/`, cut into seamless
+sixty-second loops with `tools/loop-audio.sh`); the music is generated.
+Drop `music/lounge.mp3` (or `.ogg`) in the same place and it is used instead.
 
 ### The narrator
 
