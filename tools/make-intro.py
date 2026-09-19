@@ -15,21 +15,22 @@ import math, os, subprocess, sys, wave, struct
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, 'intro')
+SRC = os.path.join(HERE, 'intro2')
 OUT_DIR = os.path.join(HERE, '..', 'public', 'assets', 'video')
 os.makedirs(OUT_DIR, exist_ok=True)
 FPS = 30
 W, H = 1280, 720
 
 # ---- the cut: (still, seconds, zoom-in per frame)
+# The squad room: the detectives at the table, a man running the corridor,
+# the door bursting open, the sergeant leaning in to tell it.
 SHOTS = [
-    ('window', 3.2, 0.0010),
-    ('corridor', 4.2, 0.0016),
-    ('door', 1.6, 0.0022),
-    ('desk', 5.2, 0.0007),
-    ('phone', 4.6, 0.0009),
+    ('squad2', 4.0, 0.0009),
+    ('run', 2.6, 0.0040),
+    ('burst', 1.8, 0.0030),
+    ('tell', 3.6, 0.0012),
 ]
-XF = 0.55  # crossfade seconds
+XF = 0.4  # crossfade seconds
 TOTAL = sum(s[1] for s in SHOTS) - XF * (len(SHOTS) - 1)
 
 # ---- when things happen, in film seconds
@@ -40,12 +41,9 @@ def start_of(name):
         t += d - XF
     raise KeyError(name)
 
-T_STEPS = start_of('corridor') + 0.25
-T_DOOR = start_of('door') + 0.9
-T_LAMP = start_of('desk') + 1.1
-T_RINGS = [start_of('desk') + 2.2, start_of('phone') + 0.2, start_of('phone') + 2.1]
-RING_ON = 1.1
-T_PICKUP = start_of('phone') + 3.2
+T_STEPS = start_of('run') - 0.6
+T_DOOR = start_of('burst') + 0.25
+T_CHAIR = start_of('tell') + 0.2
 
 # ---------------------------------------------------------------- audio
 SR = 44100
@@ -95,24 +93,13 @@ def hum(dur):
     t = np.arange(n) / SR
     return (np.sin(2 * math.pi * 60 * t) + 0.3 * np.sin(2 * math.pi * 120 * t)) * np.minimum(t / 0.2, 1) * np.maximum(1 - t / dur, 0) * 0.03
 
-# footsteps coming closer
-for i in range(7):
-    add(T_STEPS + i * 0.56 + np.random.uniform(0, 0.04), step(0.12 + 0.55 * i / 6), pan=(0.2 if i % 2 else -0.2) * (1 - i / 7))
-add(T_DOOR, click(1500, 0.5, 0.08)); add(T_DOOR + 0.12, click(700, 0.35, 0.1))
-add(T_LAMP, click(2600, 0.6)); add(T_LAMP + 0.045, click(1200, 0.4))
-for r in T_RINGS:
-    add(r, bell(RING_ON), level=1.0)
-add(T_PICKUP, click(900, 0.7, 0.06)); add(T_PICKUP + 0.06, click(2200, 0.35))
-add(T_PICKUP + 0.1, hum(1.6))
-
-# ring three is cut short by the pickup
-cut = seconds(T_PICKUP)
-ring3_end = seconds(T_RINGS[2] + RING_ON + 0.3)
-if cut < ring3_end:
-    # nothing to do: the bell array was already added; fade it by re-adding the inverse tail
-    n = ring3_end - cut
-    fade = np.linspace(1, 0, n)
-    audio[cut:ring3_end] *= fade[:, None]
+# running footsteps, far to near, fast
+for i in range(11):
+    add(T_STEPS + i * 0.30 + np.random.uniform(0, 0.02), step(0.10 + 0.55 * i / 10), pan=(0.15 if i % 2 else -0.15) * (1 - i / 11))
+# the door flung open: a bang, a rattle of the handle
+add(T_DOOR, click(300, 1.2, 0.16)); add(T_DOOR + 0.05, click(900, 0.6, 0.08)); add(T_DOOR + 0.3, click(1600, 0.3, 0.05))
+# a chair scrapes as somebody stands
+add(T_CHAIR, bandpass(noise(seconds(0.35)), 200, 900) * env(seconds(0.35), 0.02, 0.2) * 0.35)
 
 peak = np.max(np.abs(audio)) or 1.0
 audio = np.clip(audio / peak * 0.85, -1, 1)
@@ -124,19 +111,13 @@ with wave.open(wav_path, 'wb') as w:
 # ---------------------------------------------------------------- picture
 def seg_filter(idx, name, dur, zrate):
     frames = int(dur * FPS)
-    f = (f"[{idx}:v]scale=2560:-2,setsar=1,"
-         f"zoompan=z='min(zoom+{zrate},1.35)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
+    f = (f"[{idx}:v]scale=2560:-2,crop=2560:1440,setsar=1,"
+         f"zoompan=z='min(zoom+{zrate},1.6)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
          f"format=yuv420p")
-    if name == 'desk':
-        # dark until the lamp clicks on, with two flickers
-        tl = 1.1
-        f += (f",eq=brightness='if(lt(t,{tl}),-0.42,if(lt(t,{tl + 0.08}),-0.08,if(lt(t,{tl + 0.16}),-0.3,0)))'"
-              f":saturation='if(lt(t,{tl}),0.35,1)':eval=frame")
-    if name == 'phone':
-        # the handset rattles while the bell rings
-        on = f"(between(t,0.2,{0.2 + RING_ON})+between(t,2.1,{2.1 + RING_ON}))"
+    if name == 'run':
+        # a hand-held shake while he runs
         f += (f",pad={W + 40}:{H + 40}:20:20,"
-              f"crop={W}:{H}:x='20+{on}*5*sin(t*140)':y='20+{on}*3*sin(t*95)'")
+              f"crop={W}:{H}:x='20+6*sin(t*31)':y='20+4*sin(t*23)'")
     return f + f"[v{idx}]"
 
 filters = [seg_filter(i, n, d, z) for i, (n, d, z) in enumerate(SHOTS)]
@@ -157,7 +138,7 @@ cmd += ['-i', wav_path, '-filter_complex', ';'.join(filters), '-map', '[vout]', 
         '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', os.path.join(OUT_DIR, 'intro.mp4')]
 print(' '.join(cmd)[:400], '...')
 subprocess.run(cmd, check=True)
-subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of("desk") + 2.0:.2f}', '-i', os.path.join(OUT_DIR, 'intro.mp4'), '-frames:v', '1', '-q:v', '3',
+subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of("squad2") + 1.0:.2f}', '-i', os.path.join(OUT_DIR, 'intro.mp4'), '-frames:v', '1', '-q:v', '3',
                 os.path.join(OUT_DIR, 'intro-poster.jpg')], check=True)
 os.remove(wav_path)
 print(f'wrote intro.mp4 ({TOTAL:.1f}s) and intro-poster.jpg')

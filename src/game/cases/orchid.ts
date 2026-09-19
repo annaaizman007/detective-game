@@ -20,7 +20,7 @@ const def: CaseDef = {
   call: {
     from: 'Sergeant Frank Mallory', role: 'night desk, Ashgrave Bay Police',
     lines: [
-      'Sorry to wake you. This is Mallory at the night desk. We have a dead woman at the Gilded Hotel, up on the Heights.',
+      'Sorry — all of you — I ran the whole way from the desk. We have a dead woman at the Gilded Hotel, up on the Heights.',
       'Her name is Lillian Voss. Twenty-six years old. The rich Voss family, and she sang at the Jade Room. She kept suite eleven hundred, on the top floor.',
       'The house detective opened her door at nine minutes past two because her light was on and she did not answer. She was on the bed, face down. Somebody hit her on the head. No gun, no knife, nothing stolen.',
       'Two things are strange. The door was on the chain from the inside, so whoever did it did not leave by the door. And an orchid on her table was snapped at the stem and put back in the vase, as if somebody tidied up before they left.',

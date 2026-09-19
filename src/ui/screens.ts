@@ -134,7 +134,7 @@ export function briefingScreen(s: GameState, caseDef: CaseDef): string {
         <p class="cine-sub">${esc(caseDef.subtitle)}</p>
       </div>
       <div class="cine-card cine-card--caller" style="--i:1">
-        <p class="cine-sub">${icon('phone')} The telephone rings. ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}.</p>
+        <p class="cine-sub">${icon('phone')} The door bangs open. ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}, out of breath.</p>
       </div>
       ${cards.map((c, i) => `<div class="cine-card cine-card--line" style="--i:${i + 2}"><p>${esc(c)}</p></div>`).join('')}
       <div class="cine-card cine-card--facts" style="--i:${cards.length + 1}">
@@ -232,7 +232,7 @@ export function caseFile(s: GameState, caseDef: CaseDef): string {
     </dl>
     <h4 class="sheet-h">The briefing</h4>
     <p class="cf-body">${esc(caseDef.briefing.replace(/\s+/g, ' ').trim())}</p>
-    <h4 class="sheet-h">The call from ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}</h4>
+    <h4 class="sheet-h">What ${esc(caseDef.call.from)}, ${esc(caseDef.call.role)}, told the room</h4>
     ${caseDef.call.lines.map((l) => `<p class="cf-body cf-call">${esc(l)}</p>`).join('')}
     ${st.backstory.length ? `<h4 class="sheet-h">What is known</h4>${st.backstory.map((par) => `<p class="cf-body">${esc(par)}</p>`).join('')}` : ''}
     ${st.timeline.length ? `<h4 class="sheet-h">The night</h4><ol class="cf-timeline">${st.timeline.map((t) => `<li><span>${esc(t.time)}</span><p>${esc(t.text)}</p></li>`).join('')}</ol>` : ''}

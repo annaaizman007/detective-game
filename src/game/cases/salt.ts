@@ -22,7 +22,7 @@ const def: CaseDef = {
   call: {
     from: 'Sergeant Ruth Dunmore', role: 'Harbour Station',
     lines: [
-      'Inspector, this is Dunmore at Harbour Station. A fisherman found a body under Pier Nine at low water this morning, about ten to five.',
+      'Inspector. Everyone. Forgive me, I ran. A fisherman found a body under Pier Nine at low water this morning, about ten to five.',
       'It is Aurel Bask. Head of the longshoremen’s union for twenty years. Every docker in this harbour knew him, and most of them were afraid of him.',
       'He was stabbed once, under the ribs, from below. Then somebody sewed his coat pockets shut, filled them with rock salt, and put him in the water. His watch stopped at twenty to midnight.',
       'The salt is a message. In this harbour it means: this is what happens to a man who talks. Bask was going to make a speech on Thursday about the trawler berths and the smuggling everybody pretends not to see.',

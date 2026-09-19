@@ -16,22 +16,22 @@
  {
   "id": "run",
   "name": "run",
-  "prompt": "a man in a wet raincoat and fedora running down a long dark police station corridor toward the viewer, urgent, motion blur, a single bulb, wet floor tiles, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
-  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
-  "seed": 3
+  "prompt": "solo, one single man alone in a wet raincoat and fedora sprinting down the centre of a long dark police station corridor toward the viewer, urgent, motion blur, a single bulb, wet floor tiles, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "two people, two men, twins, duplicate, multiple people, crowd, second figure, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 9
  },
  {
   "id": "burst",
   "name": "burst",
-  "prompt": "a door flung wide open into a smoky squad room, a breathless man in a wet raincoat and hat in the doorway with one hand on the door, backlit by the corridor, seated detectives turning to look at him, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
-  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
-  "seed": 77
+  "prompt": "solo, a single breathless police sergeant in a wet raincoat bursting through a door into a smoky squad room, one hand flinging the door open, backlit from the corridor, seen from inside the room, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "two people, two men, twins, duplicate, multiple people, crowd, second figure, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 41
  },
  {
   "id": "tell",
   "name": "tell",
-  "prompt": "close-up of a breathless middle-aged police sergeant in a wet raincoat, hat pushed back, leaning on a table and talking urgently, green lamp light on his face, rain on the window behind, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
-  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
-  "seed": 5
+  "prompt": "solo, close-up of one breathless middle-aged police sergeant in a wet raincoat with his hat pushed back, mouth open mid-sentence, leaning both hands on a table, urgent, sweat, green lamp light on his face, rain on the window behind, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "two people, two men, twins, duplicate, multiple people, crowd, second figure, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 17
  }
 ]

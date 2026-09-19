@@ -236,9 +236,9 @@ export interface CaseDef {
   /** The short version, for the case file. Plain sentences. */
   briefing: string;
   /**
-   * The telephone call that opens the case: somebody at the station tells
-   * you, in plain words, what happened and where to start. Read aloud, one
-   * card per line.
+   * The briefing that opens the case: somebody from the station bursts into
+   * the squad room and tells the detectives, in plain words, what happened
+   * and where to start. Read aloud, one card per line.
    */
   call: { from: string; role: string; lines: string[] };
   radio: string[];

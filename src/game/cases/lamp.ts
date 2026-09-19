@@ -42,7 +42,7 @@ const def: CaseDef = {
   call: {
     from: 'Sergeant Ada Kilbride', role: 'Ward Station',
     lines: [
-      'Inspector, this is Kilbride at Ward Station. It has happened again. A woman under a gas lamp on Gasworks Lane, found at ten to six this morning by a man on his way to the gasworks.',
+      'Inspector. All of you. It has happened again. A woman under a gas lamp on Gasworks Lane, found at ten to six this morning by a man on his way to the gasworks. I ran here from the lane.',
       'Her name is Miriam Weiss. Thirty-one. A night nurse at the Ward Infirmary. She lodged at Crowe’s boarding house on Wick Street. She was strangled with a cord.',
       'This is the third one. Ada Brill in November, under Lamp 17. Nora Pask on the twentieth, under Lamp 29. Now Lamp 41. Every time, the lamp above her had been turned off before she got there, and the lamp’s number is written on the pavement in blue chalk.',
       'The newspaper has been calling him the Lamplighter for a month, and half the ward thinks it is Cyrus Vane, who actually lights the lamps. He was drunk in a pub last night. That may or may not be the same thing as innocent.',

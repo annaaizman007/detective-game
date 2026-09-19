@@ -153,9 +153,10 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
   const video = el.querySelector<HTMLVideoElement>('.intro-video');
   const drawn = () => { video?.remove(); el.classList.add('is-drawn'); drawnTimeline(); };
   const drawnTimeline = () => {
-    at(200, () => { el.classList.add('is-walking'); foley?.footsteps(7, 560); });
-    at(4400, () => { el.classList.add('is-lit'); foley?.lampClick(); });
-    at(5400, () => ringAndAnswer());
+    at(200, () => { el.classList.add('is-walking'); foley?.footsteps(9, 320); });
+    at(3400, () => { el.classList.add('is-lit'); foley?.lampClick(); });
+    at(4200, () => { el.classList.add('is-answered'); foley?.answer(); });
+    at(5200, finish);
   };
   if (video) {
     let started = false;
@@ -169,25 +170,7 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
     return { cancel: finish };
   }
 
-  // The drawn timeline, when there is no film.
-  const ringAndAnswer = () => {
-    const cadence = foley?.ring(3, (n) => {
-      el.classList.add('is-ringing');
-      timers.push(setTimeout(() => el.classList.remove('is-ringing'), 1100));
-      if (n === 2) timers.push(setTimeout(() => {
-        el.classList.add('is-answered');
-        foley?.answer();
-        timers.push(setTimeout(finish, 900));
-      }, 600));
-    }) ?? { on: 1100, off: 1300 };
-    if (!foley) {
-      // No sound: still shake three times and answer.
-      for (let i = 0; i < 3; i++) {
-        at(i * (cadence.on + cadence.off), () => { el.classList.add('is-ringing'); timers.push(setTimeout(() => el.classList.remove('is-ringing'), cadence.on)); });
-      }
-      at(2 * (cadence.on + cadence.off) + 600, () => { el.classList.add('is-answered'); timers.push(setTimeout(finish, 900)); });
-    }
-  };
+  // No film: the drawn scene.
   drawnTimeline();
 
   return { cancel: finish };

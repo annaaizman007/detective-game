@@ -22,7 +22,7 @@ const def: CaseDef = {
   call: {
     from: 'Constable Ned Pardoe', role: 'Hill Division',
     lines: [
-      'Inspector, this is Pardoe at Hill Division. The verger at St. Ordell’s found a nun dead at the bottom of the tower stairs an hour ago.',
+      'Inspector. Everyone. I came up the hill at a run. The verger at St. Ordell’s found a nun dead at the bottom of the tower stairs an hour ago.',
       'Sister Constance Ayre. Forty-four. She rang the cathedral bell at midnight every night for twenty years. Twelve strokes, never one more.',
       'Last night the bell rang nine times, not twelve, and badly. Whoever rang it did not know how. By six this morning she was dead on the stairs with the back of her head broken and her keys still in her hand.',
       'She did not fall. Somebody hit her from behind. The bell rope was cut on the ringing floor, and the person who did it did not come down the stairs. There are old iron rungs on the outside of the tower.',

@@ -11,6 +11,7 @@ if (root && stage) {
   const app = new App(root, stage);
   // For poking at from the console.
   (window as unknown as { __ashgrave: App }).__ashgrave = app;
+  // eslint-disable-next-line no-console
   if (import.meta.env.DEV) window.addEventListener('error', (e) => console.log('ERR', String((e.error as Error)?.stack).split('\n').slice(0, 7).join(' | ')));
 }
 
