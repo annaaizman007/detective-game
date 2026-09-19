@@ -6,11 +6,12 @@ import { createGame, applyAction } from '../state.js';
 import * as R from '../rules.js';
 import { CASES, caseById } from '../cases/index.js';
 import { CHARACTERS, characterById } from '../characters.js';
-import { TRAITS, traitLabel } from '../traits.js';
+import { TRAITS, traitValue, traitLabel } from '../traits.js';
+import { APPROACHES, approachById } from '../dialogue.js';
 import { Narrator } from '../voice.js';
 import { Ambience } from '../audio.js';
 import { LocalTransport } from '../net/transport.js';
-import { CityMap } from './map.js';
+import { CityMap, VB as BOARD } from './map.js';
 import { renderNotebook } from './notebook.js';
 import { icon, portrait, locIcon } from './icons.js';
 import * as S from './screens.js';
@@ -105,6 +106,10 @@ export class App {
     }
 
     this.ui.mode = 'idle';
+    if (next.conversation) {
+      this.ui.selectedSuspect = next.conversation.suspectId;
+      this.modal = 'conversation';
+    }
     if (next.phase === 'over') {
       this.screen = 'end';
       this.render();
@@ -168,6 +173,7 @@ export class App {
         return window.location.reload();
       }
       case 'voice-quick': this.narrator.setEnabled(!this.narrator.enabled); return this.render();
+      case 'ambience-quick': this.ambience.setEnabled(!this.ambience.enabled); return this.render();
 
       case 'move-mode':
         this.ui.mode = this.ui.mode === 'move' ? 'idle' : 'move';
@@ -192,7 +198,16 @@ export class App {
 
       case 'do-move': this.closeModal(); return this.dispatch({ type: 'MOVE', playerId: p.id, to: el.dataset.id });
       case 'do-search': this.closeModal(); return this.dispatch({ type: 'SEARCH', playerId: p.id });
-      case 'do-interrogate': this.closeModal(); return this.dispatch({ type: 'INTERROGATE', playerId: p.id, suspectId: el.dataset.id });
+      case 'open-talk':
+        this.ui.selectedSuspect = el.dataset.id;
+        this.modal = 'suspect';
+        return this.renderModal();
+      case 'do-interrogate':
+        this.modal = null;
+        return this.dispatch({
+          type: 'INTERROGATE', playerId: p.id,
+          suspectId: el.dataset.id, approach: el.dataset.approach,
+        });
       case 'do-endturn': return this.dispatch({ type: 'END_TURN', playerId: p.id });
 
       case 'open-accuse': this.modal = 'accuse'; return this.renderModal();
@@ -343,6 +358,7 @@ export class App {
       case 'location': return this.locationPanel();
       case 'suspect': return this.suspectPanel();
       case 'accuse': return this.accusePanel();
+      case 'conversation': return this.conversationPanel();
       case 'ability': return this.abilityPanel();
       default: return '';
     }
@@ -379,7 +395,9 @@ export class App {
                   title="${this.narrator.enabled ? 'Narration on' : 'Narration off'}">
             ${icon(this.narrator.enabled ? 'speaker' : 'mute')}
           </button>
-          <button class="icon-btn" data-act="settings" title="Narration settings">${icon('badge')}</button>
+          <button class="icon-btn ${this.ambience.enabled ? 'is-on' : ''}" data-act="ambience-quick"
+                  title="${this.ambience.enabled ? 'Rain and radio on' : 'Rain and radio off'}">${icon('rain')}</button>
+          <button class="icon-btn" data-act="settings" title="Sound settings">${icon('badge')}</button>
           <button class="icon-btn" data-act="how" title="How to play">?</button>
         </div>
       </header>
@@ -401,7 +419,7 @@ export class App {
 
       <main class="board">
         <div class="map-wrap ${this.ui.mode === 'move' ? 'is-choosing' : ''}">
-          <svg id="city" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid meet" role="img" aria-label="City map"></svg>
+          <svg id="city" viewBox="0 0 ${BOARD.w} ${BOARD.h}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="City map"></svg>
           <div class="map-tools">
             <button class="icon-btn" data-act="zoom-in" aria-label="Zoom in">+</button>
             <button class="icon-btn" data-act="zoom-out" aria-label="Zoom out">−</button>
@@ -459,7 +477,7 @@ export class App {
           <i>${this.ui.mode === 'move' ? 'Tap a lit street' : cost === 0 ? 'Free — Ruby’s shortcut' : `${cost} ${cost === 1 ? 'hour' : 'hours'} · pick a street`}</i>
         </button>
         <button class="act ${here.length ? '' : 'is-off'}" data-act="open-loc" data-id="${p.at}" ${here.length ? '' : 'disabled'}>
-          ${icon('eye')}<b>Question</b>
+          ${icon('eye')}<b>Talk</b>
           <i>${here.length ? `${here.length} here` : 'Nobody here'}</i>
         </button>
         <button class="act act--special ${abilityBlock ? 'is-off' : ''}" data-act="open-ability" ${abilityBlock ? 'disabled' : ''}>
@@ -536,8 +554,8 @@ export class App {
         return `<li class="${out ? 'is-out' : ''}">
           <span class="ml-face">${portrait(x.id, out ? '#5b6472' : '#c8963e', 34)}</span>
           <span class="ml-n"><b>${x.name}</b><i>${x.role}</i></span>
-          <button class="btn btn--small ${can ? '' : 'is-off'}" data-act="do-interrogate" data-id="${x.id}" ${can ? '' : 'disabled'}>
-            ${!here ? 'Not with you' : x.clammed ? 'Clammed up' : can ? 'Question · 1 hr' : 'No'}
+          <button class="btn btn--small ${can ? '' : 'is-off'}" data-act="open-talk" data-id="${x.id}" ${can ? '' : 'disabled'}>
+            ${!here ? 'Not with you' : x.clammed ? 'Clammed up' : can ? 'Talk to them' : 'No'}
           </button>
         </li>`;
       }).join('')}</ul>` : '<p class="sheet-note">Nobody worth talking to.</p>'}
@@ -580,11 +598,62 @@ export class App {
       <p class="sheet-tags"><span class="tag">${x.dead ? 'The morgue' : R.locationById(s, x.at).name}</span>
         ${x.clammed ? '<span class="tag tag--bad">Clammed up</span>' : ''}</p>
       <ul class="traitlist">${rows}</ul>
-      <div class="sheet-actions">
-        <button class="btn ${can ? 'btn--hero' : 'is-off'}" data-act="do-interrogate" data-id="${x.id}" ${can ? '' : 'disabled'}>
-          ${can ? 'Question them · 1 hr' : x.dead ? 'Beyond questioning' : x.at !== p.at ? 'Not where you are' : x.clammed ? 'They have stopped talking' : 'No time left'}
-        </button>
+      ${can ? `
+        <h4 class="sheet-h">How do you play it? <span class="sheet-cost">1 hour</span></h4>
+        <div class="approaches">
+          ${APPROACHES.map((a) => `
+            <button class="approach" data-act="do-interrogate" data-id="${x.id}" data-approach="${a.id}">
+              <b>${a.label}</b><i>${a.hint}</i>
+            </button>`).join('')}
+        </div>`
+        : `<div class="sheet-actions">
+            <button class="btn is-off" disabled>${x.dead ? 'Beyond questioning'
+              : x.at !== p.at ? `Not where you are — they are at ${R.locationById(s, x.at).name}`
+                : x.clammed ? 'They have stopped talking to you' : 'No time left this turn'}</button>
+          </div>`}
+    </div>`;
+  }
+
+  conversationPanel() {
+    const s = this.state;
+    const c = s.conversation;
+    if (!c) return '';
+    const x = s.suspects.find((y) => y.id === c.suspectId);
+    const approach = approachById(c.approach);
+    const p = R.currentPlayer(s);
+    const ch = characterById(p.charId);
+
+    const learned = c.learned.map((l) => {
+      const who = s.suspects.find((y) => y.id === l.who);
+      return `<li>
+        <span class="obs-ico">${icon(TRAITS[l.trait].icon)}</span>
+        <span class="obs-body">
+          <b>${who.name} \u2014 ${TRAITS[l.trait].label.toLowerCase()}: ${traitLabel(l.trait, who.traits[l.trait])}</b>
+          <i>${traitValue(l.trait, who.traits[l.trait]).tell}</i>
+        </span>
+      </li>`;
+    }).join('');
+
+    return `
+    <div class="sheet sheet--talk">
+      <button class="sheet-x" data-act="close-modal" aria-label="Close">\u00d7</button>
+      <div class="talk-head">
+        <span class="talk-face">${portrait(x.id, '#c8963e', 72)}</span>
+        <div>
+          <p class="talk-where">${R.locationById(s, x.at).name} \u00b7 ${approach.label.toLowerCase()}</p>
+          <h3>${x.name}</h3>
+          <p class="talk-role">${x.role}</p>
+        </div>
       </div>
+      <div class="talk-thread">
+        <p class="line line--you"><span class="line-who" style="--seat:${ch.color}">${p.name}</span>${c.ask}</p>
+        <p class="line line--them"><span class="line-who">${x.name.split(' ').slice(-1)[0]}</span>${c.reply}</p>
+      </div>
+      ${learned
+        ? `<h4 class="sheet-h">What you notice</h4><ul class="observed">${learned}</ul>`
+        : '<p class="sheet-note">Nothing new. They have already given you everything they have.</p>'}
+      ${x.clammed ? `<p class="talk-warn">${x.name} will not talk again for a while.</p>` : ''}
+      <button class="btn btn--hero btn--wide" data-act="close-modal">Close the notebook</button>
     </div>`;
   }
 

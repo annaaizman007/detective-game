@@ -70,6 +70,11 @@ export function canInterrogate(s, p, suspect) {
   return true;
 }
 
+/** Pressing hard shuts a suspect down, so it is only worth it while they
+ *  still have several things left to give. */
+export const unknownTraits = (s, suspect) =>
+  s.chosenTraits.filter((t) => !suspect.known[t]).length;
+
 export const canAccuse = (s, p) => !!p && s.phase === 'play' && p.ap >= ACCUSE_COST;
 export const canUseAbility = (s, p) =>
   !!p && s.phase === 'play' && !p.abilityUsed && p.ap >= ABILITY_COST;

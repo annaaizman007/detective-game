@@ -22,6 +22,14 @@ export default {
     'Customs has been sitting on a manifest for six weeks. Lean on them.',
   ],
 
+  terrain: {
+    sea: true, seaName: 'THE NARROWS', river: false, parks: 1,
+    districts: [
+      { text: 'CUSTOMS ROW', x: 620, y: 110, rot: -3 },
+      { text: 'THE SALT YARDS', x: 250, y: 620, rot: 2 },
+      { text: 'GRIEVE POINT', x: 960, y: 250, rot: 5 },
+    ],
+  },
   locations: [
     { id: 'station', name: 'Harbour Station', type: 'police', x: 480, y: 318, desc: 'Two desks, one cell, and a radiator that screams.' },
     { id: 'pier9', name: 'Pier Nine', type: 'docks', x: 250, y: 168, desc: 'Where they found him. Still taped off, still stinking.' },

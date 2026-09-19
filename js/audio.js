@@ -9,8 +9,8 @@
 //
 // Every source is generated, so there are no audio assets to load.
 
-const RAIN_IDLE = 0.055;
-const RAIN_DUCK = 0.032;   // pull the rain back so the voice sits on top
+const RAIN_IDLE = 0.13;
+const RAIN_DUCK = 0.075;   // pull the rain back so the voice sits on top
 const HISS_OPEN = 0.020;
 const HUM_OPEN = 0.010;
 
@@ -62,21 +62,55 @@ export class Ambience {
     this.master.gain.value = this.enabled ? 1 : 0;
     this.master.connect(ctx.destination);
 
-    // --- rain: brown noise, rolled off, with a little top for the spatter ---
-    const rainSrc = ctx.createBufferSource();
-    rainSrc.buffer = noiseBuffer(ctx, 3, true);
-    rainSrc.loop = true;
-    const rainLow = ctx.createBiquadFilter();
-    rainLow.type = 'lowpass';
-    rainLow.frequency.value = 1100;
-    const rainAir = ctx.createBiquadFilter();
-    rainAir.type = 'highshelf';
-    rainAir.frequency.value = 2600;
-    rainAir.gain.value = -6;
-    this.rain = ctx.createGain();
-    this.rain.gain.value = RAIN_IDLE;
-    rainSrc.connect(rainLow).connect(rainAir).connect(this.rain).connect(this.master);
-    rainSrc.start();
+    this.weather = ctx.createGain();
+    this.weather.gain.value = RAIN_IDLE;
+    this.weather.connect(this.master);
+
+    // --- rain, in two layers -------------------------------------------
+    // One brown-noise layer for the rumble of it on roofs and road, one
+    // band-passed white layer for the spatter on top. A single noise source
+    // reads as static; two at different bands reads as weather.
+    const rumbleSrc = ctx.createBufferSource();
+    rumbleSrc.buffer = noiseBuffer(ctx, 4, true);
+    rumbleSrc.loop = true;
+    const rumbleFilter = ctx.createBiquadFilter();
+    rumbleFilter.type = 'lowpass';
+    rumbleFilter.frequency.value = 520;
+    const rumbleGain = ctx.createGain();
+    rumbleGain.gain.value = 0.85;
+    rumbleSrc.connect(rumbleFilter).connect(rumbleGain).connect(this.weather);
+    rumbleSrc.start();
+
+    const spatterSrc = ctx.createBufferSource();
+    spatterSrc.buffer = noiseBuffer(ctx, 4, false);
+    spatterSrc.loop = true;
+    const spatterBand = ctx.createBiquadFilter();
+    spatterBand.type = 'bandpass';
+    spatterBand.frequency.value = 4200;
+    spatterBand.Q.value = 0.55;
+    const spatterGain = ctx.createGain();
+    spatterGain.gain.value = 0.16;
+    spatterSrc.connect(spatterBand).connect(spatterGain).connect(this.weather);
+    spatterSrc.start();
+
+    // Slow gusts: without this the rain sits dead still and stops sounding
+    // like anything happening outside a window.
+    const gust = ctx.createOscillator();
+    gust.type = 'sine';
+    gust.frequency.value = 0.055;
+    const gustDepth = ctx.createGain();
+    gustDepth.gain.value = 0.06;
+    gust.connect(gustDepth).connect(spatterGain.gain);
+    const gust2 = ctx.createOscillator();
+    gust2.type = 'sine';
+    gust2.frequency.value = 0.021;
+    const gustDepth2 = ctx.createGain();
+    gustDepth2.gain.value = 0.22;
+    gust2.connect(gustDepth2).connect(rumbleGain.gain);
+    gust.start(); gust2.start();
+
+    // Kept for the duck/restore ramps.
+    this.rain = this.weather;
 
     // --- carrier hiss: the radio's own noise floor, only while it is open ---
     const hissSrc = ctx.createBufferSource();
@@ -105,6 +139,36 @@ export class Ambience {
     hum.start(); hum2.start();
 
     this.started = true;
+    this._scheduleThunder(12000);
+  }
+
+  /** Distant thunder, every half-minute or so. Never while the radio is open. */
+  _scheduleThunder(delay) {
+    clearTimeout(this._thunderTimer);
+    this._thunderTimer = setTimeout(() => {
+      if (this.ctx && this.enabled && !this.open) this._thunder();
+      this._scheduleThunder(24000 + Math.random() * 40000);
+    }, delay);
+  }
+
+  _thunder() {
+    const ctx = this.ctx;
+    const src = ctx.createBufferSource();
+    src.buffer = noiseBuffer(ctx, 4, true);
+    src.loop = true;
+    const low = ctx.createBiquadFilter();
+    low.type = 'lowpass';
+    low.frequency.value = 140;
+    const g = ctx.createGain();
+    const now = ctx.currentTime;
+    const peak = 0.10 + Math.random() * 0.10;
+    // A long swell rather than a crack: this storm is several streets away.
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.exponentialRampToValueAtTime(peak, now + 0.5 + Math.random());
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 3.4 + Math.random() * 1.6);
+    src.connect(low).connect(g).connect(this.master);
+    src.start();
+    src.stop(now + 5.5);
   }
 
   _ramp(param, value, seconds = 0.4) {
@@ -160,6 +224,7 @@ export class Ambience {
   }
 
   stop() {
+    clearTimeout(this._thunderTimer);
     if (!this.ctx) return;
     try { this.ctx.close(); } catch { /* ignore */ }
     this.ctx = null;

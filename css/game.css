@@ -244,75 +244,108 @@
 .roster-ap { color: var(--brass); font-size: .7rem; letter-spacing: .1em; }
 
 /* -------------------------------------------------------------- the map */
+/* A printed map on smoke-stained paper, pinned to the precinct wall. The
+   only warm surface in the game, which is why the tokens read on it. */
 
-.map-wrap { position: relative; height: 100%; background: var(--ink-2);
-  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.map-wrap {
+  --map-paper: #cdbd9e;
+  --map-paper-dark: #b9a684;
+  --map-ink: #2a2318;
+  --map-block: #a8977a;
+  --map-street: #efe6d2;
+  --map-water: #7e8d92;
+  --map-water-ink: #4d5a60;
+  --map-park: #94a177;
+  --map-park-ink: #4f5c3c;
+  --map-road: #f3ead6;
+
+  position: relative; height: 100%; background: #0a0d13;
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden;
+  box-shadow: inset 0 0 90px rgba(0,0,0,.75);
+}
 #city { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; user-select: none; }
 #city.is-grabbing { cursor: grabbing; }
 
 .map-tools { position: absolute; top: .6rem; right: .6rem; display: grid; gap: .3rem; z-index: 4; }
 
-.road-bed { stroke: #1a2231; stroke-width: 9; stroke-linecap: round; }
-.road-mark { stroke: #33445c; stroke-width: 1.4; stroke-dasharray: 9 11; stroke-linecap: round; }
-.road--live .road-bed { stroke: #2c3c52; }
-.road--live .road-mark { stroke: var(--brass); stroke-opacity: .85;
-  animation: dashflow 1.4s linear infinite; }
-@keyframes dashflow { to { stroke-dashoffset: -20; } }
+.map-paper { fill: var(--map-paper); }
+.map-stain { fill: #6b5638; opacity: .12; }
+.map-block { fill: var(--map-block); opacity: .82; }
+.map-street { stroke: var(--map-street); stroke-width: 3.4; stroke-opacity: .5; fill: none; }
+.map-park { fill: url(#parkHatch); stroke: var(--map-park-ink); stroke-width: 1; stroke-opacity: .5; }
+.map-water { fill: url(#waterLines); }
+.map-shore { fill: none; stroke: var(--map-water-ink); stroke-width: 1.8; stroke-opacity: .85; }
+.map-shore--echo { stroke-width: 1; stroke-opacity: .35; stroke-dasharray: 7 6; }
 
+.map-label { font-family: var(--display); fill: var(--map-ink); text-anchor: middle;
+  letter-spacing: .3em; font-weight: 400; pointer-events: none; }
+.map-label--water { fill: #3b474d; opacity: .62; font-style: italic; letter-spacing: .42em; }
+.map-label--district { opacity: .3; letter-spacing: .36em; }
+
+/* arterial roads: the moves you are allowed to make */
+.road-case { stroke: var(--map-ink); stroke-width: 11; stroke-opacity: .5; stroke-linecap: round; fill: none; }
+.road-fill { stroke: var(--map-road); stroke-width: 7.5; stroke-linecap: round; fill: none; }
+.road--live .road-case { stroke-opacity: .75; }
+.road-live { stroke: #b4762a; stroke-width: 4; stroke-linecap: round; fill: none;
+  stroke-dasharray: 10 12; animation: dashflow 1.2s linear infinite; }
+@keyframes dashflow { to { stroke-dashoffset: -22; } }
+
+/* a location is a stamped brass space on the paper */
 .node { cursor: pointer; }
 .node:focus-visible { outline: none; }
-.node:focus-visible .node-ring { stroke: #fff; stroke-width: 2.6; }
-:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 2px; }
 .node-halo { fill: rgba(200,150,62,0); transition: fill .2s; }
-.node-disc { fill: #151c27; stroke: #2a3648; stroke-width: 1.5; }
-.node-ring { fill: none; stroke: var(--brass-dim); stroke-width: 1.4; stroke-opacity: .55; }
-.node-ico { color: #8da3bd; }
-.node-ico .ico { width: 26px; height: 26px; stroke-width: 1.6; }
-.node-name { font-family: var(--display); font-size: 14px; letter-spacing: .1em;
-  text-transform: uppercase; fill: #b9c7d8; text-anchor: middle; paint-order: stroke;
-  stroke: #080b11; stroke-width: 4px; stroke-linejoin: round; }
+.node-plate { fill: #15191f; stroke: #0a0c10; stroke-width: 1.5; }
+.node-ring { fill: none; stroke: var(--brass); stroke-width: 1.6; stroke-opacity: .8; }
+.node-ring--inner { stroke-width: .8; stroke-opacity: .35; }
+.node-ico { color: #e3d2ac; }
+.node-ico .ico { width: 24px; height: 24px; stroke-width: 1.5; }
+.node-name { font-family: var(--display); font-size: 14px; letter-spacing: .12em;
+  text-transform: uppercase; fill: #241d12; text-anchor: middle; paint-order: stroke;
+  stroke: #e2d6bb; stroke-width: 5px; stroke-linejoin: round; }
 
-.node:hover .node-halo { fill: rgba(200,150,62,.1); }
-.node:hover .node-ring { stroke: var(--brass); stroke-opacity: 1; }
-.node:hover .node-ico { color: var(--brass-hi); }
-.node--here .node-disc { fill: #1d2839; }
-.node--here .node-ring { stroke: var(--brass-hi); stroke-width: 2.4; stroke-opacity: 1;
-  filter: url(#nodeGlow); }
-.node--here .node-name { fill: var(--brass-hi); }
-.node--sealed { opacity: .5; }
-.node--sealed .node-disc { fill: #241519; }
+.node:hover .node-halo, .node:focus-visible .node-halo { fill: rgba(200,150,62,.16); }
+.node:hover .node-ring { stroke: var(--brass-hi); stroke-opacity: 1; }
+.node:hover .node-ico { color: #fff0cd; }
+.node--here .node-plate { fill: #241a09; }
+.node--here .node-ring { stroke: var(--brass-hi); stroke-width: 2.6; stroke-opacity: 1; }
+.node--here .node-name { fill: #4a2f07; stroke: #f0e2c2; }
+.node--sealed .node-plate { fill: #2a1114; }
 .node--sealed .node-ring { stroke: var(--crimson); stroke-dasharray: 5 4; }
-.node--cold { opacity: .62; }
+.node--cold { opacity: .5; }
 
 /* choosing a destination: light the streets you can actually walk */
-.map-wrap.is-choosing .node--hit .node-ring { stroke: var(--neon); stroke-opacity: 1; stroke-width: 2.2; }
-.map-wrap.is-choosing .node--hit .node-halo { fill: rgba(79,208,196,.12); animation: throb 1.5s ease-in-out infinite; }
-.map-wrap.is-choosing .node--hit .node-name { fill: var(--neon); }
-.map-wrap.is-choosing .node--cold { opacity: .28; }
+.map-wrap.is-choosing .node--hit .node-ring { stroke: #2f8f86; stroke-width: 2.6; stroke-opacity: 1; }
+.map-wrap.is-choosing .node--hit .node-halo { fill: rgba(47,143,134,.22);
+  animation: throb 1.5s ease-in-out infinite; }
+.map-wrap.is-choosing .node--cold { opacity: .26; }
 .map-wrap.is-choosing #city { cursor: crosshair; }
 
+/* tokens sit on the board, so they carry a shadow */
 .chip { cursor: pointer; }
-.chip-bg { fill: #202a39; stroke: var(--brass-dim); stroke-width: 1.2; }
-.chip-t { font-family: var(--display); font-size: 11px; fill: #d8c49a;
+.chip-bg { fill: #16202b; stroke: #e6d9bb; stroke-width: 1.6; }
+.chip-inner { fill: none; stroke: var(--brass-dim); stroke-width: .9; }
+.chip-t { font-family: var(--display); font-size: 11px; fill: #e0cda4;
   text-anchor: middle; letter-spacing: .04em; }
-.chip:hover .chip-bg { fill: #2c3a4e; stroke: var(--brass-hi); }
-.chip--out .chip-bg { fill: #14191f; stroke: #39414d; }
-.chip--out .chip-t { fill: #5d6875; }
-.chip-slash { stroke: var(--crimson); stroke-width: 1.8; }
-.chip--dead .chip-bg { fill: #1a1114; stroke: #4a2a2c; }
-.chip--dead .chip-t { fill: #7d4b4b; }
+.chip:hover .chip-bg { fill: #24323f; stroke: #fff; }
+.chip--out .chip-bg { fill: #55503f; stroke: #7c7561; }
+.chip--out .chip-inner { stroke: #7c7561; }
+.chip--out .chip-t { fill: #a9a291; }
+.chip-slash { stroke: var(--crimson); stroke-width: 2; }
+.chip--dead .chip-bg { fill: #3a2426; stroke: #7a5a58; }
+.chip--dead .chip-t { fill: #c39a97; }
 
-.pawn-bg { stroke: #0a0d13; stroke-width: 2; }
+.pawn-bg { stroke: #11140f; stroke-width: 2; }
+.pawn-ring { stroke: rgba(0,0,0,.35); stroke-width: 1; }
 .pawn-t { font-family: var(--display); font-size: 12px; fill: #0b0d12;
   text-anchor: middle; font-weight: 600; }
-.pawn--active .pawn-bg { stroke: #fff; stroke-opacity: .85; filter: url(#nodeGlow); }
+.pawn--active .pawn-bg { stroke: #fff; stroke-width: 2.4; }
 
 .flag text { font-family: var(--display); font-size: 9.5px; letter-spacing: .16em;
   text-anchor: middle; }
-.flag rect { fill: #10151d; stroke-width: 1; }
-.flag--sealed rect { stroke: rgba(217,79,69,.6); } .flag--sealed text { fill: var(--crimson-hi); }
-.flag--done rect { stroke: #2b3543; } .flag--done text { fill: #66717f; }
-.flag--part rect { stroke: rgba(79,208,196,.4); } .flag--part text { fill: var(--neon); }
+.flag rect { fill: #1b1610; fill-opacity: .92; stroke-width: 1; }
+.flag--sealed rect { stroke: rgba(217,79,69,.7); } .flag--sealed text { fill: var(--crimson-hi); }
+.flag--done rect { stroke: #6a6350; } .flag--done text { fill: #b3a88f; }
+.flag--part rect { stroke: rgba(79,208,196,.5); } .flag--part text { fill: var(--neon); }
 
 /* ------------------------------------------------------- narration bar */
 
@@ -478,3 +511,49 @@
   .modal { padding: .6rem; align-items: end; }
   .sheet { max-height: 88vh; }
 }
+
+/* --------------------------------------------------- talking to people */
+
+.sheet-cost { float: right; color: var(--text-faint); letter-spacing: .08em; }
+
+.approaches { display: grid; gap: .45rem; margin: .5rem 0 1rem; }
+.approach { display: grid; gap: .12rem; padding: .7rem .85rem; text-align: left; cursor: pointer;
+  background: var(--panel-2); border: 1px solid var(--line); border-left: 3px solid var(--brass-dim);
+  border-radius: var(--r-s); color: var(--text); transition: .16s; }
+.approach:hover { border-color: var(--brass); border-left-color: var(--brass);
+  background: var(--panel-3); transform: translateX(2px); }
+.approach b { font-family: var(--display); font-size: 1rem; letter-spacing: .06em;
+  text-transform: uppercase; font-weight: 500; }
+.approach i { font-style: normal; font-size: .78rem; color: var(--text-faint); }
+
+.sheet--talk { width: min(620px, 100%); }
+.talk-head { display: flex; gap: .9rem; align-items: center; }
+.talk-face { line-height: 0; flex: none; }
+.talk-where { font-family: var(--display); font-size: .66rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--brass); }
+.talk-head h3 { font-size: 1.5rem; }
+.talk-role { font-size: .84rem; color: var(--text-faint); }
+
+.talk-thread { display: grid; gap: .6rem; margin: 1.2rem 0; }
+.line { position: relative; padding: .7rem .9rem .7rem 1rem; border-radius: var(--r-s);
+  font-family: var(--type); font-size: .94rem; line-height: 1.7; }
+.line-who { display: block; font-family: var(--display); font-size: .64rem;
+  letter-spacing: .2em; text-transform: uppercase; margin-bottom: .25rem; }
+.line--you { background: rgba(200,150,62,.08); border-left: 2px solid var(--seat, var(--brass));
+  color: var(--text-dim); }
+.line--you .line-who { color: var(--seat, var(--brass)); }
+.line--them { background: var(--panel-2); border-left: 2px solid var(--line);
+  color: var(--paper); }
+.line--them .line-who { color: var(--text-faint); }
+
+.observed { display: grid; gap: .4rem; }
+.observed li { display: flex; gap: .7rem; padding: .55rem .7rem; align-items: flex-start;
+  background: rgba(200,150,62,.07); border: 1px solid rgba(200,150,62,.22);
+  border-radius: var(--r-s); }
+.obs-ico { color: var(--brass); font-size: 1.15rem; flex: none; }
+.obs-body b { display: block; font-size: .86rem; color: var(--brass-hi); font-weight: 600; }
+.obs-body i { display: block; font-style: normal; font-size: .8rem; color: var(--text-dim);
+  margin-top: .15rem; }
+
+.talk-warn { margin-top: .8rem; font-size: .82rem; color: var(--crimson-hi);
+  border-left: 2px solid var(--crimson); padding-left: .7rem; }

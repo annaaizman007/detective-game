@@ -23,6 +23,15 @@ export default {
     'The bell rope is cut clean. Whoever went up did not come down the stair.',
   ],
 
+  terrain: {
+    sea: false, river: true, riverSource: 0.18, riverMouth: 0.5,
+    lakeAt: 'reservoir', lakeName: 'THE RESERVOIR', parks: 3,
+    districts: [
+      { text: 'CATHEDRAL HILL', x: 330, y: 110, rot: -4 },
+      { text: 'THE TERRACES', x: 900, y: 330, rot: 3 },
+      { text: 'LOWER ORDELL', x: 280, y: 680, rot: -2 },
+    ],
+  },
   locations: [
     { id: 'tower', name: 'The Bell Tower', type: 'church', x: 470, y: 112, desc: 'Two hundred and eleven steps and a rope cut clean through.' },
     { id: 'rectory', name: 'The Rectory', type: 'manor', x: 226, y: 158, desc: 'Sherry, silence, and a fire that is always already lit.' },

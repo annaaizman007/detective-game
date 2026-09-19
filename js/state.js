@@ -6,12 +6,13 @@
 // the state itself. That is the whole reason js/net/ can grow a websocket
 // transport later without any of this file changing.
 
-import { drawPick, drawShuffle } from './rng.js';
+import { drawInt, drawPick, drawShuffle } from './rng.js';
 import { TRAITS, traitValue, traitLabel } from './traits.js';
 import { caseById } from './cases/index.js';
 import { characterById } from './characters.js';
 import { buildCase, DIFFICULTIES, BOONS } from './gen.js';
 import { EVENTS } from './events.js';
+import { approachById, replyFor, spentReply } from './dialogue.js';
 
 export const ACCUSE_COST = 2;
 export const ABILITY_COST = 1;
@@ -79,6 +80,7 @@ export function createGame({ caseId, difficulty = 'detective', seed, players = [
     modifiers: { moveSurcharge: 0, apPenalty: 0 },
     wrongAccusations: [],
     lastEvent: null,
+    conversation: null,
     log: [],
     narration: [],
   };
@@ -284,6 +286,7 @@ function advanceTurn(s) {
 export function applyAction(prev, action) {
   const s = structuredClone(prev);
   s.narration = [];
+  s.conversation = null;
   if (s.phase === 'over') return s;
   const apBefore = s.players.reduce((n, x) => n + x.ap, 0);
 
@@ -323,19 +326,46 @@ export function applyAction(prev, action) {
       const x = sus(s, action.suspectId);
       if (!x || x.dead || x.at !== p.at) return s;
       if (x.clammed > 0 && ch.id !== 'kell') return s;
+
+      const approach = approachById(action.approach);
       p.ap -= 1;
       pushLog(s, `${p.name} questions ${x.name} at ${locName(s, p.at)}.`, 'action', p.id);
-      const open = s.chosenTraits.filter((t) => !x.known[t]);
+
+      // Crane gets one more out of people than they meant to give.
+      const extra = ch.id === 'crane' ? 1 : 0;
+      // Asking about somebody else turns the answer onto another suspect.
+      const subject = approach.aboutOther
+        ? drawPick(s, s.suspects.filter((y) => y.id !== x.id && !y.dead
+            && s.chosenTraits.some((t) => !y.known[t]))) || x
+        : x;
+
+      const open = s.chosenTraits.filter((t) => !subject.known[t]);
+      s.conversation = {
+        suspectId: x.id,
+        subjectId: subject.id,
+        approach: approach.id,
+        ask: approach.ask[drawInt(s, approach.ask.length)],
+        reply: open.length ? replyFor(approach.id, drawInt(s, 4)) : spentReply(drawInt(s, 3)),
+        learned: [],
+      };
+
+      tell(s, s.conversation.ask, 'talk', 'ask');
+      tell(s, s.conversation.reply, 'talk', 'reply');
+
       if (!open.length) {
         tell(s, `${x.name} has nothing left to give. You already have all of it.`, 'info');
       } else {
-        const picked = drawShuffle(s, open).slice(0, ch.id === 'crane' ? 2 : 1);
+        const picked = drawShuffle(s, open).slice(0, approach.reveals + extra);
         picked.forEach((t) => {
-          x.known[t] = true;
-          tell(s, `${x.name} ${traitValue(t, x.traits[t]).tell}`, 'tell', 'clue');
+          subject.known[t] = true;
+          s.conversation.learned.push({ trait: t, who: subject.id });
+          const about = subject.id === x.id ? x.name : `${subject.name}, by the sound of it,`;
+          tell(s, `${about} ${traitValue(t, subject.traits[t]).tell}`, 'tell', 'clue');
         });
       }
-      if (ch.id !== 'kell') x.clammed = 1;
+
+      // Kell is never shut out; everybody else wears out their welcome.
+      if (ch.id !== 'kell') x.clammed = Math.max(x.clammed, approach.clams);
       break;
     }
 

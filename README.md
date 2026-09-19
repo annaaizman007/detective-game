@@ -26,9 +26,20 @@ night runs out.
 | | |
 |---|---|
 | **Search a location** | Evidence tells you a fact about the **killer** — left-handed, size twelve boots, smells of machine oil. |
-| **Question a suspect** | Talking to somebody tells you a fact about **them**. They clam up for a while afterwards. |
+| **Talk to a suspect** | Standing with somebody, you choose how to play it, and they answer in character. What you get depends on the approach. |
 | **The notebook** | Does the crossing-off for you. A suspect whose known trait contradicts a known fact about the killer is out of the frame. |
 | **Accuse** | Costs two hours. Wrong costs three more, and they walk. |
+
+### Three ways to ask
+
+| | You learn | It costs you |
+|---|---|---|
+| **Level with them** | One thing | Nothing — they stay willing to talk |
+| **Press hard** | Two things | They shut down for two rounds |
+| **Ask about somebody else** | One thing about a *different* suspect | Nothing |
+
+Both lines of the exchange are spoken aloud, the detective and the suspect in
+different registers.
 
 Each detective gets two actions a turn (three for Hale) plus one ability per
 case. Every action burns an hour off the clock, and every four hours the city
@@ -108,21 +119,35 @@ js/
   rng.js            seeded PRNG; every draw is a function of (seed, tick)
   traits.js         the deduction alphabet
   characters.js     the six playable detectives
+  dialogue.js       how suspects answer, and what each approach costs
   events.js         what the city does every four hours
   voice.js          the narrator: voice ranking, prosody, phrase timing
-  audio.js          generated rain and precinct-radio ambience
+  audio.js          generated rain, thunder and precinct-radio ambience
   cases/            three hand-authored cases with their maps
-  ui/               app.js (controller), map.js, notebook.js, screens.js, icons.js, fx.js
+  ui/               app.js (controller), cartography.js, map.js, notebook.js,
+                    screens.js, icons.js, fx.js
   net/              the transport seam where online play plugs in
 server.js           zero-dependency static server
 test/logic.test.js  headless soak tests
 ```
 
+Three design decisions carry most of the weight:
+
 Two design decisions carry most of the weight:
 
-**Everything is drawn, nothing is loaded.** Location icons, suspect portraits
-and the city map are generated SVG. A suspect's silhouette is a hash of their
-id, so they look like themselves every game. There are no image assets at all.
+**Everything is drawn, nothing is loaded.** Location icons and suspect
+portraits are generated SVG — a suspect's silhouette is a hash of their id, so
+they look like themselves every game. So is the rain, the thunder and the radio
+hiss, built from noise buffers and oscillators. There are no media assets at
+all.
+
+**The city is generated, not drawn by hand.** `ui/cartography.js` builds each
+board from the case id: a ragged coastline, a river relaxed away from every
+location it would otherwise drown, parks in the gaps, a skewed street grid and
+a few hundred blocks, all masked to the land. It is generated rather than
+authored because hand-fitting a coastline around twelve locations is fiddly and
+breaks the moment one moves — and because terrain built by pushing water *away*
+from the locations can never swallow one. Same case, same city, every time.
 
 **The reducer is pure and the randomness is seeded.** `applyAction` is a
 function of state and action; every random draw reads `state.seed` and

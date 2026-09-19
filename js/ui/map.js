@@ -1,12 +1,18 @@
-// The city map: an SVG board with pan and zoom, redrawn from state on every
-// change. Small enough (a dozen nodes) that a full redraw is cheaper than
-// diffing, and it keeps the render a pure function of the state.
+// The board.
+//
+// A printed city map -- paper, ink, water, parks, streets and blocks -- with
+// the locations pinned onto it as playable spaces. Terrain comes from
+// cartography.js; this file draws it, places the tokens, and handles pan,
+// zoom and clicks. Redrawn wholesale on every state change: a dozen spaces is
+// cheap, and it keeps the render a pure function of the state.
 
 import * as R from '../rules.js';
 import { locIcon } from './icons.js';
 import { characterById } from '../characters.js';
+import { caseById } from '../cases/index.js';
+import { BOARD, makeProjection, buildCity } from './cartography.js';
 
-const VB = { w: 1000, h: 700 };
+const VB = BOARD;
 
 export class CityMap {
   constructor(svg, handlers = {}, cam = null) {
@@ -16,6 +22,7 @@ export class CityMap {
     this.cam = cam || { x: 0, y: 0, k: 1 };
     this.state = null;
     this.ui = null;
+    this._cityFor = null;
     this._bindCamera();
   }
 
@@ -42,7 +49,6 @@ export class CityMap {
     svg.addEventListener('pointermove', (e) => {
       if (!pointers.has(e.pointerId)) return;
       pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-
       if (pointers.size === 2) {
         const now = spread();
         if (pinch > 0 && now > 0) this.zoomBy(now / pinch);
@@ -73,51 +79,7 @@ export class CityMap {
   }
 
   zoomBy(f) {
-    this.cam.k = Math.max(0.7, Math.min(2.6, this.cam.k * f));
-    this._applyCamera();
-  }
-
-  resetCamera() { this.fitToContent(); }
-
-  /**
-   * Scale and centre so the city fills whatever shape the panel happens to be.
-   * A fixed viewBox letterboxes badly between a wide desktop board and a tall
-   * phone one, and the map is the thing people look at most.
-   */
-  fitToContent(focusId = null, pad = 78) {
-    if (!this.state) return;
-    const xs = this.state.map.locations.map((l) => l.x);
-    const ys = this.state.map.locations.map((l) => l.y);
-    const box = {
-      x0: Math.min(...xs) - pad, x1: Math.max(...xs) + pad,
-      y0: Math.min(...ys) - pad, y1: Math.max(...ys) + pad,
-    };
-    const bw = box.x1 - box.x0;
-    const bh = box.y1 - box.y0;
-    const sw = this.svg.clientWidth || VB.w;
-    const sh = this.svg.clientHeight || VB.h;
-    if (!sw || !sh) return;
-    // Size of the visible area, expressed in viewBox units.
-    const meet = Math.min(sw / VB.w, sh / VB.h);
-    const visW = sw / meet;
-    const visH = sh / meet;
-    // On a phone the panel is tall and the city is wide. Fitting both axes
-    // there shrinks the street names to about five pixels, so a portrait panel
-    // fills the height instead and pans sideways -- which is how people read
-    // maps. Judged by the panel's shape, not its pixel width: a desktop map
-    // column is often narrower than a phone screen is tall.
-    const kFit = Math.min(visW / bw, visH / bh);
-    const portrait = sh / sw > 1.15;
-    const k = Math.max(0.7, Math.min(2.6, portrait ? Math.max(kFit, (visH / bh) * 0.78) : kFit));
-
-    // Only chase the focus point when we actually cropped something; otherwise
-    // the whole city fits and centring on one detective would shove half the
-    // map out of the panel.
-    const cropped = k > kFit + 0.001;
-    const anchor = cropped && focusId && this.state.map.locations.find((l) => l.id === focusId);
-    const cx = anchor ? anchor.x : (box.x0 + box.x1) / 2;
-    const cy = anchor ? anchor.y : (box.y0 + box.y1) / 2;
-    Object.assign(this.cam, { k, x: (VB.w / 2 - cx) * k, y: (VB.h / 2 - cy) * k });
+    this.cam.k = Math.max(0.55, Math.min(3, this.cam.k * f));
     this._applyCamera();
   }
 
@@ -128,93 +90,183 @@ export class CityMap {
     g.setAttribute('transform', `translate(${VB.w / 2 + x} ${VB.h / 2 + y}) scale(${k}) translate(${-VB.w / 2} ${-VB.h / 2})`);
   }
 
-  /** Centre the camera on a location without changing the zoom. */
   focus(locId) {
-    const l = this.state?.map.locations.find((n) => n.id === locId);
+    const l = this.proj && this.state?.map.locations.find((n) => n.id === locId);
     if (!l) return;
-    this.cam.x = (VB.w / 2 - l.x) * this.cam.k;
-    this.cam.y = (VB.h / 2 - l.y) * this.cam.k;
+    this.cam.x = (VB.w / 2 - this.proj.px(l.x)) * this.cam.k;
+    this.cam.y = (VB.h / 2 - this.proj.py(l.y)) * this.cam.k;
+    this._applyCamera();
+  }
+
+  /** Frame the board for whatever shape the panel happens to be. */
+  fitToContent(focusId = null, pad = 26) {
+    if (!this.state) return;
+    const sw = this.svg.clientWidth || VB.w;
+    const sh = this.svg.clientHeight || VB.h;
+    if (!sw || !sh) return;
+    const bw = VB.w + pad * 2;
+    const bh = VB.h + pad * 2;
+    const meet = Math.min(sw / VB.w, sh / VB.h);
+    const visW = sw / meet;
+    const visH = sh / meet;
+
+    // A phone panel is tall and the board is wide. Fitting both axes there
+    // shrinks the street names past reading, so a portrait panel fills the
+    // height and pans sideways -- which is how people read maps. Judged by
+    // the panel's shape, not its pixel width.
+    const kFit = Math.min(visW / bw, visH / bh);
+    const portrait = sh / sw > 1.15;
+    const k = Math.max(0.55, Math.min(3, portrait ? Math.max(kFit, (visH / bh) * 0.74) : kFit));
+    const cropped = k > kFit + 0.001;
+    const anchor = cropped && focusId && this.state.map.locations.find((l) => l.id === focusId);
+    const cx = anchor ? this.proj.px(anchor.x) : VB.w / 2;
+    const cy = anchor ? this.proj.py(anchor.y) : VB.h / 2;
+    Object.assign(this.cam, { k, x: (VB.w / 2 - cx) * k, y: (VB.h / 2 - cy) * k });
     this._applyCamera();
   }
 
   render(state, ui) {
-    this.state = state; this.ui = ui;
+    this.state = state;
+    this.ui = ui;
     const s = state;
+    const def = caseById(s.caseId);
+    this.proj = makeProjection(s.map.locations, def.terrain?.sea !== false);
+    const P = this.proj;
+    const placed = s.map.locations.map(P.project);
+
+    // Terrain only depends on the case, so generate it once per board.
+    if (this._cityFor !== s.caseId) {
+      this.city = buildCity(def, placed);
+      this._cityFor = s.caseId;
+    }
+    const city = this.city;
+
     const p = R.currentPlayer(s);
-    const mode = ui.mode; // 'idle' | 'move' | 'breakin'
+    const choosing = ui.mode === 'move';
     const reach = new Set(p ? R.moveOptions(s, p).filter((o) => R.canMove(s, p, o.id)).map((o) => o.id) : []);
 
-    const roads = s.map.edges.map(([a, b]) => {
-      const A = s.map.locations.find((l) => l.id === a);
-      const B = s.map.locations.find((l) => l.id === b);
-      const live = p && ((p.at === a && reach.has(b)) || (p.at === b && reach.has(a)));
-      return `<g class="road ${live ? 'road--live' : ''}">
-        <line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" class="road-bed"/>
-        <line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" class="road-mark"/>
-      </g>`;
-    }).join('');
-
-    const nodes = s.map.locations.map((l) => this._node(s, ui, l, p, reach, mode)).join('');
-
     this.svg.innerHTML = `
-      <defs>
-        <radialGradient id="cityGlow" cx="50%" cy="40%" r="75%">
-          <stop offset="0%" stop-color="#1b2534"/>
-          <stop offset="60%" stop-color="#10151e"/>
-          <stop offset="100%" stop-color="#080a0f"/>
-        </radialGradient>
-        <pattern id="blocks" width="64" height="64" patternUnits="userSpaceOnUse" patternTransform="rotate(12)">
-          <rect width="64" height="64" fill="none"/>
-          <path d="M0 32h64M32 0v64" stroke="#8fb4d8" stroke-opacity=".05" stroke-width="1"/>
-          <path d="M0 0h64v64H0z" stroke="#8fb4d8" stroke-opacity=".035" fill="none"/>
-        </pattern>
-        <filter id="nodeGlow" x="-70%" y="-70%" width="240%" height="240%">
-          <feGaussianBlur stdDeviation="6" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-      </defs>
-      <rect x="-1000" y="-1000" width="3000" height="2700" fill="url(#cityGlow)"/>
-      <rect x="-1000" y="-1000" width="3000" height="2700" fill="url(#blocks)"/>
+      ${this._defs(city)}
       <g id="cam">
-        <g class="roads">${roads}</g>
-        <g class="nodes">${nodes}</g>
+        ${this._paper()}
+        ${this._terrain(city)}
+        ${this._roads(s, P, reach, p)}
+        ${placed.map((l) => this._node(s, ui, l, p, reach, choosing)).join('')}
+        ${this._labels(city)}
       </g>`;
 
     this._applyCamera();
     this.svg.querySelectorAll('[data-node]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.handlers.onLocation?.(el.dataset.node);
-      });
+      el.addEventListener('click', (e) => { e.stopPropagation(); this.handlers.onLocation?.(el.dataset.node); });
     });
     this.svg.querySelectorAll('[data-chip]').forEach((el) => {
-      el.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.handlers.onSuspect?.(el.dataset.chip);
-      });
+      el.addEventListener('click', (e) => { e.stopPropagation(); this.handlers.onSuspect?.(el.dataset.chip); });
     });
   }
 
-  _node(s, ui, l, p, reach, mode) {
+  _defs(city) {
+    return `<defs>
+      <filter id="paperGrain" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="7"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer><feFuncA type="linear" slope="0.13"/></feComponentTransfer>
+      </filter>
+      <filter id="inkBleed" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="t"/>
+        <feDisplacementMap in="SourceGraphic" in2="t" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+      <filter id="tokenLift" x="-60%" y="-60%" width="220%" height="220%">
+        <feDropShadow dx="0" dy="2.4" stdDeviation="2.4" flood-color="#100b06" flood-opacity=".5"/>
+      </filter>
+      <pattern id="parkHatch" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+        <rect width="13" height="13" fill="var(--map-park)"/>
+        <circle cx="3.2" cy="3.2" r="1.15" fill="var(--map-park-ink)" opacity=".55"/>
+      </pattern>
+      <pattern id="waterLines" width="26" height="26" patternUnits="userSpaceOnUse">
+        <rect width="26" height="26" fill="var(--map-water)"/>
+        <path d="M-2 7q6.5 -4 13 0t13 0M-2 20q6.5 -4 13 0t13 0" fill="none"
+              stroke="var(--map-water-ink)" stroke-opacity=".38" stroke-width="1"/>
+      </pattern>
+      <mask id="landMask">
+        <rect width="${VB.w}" height="${VB.h}" fill="#fff"/>
+        ${city.sea ? `<path d="${city.sea}" fill="#000"/>` : ''}
+        ${city.river ? `<path d="${city.river.fill}" fill="#000"/>` : ''}
+        ${city.lake ? `<path d="${city.lake}" fill="#000"/>` : ''}
+      </mask>
+    </defs>`;
+  }
+
+  _paper() {
+    return `
+      <rect class="map-paper" width="${VB.w}" height="${VB.h}"/>
+      <rect width="${VB.w}" height="${VB.h}" filter="url(#paperGrain)" opacity=".55"/>
+      <rect class="map-stain" x="-40" y="${VB.h * 0.45}" width="${VB.w + 80}" height="${VB.h * 0.6}"/>`;
+  }
+
+  _terrain(city) {
+    const parks = city.parks.map((p) => `<path class="map-park" d="${p.path}"/>`).join('');
+    const blocks = city.blocks.map((b) =>
+      `<rect class="map-block" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" transform="rotate(${b.r} ${b.x} ${b.y})"/>`).join('');
+    const minor = city.minorStreets.map((d) => `<path class="map-street" d="${d}"/>`).join('');
+
+    return `
+      <g mask="url(#landMask)">
+        <g class="map-blocks">${blocks}</g>
+        <g class="map-streets">${minor}</g>
+        <g class="map-parks">${parks}</g>
+      </g>
+      ${city.sea ? `
+        <path class="map-water" d="${city.sea}"/>
+        <path class="map-shore" d="${city.shoreLine}"/>
+        <path class="map-shore map-shore--echo" d="${city.shoreEcho}"/>` : ''}
+      ${city.river ? `
+        <path class="map-water" d="${city.river.fill}"/>
+        <path class="map-shore" d="${city.river.fill}" fill="none"/>` : ''}
+      ${city.lake ? `
+        <path class="map-water" d="${city.lake}"/>
+        <path class="map-shore" d="${city.lake}" fill="none"/>` : ''}`;
+  }
+
+  /** The playable connections, drawn as the map's arterial roads. */
+  _roads(s, P, reach, p) {
+    return `<g class="roads">${s.map.edges.map(([a, b]) => {
+      const A = s.map.locations.find((l) => l.id === a);
+      const B = s.map.locations.find((l) => l.id === b);
+      const live = p && ((p.at === a && reach.has(b)) || (p.at === b && reach.has(a)));
+      const d = `M${P.px(A.x)} ${P.py(A.y)}L${P.px(B.x)} ${P.py(B.y)}`;
+      return `<g class="road ${live ? 'road--live' : ''}">
+        <path class="road-case" d="${d}"/>
+        <path class="road-fill" d="${d}"/>
+        ${live ? `<path class="road-live" d="${d}"/>` : ''}
+      </g>`;
+    }).join('')}</g>`;
+  }
+
+  _labels(city) {
+    return `<g class="map-labels">${city.labels.map((l) =>
+      `<text class="map-label map-label--${l.kind}" x="${l.x}" y="${l.y}"
+             font-size="${l.size}" transform="rotate(${l.rot || 0} ${l.x} ${l.y})">${l.text}</text>`).join('')}</g>`;
+  }
+
+  _node(s, ui, l, p, reach, choosing) {
     const here = p && p.at === l.id;
     const sealed = !!s.sealed[l.id];
     const rec = R.searchRecord(s, l.id);
-    const targetable = mode === 'move' ? (reach.has(l.id) && !sealed) : true;
-    const selected = ui.selectedLocation === l.id;
+    const targetable = choosing ? (reach.has(l.id) && !sealed) : true;
 
     const suspects = R.suspectsAt(s, l.id);
     const dets = R.playersAt(s, l.id);
 
-    // Markers stack straight down from the disc: label, node, suspects,
-    // detectives, status flag. Radial scatter read as unanchored clutter.
     const chips = suspects.map((x, i) => {
       const n = suspects.length;
-      const rx = -(n - 1) * 14 + i * 28;
-      const ry = 40;
+      const rx = -(n - 1) * 15 + i * 30;
       const out = R.isEliminated(s, x);
-      const initials = x.name.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean).slice(0, 2).map((w) => w[0]).join('');
-      return `<g class="chip ${out ? 'chip--out' : ''} ${x.dead ? 'chip--dead' : ''}" data-chip="${x.id}" transform="translate(${rx} ${ry})">
-        <circle r="12.5" class="chip-bg"/>
+      const initials = x.name.replace(/[^A-Za-z ]/g, '').split(' ').filter(Boolean)
+        .slice(0, 2).map((w) => w[0]).join('');
+      return `<g class="chip ${out ? 'chip--out' : ''} ${x.dead ? 'chip--dead' : ''}"
+                 data-chip="${x.id}" transform="translate(${rx} 44)" filter="url(#tokenLift)">
+        <circle r="13" class="chip-bg"/>
+        <circle r="10" class="chip-inner"/>
         <text y="4" class="chip-t">${x.dead ? '†' : initials}</text>
         ${out && !x.dead ? '<line x1="-10" y1="10" x2="10" y2="-10" class="chip-slash"/>' : ''}
       </g>`;
@@ -222,29 +274,37 @@ export class CityMap {
 
     const pawns = dets.map((d, i) => {
       const ch = characterById(d.charId);
-      const px = -(dets.length - 1) * 12 + i * 24;
-      const py = suspects.length ? 68 : 40;
-      return `<g class="pawn ${d.id === p?.id ? 'pawn--active' : ''}" transform="translate(${px} ${py})">
-        <circle r="12" fill="${ch.color}" class="pawn-bg"/>
+      const px = -(dets.length - 1) * 13 + i * 26;
+      const py = suspects.length ? 76 : 44;
+      return `<g class="pawn ${d.id === p?.id ? 'pawn--active' : ''}"
+                 transform="translate(${px} ${py})" filter="url(#tokenLift)">
+        <circle r="12.5" fill="${ch.color}" class="pawn-bg"/>
+        <circle r="8.5" class="pawn-ring" fill="none"/>
         <text y="4" class="pawn-t">${ch.short[0]}</text>
       </g>`;
     }).join('');
 
-    const flags = [];
-    if (sealed) flags.push('<g class="flag flag--sealed"><rect x="-30" y="-9" width="60" height="18" rx="3"/><text y="4">SEALED</text></g>');
-    else if (rec.empty) flags.push('<g class="flag flag--done"><rect x="-38" y="-9" width="76" height="18" rx="3"/><text y="4">PICKED CLEAN</text></g>');
-    else if (rec.times > 0) flags.push('<g class="flag flag--part"><rect x="-34" y="-9" width="68" height="18" rx="3"/><text y="4">SEARCHED</text></g>');
+    const flag = sealed
+      ? '<g class="flag flag--sealed"><rect x="-31" y="-9" width="62" height="18" rx="2"/><text y="4">SEALED</text></g>'
+      : rec.empty
+        ? '<g class="flag flag--done"><rect x="-40" y="-9" width="80" height="18" rx="2"/><text y="4">PICKED CLEAN</text></g>'
+        : rec.times
+          ? '<g class="flag flag--part"><rect x="-36" y="-9" width="72" height="18" rx="2"/><text y="4">SEARCHED</text></g>'
+          : '';
 
-    return `<g class="node ${here ? 'node--here' : ''} ${selected ? 'node--sel' : ''} ${sealed ? 'node--sealed' : ''} ${targetable ? 'node--hit' : 'node--cold'} ${mode !== 'idle' && targetable ? 'node--target' : ''}"
-             data-node="${l.id}" transform="translate(${l.x} ${l.y})" tabindex="0" role="button" aria-label="${l.name}">
-      <circle r="34" class="node-halo"/>
-      <circle r="27" class="node-disc"/>
-      <circle r="27" class="node-ring"/>
-      <g class="node-ico" transform="translate(-13 -13)">${locIcon(l.type)}</g>
-      <g class="node-plate" transform="translate(0 ${-42})">
+    return `<g class="node ${here ? 'node--here' : ''} ${sealed ? 'node--sealed' : ''}
+                 ${targetable ? 'node--hit' : 'node--cold'}"
+             data-node="${l.id}" transform="translate(${l.px} ${l.py})" tabindex="0"
+             role="button" aria-label="${l.name}">
+      <circle r="35" class="node-halo"/>
+      <circle r="25" class="node-plate" filter="url(#tokenLift)"/>
+      <circle r="25" class="node-ring"/>
+      <circle r="20" class="node-ring node-ring--inner"/>
+      <g class="node-ico" transform="translate(-12 -12) scale(1.02)">${locIcon(l.type)}</g>
+      <g class="node-name-plate" transform="translate(0 -38)">
         <text class="node-name">${l.name}</text>
       </g>
-      <g transform="translate(0 ${-64})">${flags.join('')}</g>
+      <g transform="translate(0 -58)">${flag}</g>
       ${chips}${pawns}
     </g>`;
   }

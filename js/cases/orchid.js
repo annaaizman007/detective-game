@@ -22,6 +22,15 @@ export default {
     'Herald has a man in the lobby. He was there before we were. Ask yourself how.',
   ],
 
+  terrain: {
+    sea: true, seaName: 'ASHGRAVE BAY', river: true, riverSource: 0.22, riverMouth: 0.66,
+    parks: 2,
+    districts: [
+      { text: 'THE HEIGHTS', x: 300, y: 120, rot: -4 },
+      { text: 'LANTERN QUARTER', x: 880, y: 300, rot: 3 },
+      { text: 'THE FLATS', x: 250, y: 640, rot: -2 },
+    ],
+  },
   locations: [
     { id: 'gilded', name: 'The Gilded Hotel', type: 'hotel', x: 250, y: 150, desc: 'Brass, marble, and eleven floors of people paying not to be noticed.' },
     { id: 'herald', name: 'The Ashgrave Herald', type: 'press', x: 470, y: 108, desc: 'Presses running all night. Ink, sweat, and everybody’s business.' },

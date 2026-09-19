@@ -20,7 +20,8 @@ export function titleScreen() {
         <button class="btn btn--ghost" data-act="how">How to play</button>
         <button class="btn btn--ghost" data-act="settings">${icon('speaker')} Narration</button>
       </div>
-      <p class="title-foot">Pass one device around the table. The narrator reads every briefing aloud.</p>
+      <p class="title-foot">${icon('speaker')} Best with the sound up — it is raining, and the narrator
+        reads every briefing aloud. Pass one device around the table.</p>
     </div>
   </section>`;
 }

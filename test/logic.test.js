@@ -9,6 +9,7 @@ import { CHARACTERS } from '../js/characters.js';
 import { DIFFICULTIES } from '../js/gen.js';
 import * as R from '../js/rules.js';
 import { stream } from '../js/rng.js';
+import { APPROACHES } from '../js/dialogue.js';
 
 let pass = 0, fail = 0;
 const test = (name, fn) => {
@@ -40,7 +41,12 @@ function playOut(s, seed, { accuseWhenSure = true } = {}) {
     if (R.canSearch(s, p)) { s = applyAction(s, { type: 'SEARCH', playerId: p.id }); continue; }
     const here = R.suspectsAt(s, p.at).filter((x) => R.canInterrogate(s, p, x) && !R.isEliminated(s, x));
     if (here.length) {
-      s = applyAction(s, { type: 'INTERROGATE', playerId: p.id, suspectId: rng.pick(here).id });
+      const target = rng.pick(here);
+      const unknown = R.unknownTraits(s, target);
+      s = applyAction(s, {
+        type: 'INTERROGATE', playerId: p.id, suspectId: target.id,
+        approach: unknown >= 2 ? 'press' : 'straight',
+      });
       continue;
     }
     const opts = R.moveOptions(s, p).filter((o) => R.canMove(s, p, o.id));
@@ -151,6 +157,52 @@ test('every ability runs without throwing and is once per case', () => {
     const again = applyAction(after, act);
     assert.equal(again.players[0].ap, after.players[0].ap, `${ch.id} ability fired twice`);
   }
+});
+
+test('each way of questioning does what it promises', () => {
+  for (const approach of APPROACHES) {
+    // Quist deliberately: Kell is never clammed out and Crane gets an extra
+    // trait, so either would mask what the approach itself does.
+    let s = createGame({
+      caseId: 'orchid', difficulty: 'commissioner', seed: `talk-${approach.id}`,
+      players: [{ id: 'p0', charId: 'quist', name: 'Quist' }],
+    });
+    const p = s.players[0];
+    const x = s.suspects[0];
+    x.at = p.at;
+    x.clammed = 0;
+    const before = s.suspects.map((y) => ({ id: y.id, known: { ...y.known } }));
+    const after = applyAction(s, { type: 'INTERROGATE', playerId: p.id, suspectId: x.id, approach: approach.id });
+
+    assert.ok(after.conversation, `${approach.id}: no conversation recorded`);
+    assert.ok(after.conversation.ask && after.conversation.reply, `${approach.id}: nobody spoke`);
+    assert.equal(after.conversation.learned.length, approach.reveals,
+      `${approach.id}: learned ${after.conversation.learned.length}, promised ${approach.reveals}`);
+
+    // Count what actually changed across the whole table, not just the target.
+    const revealed = after.suspects.reduce((n, y) => {
+      const was = before.find((b) => b.id === y.id);
+      return n + after.chosenTraits.filter((t) => y.known[t] && !was.known[t]).length;
+    }, 0);
+    assert.equal(revealed, approach.reveals, `${approach.id}: revealed ${revealed} traits`);
+
+    const subject = after.conversation.subjectId;
+    if (approach.aboutOther) assert.notEqual(subject, x.id, 'sideways asked about the same person');
+    else assert.equal(subject, x.id, `${approach.id} asked about the wrong person`);
+
+    assert.equal(after.suspects.find((y) => y.id === x.id).clammed, approach.clams,
+      `${approach.id}: wrong clam-up`);
+  }
+});
+
+test('a conversation is a one-action record, not sticky state', () => {
+  let s = newGame('salt', 'rookie', 'sticky', 1);
+  const p = s.players[0];
+  s.suspects[0].at = p.at;
+  s = applyAction(s, { type: 'INTERROGATE', playerId: p.id, suspectId: s.suspects[0].id, approach: 'straight' });
+  assert.ok(s.conversation, 'no conversation after questioning');
+  s = applyAction(s, { type: 'SEARCH', playerId: p.id });
+  assert.equal(s.conversation, null, 'the conversation survived the next action');
 });
 
 test('the trail running out ends the game in a loss', () => {

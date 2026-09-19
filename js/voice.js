@@ -42,6 +42,10 @@ const TONES = {
   alert: { rate: 1.05, pitch: -0.04, pause: 0.85 },
   clue: { rate: 0.99, pitch: 0.03, pause: 1.10 },
   title: { rate: 0.86, pitch: -0.06, pause: 1.60 },
+  // Two voices in a conversation: the detective asking, and whoever is
+  // unlucky enough to be answering. Same synthesiser, different register.
+  ask: { rate: 1.02, pitch: -0.07, pause: 1.15 },
+  reply: { rate: 0.97, pitch: 0.11, pause: 1.20 },
 };
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
