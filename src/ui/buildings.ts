@@ -219,3 +219,20 @@ export function buildingHtml(caseId: string, loc: { id: string; type: LocationTy
   }
   return buildingSvg(loc.type, `${caseId}:${loc.id}`, { size });
 }
+
+/** Painted city maps from tools/paint-maps.py: the whole board, as a picture. */
+export const PAINTED_MAPS = new Set<string>();
+export const MAPS_BASE = 'assets/images/maps/';
+
+export async function loadPaintedMaps(): Promise<Set<string>> {
+  try {
+    const res = await fetch(`${MAPS_BASE}manifest.json`, { cache: 'no-cache' });
+    if (res.ok) {
+      const j = (await res.json()) as { ids?: string[] };
+      for (const id of j.ids ?? []) PAINTED_MAPS.add(id);
+    }
+  } catch { /* draw it */ }
+  return PAINTED_MAPS;
+}
+export const isPaintedMap = (caseId: string): boolean => PAINTED_MAPS.has(caseId);
+export const paintedMapUrl = (caseId: string): string => `${MAPS_BASE}${caseId}.jpg`;

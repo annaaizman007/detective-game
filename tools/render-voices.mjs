@@ -155,6 +155,7 @@ const ENGINES = {
         '--model', join(MODELS, KOKORO_FILES[0].name),
         '--voices', join(MODELS, KOKORO_FILES[1].name),
         '--voice', String(flag('voice', ENGINES.kokoro.defaultVoice)),
+        '--voice-f', String(flag('voice-f', 'bf_emma')),
         '--speed', String(flag('speed', '0.95')),
         '--out', outDir,
       ];
@@ -430,7 +431,7 @@ const manifest = {
   voice: String(flag('voice', ENGINES[engine].defaultVoice)),
   format,
   generated: new Date().toISOString().slice(0, 10),
-  clips: lines.map((l) => ({ id: l.id, group: l.group, text: l.text })),
+  clips: lines.map((l) => ({ id: l.id, group: l.group, text: l.text, ...(l.voice && l.voice !== 'n' ? { voice: l.voice } : {}) })),
 };
 
 // --- sprites ---------------------------------------------------------------

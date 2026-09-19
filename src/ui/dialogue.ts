@@ -132,6 +132,7 @@ export function renderDialogue(s: GameState, v: DialogueView): string {
       ${transcript(s, who).replace(/<div class="tr">(?![\s\S]*<div class="tr">)/, '<div class="tr is-latest">')}
       ${t.outcome ? `<ul class="learned"><li class="learn"><span class="learn-face">${icon('badge')}</span><span class="learn-body"><b>${esc(t.outcome)}</b><i>Written in the journal.</i></span></li></ul>` : ''}
       <div class="dlg-choices">
+        <button class="btn btn--ghost" data-act="hear" title="Hear them say it">${icon('speaker')} Hear it</button>
         <button class="btn btn--hero" data-act="${v.kind === 'suspect' ? 'open-suspect' : 'open-witness'}" data-id="${esc(who.id)}">Keep talking</button>
         <button class="btn btn--ghost" data-act="close-modal">That will do</button>
       </div>`);
@@ -150,6 +151,7 @@ export function renderDialogue(s: GameState, v: DialogueView): string {
       ${learned ? `<ul class="learned">${learned}</ul>` : '<p class="dlg-note">Nothing new. They have given you everything they have.</p>'}
       ${x.clammed ? `<p class="dlg-warn">${esc(x.name)} will not talk to you again for a while.</p>` : ''}
       <div class="dlg-choices">
+        <button class="btn btn--ghost" data-act="hear" title="Hear them say it">${icon('speaker')} Hear it</button>
         <button class="btn btn--hero" data-act="open-suspect" data-id="${x.id}">Keep talking</button>
         <button class="btn btn--ghost" data-act="close-modal">That will do</button>
       </div>`);
@@ -171,6 +173,7 @@ export function renderDialogue(s: GameState, v: DialogueView): string {
       <p class="dlg-line" data-type-target>${esc(t.reply)}</p>
       ${card}
       <div class="dlg-choices">
+        <button class="btn btn--ghost" data-act="hear" title="Hear them say it">${icon('speaker')} Hear it</button>
         <button class="btn btn--hero" data-act="open-witness" data-id="${who.id}">Keep talking</button>
         <button class="btn btn--ghost" data-act="close-modal">That will do</button>
       </div>`);
@@ -184,6 +187,7 @@ export function renderDialogue(s: GameState, v: DialogueView): string {
       <p class="dlg-line" data-type-target>${esc(sh.reply)}</p>
       ${sh.unlocked && sh.outcome ? `<ul class="learned"><li class="learn"><span class="learn-face">${icon('badge')}</span><span class="learn-body"><b>${esc(sh.outcome)}</b><i>Written in the journal.</i></span></li></ul>` : ''}
       <div class="dlg-choices">
+        <button class="btn btn--ghost" data-act="hear" title="Hear them say it">${icon('speaker')} Hear it</button>
         <button class="btn btn--hero" data-act="${v.kind === 'suspect' ? 'open-suspect' : 'open-witness'}" data-id="${esc(who.id)}">Keep talking</button>
         <button class="btn btn--ghost" data-act="close-modal">That will do</button>
       </div>`);

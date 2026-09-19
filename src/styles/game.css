@@ -618,3 +618,12 @@
 .intro-time { color: var(--brass); opacity: 0; transition: opacity 1.4s ease .6s; }
 .intro.is-walking .intro-time { opacity: 1; }
 .intro-skip { opacity: .55; }
+
+.nb-bar-r.is-missing { color: var(--crimson-hi); }
+.nb-missing { margin: 0; padding: .55rem .9rem; font-size: .88rem; line-height: 1.5; color: var(--paper); background: rgba(160,40,40,.14); border-left: 3px solid var(--crimson); }
+.narr--ask { cursor: pointer; }
+.narr--ask:hover .narr-ico { color: var(--brass-hi); }
+.narr-hint { font-family: var(--display); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--brass); opacity: .7; margin-left: .6rem; white-space: nowrap; }
+.chan-h { margin: 0 0 .3rem; font-family: var(--display); font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-dim); }
+.radio { display: flex; gap: .5rem; align-items: flex-start; font-size: .9rem; margin: .25rem 0; }
+.radio i { display: block; font-style: normal; font-size: .78rem; color: var(--text-dim); }

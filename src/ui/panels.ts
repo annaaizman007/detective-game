@@ -76,7 +76,7 @@ export function accusePanel(s: GameState, profile: Profile): string {
       <h3>Name your killer</h3>
       <p class="sheet-lead">Two hours to make the case. Get it wrong and you lose three more, and they walk.</p>
       ${live.length > 1 ? `<p class="warn">${live.length} suspects still fit your notebook. This is a guess.</p>` : ''}
-      <ul class="minilist">${s.suspects.filter((x) => !x.dead && !x.cleared).map((x) => {
+      <ul class="minilist">${R.knownSuspects(s).filter((x) => !x.dead && !x.cleared).map((x) => {
         const out = R.isEliminated(s, x, profile);
         return `<li class="${out ? 'is-out' : ''}">
           <span class="ml-face">${portraitSvg(x.id, { size: 36, frame: 'face', known: x.known, traits: x.traits, muted: out })}</span>
@@ -94,12 +94,12 @@ export function abilityPanel(s: GameState, profile: Profile): string {
   const need = R.abilityTarget(p.charId);
   let list = '';
   if (need === 'location') {
-    list = `<ul class="minilist">${s.map.locations.filter((l) => l.id !== p.at).map((l) => `
+    list = `<ul class="minilist">${R.openLocations(s).filter((l) => l.id !== p.at).map((l) => `
       <li><span class="ml-face ml-face--loc">${locIcon(l.type)}</span>
         <span class="ml-n"><b>${esc(l.name)}</b><i>${s.leads[l.id] ? 'A witness pointed here' : R.looksExhausted(s, l.id) ? 'Picked clean' : R.searchRecord(s, l.id).times ? 'Searched before' : 'Never searched'}</i></span>
         <button class="btn btn--small" data-act="do-ability" data-id="${l.id}">Break in</button></li>`).join('')}</ul>`;
   } else {
-    const pool = need === 'suspect-here' ? R.suspectsAt(s, p.at) : s.suspects.filter((x) => !x.dead);
+    const pool = need === 'suspect-here' ? R.suspectsAt(s, p.at) : R.knownSuspects(s).filter((x) => !x.dead);
     list = `<ul class="minilist">${pool.map((x) => {
       const out = R.isEliminated(s, x, profile);
       return `<li class="${out ? 'is-out' : ''}">

@@ -326,6 +326,34 @@ describe('THE ASHGRAVE FILES -- logic suite', () => {
     }
   });
 
+  it('every gated question names a real document, object or conversation, and every hidden thing can be found', () => {
+    for (const c of CASES) {
+      const people = [...c.suspects, ...c.witnesses];
+      const ids = new Set([...c.items.map((i) => i.id), ...c.objects.map((o) => o.id)]);
+      const topicsOf = (pid: string) => people.find((p) => p.id === pid)?.topics ?? [];
+      for (const p of people) {
+        for (const t of p.topics ?? []) {
+          for (const n of Array.isArray(t.needs) ? t.needs : t.needs ? [t.needs] : []) {
+            const dot = n.indexOf('.');
+            const ok = dot > 0 ? topicsOf(n.slice(0, dot)).some((x) => x.id === n.slice(dot + 1)) : ids.has(n);
+            expect(ok, `${c.id}: ${p.id}.${t.id} needs ${n}`).toBe(true);
+          }
+        }
+      }
+      // Something in the case must be able to reveal each hidden place and person.
+      const effects: { locationId?: string; suspectId?: string }[] = [];
+      const grab = (fx?: { type: string; locationId?: string; suspectId?: string }) => { if (fx?.type === 'reveal') effects.push(fx); };
+      people.forEach((p) => (p.topics ?? []).forEach((t) => grab(t.effect)));
+      c.items.forEach((i) => grab(i.effect));
+      c.objects.forEach((o) => o.unlocks.forEach((u) => grab(u.effect)));
+      for (const l of c.locations.filter((x) => x.hidden)) expect(effects.some((e) => e.locationId === l.id), `${c.id}: nothing reveals ${l.id}`).toBe(true);
+      for (const x of c.suspects.filter((y) => y.hidden)) {
+        expect(effects.some((e) => e.suspectId === x.id), `${c.id}: nothing reveals ${x.id}`).toBe(true);
+        expect(x.home, `${c.id}: hidden suspect ${x.id} needs a home`).toBeTruthy();
+      }
+    }
+  });
+
   it('a search tells the same story every time, and a document reads aloud from corpus clips', () => {
     const a = searchNarrative('tower', 'tower', 1, true);
     expect(a).toEqual(searchNarrative('tower', 'tower', 1, true));

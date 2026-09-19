@@ -140,7 +140,7 @@ export function briefingScreen(s: GameState, caseDef: CaseDef): string {
       <div class="cine-card cine-card--facts" style="--i:${cards.length + 1}">
         <dl class="dossier-facts">
           <div><dt>Victim</dt><dd>${esc(caseDef.victim)}</dd></div>
-          <div><dt>Suspects</dt><dd>${s.suspects.length}</dd></div>
+          <div><dt>Suspects</dt><dd>${s.suspects.filter((x) => !x.hidden).length}</dd></div>
           <div><dt>On the clock</dt><dd>${s.coldMax} hours</dd></div>
           <div><dt>Assignment</dt><dd>${esc(diff.label)}</dd></div>
         </dl>
@@ -211,7 +211,7 @@ export function endScreen(s: GameState, caseDef: CaseDef): string {
 /** The whole case, any time: what is known, when it happened, who is in it. */
 export function caseFile(s: GameState, caseDef: CaseDef): string {
   const st = caseDef.story;
-  const suspects = s.suspects.map((x) => {
+  const suspects = s.suspects.filter((y) => !y.hidden).map((x) => {
     const d = caseDef.suspects.find((q) => q.id === x.id);
     return `<li class="cf-sus">
       <span class="cf-face">${portraitSvg(x.id, { size: 48, frame: 'face', known: x.known, traits: x.traits })}</span>
@@ -285,6 +285,12 @@ export function settingsSheet(narrator: Narrator, audio: AudioManager): string {
       }</optgroup>`;
     }).join('');
 
+  const mode = `
+      <div class="chan">
+        <p class="chan-h">When the narrator speaks</p>
+        <label class="radio"><input type="radio" name="narr-mode" data-act="set-narration-mode" value="ask" ${narrator.mode === 'ask' ? 'checked' : ''}> <span>Only when asked <i>(press the speaker on any line, paper or answer)</i></span></label>
+        <label class="radio"><input type="radio" name="narr-mode" data-act="set-narration-mode" value="auto" ${narrator.mode === 'auto' ? 'checked' : ''}> <span>Reads everything as it happens</span></label>
+      </div>`;
   const recorded = narrator.clips
     ? `<label class="switch">
         <input type="checkbox" data-act="toggle-clips" ${narrator.useClips ? 'checked' : ''}>
@@ -329,6 +335,7 @@ export function settingsSheet(narrator: Narrator, audio: AudioManager): string {
           <span>Read the case aloud</span>
         </label>
         ${recorded}
+      ${mode}
         ${narrator.supported ? `
         <label class="field">
           <span>Fallback voice ${current ? `<i class="q q--${current.quality.toLowerCase()}">${current.quality}</i>` : ''}</span>

@@ -35,6 +35,7 @@ def main():
     ap.add_argument("--model", default="models/kokoro-v1.0.onnx")
     ap.add_argument("--voices", default="models/voices-v1.0.bin")
     ap.add_argument("--voice", default="bm_george")
+    ap.add_argument("--voice-f", default="bf_emma", help="voice for lines marked voice='f' (a woman speaking)")
     ap.add_argument("--speed", type=float, default=0.95)
     ap.add_argument("--lang", default=None, help="defaults from the voice prefix")
     ap.add_argument("--out", default="voice")
@@ -69,8 +70,9 @@ def main():
         return
 
     available = set(kokoro.get_voices())
-    if args.voice not in available:
-        fail(f"unknown voice '{args.voice}'. Available: {', '.join(sorted(available))}")
+    for v in (args.voice, args.voice_f):
+        if v not in available:
+            fail(f"unknown voice '{v}'. Available: {', '.join(sorted(available))}")
 
     # Kokoro's British voices are prefixed bm_/bf_; giving them en-us
     # phonemisation is what makes them sound like an American doing an accent.
@@ -86,7 +88,8 @@ def main():
             skipped += 1
         else:
             try:
-                samples, rate = kokoro.create(item["text"], voice=args.voice, speed=args.speed, lang=lang)
+                voice = args.voice_f if item.get("voice") == "f" else args.voice
+                samples, rate = kokoro.create(item["text"], voice=voice, speed=args.speed, lang=lang)
                 # 16-bit rather than the float default: half the size, and no
                 # audible difference for speech played through a web page.
                 sf.write(path, samples, rate, subtype="PCM_16")

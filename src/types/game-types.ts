@@ -77,6 +77,13 @@ export interface LocationDef {
   desc: string;
   /** Which quarter of the city it sits in, for the dossier and the journal. */
   district?: string;
+  /**
+   * Not on the map until something reveals it: a conversation, a document
+   * from an archive. The city's own evidence is never scattered here, so a
+   * board is solvable whether or not the place is ever found; what waits
+   * here is authored.
+   */
+  hidden?: boolean;
 }
 
 /**
@@ -94,8 +101,13 @@ export interface Topic {
   effect?: UnlockEffect;
   /** Only offered once this topic has been asked. */
   after?: string;
-  /** Only offered while carrying this object. */
-  needs?: string;
+  /**
+   * Only offered once the table has earned it: an object in hand (its id), a
+   * document in the locker (its item id), or something somebody else already
+   * said (`person.topic`). A list means any one of them will do. Without
+   * this, a question would hand over a fact before the paper is found.
+   */
+  needs?: string | string[];
 }
 
 export interface SuspectDef {
@@ -119,6 +131,15 @@ export interface SuspectDef {
    * portrait is grey in the notebook. Anything not pinned here is dealt.
    */
   traits?: Partial<Record<TraitId, string>>;
+  /**
+   * Not in the frame until somebody names them. A hidden suspect waits at
+   * `home` (usually a hidden place) and does not move until revealed. They
+   * still have a trait row, so when everyone visible has been crossed off,
+   * the notebook tells you there is somebody you have not found.
+   */
+  hidden?: boolean;
+  /** Where they are when the case opens. Required for a hidden suspect. */
+  home?: string;
 }
 
 /**
@@ -302,7 +323,9 @@ export type ItemEffect =
    */
   | { type: 'lead'; at?: string }
   /** It saves or costs time on the clock. */
-  | { type: 'time'; hours: number };
+  | { type: 'time'; hours: number }
+  /** It puts a hidden place on the map, or a hidden name in the frame, or both. */
+  | { type: 'reveal'; locationId?: string; suspectId?: string };
 
 export interface CaseItemDef {
   id: string;
@@ -355,6 +378,8 @@ export interface PlayerState {
 
 export interface SuspectState extends SuspectDef {
   traits: Record<TraitId, string>;
+  /** Still unknown to the table. Not listed, not accusable, not met. */
+  hidden: boolean;
   known: Record<TraitId, boolean>;
   at: string;
   clammed: number;
@@ -425,6 +450,8 @@ export interface NarrationLine {
   text: string;
   tone: Tone;
   parts: string[];
+  /** The person saying it, when it is somebody in the case and not the narrator. */
+  who?: string;
 }
 
 export interface ConversationState {
@@ -533,6 +560,8 @@ export interface GameState {
   result: Result;
   solvedBy?: string;
   sealed: Record<string, number>;
+  /** Hidden places that have been found. */
+  revealed: string[];
   nextEventAt: number;
   searched: Record<string, { times: number; empty: boolean }>;
   modifiers: { moveSurcharge: number; apPenalty: number };

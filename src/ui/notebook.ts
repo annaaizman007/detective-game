@@ -47,7 +47,7 @@ export function renderNotebook(s: GameState, v: NotebookView): string {
     </th>`;
   }).join('');
 
-  const rows = s.suspects.map((x) => {
+  const rows = R.knownSuspects(s).map((x) => {
     const out = R.isEliminated(s, x, profile);
     const bad = R.contradictions(s, x, profile);
     const cells = traits.map((t) => {
@@ -71,14 +71,16 @@ export function renderNotebook(s: GameState, v: NotebookView): string {
   }).join('');
 
   const marked = traits.filter((t) => profile[t]).length;
+  const missing = R.everyoneCrossedOff(s, profile);
   return `
     <div class="nb">
       <div class="nb-bar">
         <span class="nb-bar-l">${icon('badge')} ${marked}/${traits.length} ${v.assisted ? 'facts established' : 'facts marked'}</span>
-        <span class="nb-bar-r ${live.length === 1 ? 'is-solved' : ''}">
-          ${live.length === 1 ? 'ONE NAME LEFT' : `${live.length} still in the frame`}
+        <span class="nb-bar-r ${live.length === 1 ? 'is-solved' : ''} ${missing ? 'is-missing' : ''}">
+          ${missing ? 'NOBODY LEFT — SOMEBODY IS MISSING' : live.length === 1 ? 'ONE NAME LEFT' : `${live.length} still in the frame`}
         </span>
       </div>
+      ${missing ? `<p class="nb-missing">Every name on this table is crossed off, and the evidence still describes somebody. There is a person in this city you have not found yet. Somebody knows where. Ask around.</p>` : ''}
       <div class="nb-scroll">
         <table class="nb-table">
           <thead><tr><th class="nb-corner">Suspect</th>${head}</tr></thead>

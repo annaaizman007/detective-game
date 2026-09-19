@@ -92,9 +92,11 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
 
   // --- who is in the frame ------------------------------------------------
   // The killer is always in it; the rest of the roster is drawn.
-  const others = rng.shuffle(caseDef.suspects.filter((x) => x.id !== caseDef.culprit));
+  // Hidden suspects are story, not filler: they are always in, on top of the draw.
+  const hiddenOnes = caseDef.suspects.filter((x) => x.hidden && x.id !== caseDef.culprit);
+  const others = rng.shuffle(caseDef.suspects.filter((x) => x.id !== caseDef.culprit && !x.hidden));
   const killer = caseDef.suspects.find((x) => x.id === caseDef.culprit) ?? caseDef.suspects[0];
-  const roster = rng.shuffle([killer, ...others.slice(0, Math.min(diff.suspects, caseDef.suspects.length) - 1)]);
+  const roster = rng.shuffle([killer, ...others.slice(0, Math.min(diff.suspects, caseDef.suspects.length) - 1), ...hiddenOnes]);
   const ids = roster.map((s) => s.id);
 
   // What the writing has already decided about each person.
@@ -126,6 +128,7 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
 
   const suspects: SuspectState[] = roster.map((s) => ({
     ...s,
+    hidden: !!s.hidden,
     traits: table[s.id],
     known: Object.fromEntries(chosenTraits.map((t) => [t, caseDef.publicTraits.includes(t)])) as Record<TraitId, boolean>,
     at: '',
@@ -136,9 +139,9 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   }));
 
   // Scatter the suspects, never onto the precinct steps.
-  const streetIds = caseDef.locations.map((l) => l.id).filter((id) => id !== caseDef.start);
+  const streetIds = caseDef.locations.filter((l) => !l.hidden).map((l) => l.id).filter((id) => id !== caseDef.start);
   const spread = rng.shuffle(streetIds);
-  suspects.forEach((s, i) => { s.at = spread[i % spread.length]; });
+  suspects.forEach((s, i) => { s.at = s.home ?? spread[i % spread.length]; });
 
   // --- what is out there to find -----------------------------------------
   const culpritTraits = table[culpritId];
@@ -178,7 +181,8 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   const shuffledEvidence = rng.shuffle(evidence);
   const scenePick = shuffledEvidence.find((e) => e.kind === 'clue');
   if (scenePick) { scenePick.at = caseDef.scene; capacity[caseDef.scene] = (capacity[caseDef.scene] || 0) + 1; }
-  const ring = rng.shuffle(caseDef.locations.map((l) => l.id));
+  // Nothing the board needs is ever scattered somewhere the table may never find.
+  const ring = rng.shuffle(caseDef.locations.filter((l) => !l.hidden).map((l) => l.id));
   let cursor = 0;
   for (const e of shuffledEvidence) {
     if (e.at) continue;

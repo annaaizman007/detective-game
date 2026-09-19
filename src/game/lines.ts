@@ -18,7 +18,8 @@ import { CASES } from './cases/index';
 import { allDialogueLines } from './dialogue';
 import { allClueExhibits, allExhibitFragments } from './exhibits';
 import { allSearchLines } from './search';
-import { allWitnessLines } from './witnesses';
+import { allWitnessLines, WITNESS_ASKS } from './witnesses';
+import { lookFor } from '../ui/portraits';
 
 /** Must match on the renderer and in the browser, or nothing lines up. */
 export function normaliseLine(text: string): string {
@@ -30,9 +31,12 @@ export function normaliseLine(text: string): string {
     .trim();
 }
 
-/** FNV-1a, 32 bit, hex. Short, stable, and good enough for a few hundred lines. */
-export function clipId(text: string): string {
-  const s = normaliseLine(text);
+/** Who says a line: the narrator, or a woman in the case (her own voice). Men share the narrator's. */
+export type Voice = 'n' | 'f';
+
+/** FNV-1a, 32 bit, hex. Short, stable, and good enough for a few thousand lines. A woman's reading of a line is its own clip. */
+export function clipId(text: string, voice: Voice = 'n'): string {
+  const s = voice === 'n' ? normaliseLine(text) : `${voice}|${normaliseLine(text)}`;
   let h = 2166136261 >>> 0;
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
@@ -97,7 +101,11 @@ export interface CorpusLine {
   id: string;
   text: string;
   group: string;
+  voice: Voice;
 }
+
+/** The voice a person speaks in, from the same table the portraits use. */
+export const voiceOf = (personId: string): Voice => (lookFor(personId).fem ? 'f' : 'n');
 
 /**
  * Every line that can be spoken, deduplicated. Order is stable so a re-render
@@ -105,9 +113,10 @@ export interface CorpusLine {
  */
 export function collectLines(): CorpusLine[] {
   const out = new Map<string, CorpusLine>();
-  const add = (text: string, group: string) => {
+  const add = (text: string, group: string, voice: Voice = 'n') => {
     const t = normaliseLine(text);
-    if (t && !out.has(t)) out.set(t, { id: clipId(t), text: t, group });
+    const key = voice === 'n' ? t : `${voice}|${t}`;
+    if (t && !out.has(key)) out.set(key, { id: clipId(t, voice), text: t, group: voice === 'n' ? group : `${group}-${voice}`, voice });
   };
 
   STOCK.forEach((t) => add(t, 'stock'));
@@ -126,8 +135,9 @@ export function collectLines(): CorpusLine[] {
   for (const line of allSearchLines()) add(line, 'search');
   for (const ev of EVENTS) add(`${ev.title.toUpperCase()}. ${ev.text}`, 'event');
   for (const b of Object.values(BOONS)) add(b.text, 'evidence');
-  for (const line of allDialogueLines()) add(line, 'dialogue');
-  for (const line of allWitnessLines()) add(line, 'witness');
+  // Stock replies and shrugs are said by whoever is being questioned, so both voices.
+  for (const line of allDialogueLines()) { add(line, 'dialogue'); add(line, 'dialogue', 'f'); }
+  for (const line of allWitnessLines()) { add(line, 'witness'); add(line, 'witness', 'f'); }
   for (const c of CHARACTERS) { add(c.short, 'name'); add(c.name, 'name'); }
 
   for (const c of CASES) {
@@ -144,23 +154,35 @@ export function collectLines(): CorpusLine[] {
       add(sx.name.split(' ').slice(-1)[0], 'name');
       add(sx.motive, 'motive');
     });
+    // What a person says is baked in that person's voice. Questions are the
+    // detective's and stay with the narrator.
     c.witnesses.forEach((w) => {
-      add(w.intro, 'witness');
-      add(w.aboutLine, 'witness');
-      add(w.leadLine, 'witness');
-      add(w.spentLine, 'witness');
-    });
-    c.witnesses.forEach((w) => {
-      Object.values(w.opinions ?? {}).forEach((o) => add(o, 'witness'));
-      (w.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'witness'); });
+      const v = voiceOf(w.id);
+      add(w.intro, 'witness', v);
+      add(w.aboutLine, 'witness', v);
+      add(w.leadLine, 'witness', v);
+      add(w.spentLine, 'witness', v);
+      Object.values(w.opinions ?? {}).forEach((o) => add(o, 'witness', v));
+      (w.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'witness', v); });
+      if (v === 'f') {
+        // A woman describing a suspect says the name, the tell and the shrug herself.
+        c.suspects.forEach((sx) => { add(sx.name, 'name', v); add(sx.name.split(' ').slice(-1)[0], 'name', v); });
+        for (const trait of Object.values(TRAITS)) for (const val of trait.values) add(val.tell, 'tell', v);
+        add(WITNESS_ASKS.nothing, 'witness', v);
+        c.locations.forEach((l) => add(l.name, 'name', v));
+      }
     });
     c.suspects.forEach((x) => {
-      Object.values(x.opinions ?? {}).forEach((o) => add(o, 'dialogue'));
-      (x.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'dialogue'); });
+      const v = voiceOf(x.id);
+      Object.values(x.opinions ?? {}).forEach((o) => add(o, 'dialogue', v));
+      (x.topics ?? []).forEach((t) => { add(t.q, 'dialogue'); add(t.a, 'dialogue', v); });
     });
     c.objects.forEach((o) => {
       add(o.spoken, 'evidence');
-      o.unlocks.forEach((u) => { add(u.line, 'dialogue'); add(u.reply, 'dialogue'); });
+      o.unlocks.forEach((u) => {
+        add(u.line, 'dialogue');
+        add(u.reply, 'dialogue', voiceOf(u.person));
+      });
     });
   }
 

@@ -243,11 +243,21 @@ export class BoardScene extends Phaser.Scene {
   /** Everything static about the city, drawn once into a texture. */
   private bakeCity(state: GameState, city: City): void {
     const g = this.make.graphics({ x: 0, y: 0 }, false);
-    // Paper.
-    g.fillStyle(COLOR.paper, 1);
-    g.fillRect(0, 0, BOARD.w, BOARD.h);
-    g.fillStyle(COLOR.paperDark, 0.35);
-    g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
+    // A painted map, when the city has one, is the ground; the drawn one is
+    // only the roads on top of it. Otherwise everything is drawn.
+    const painted = this.textures.exists(`map-${state.caseId}`);
+    if (painted) {
+      const img = this.add.image(0, 0, `map-${state.caseId}`).setOrigin(0);
+      img.setDisplaySize(BOARD.w, BOARD.h);
+      this.layers.ground.add(img);
+    } else {
+      // Paper.
+      g.fillStyle(COLOR.paper, 1);
+      g.fillRect(0, 0, BOARD.w, BOARD.h);
+      g.fillStyle(COLOR.paperDark, 0.35);
+      g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
+    }
+    if (!painted) {
     // Blocks: the lots between the streets, with a hairline of ink.
     for (const b of city.blocks) {
       g.fillStyle(COLOR.block, 1);
@@ -301,13 +311,17 @@ export class BoardScene extends Phaser.Scene {
         g.fillCircle(p.cx + Math.cos(a) * r, p.cy + Math.sin(a) * r * 0.78, 2.4);
       }
     }
-    // The playable connections, as arterial roads.
-    for (const [a, b] of state.map.edges) {
+    }
+    // The playable connections, as arterial roads. A road to a hidden place
+    // would give it away, so those are drawn live once the place is found.
+    const hiddenIds = new Set(state.map.locations.filter((l) => l.hidden).map((l) => l.id));
+    const baked = state.map.edges.filter(([a, b]) => !hiddenIds.has(a) && !hiddenIds.has(b));
+    for (const [a, b] of baked) {
       const A = this.placed.get(a); const B = this.placed.get(b);
       if (!A || !B) continue;
       g.lineStyle(14, COLOR.roadCase, 0.9); g.lineBetween(A.px, A.py, B.px, B.py);
     }
-    for (const [a, b] of state.map.edges) {
+    for (const [a, b] of baked) {
       const A = this.placed.get(a); const B = this.placed.get(b);
       if (!A || !B) continue;
       g.lineStyle(9, COLOR.road, 1); g.lineBetween(A.px, A.py, B.px, B.py);
@@ -315,8 +329,9 @@ export class BoardScene extends Phaser.Scene {
     g.generateTexture('city', BOARD.w, BOARD.h);
     g.destroy();
     this.cityImage = this.add.image(0, 0, 'city').setOrigin(0);
+    if (painted) this.cityImage.setAlpha(0.72);
     this.layers.ground.add(this.cityImage);
-    const grain = this.add.tileSprite(0, 0, BOARD.w, BOARD.h, 'grain').setOrigin(0).setAlpha(0.7).setBlendMode(Phaser.BlendModes.MULTIPLY);
+    const grain = this.add.tileSprite(0, 0, BOARD.w, BOARD.h, 'grain').setOrigin(0).setAlpha(painted ? 0.35 : 0.7).setBlendMode(Phaser.BlendModes.MULTIPLY);
     this.layers.ground.add(grain);
   }
 
@@ -405,6 +420,10 @@ export class BoardScene extends Phaser.Scene {
   private updateNodes(s: GameState, v: BoardView): void {
     const me = v.currentPlayerId ? s.players.find((p) => p.id === v.currentPlayerId) : null;
     for (const [id, n] of this.nodes) {
+      const def = s.map.locations.find((l) => l.id === id);
+      const open = !def?.hidden || s.revealed.includes(id);
+      n.root.setVisible(open);
+      if (!open) continue;
       const here = me?.at === id;
       const sealed = !!s.sealed[id];
       const rec = s.searched[id] || { times: 0, empty: false };
@@ -450,9 +469,19 @@ export class BoardScene extends Phaser.Scene {
     const g = this.roadsLive;
     if (!g) return;
     g.clear();
+    // Roads to places that were hidden and have since been found.
+    const hiddenIds = new Set(s.map.locations.filter((l) => l.hidden).map((l) => l.id));
+    const open = (id: string) => !hiddenIds.has(id) || s.revealed.includes(id);
+    for (const [a, b] of s.map.edges) {
+      if (!(hiddenIds.has(a) || hiddenIds.has(b)) || !open(a) || !open(b)) continue;
+      const A = this.placed.get(a) as Placed; const B = this.placed.get(b) as Placed;
+      g.lineStyle(14, COLOR.roadCase, 0.9); g.lineBetween(A.px, A.py, B.px, B.py);
+      g.lineStyle(9, COLOR.road, 1); g.lineBetween(A.px, A.py, B.px, B.py);
+    }
     const me = v.currentPlayerId ? s.players.find((p) => p.id === v.currentPlayerId) : null;
     if (!me || v.mode !== 'move') return;
     for (const [a, b] of s.map.edges) {
+      if (!open(a) || !open(b)) continue;
       const live = (me.at === a && v.reachable.has(b)) || (me.at === b && v.reachable.has(a));
       if (!live) continue;
       const A = this.placed.get(a) as Placed; const B = this.placed.get(b) as Placed;
@@ -485,6 +514,7 @@ export class BoardScene extends Phaser.Scene {
     // Group the living by location so a crowd fans out under the pin.
     const byLoc = new Map<string, string[]>();
     for (const x of s.suspects) {
+      if (x.hidden) { this.chips.get(x.id)?.root.setVisible(false); continue; }
       if (!this.chips.has(x.id)) {
         this.chips.set(x.id, this.makeToken(x.id, `face-${x.id}`, 0x8a6a3a, 22, () => this.handlers.onSuspect?.(x.id)));
       }
@@ -583,7 +613,7 @@ export class BoardScene extends Phaser.Scene {
    */
   cinematic(state: GameState): void {
     const cam = this.cameras.main;
-    const stops = [state.map.scene, ...state.map.locations.map((l) => l.id).filter((id) => id !== state.map.scene && id !== state.map.start).slice(0, 2), state.map.start]
+    const stops = [state.map.scene, ...state.map.locations.filter((l) => !l.hidden).map((l) => l.id).filter((id) => id !== state.map.scene && id !== state.map.start).slice(0, 2), state.map.start]
       .map((id) => this.placed.get(id)).filter((l): l is Placed => !!l);
     if (!stops.length) return;
     this.stopCinematic();

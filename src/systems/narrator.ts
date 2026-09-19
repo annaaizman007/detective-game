@@ -10,7 +10,7 @@
 //      leave a neural voice's pitch alone, split text into clauses with real
 //      silence between them, and give it a room (see audio-manager.ts).
 
-import { clipId, normaliseLine } from '../game/lines';
+import { clipId, normaliseLine, type Voice } from '../game/lines';
 import type { Tone } from '../types/game-types';
 import { VOICE_BASE } from '../config/asset-manifest';
 import { STORAGE } from '../config/constants';
@@ -137,7 +137,7 @@ interface ClipPack {
   sprites: { dir: string; format: string; slices: Map<string, Slice> } | null;
 }
 
-interface QueueItem { line: string; tone: Tone; parts: string[] }
+interface QueueItem { line: string; tone: Tone; parts: string[]; voice: Voice }
 interface Playing { pause(): void }
 
 export type NarratorEvent =
@@ -148,7 +148,8 @@ export type NarratorEvent =
   | { type: 'clips'; count: number }
   | { type: 'enabled'; enabled: boolean };
 
-interface NarratorSettings { enabled: boolean; rate: number; voice: string | null; useClips: boolean }
+/** `mode`: 'auto' reads every line as it happens; 'ask' only reads when a speaker button is pressed. */
+interface NarratorSettings { enabled: boolean; rate: number; voice: string | null; useClips: boolean; mode: 'auto' | 'ask' }
 
 const hasWebAudio = () => typeof window !== 'undefined' && !!(window.AudioContext || (window as unknown as { webkitAudioContext?: unknown }).webkitAudioContext);
 
@@ -169,7 +170,7 @@ export class Narrator {
 
   constructor() {
     this.supported = typeof window !== 'undefined' && 'speechSynthesis' in window;
-    this.settings = { enabled: true, rate: 1, voice: null, useClips: true, ...(readJSON<Partial<NarratorSettings>>(STORAGE.settings + '.voice') ?? {}) };
+    this.settings = { enabled: true, rate: 1, voice: null, useClips: true, mode: 'ask', ...(readJSON<Partial<NarratorSettings>>(STORAGE.settings + '.voice') ?? {}) };
     if (this.supported) {
       this.loadVoices();
       window.speechSynthesis.addEventListener?.('voiceschanged', () => this.loadVoices());
@@ -220,12 +221,16 @@ export class Narrator {
   }
 
   setUseClips(on: boolean): void { this.settings.useClips = on; this.persist(); }
+  get mode(): 'auto' | 'ask' { return this.settings.mode; }
+  setMode(m: 'auto' | 'ask'): void { this.settings.mode = m === 'auto' ? 'auto' : 'ask'; this.persist(); }
 
-  private clipsFor(parts: string[]): { url: string; slice: Slice | null; text: string }[] | null {
+  private clipsFor(parts: string[], voice: Voice = 'n'): { url: string; slice: Slice | null; text: string }[] | null {
     if (!this.recorded || !parts?.length || !this.clips) return null;
     const out = [];
     for (const part of parts) {
-      const id = clipId(part);
+      // Her own voice when it was baked; the narrator's reading otherwise.
+      const own = voice === 'n' ? null : clipId(part, voice);
+      const id = own && this.clips.ids.has(own) ? own : clipId(part);
       if (!this.clips.ids.has(id)) return null;
       out.push({ url: `${this.clips.base}${id}.${this.clips.format}`, slice: this.clips.sprites?.slices.get(id) || null, text: normaliseLine(part) });
     }
@@ -333,15 +338,15 @@ export class Narrator {
 
   // ------------------------------------------------------------ speaking
 
-  say(text: string, tone: Tone = 'narrator', parts: string[] | null = null): void {
+  say(text: string, tone: Tone = 'narrator', parts: string[] | null = null, voice: Voice = 'n'): void {
     const line = normaliseLine(text);
     if (!line) return;
-    this.queue.push({ line, tone, parts: parts || [text] });
+    this.queue.push({ line, tone, parts: parts || [text], voice });
     if (!this.speaking) void this.drain();
   }
 
-  sayAll(lines: { text: string; tone?: Tone; parts?: string[] | null }[]): void {
-    for (const l of lines) this.say(l.text, l.tone ?? 'narrator', l.parts ?? null);
+  sayAll(lines: { text: string; tone?: Tone; parts?: string[] | null; voice?: Voice }[]): void {
+    for (const l of lines) this.say(l.text, l.tone ?? 'narrator', l.parts ?? null, l.voice ?? 'n');
   }
 
   stop(): void {
@@ -363,7 +368,7 @@ export class Narrator {
       if (token !== this.token) return;
       this.emit({ type: 'line', text: item.line, tone: item.tone });
 
-      const recorded = this.settings.enabled ? this.clipsFor(item.parts) : null;
+      const recorded = this.settings.enabled ? this.clipsFor(item.parts, item.voice) : null;
       if (recorded) {
         for (let i = 0; i < recorded.length; i++) {
           if (token !== this.token) return;

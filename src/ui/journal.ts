@@ -122,7 +122,7 @@ export function exportJournal(s: GameState, notes: Note[], marks: Partial<Record
   out.push('', 'NOTEBOOK — the killer, as marked');
   for (const t of s.chosenTraits) out.push(`  ${TRAITS[t].label.padEnd(20)} ${marks[t] ? traitLabel(t, marks[t] as string) : '?'}`);
   out.push('', 'SUSPECTS');
-  for (const x of s.suspects) {
+  for (const x of s.suspects.filter((y) => !y.hidden)) {
     const known = s.chosenTraits.filter((t) => x.known[t]).map((t) => `${TRAITS[t].label.toLowerCase()}: ${traitLabel(t, x.traits[t])}`);
     out.push(`  ${x.name} (${x.role})${x.dead ? ' — dead' : x.cleared ? ' — cleared' : ''}`, `       ${known.length ? known.join('; ') : 'nothing known'}`);
   }

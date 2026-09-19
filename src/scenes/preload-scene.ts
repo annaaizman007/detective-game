@@ -3,7 +3,7 @@ import { CASES } from '../game/cases/index';
 import { CHARACTERS } from '../game/characters';
 import { iconSvg, svgDataUri, ICON_NAMES } from '../ui/icons';
 import { portraitSvg, isPainted, paintedUrl } from '../ui/portraits';
-import { buildingSvg, isPaintedBuilding, paintedBuildingUrl } from '../ui/buildings';
+import { buildingSvg, isPaintedBuilding, paintedBuildingUrl, isPaintedMap, paintedMapUrl } from '../ui/buildings';
 
 export const INK = '#2a2118';
 
@@ -26,6 +26,8 @@ export class PreloadScene extends Phaser.Scene {
     });
     this.load.on('complete', () => bar.destroy());
 
+    // A painted map for each city that has one; the rest are drawn.
+    for (const c of CASES) if (isPaintedMap(c.id)) this.load.image(`map-${c.id}`, paintedMapUrl(c.id));
     // One drawn facade per location, at night, in the rain.
     for (const c of CASES) {
       for (const l of c.locations) {

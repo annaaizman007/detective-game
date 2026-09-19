@@ -76,6 +76,7 @@ export function createGame({ caseId, difficulty = 'detective', seed, players = [
     knownCulprit: Object.fromEntries(built.chosenTraits.map((t) => [t, null])) as Record<TraitId, string | null>,
     exhibits: [],
     leads: {},
+    revealed: [],
     objects: [],
     shown: {},
     asked: {},
@@ -139,14 +140,14 @@ function journal(s: GameState, p: PlayerState | null, kind: JournalEntry['kind']
  * ["Vera Lang", "strikes the match left-handed"] it is two clips drawn from
  * small closed sets. Lines with no dynamic part need no split.
  */
-function say(s: GameState, text: string, tone: Tone = 'narrator', parts: string[] | null = null) {
-  s.narration.push({ text, tone, parts: parts || [text] });
+function say(s: GameState, text: string, tone: Tone = 'narrator', parts: string[] | null = null, who?: string) {
+  s.narration.push({ text, tone, parts: parts || [text], ...(who ? { who } : {}) });
 }
 
-/** Both at once: written to the case log and spoken by the narrator. */
-function tell(s: GameState, text: string, kind: LogKind = 'info', tone: Tone = 'narrator', parts: string[] | null = null) {
+/** Both at once: written to the case log and spoken -- by the narrator, or by `who`. */
+function tell(s: GameState, text: string, kind: LogKind = 'info', tone: Tone = 'narrator', parts: string[] | null = null, who?: string) {
   pushLog(s, text, kind);
-  say(s, text, tone, parts);
+  say(s, text, tone, parts, who);
 }
 
 /** Speak a `{ text, parts }` result from one of the reveal helpers. */
@@ -154,6 +155,10 @@ function tellResult(s: GameState, lead: string, result: Spoken | null, kind: Log
   if (!result) return;
   tell(s, `${lead} ${result.text}`, kind, tone, [lead, ...result.parts]);
 }
+
+/** A place is open once it is on the map: never hidden, or hidden and found. */
+export const isOpen = (s: GameState, locId: string): boolean =>
+  !loc(s, locId)?.hidden || s.revealed.includes(locId);
 
 export function distance(s: GameState, from: string, to: string): number {
   if (from === to) return 0;
@@ -165,7 +170,7 @@ export function distance(s: GameState, from: string, to: string): number {
     const next: string[] = [];
     for (const n of frontier) {
       for (const m of s.map.adj[n] || []) {
-        if (seen.has(m)) continue;
+        if (seen.has(m) || !isOpen(s, m)) continue;
         if (m === to) return d;
         seen.add(m); next.push(m);
       }
@@ -204,9 +209,9 @@ function revealSuspectTrait(s: GameState, suspectId: string | null = null, count
 
 function moveSuspects(s: GameState) {
   for (const x of s.suspects) {
-    if (x.dead) continue;
+    if (x.dead || x.hidden) continue;
     if (x.frozen > 0) { x.frozen -= 1; continue; }
-    const options = (s.map.adj[x.at] || []).filter((id) => !s.sealed[id]);
+    const options = (s.map.adj[x.at] || []).filter((id) => !s.sealed[id] && isOpen(s, id));
     if (options.length) x.at = drawPick(s, options);
   }
 }
@@ -231,6 +236,46 @@ function file(s: GameState, p: PlayerState | null, defId: string, at: string, da
   // The journal always says where it came from and how it came to hand.
   journal(s, p, 'exhibit', `Filed: ${inst.label}. ${how ?? `From ${locName(s, at)}.`}`, { exhibit: key, location: at });
   return inst;
+}
+
+/**
+ * A question's precondition: an object in hand, a document in the locker,
+ * or something already said (`person.topic`). A list is any-of.
+ */
+export function hasNeed(s: GameState, need: string | string[]): boolean {
+  const one = (n: string): boolean => {
+    if (s.objects.includes(n) || s.exhibits.some((e) => e.def === n)) return true;
+    const dot = n.indexOf('.');
+    if (dot > 0) return (s.asked[n.slice(0, dot)] || []).includes(n.slice(dot + 1));
+    return false;
+  };
+  return Array.isArray(need) ? need.some(one) : one(need);
+}
+
+/**
+ * Something the city was keeping: a place goes on the map, a name goes in
+ * the frame. Both are told out loud and written in the journal, and the
+ * place is marked as a lead so the table knows where to go.
+ */
+function reveal(s: GameState, p: PlayerState, locationId?: string, suspectId?: string): string {
+  const said: string[] = [];
+  if (locationId && !s.revealed.includes(locationId) && loc(s, locationId)) {
+    s.revealed.push(locationId);
+    s.leads[locationId] = true;
+    tell(s, `A place you did not have: ${locName(s, locationId)}. It is on the map now.`, 'lead', 'alert',
+      ['A place you did not have:', locName(s, locationId), 'It is on the map now.']);
+    journal(s, p, 'note', `Found a place that was not on the map: ${locName(s, locationId)}.`, { location: locationId });
+    said.push(`New place: ${locName(s, locationId)}.`);
+  }
+  const x = suspectId ? sus(s, suspectId) : null;
+  if (x && x.hidden) {
+    x.hidden = false;
+    tell(s, `A name you did not have: ${x.name}. They are in the frame now.`, 'fact', 'alert',
+      ['A name you did not have:', x.name, 'They are in the frame now.']);
+    journal(s, p, 'note', `A new name in the frame: ${x.name}, ${x.role}. Last known at ${locName(s, x.at)}.`, { suspect: x.id, location: x.at });
+    said.push(`New suspect: ${x.name}.`);
+  }
+  return said.join(' ');
 }
 
 /**
@@ -286,6 +331,8 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState, how?: string) 
       if (fx.hours < 0) s.cold = Math.max(0, s.cold + fx.hours);
       else s.cold = Math.min(s.coldMax, s.cold + fx.hours);
       tell(s, fx.hours < 0 ? 'It saves you time.' : 'It costs you time.', fx.hours < 0 ? 'good' : 'bad');
+    } else if (fx?.type === 'reveal') {
+      reveal(s, p, fx.locationId, fx.suspectId);
     }
     return;
   }
@@ -489,7 +536,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
       };
 
       tell(s, s.conversation.ask, 'talk', 'ask');
-      tell(s, s.conversation.reply, 'talk', 'reply');
+      tell(s, s.conversation.reply, 'talk', 'reply', null, x.id);
 
       const noted: string[] = [];
       if (!open.length) {
@@ -537,7 +584,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
         if (!open.length) {
           const reply = `${subject.name}? ${WITNESS_ASKS.nothing}`;
           s.testimony = { witnessId: w.id, question: 'about', ask, reply, subjectId: subject.id };
-          tell(s, reply, 'witness', 'witness', [subject.name, WITNESS_ASKS.nothing]);
+          tell(s, reply, 'witness', 'witness', [subject.name, WITNESS_ASKS.nothing], w.id);
           journal(s, p, 'ask', `Asked ${def.name} about ${subject.name}. Nothing new.`, { witness: w.id, suspect: subject.id });
         } else {
           const t = drawPick(s, open);
@@ -548,7 +595,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
           const opinion = def.opinions?.[subject.id] ?? def.aboutLine;
           const reply = `${subject.name}? ${opinion} ${surname} ${said}`;
           s.testimony = { witnessId: w.id, question: 'about', ask, reply, subjectId: subject.id, trait: t };
-          tell(s, reply, 'witness', 'witness', [subject.name, opinion, surname, said]);
+          tell(s, reply, 'witness', 'witness', [subject.name, opinion, surname, said], w.id);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
             text: reply, parts: [subject.name, opinion, surname, said].join('\n'),
@@ -571,14 +618,14 @@ export function applyAction(prev: GameState, action: Action): GameState {
         if (!ev) {
           const reply = WITNESS_ASKS.noLead;
           s.testimony = { witnessId: w.id, question: 'lead', ask, reply };
-          tell(s, reply, 'witness', 'witness');
+          tell(s, reply, 'witness', 'witness', null, w.id);
           journal(s, p, 'ask', `Asked ${def.name} what they saw. Nothing useful.`, { witness: w.id });
         } else {
           s.leads[ev.at] = true;
           const where = locName(s, ev.at);
           const reply = `${def.leadLine} ${where}.`;
           s.testimony = { witnessId: w.id, question: 'lead', ask, reply, locationId: ev.at };
-          tell(s, reply, 'lead', 'witness', [def.leadLine, where]);
+          tell(s, reply, 'lead', 'witness', [def.leadLine, where], w.id);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
             text: reply, parts: [def.leadLine, where].join('\n'), reading: `Something to find at ${where}.`,
@@ -616,13 +663,13 @@ export function applyAction(prev: GameState, action: Action): GameState {
         const reply = SHOW_LINES.shrug[drawInt(s, SHOW_LINES.shrug.length)];
         s.showing = { objectId: obj.id, personId: action.personId, kind, line, reply, unlocked: false };
         tell(s, line, 'talk', 'ask');
-        tell(s, reply, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+        tell(s, reply, 'talk', kind === 'suspect' ? 'reply' : 'witness', null, action.personId);
         journal(s, p, 'show', `Showed ${who} ${obj.name.toLowerCase()}. It meant nothing to them.`, suspect ? { suspect: suspect.id } : { witness: action.personId });
         break;
       }
       s.showing = { objectId: obj.id, personId: action.personId, kind, line: unlock.line, reply: unlock.reply, unlocked: true };
       tell(s, unlock.line, 'talk', 'ask');
-      tell(s, unlock.reply, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+      tell(s, unlock.reply, 'talk', kind === 'suspect' ? 'reply' : 'witness', null, action.personId);
       const outcome = applyUnlock(s, p, unlock.effect);
       s.showing.outcome = outcome;
       journal(s, p, 'show', `Showed ${who} ${obj.name.toLowerCase()}. ${unlock.reply} ${outcome}`.trim(), suspect ? { suspect: suspect.id } : { witness: action.personId });
@@ -642,7 +689,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
       const asked = s.asked[action.personId] || (s.asked[action.personId] = []);
       if (asked.includes(topic.id)) return s;
       if (topic.after && !asked.includes(topic.after)) return s;
-      if (topic.needs && !s.objects.includes(topic.needs)) return s;
+      if (topic.needs && !hasNeed(s, topic.needs)) return s;
       const cost = topic.cost ?? 0;
       if (p.ap < cost) return s;
       p.ap -= cost;
@@ -651,7 +698,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
       const kind: 'suspect' | 'witness' = suspect ? 'suspect' : 'witness';
       pushLog(s, `${p.name} asks ${who}: ${topic.q}`, 'talk', p.id);
       tell(s, topic.q, 'talk', 'ask');
-      tell(s, topic.a, 'talk', kind === 'suspect' ? 'reply' : 'witness');
+      tell(s, topic.a, 'talk', kind === 'suspect' ? 'reply' : 'witness', null, action.personId);
       s.talking = { personId: action.personId, kind, topicId: topic.id, q: topic.q, a: topic.a };
       if (topic.effect) s.talking.outcome = applyUnlock(s, p, topic.effect);
       journal(s, p, 'question', `${who}, asked "${topic.q}": ${topic.a}${s.talking.outcome ? ` ${s.talking.outcome}` : ''}`, suspect ? { suspect: suspect.id } : { witness: action.personId });
@@ -670,7 +717,7 @@ export function applyAction(prev: GameState, action: Action): GameState {
     case 'ACCUSE': {
       if (p.ap < ACCUSE_COST) return s;
       const x = sus(s, action.suspectId);
-      if (!x || x.cleared || x.dead) return s;
+      if (!x || x.cleared || x.dead || x.hidden) return s;
       p.ap -= ACCUSE_COST;
       pushLog(s, `${p.name} accuses ${x.name}.`, 'accuse', p.id);
       if (x.id === s.culpritId) {
@@ -757,6 +804,8 @@ function applyUnlock(s: GameState, p: PlayerState, fx: UnlockEffect): string {
       tell(s, fx.hours < 0 ? 'It saves you time.' : 'It costs you time.', fx.hours < 0 ? 'good' : 'bad');
       return fx.hours < 0 ? 'Time saved.' : 'Time lost.';
     }
+    case 'reveal':
+      return reveal(s, p, fx.locationId, fx.suspectId);
     default:
       return '';
   }

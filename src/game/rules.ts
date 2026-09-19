@@ -4,11 +4,19 @@
 import type { CharacterId, GameState, PlayerState, SuspectState, TraitId, WitnessDef, WitnessState } from '../types/game-types';
 import { characterById } from './characters';
 import { caseById } from './cases/index';
-import { distance, ACCUSE_COST, ABILITY_COST } from './state';
+import { distance, hasNeed, ACCUSE_COST, ABILITY_COST } from './state';
 
 export const currentPlayer = (s: GameState): PlayerState | null => s.players[s.turn] || null;
 export const locationById = (s: GameState, id: string) => s.map.locations.find((l) => l.id === id);
-export const suspectsAt = (s: GameState, locId: string) => s.suspects.filter((x) => x.at === locId && !x.dead);
+export const suspectsAt = (s: GameState, locId: string) => s.suspects.filter((x) => x.at === locId && !x.dead && !x.hidden);
+/** The names on the table: everyone the case has shown you so far. */
+export const knownSuspects = (s: GameState) => s.suspects.filter((x) => !x.hidden);
+/** A place is on the map when it is not hidden, or has been found. */
+export const isOpenLocation = (s: GameState, locId: string): boolean => {
+  const l = s.map.locations.find((x) => x.id === locId);
+  return !!l && (!l.hidden || s.revealed.includes(locId));
+};
+export const openLocations = (s: GameState) => s.map.locations.filter((l) => isOpenLocation(s, l.id));
 export const playersAt = (s: GameState, locId: string) => s.players.filter((p) => p.at === locId);
 
 /**
@@ -34,7 +42,10 @@ export const isEliminated = (s: GameState, suspect: SuspectState, profile: Profi
   suspect.dead || suspect.cleared || contradictions(s, suspect, profile).length > 0;
 
 export const liveSuspects = (s: GameState, profile: Profile = s.knownCulprit) =>
-  s.suspects.filter((x) => !isEliminated(s, x, profile));
+  s.suspects.filter((x) => !x.hidden && !isEliminated(s, x, profile));
+/** True when every name on the table is crossed off: somebody is missing. */
+export const everyoneCrossedOff = (s: GameState, profile: Profile = s.knownCulprit): boolean =>
+  knownSuspects(s).length > 0 && liveSuspects(s, profile).length === 0 && s.suspects.some((x) => x.hidden);
 
 /** How much of the killer's description the evidence has nailed down. */
 export const factsKnown = (s: GameState): number => s.chosenTraits.filter((t) => s.knownCulprit[t]).length;
@@ -55,7 +66,7 @@ export function moveOptions(s: GameState, p: PlayerState | null) {
   if (!p) return [];
   const ch = characterById(p.charId);
   const hops = ch.id === 'quist' ? 2 : 1;
-  return s.map.locations
+  return openLocations(s)
     .filter((l) => l.id !== p.at && !s.sealed[l.id])
     .map((l) => ({ id: l.id, hops: distance(s, p.at, l.id) }))
     .filter((l) => l.hops >= 1 && l.hops <= hops);
@@ -113,7 +124,7 @@ export function witnessAt(s: GameState, locId: string): WitnessView | null {
   if (!w) return null;
   const def = caseById(s.caseId).witnesses.find((d) => d.id === w.id);
   if (!def) return null;
-  const canDescribe = s.suspects.filter((x) => def.knows.includes(x.id) && !x.dead && !w.described.includes(x.id));
+  const canDescribe = s.suspects.filter((x) => def.knows.includes(x.id) && !x.dead && !x.hidden && !w.described.includes(x.id));
   return { state: w, def, canDescribe, canLead: !w.leadGiven };
 }
 
@@ -151,7 +162,7 @@ export function topicsFor(s: GameState, personId: string): TopicView[] {
   return def
     .filter((t) => !asked.includes(t.id))
     .filter((t) => !t.after || asked.includes(t.after))
-    .filter((t) => !t.needs || s.objects.includes(t.needs))
+    .filter((t) => !t.needs || hasNeed(s, t.needs))
     .map((t) => ({ id: t.id, q: t.q, cost: t.cost ?? 0, asked: false }));
 }
 

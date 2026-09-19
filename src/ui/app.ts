@@ -4,7 +4,7 @@
 // data-act attributes; the board talks back through the scene's handlers.
 
 import Phaser from 'phaser';
-import type { Action, CharacterId, GameState, TraitId } from '../types/game-types';
+import type { Action, CharacterId, GameState, Tone, TraitId } from '../types/game-types';
 import { createGame, applyAction } from '../game/state';
 import * as R from '../game/rules';
 import { CASES, caseById } from '../game/cases/index';
@@ -27,6 +27,7 @@ import { portraitSvg } from './portraits';
 import * as S from './screens';
 import { typewriter, flash, esc, download } from './fx';
 import { exhibitById, readAloud } from '../game/exhibits';
+import { voiceOf, type Voice } from '../game/lines';
 import { STORAGE } from '../config/constants';
 
 type Screen = 'title' | 'setup' | 'briefing' | 'game' | 'end';
@@ -69,6 +70,8 @@ export class App {
   modal: Modal = null;
   dialogue: DialogueView | null = null;
   found: { location: string; exhibits: string[]; objects: string[]; by: string } | null = null;
+  /** The last thing the game said, waiting for the speaker button when narration is on request. */
+  pending: { text: string; tone: Tone; parts: string[]; voice: Voice }[] = [];
   /** The opening scene is playing over the briefing. */
   introPending = false;
   intro: IntroRun | null = null;
@@ -184,7 +187,10 @@ export class App {
 
     if (next.narration.length) {
       this.narrator.stop();
-      this.narrator.sayAll(next.narration.map((n) => ({ text: n.text, tone: n.tone, parts: n.parts })));
+      // Each line in the voice of whoever said it; the narrator's for the rest.
+      this.pending = next.narration.map((n) => ({ text: n.text, tone: n.tone, parts: n.parts, voice: n.who ? voiceOf(n.who) : 'n' as const }));
+      if (this.narrator.mode === 'auto') this.narrator.sayAll(this.pending);
+      else { this.subtitle = this.pending[this.pending.length - 1].text; this.paintSubtitle(false); }
       const big = next.narration.find((n) => n.tone === 'clue' || n.tone === 'alert');
       if (big) { flash(big.tone === 'clue' ? 'clue' : 'alert'); this.audio.sting(big.tone === 'clue' ? 'clue' : 'alert'); }
       else if (next.narration.some((n) => n.tone === 'good')) this.audio.sting('good');
@@ -263,6 +269,8 @@ export class App {
       case 'enter-game': this.screen = 'game'; this.narrator.stop(); this.board?.stopCinematic(); this.board?.reset(); return this.render();
       case 'skip-cards': this.cancelType?.(); this.cancelType = null; return;
       case 'replay-brief': return this.narrateBriefing();
+      case 'hear': this.narrator.stop(); return this.narrator.sayAll(this.pending);
+      case 'set-narration-mode': this.narrator.setMode(value() as 'auto' | 'ask'); return this.renderModal();
       case 'skip-intro': return this.intro?.cancel();
       case 'skip-voice': return this.narrator.stop();
       case 'handoff-ready': this.pendingHandoff = null; return this.render();
@@ -595,7 +603,7 @@ export class App {
       mode: this.ui.mode,
       selectedLocation: this.ui.selectedLocation,
       reachable: new Set(p ? R.moveOptions(s, p).filter((o) => R.canMove(s, p, o.id)).map((o) => o.id) : []),
-      eliminated: new Set(s.suspects.filter((x) => R.isEliminated(s, x, profile)).map((x) => x.id)),
+      eliminated: new Set(R.knownSuspects(s).filter((x) => R.isEliminated(s, x, profile)).map((x) => x.id)),
       currentPlayerId: p?.id ?? null,
     };
     this.board.render(s, view);
@@ -712,7 +720,7 @@ export class App {
             <button class="icon-btn" data-act="zoom-reset" aria-label="Reset the view">□</button>
           </div>
           ${this.ui.mode === 'move' ? '<div class="map-hint">Tap a lit street to go there · Esc to cancel</div>' : ''}
-          <div class="narr"><span class="narr-ico">${icon('speaker')}</span><p class="narr-text">${esc(this.subtitle)}</p></div>
+          <div class="narr ${this.narrator.mode === 'ask' ? 'narr--ask' : ''}" data-act="hear" role="button" title="Hear it"><span class="narr-ico">${icon('speaker')}</span><p class="narr-text">${esc(this.subtitle)}</p>${this.narrator.mode === 'ask' ? '<span class="narr-hint">hear it</span>' : ''}</div>
         </div>
       </main>
 
@@ -796,7 +804,7 @@ export class App {
       }
       case 'journal': return renderJournal(s, { notes: this.ui.notes, editing: this.ui.editing, filter: this.ui.journalFilter, marks: this.ui.marks });
       case 'suspects':
-        return `<ul class="dossiers">${s.suspects.map((x) => {
+        return `<ul class="dossiers">${R.knownSuspects(s).map((x) => {
           const out = R.isEliminated(s, x, profile);
           return `<li class="dossier-card ${out ? 'is-out' : ''}" data-act="open-suspect" data-id="${x.id}">
             <span class="dc-face">${portraitSvg(x.id, { size: 56, known: x.known, traits: x.traits, muted: out })}</span>
