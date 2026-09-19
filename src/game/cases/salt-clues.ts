@@ -12,7 +12,7 @@ import type { ExhibitDef } from '../../types/game-types';
 import { clue } from '../clue';
 
 const MORGUE = 'HARBOUR MORGUE · J. KITE, ATTENDANT';
-const SURGEON = 'SEAMEN’S INFIRMARY · POST-MORTEM · DR. R. FENN';
+const SURGEON = 'SEAMEN’S INFIRMARY · POST-MORTEM · DR. I. FENN';
 const HARBOUR = 'ASHGRAVE BAY POLICE · HARBOUR DIVISION';
 
 export const SALT_CLUES: ExhibitDef[] = [

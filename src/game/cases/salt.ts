@@ -163,7 +163,7 @@ const def: CaseDef = {
         { id: 'night', q: 'Where were you on the 11th?', a: 'At the Customs House until eleven. Aldous, the clerk, saw me leave. I took the tram home. I live alone.' },
         { id: 'manifest', needs: ['item:salt:manifest', 'aldous.night'], q: 'Six weeks of crates. Every page signed by you. Not one crate opened.', a: 'That’s right. I sign. I don’t open. Ask me why and I’ll tell you, and then I won’t have a job.' },
         { id: 'why', q: 'Tell me why.', a: 'She takes a breath. Salvi pays me two hundred dollars a month. It’s in an envelope in my flat, every dollar of it. I’ve never spent any. I don’t know what I was keeping it for. Evidence, maybe.', after: 'manifest', cost: 1, effect: { type: 'suspectTrait', suspectId: 'wren' } },
-        { id: 'notebook', needs: ['brack.night', 'penrose.poorbox'], q: 'Somebody let themselves into the union back office at one in the morning and took Bask’s notebook. A woman’s heels.', a: 'She is quiet for a long time. Bask gave me a key on the 9th. He said: Etta, if anything happens to me, take the notebook to the city office. My name is on every page of it. I took it and I hid it. I went to the chapel afterwards and put the key in the poor box, and I have not slept since.', after: 'why', cost: 1, effect: { type: 'lead', at: 'hall' } },
+        { id: 'notebook', needs: ['brack.night', 'penrose.poorbox'], q: 'Somebody let themselves into the union back office at one in the morning and took Bask’s notebook. A woman’s heels.', a: 'She is quiet for a long time. Bask gave me a key on the 9th. He said: Etta, if anything happens to me, take the notebook to the city office. My name is on every page of it. I took it and I hid it under the manifest in my own drawer at the Customs House, where nobody has looked in six weeks. Then I went to the chapel and put the key in the poor box, and I have not slept since.', after: 'why', cost: 1, effect: { type: 'lead', at: 'customs' } },
         { id: 'bask', q: 'Did Bask come to see you?', a: 'On the 9th. He asked to see the Corvina manifest. I showed him. He read it and said: Etta, your name is on this. I said: I know.' },
       ] },
     { id: 'okafor', name: 'Bernard Okafor', role: 'Chandler, Vetch & Son',
@@ -269,7 +269,7 @@ const def: CaseDef = {
       bio: 'Thirty years behind the bar. She has buried a husband and two barmen. She keeps the tabs in her head and the grudges in a book.',
       knows: ['hollis', 'ledoux', 'tilda'],
       aboutLine: 'They drink in my pub. I could draw their face from memory.',
-      leadLine: 'Bask left my bar at a quarter past eleven with a note in his hand and a boat to meet. Before that, he had spent an hour at',
+      leadLine: 'Bask left my bar at a quarter past eleven with a note in his hand and a boat to meet. Before that, he had spent an hour at', leadAt: 'excise',
       spentLine: 'Last orders was an hour ago. That goes for questions too.',
       opinions: { hollis: 'Dov came in at a quarter past midnight with his flask and sat until one. He wasn’t celebrating. He’d lost something. Money, I think.', ledoux: 'Ledoux doesn’t drink here on the nights he sails. He wasn’t here. He was at sea, or wherever he goes instead.', tilda: 'Mrs. Rask hasn’t set foot in this pub since 1941. Sometimes she stands outside. I leave the door open.' },
       topics: [
@@ -282,7 +282,7 @@ const def: CaseDef = {
       bio: 'Twenty-six. Copies manifests in handwriting so neat the inspectors never read them. He has read all of them.',
       knows: ['wren', 'salvi'],
       aboutLine: 'They sign my book. You notice a person’s handwriting.',
-      leadLine: 'Somebody altered a manifest at midnight. The ink is still wet. The pen that did it lives at',
+      leadLine: 'Somebody altered a manifest at midnight. The ink is still wet. The pen that did it lives at', leadAt: 'shipping',
       spentLine: 'I’m a clerk. Clerks don’t know things. Please close the door.',
       opinions: { wren: 'Miss Wren left at eleven. Her initials on the manifest were dry. At midnight there were new initials, and they were wet, and they weren’t hers.', salvi: 'Mr. Salvi comes to the Customs House once a month and leaves an envelope. I copy manifests. I don’t copy envelopes.' },
       topics: [
@@ -295,7 +295,7 @@ const def: CaseDef = {
       bio: 'Nineteen. Grandson of the name on the shop sign. He cuts rope for Okafor and watches Okafor more closely than Okafor knows.',
       knows: ['okafor', 'salvi', 'fenn'],
       aboutLine: 'A customer. I measure their rope. I’ve measured them too.',
-      leadLine: 'Somebody bought forty feet of line at closing and paid double to keep it quiet. They went off toward',
+      leadLine: 'Somebody bought forty feet of line at closing and paid double to keep it quiet. They went off toward', leadAt: 'trawler',
       spentLine: 'My dad says not to talk to police. I’ve talked enough.',
       opinions: { okafor: 'Mr. Okafor signed for the rope himself. A man had his hand on top of Mr. Okafor’s hand. I saw it from the back of the shop.', salvi: 'Salvi’s crews buy the good rope, pay cash, and never come back for the same length.', fenn: 'The doctor bought a scalpel from us last month. She said the hospital had run out. I didn’t believe her.' },
       topics: [
@@ -308,7 +308,7 @@ const def: CaseDef = {
       bio: 'Fifteen years at the morgue. He washes the bodies and reads every certificate twice. He notices when they change.',
       knows: ['fenn', 'tilda'],
       aboutLine: 'They came down to see Bask. People give themselves away when they stand over a body.',
-      leadLine: 'A man in an oilskin stood in my corridor at half past six and wouldn’t come in. When he left, he went toward',
+      leadLine: 'A man in an oilskin stood in my corridor at half past six and wouldn’t come in. When he left, he went toward', leadAt: 'slip',
       spentLine: 'I have three bodies to wash before morning. Find your own way out.',
       opinions: { fenn: 'Dr. Fenn wrote ‘drowning’ at twenty to six and went and stood with him. She came back at twenty past with her hands washed and wrote the truth over it.', tilda: 'Mrs. Rask came at a quarter to six and asked to see him. I let her. She looked at his pockets and nodded, as if something had been confirmed.' },
       topics: [
@@ -321,7 +321,7 @@ const def: CaseDef = {
       bio: 'Twenty-two. Deckhand on the Marie-Louise for two years. Nobody has ever told him what is in the hold.',
       knows: ['ledoux', 'hollis', 'keeper'],
       aboutLine: 'They work the boats. You get to know a person by how they walk on a wet deck.',
-      leadLine: 'Something went off the end of the pier and floated. It washed up near',
+      leadLine: 'Something went off the end of the pier and floated. It washed up near', leadAt: 'pier9',
       spentLine: 'I told you, I keep my head down. I’m putting it back down now.',
       opinions: { ledoux: 'The skipper took the dinghy to Pier Nine alone and told me to wait. I smoked the whole time. He never lets me smoke on deck. That night he didn’t notice.', hollis: 'Hollis came down to the boats once, in 1946. He was seasick tied up at the quay. Bask laughed at him.', keeper: 'The lighthouse keeper watches us land. He waves. Then he goes inside and writes.' },
       topics: [
@@ -336,11 +336,11 @@ const def: CaseDef = {
       bio: 'Has run the public baths since her father died. She hears the whole harbour with its clothes off.',
       knows: ['wren', 'tilda', 'keeper'],
       aboutLine: 'They bathe here. You can’t hide much in a towel.',
-      leadLine: 'A coat was left in locker seventeen with something heavy sewn into the lining. Its owner ran off toward',
+      leadLine: 'A coat was left in locker seventeen with something heavy sewn into the lining. Its owner ran off toward', leadAt: 'morgue',
       spentLine: 'We close at two. That’s all I have.',
       opinions: { wren: 'Miss Wren bathes on Tuesdays and cries in the steam room where she thinks nobody can hear.', tilda: 'Mrs. Rask hasn’t been in since 1941. Her husband bathed here every Friday.', keeper: 'Garrow comes down from the lighthouse once a month and sits in the hot room like a man trying to boil something off himself.' },
       topics: [
-        { id: 'night', q: 'Who came through the baths?', a: 'A man in an oilskin at half past four in the morning, wet to the waist, with his hands wrapped in a rag. He wanted the hot room and wouldn’t take a towel. He left his coat in locker seventeen with something sewn into the lining.' },
+        { id: 'night', q: 'Who came through the baths?', a: 'A man in an oilskin at half past five in the morning, wet to the waist, with his hands wrapped in a rag. He wanted the hot room and wouldn’t take a towel. He left his coat in locker seventeen with something sewn into the lining.' },
         { id: 'lining', q: 'What was sewn in the lining?', a: 'A key, stamped ‘Bond Store 12’. He ran when he saw I’d found it. He ran toward the Narrows, where the trawlers tie up.', after: 'night', cost: 1, effect: { type: 'lead', at: 'bondstore' } },
         { id: 'bask', q: 'Did Bask bathe here?', a: 'Every Friday for twenty years. On the 10th he sat in the hot room and told me the union was about to find out what it had been carrying. I thought he meant the dues.' },
       ] },
@@ -349,7 +349,7 @@ const def: CaseDef = {
       bio: 'Twelve years logging the boats. Her father was a captain who went out empty and never came back. She writes down the truth.',
       knows: ['wren', 'salvi', 'keeper'],
       aboutLine: 'They come to my counter. You learn a person by how they lie about the weight of their cargo.',
-      leadLine: 'A boat went out at eleven with no cargo declared and came back at three sitting low in the water. Ask what came off her at',
+      leadLine: 'A boat went out at eleven with no cargo declared and came back at three sitting low in the water. Ask what came off her at', leadAt: 'icehouse',
       spentLine: 'The office is closed. The log is locked.',
       opinions: { wren: 'Miss Wren’s stamps and my log should agree. Since the Corvina came in, they haven’t once.', salvi: 'Salvi declares his cargo weights the way some men declare their age.', keeper: 'Garrow and I keep the same log from opposite ends of the harbour. Mine is honest. His is crossed out.' },
       topics: [
@@ -362,7 +362,7 @@ const def: CaseDef = {
       bio: 'Polish navy, then the Marconi station. He can tell who is sending by the rhythm of their tapping. He keeps a second log the company does not know about.',
       knows: ['keeper', 'salvi', 'ledoux'],
       aboutLine: 'They send messages through me. You can tell a person by the way they tap a key.',
-      leadLine: 'A message went out to a boat at one in the morning: ‘STOP AT THE USUAL PLACE.’ I don’t know where that is. I know the man who sent it was seen at',
+      leadLine: 'A message went out to a boat at one in the morning: ‘STOP AT THE USUAL PLACE.’ Every boat that lands without Customs lands at the ice house steps. The man who sent it was seen at', leadAt: 'shipping',
       spentLine: 'I have a ship calling. It isn’t you.',
       opinions: { keeper: 'Garrow has no wireless. He doesn’t need one. He has a lamp and a grudge.', salvi: 'Salvi’s messages are all about fish, and not one of them ever names a fish.', ledoux: 'Ledoux taps a key slowly and heavily, like a man who doesn’t want to be understood.' },
       topics: [
@@ -375,7 +375,7 @@ const def: CaseDef = {
       bio: 'Caretaker of the union hall for twenty-two years. Before that she cleaned for Ambrose Rask. She trusts nobody who wants the chairman’s chair.',
       knows: ['hollis', 'tilda', 'okafor'],
       aboutLine: 'They sit in that hall every Thursday. I’ve swept around their feet for years.',
-      leadLine: 'The back office was opened at one with a key that wasn’t the vice-chairman’s. The heel prints went out toward',
+      leadLine: 'The back office was opened at one with a key that wasn’t the vice-chairman’s. The heel prints went out toward', leadAt: 'customs',
       spentLine: 'The hall is locked. I’m going home.',
       opinions: { hollis: 'Dov left at midnight with the committee. He was the last to sign the minutes and his hand was shaking.', tilda: 'Mrs. Rask has had a key to this hall since 1941. Nobody ever took it back. She has never used it.', okafor: 'Bernard came to the hall on the 10th to beg Bask for more time. Bask gave him a week. He didn’t need a week.' },
       topics: [
@@ -388,7 +388,7 @@ const def: CaseDef = {
       bio: 'Set type in Lyon, then here. He reads the union’s mind one letter at a time and keeps every page that was pulled before printing.',
       knows: ['hollis', 'tilda'],
       aboutLine: 'They bring me their articles. You learn a person by what they cross out.',
-      leadLine: 'Somebody pulled a notice from tomorrow’s paper at five past midnight and walked out with his hands shaking, toward',
+      leadLine: 'Somebody pulled a notice from tomorrow’s paper at five past midnight and walked out with his hands shaking, toward', leadAt: 'brine',
       spentLine: 'The press is running. Mind your fingers on the way out.',
       opinions: { hollis: 'Hollis came in at five past midnight and pulled the chairman’s notice with his own key. He said the chairman had changed his mind. His hands were shaking.', tilda: 'Mrs. Rask places a notice every year on the anniversary of her husband’s death. This year she placed it early.' },
       topics: [
@@ -401,7 +401,7 @@ const def: CaseDef = {
       bio: 'He was a customs officer in Lagos. Here they only let him guard the crates, so he inspects them with his eyes.',
       knows: ['wren', 'salvi', 'ledoux'],
       aboutLine: 'They come to look at the seals. You learn a person by how they look at a seal they aren’t allowed to break.',
-      leadLine: 'One crate was opened at nine and closed again, badly. Whatever came out of it went along the quay to',
+      leadLine: 'One crate was opened at nine and closed again, badly. Whatever came out of it went along the quay to', leadAt: 'shipping',
       spentLine: 'I have crates to watch. I’m watching them.',
       opinions: { wren: 'Miss Wren signs at the door and never comes inside. I’ve offered her a lamp. She’s never taken it.', salvi: 'Salvi’s name is on the manifest, on the seals, and on the envelope he leaves for me. I haven’t opened it.', ledoux: 'Ledoux breaks a customs seal the way other men open a bottle of beer.' },
       topics: [
@@ -414,7 +414,7 @@ const def: CaseDef = {
       bio: 'Has fed the harbour for thirty years. Bask sat at her counter every morning and told her nothing, which is how she came to know everything.',
       knows: ['hollis', 'okafor', 'fenn'],
       aboutLine: 'They take tea here. I’ve set a cup in front of them a thousand times.',
-      leadLine: 'Bask wrote a note on my paper on the 10th and carried it off. It named a place, and a time. Before he went there, he stopped at',
+      leadLine: 'Bask wrote a note on my paper on the 10th and carried it off. It named a place, and a time. Before he went there, he stopped at', leadAt: 'brine',
       spentLine: 'The kettle’s off. So am I.',
       opinions: { hollis: 'Dov sat with Bask for an hour on the 10th and left angry. Bask stayed and didn’t touch his tea.', okafor: 'Bernard was here until ten on the 11th with a cup he didn’t drink and a face like a debt.', fenn: 'The doctor takes tea here at six, after a night shift. On the 12th she didn’t come.' },
       topics: [
@@ -427,7 +427,7 @@ const def: CaseDef = {
       bio: 'Verger for thirty years. He reads the names of the drowned every Sunday. He knew Ambrose Rask, and he knows who was on the boat.',
       knows: ['tilda', 'keeper'],
       aboutLine: 'They come to the plaque. You learn a person by which name they touch.',
-      leadLine: 'Somebody knelt here at half past one and left a key in the charity box. She came in from the direction of',
+      leadLine: 'Somebody knelt here at half past one and left a key in the charity box. She came in from the direction of', leadAt: 'customs',
       spentLine: 'The chapel is open to everyone. Everyone except you, tonight.',
       opinions: { tilda: 'Mrs. Rask comes every anniversary and touches one name on the plaque. This year she came at half past four in the morning and wrote a second one.', keeper: 'Garrow hasn’t set foot inside the chapel since 1941. He stands in the doorway.' },
       topics: [
@@ -440,7 +440,7 @@ const def: CaseDef = {
       bio: 'Coastguard for eleven years. She takes a bearing on every boat without a light and files it, whether or not anyone reads it.',
       knows: ['keeper', 'ledoux'],
       aboutLine: 'They pass under my telescope. You learn a person by how they stand at a wheel.',
-      leadLine: 'A rowing boat with no lights went under Pier Nine at a quarter past eleven and came out at ten to twelve. The trawler it came from tied up later at',
+      leadLine: 'A rowing boat with no lights went under Pier Nine at a quarter past eleven and came out at ten to twelve. The trawler it came from tied up later at', leadAt: 'icehouse',
       spentLine: 'The watch changes at six. Ask somebody else.',
       opinions: { keeper: 'Garrow and I watch the same water. He writes down what he’s paid to. I write down what I see. We’ve never compared notes.', ledoux: 'Ledoux stands at his wheel like a man who’s been told where to go and would rather not.' },
       topics: [
@@ -453,7 +453,7 @@ const def: CaseDef = {
       bio: 'Nursed through the war. She runs the wards, keeps an eye on the doctor, and keeps her opinions of both to herself.',
       knows: ['fenn', 'hollis', 'okafor'],
       aboutLine: 'They’ve been through my ward. You don’t forget a patient. Or a visitor.',
-      leadLine: 'A man came to the door on the 12th with his fingers cut to ribbons and said it was rope. He went back toward',
+      leadLine: 'A man came to the door on the 12th with his fingers cut to ribbons and said it was rope. He went back toward', leadAt: 'trawler',
       spentLine: 'I’m doing my rounds. If you’re not bleeding, out.',
       opinions: { fenn: 'Dr. Fenn went out at half past five, when the morgue telephoned, and came back at half past six with her hands washed and her face like a wall.', hollis: 'Mr. Hollis has a weak heart. He came in on the 10th with palpitations and wouldn’t say what had caused them.', okafor: 'Bernard Okafor came in on the 12th with cuts across his fingers. He said it was rope. Rope doesn’t cut like that. Canvas does.' },
       topics: [
@@ -466,7 +466,7 @@ const def: CaseDef = {
       bio: 'Foreman at the ice house for nine years. He sells ice to fishing boats, and to people who have no fishing boats, and does not ask which is which.',
       knows: ['ledoux', 'salvi'],
       aboutLine: 'They buy ice from me. You learn a person by what they need to keep cold.',
-      leadLine: 'A man sat in my cold room at four with his hands in the ice. When he left he went toward',
+      leadLine: 'A man sat in my cold room at four with his hands in the ice. When he left he went toward', leadAt: 'raskhouse',
       spentLine: 'Ice doesn’t wait. Neither do I.',
       opinions: { ledoux: 'Ledoux unloads into my ice house at three in the morning. I don’t cut the blocks he uses.', salvi: 'Salvi buys ice for a shipping office. Shipping offices don’t need ice. Unless they do.' },
       topics: [
@@ -479,7 +479,7 @@ const def: CaseDef = {
       bio: 'Forty years in the pawnshop. She lends money on sextants, rings and knives, and she looks hard at the hands that hand them over.',
       knows: ['okafor', 'tilda', 'ledoux'],
       aboutLine: 'They pawn things with me. I look at their hands.',
-      leadLine: 'A pawn ticket was paid off on the 10th, in cash, by somebody who wasn’t the person who pawned the item. They went toward',
+      leadLine: 'A pawn ticket was paid off on the 10th, in cash, by somebody who wasn’t the person who pawned the item. They went toward', leadAt: 'chandler',
       spentLine: 'The shop is shut. I’ve said more than I should.',
       opinions: { okafor: 'Bernard pawned his knife in March so he could eat. He couldn’t have bought it back. He sold the ticket instead, and I know it, because a stranger brought it in.', tilda: 'Mrs. Rask pawned her wedding ring in 1942, bought it back in 1943, and hasn’t been in since.', ledoux: 'Ledoux pawns nothing. A man who never needs money is a man who’s paid in cash.' },
       topics: [
@@ -492,7 +492,7 @@ const def: CaseDef = {
       bio: 'Drove ambulances in the war. Now she punches tram tickets and remembers every face that would prefer to be forgotten.',
       knows: ['hollis', 'fenn', 'wren'],
       aboutLine: 'They ride my tram. You learn a person by where they refuse to sit.',
-      leadLine: 'Somebody rode to the end of the line at half past nine and didn’t ride back. Later I saw the same coat going toward',
+      leadLine: 'Somebody rode to the end of the line at half past nine and didn’t ride back. Later I saw the same coat going toward', leadAt: 'saltworks',
       spentLine: 'The tram’s in the shed. So am I.',
       opinions: { hollis: 'Mr. Hollis rode to the union hall at eight on the 11th and didn’t ride back. He walked. Slowly.', fenn: 'The doctor never takes the tram. She walks to the Infirmary at six every evening with her bag. On the 11th she was on time.', wren: 'Miss Wren rides home at eleven every night. She sits at the front and doesn’t look at anyone.' },
       topics: [
@@ -505,7 +505,7 @@ const def: CaseDef = {
       bio: 'Twenty years bagging salt. He can tell who carried a hundredweight by the way they walk afterwards.',
       knows: ['okafor', 'ledoux'],
       aboutLine: 'They come here for salt. You learn a person by how much they can carry.',
-      leadLine: 'The missing bag went out on somebody’s shoulder at ten. That somebody walked down the lane toward',
+      leadLine: 'The missing bag went out on somebody’s shoulder at ten. That somebody walked down the lane toward', leadAt: 'pier9',
       spentLine: 'The kilns need feeding. You don’t.',
       opinions: { okafor: 'Okafor buys salt for his shop by the bag. He hasn’t bought a bag since March.', ledoux: 'Ledoux buys salt by the ton, for fish he doesn’t catch.' },
       topics: [
@@ -518,7 +518,7 @@ const def: CaseDef = {
       bio: 'Fisherman for forty years. Works the crab pots under the piers at low water. He has pulled three men out of this harbour and never got used to it.',
       knows: ['ledoux', 'keeper', 'okafor'],
       aboutLine: 'I see them on the water. You learn a man by how he handles a boat.',
-      leadLine: 'The tide took something off him before it gave him up. It fetched up along the shore near',
+      leadLine: 'The tide took something off him before it gave him up. It fetched up along the shore near', leadAt: 'trawler',
       spentLine: 'I’ve said it three times now. I need to sit down.',
       opinions: { ledoux: 'Ledoux anchors off this pier some nights with his lights out. I’ve seen his dinghy go under the boards. I thought it was women.', keeper: 'Garrow’s lamp went round all night the same as always. Whatever he saw, he saw it.', okafor: 'Okafor sold me every pot I own on credit. He’s a good man with no luck.' },
       topics: [
@@ -531,7 +531,7 @@ const def: CaseDef = {
       bio: 'He was a sailor, then a drunk. Now he keeps forty beds at the Seamen’s Mission and counts them like a man who knows what an empty one means.',
       knows: ['tilda', 'keeper', 'hollis'],
       aboutLine: 'They sleep here sometimes. You learn a person by what they say in their sleep.',
-      leadLine: 'Garrow came down from his tower at five in the morning and said he had crossed something out. What he crossed out was near',
+      leadLine: 'Garrow came down from his tower at five in the morning and said he had crossed something out. What he crossed out was near', leadAt: 'coastguard',
       spentLine: 'The men are sleeping. Keep your voice down and go.',
       opinions: { tilda: 'Mrs. Rask sends blankets every winter with her husband’s name sewn into them. I unpick the name. She knows I do.', keeper: 'Garrow sleeps here when the lighthouse gets too much for him. He talks in his sleep about a boat.', hollis: 'Dov Hollis paid for the mission’s coal last winter out of his own pocket and told nobody. I tell people.' },
       topics: [
@@ -590,7 +590,7 @@ const def: CaseDef = {
       reading: 'The knife went upward from below: from a boat, from a crouch, or from somebody who knew exactly where to put it. Nothing to mark.', about: ['fenn'], effect: { type: 'none' } },
     { id: 'item:salt:locker', at: 'baths', kind: 'ticket', label: 'Bath locker tag, unclaimed',
       source: 'HARBOUR BATHS · LOCKERS', title: 'Tag no. 17',
-      fields: [['Taken', '4:30 AM, the 12th'], ['Contents', 'one oilskin coat, wet, and a key sewn into the lining'], ['Key', 'stamped BOND STORE 12']],
+      fields: [['Taken', '5:30 AM, the 12th'], ['Contents', 'one oilskin coat, wet, and a key sewn into the lining'], ['Key', 'stamped BOND STORE 12']],
       body: ['The coat was never collected. The man who left it ran when the attendant found the key.'],
       spoken: 'A locker tag, an unclaimed oilskin coat, and a key to the bond store sewn into the lining.',
       reading: 'The key opens the bond store, and somebody who lands cargo without Customs would carry one. A red mark on the map shows where.', effect: { type: 'lead', at: 'bondstore' } },
@@ -701,6 +701,8 @@ const def: CaseDef = {
       { time: '3:05 AM', text: 'The Marie-Louise ties up at the ice house steps, riding low. Two blocks of ice for Salvi Shipping. Wireless: ALL DONE.' },
       { time: '4:15 AM', text: 'A man in an oilskin tells Tilda Rask that Bask is in the water. She chalks his name on the chapel plaque.' },
       { time: '4:50 AM', text: 'Low water. The pier gives him up.' },
+      { time: '5:30 AM', text: 'A man in an oilskin, wet to the waist, takes the hot room at the Harbour Baths and leaves his coat in locker seventeen.' },
+      { time: '6:30 AM', text: 'The same man stands in the morgue corridor with his hands in his pockets, crying, and goes toward the ferry slip.' },
     ],
     truth: [
       'Marcel Ledoux told Bask that a man from the 1941 boat would show him the Corvina’s hold at Pier Nine at half past eleven. He carried Orme’s salt down the lane at ten and left it under the storm boards. He anchored off the pier at ten past eleven and rowed in alone.',

@@ -19,4 +19,9 @@ if (root && stage) {
 // or a file:// open simply has no worker.
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => {}); });
+  // A new build took over from an old one: reload once so the page and its
+  // chunks match. (Not on the very first visit, when there was no old one.)
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!hadController || reloaded) return; reloaded = true; window.location.reload(); });
 }

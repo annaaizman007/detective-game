@@ -12,16 +12,30 @@ import { LAMP_CLUES } from './lamp-clues';
 //   9:30 PM  Penhale buys blue tailor's chalk at the night market.
 //  10:00 PM  Vane the lamplighter starts his round. By 10:40 he is in the Gas
 //            Lamp with his flask; the boy Dickie finishes the round with his pole.
-//  11:20 PM  A boy brings a note to the Infirmary for Nurse Weiss: "Your landlady
-//            has been taken ill. Come home." Mrs. Crowe is not ill.
+//            Penhale stands at his wife's grave, an hour before his usual hour,
+//            and leaves by the back gate along the canal.
+//  11:00 PM  At the night market Penhale gives Little Sam sixpence and a folded
+//            note for the nurse at the Infirmary, and walks off toward the tram.
+//  11:20 PM  Sam brings the note to the Infirmary for Nurse Weiss: "Your landlady
+//            has been taken ill. Come home." Mrs. Crowe is not ill. Penhale gets
+//            on the last tram at the Alhambra stop.
+//  11:30 PM  Penhale gets off at the gasworks stop and walks toward the lane.
 //  11:40 PM  Miriam Weiss leaves the Infirmary by the side gate.
 //  11:45 PM  Lamp 41 on Gasworks Lane is turned off at the base valve with an
-//            inspector's key. The lock keeper sees a tall man with no pole.
+//            inspector's key. Mrs. Kane sees a tall man crouch at the post and step
+//            back under the gasworks wall. Boyle walks past the dark lamp at ten to
+//            twelve and does not stop.
 //  12:05 AM  Miriam is strangled under Lamp 41 with a lamplighter's cord. The
 //            number 41 is chalked on the pavement. The inspector's key is dropped.
-//  12:30 AM  A man walks the canal towpath toward the gasworks. The lock keeper
-//            sees him again. Constable Boyle, who should be on Gasworks Lane, is
-//            asleep on a bench in the mission.
+//  12:30 AM  Penhale goes down to the towpath below the lane and puts his burned
+//            hands in the canal at the bend. The lock keeper sees him go on toward
+//            the gasworks, hands held out from his sides.
+//   1:00 AM  Constable Boyle, who should be on Gasworks Lane, sits down on a bench
+//            in the mission and is asleep by five past.
+//   1:15 AM  A knock at the mission door: a tall man asking for lint for his hands,
+//            who will not come into the light. Brother Amos hands it through the
+//            door. The constable is asleep ten feet away.
+//   2:00 AM  Penhale is back in the retort house behind the gasworks.
 //   5:50 AM  The stoker finds her on his way to the six o'clock shift.
 
 const def: CaseDef = {
@@ -90,7 +104,7 @@ const def: CaseDef = {
     { id: 'market', name: 'The Night Market', type: 'market', x: 640, y: 420, district: 'The Alhambra', desc: 'Open until two in the morning. Everything for sale under canvas, including blue tailor’s chalk.' },
     { id: 'depot', name: 'Wick Street Tram Depot', type: 'tram', x: 300, y: 430, district: 'The Alhambra', desc: 'The ward’s trams. Walter Pask drives the last one. His wife was the second woman under a lamp.' },
     { id: 'garage', name: 'Fenwick Motors', type: 'garage', x: 180, y: 380, district: 'The Alhambra', desc: 'A garage with one pit. The doctor keeps his car here, and the garage keeps the doctor’s hours.' },
-    { id: 'exchange', name: 'Wards Telephone Exchange', type: 'radio', x: 520, y: 200, district: 'The Alhambra', desc: 'Every telephone call in the ward goes through a switchboard here, and through a woman who remembers voices.' },
+    { id: 'exchange', name: 'Wards Telephone Exchange', type: 'radio', x: 520, y: 200, district: 'The Alhambra', desc: 'Every telephone call in the ward goes through a switchboard here. Nobody in this case used a telephone. The killer sent a boy.' },
     // ---- Canal Side
     { id: 'canal', name: 'The Canal Lock', type: 'bridge', x: 160, y: 560, district: 'Canal Side', desc: 'A lock and a keeper’s cottage. The towpath runs from here to the gasworks, with no lamps on it at all.' },
     { id: 'bridge', name: 'Canal Bridge', type: 'bridge', x: 380, y: 560, district: 'Canal Side', desc: 'An iron bridge over the canal, with Lamp 29 at its foot. Nora Pask was found under it on the twentieth.' },
@@ -223,7 +237,7 @@ const def: CaseDef = {
       ] },
     { id: 'klein', name: 'Isidore Klein', role: 'Printer',
       traits: { build: 'slight', hair: 'fair' },
-      blurb: 'Prints the Lamplighter broadsheets that sell on every corner. He gave the killer his name. He wrote the first anonymous letter to the Herald himself.',
+      blurb: 'Prints the Lamplighter broadsheets that sell on every corner. He gave the killer his name, and he sells more paper every time the name is in it.',
       motive: 'because a killer with a name sells a thousand broadsheets a week, and he had started to need the fourth one.',
       bio: 'Forty-nine. Jobbing printer on Canal Side, with a son and a press that has not stopped since November. He printed the first broadsheet the morning after Ada Brill, with a drawing of a lamp. He has printed thirty since.',
       alibi: 'At the press until two in the morning with his son, setting Thursday’s broadsheet. The son confirms it. The broadsheet was on the street by six, with Miriam Weiss’s name in it.',
@@ -236,7 +250,7 @@ const def: CaseDef = {
       ] },
     { id: 'crowe', name: 'Hattie Crowe', role: 'Landlady, Wick Street',
       traits: { build: 'broad', hair: 'grey' },
-      blurb: 'Lets rooms to working women. Ada Brill and Miriam Weiss both lodged with her. She reads her lodgers’ letters, and she sold one lodger’s address to a man in October.',
+      blurb: 'Lets rooms to working women. Ada Brill and Miriam Weiss both lodged with her. She told the police in November that nobody had ever come asking for either of them.',
       motive: 'because two of the dead women had found out what she does with their letters, and the third was Nora Pask, whom she had turned away.',
       bio: 'Sixty-one. Nine rooms on Wick Street for thirty years, women only, no visitors after nine. She steams open the post. She says it is a precaution. Two of her lodgers are dead.',
       alibi: 'In bed by ten, as every night. She heard nothing. Her lodger Peg Dwyer heard her snoring through the wall.',
@@ -245,12 +259,12 @@ const def: CaseDef = {
       topics: [
         { id: 'night', q: 'Where were you on Wednesday night?', a: 'In bed at ten. I was not ill. Nobody sent for a nurse. If a note said I was ill, somebody wrote it who knew where she lodged and knew she would come.' },
         { id: 'letters', needs: ['dwyer.letters', 'dunne.night', 'item:lamp:lodger-book'], q: 'You read your lodgers’ post.', a: 'I steam it and I read it and I seal it again. A precaution. I have had girls run off owing six weeks, and I have had girls with men writing to them who should not. Ada knew. Miriam knew. Neither of them left, which tells you it is not as bad as the nun says.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'crowe' } },
-        { id: 'man', needs: ['dwyer.man', 'crowe.letters'], q: 'A man came to your door in October asking for Ada Brill.', a: 'She is quiet for a long time. I told the police nobody came. A man came. Tall. Grey. Polite. He asked which room was Miss Brill’s and offered a shilling for the answer and I took it, because I thought he was a debt collector, and because it was a shilling. Three weeks later she was dead under Lamp 17. I have not slept in a bed since. I sleep in the chair by the door.', after: 'letters', cost: 1, effect: { type: 'culpritTrait' } },
+        { id: 'man', needs: ['dwyer.man', 'roper.night'], q: 'A man came to your door in October asking for Ada Brill.', a: 'She is quiet for a long time. I told the police nobody came. A man came. Tall. Grey. Polite. He asked which room was Miss Brill’s and offered a shilling for the answer and I took it, because I thought he was a debt collector, and because it was a shilling. Three weeks later she was dead under Lamp 17. I have not slept in a bed since. I sleep in the chair by the door.', after: 'letters', cost: 1, effect: { type: 'culpritTrait' } },
         { id: 'fire', q: 'Did you know the three women knew each other?', a: 'Ada and Miriam knew each other from the fire, in ’46. Ada lived downstairs from it and Miriam nursed the children. They did not talk about it. Once, in the kitchen, Ada said: we should not have said it, Miri. Miriam said: we said what we saw. I did not ask what. I should have.' },
       ] },
     { id: 'boyle', name: 'Constable Ned Boyle', role: 'Beat constable, Gasworks Lane',
       traits: { build: 'tall', hair: 'fair' },
-      blurb: 'The beat constable for Gasworks Lane. He found two of the three women. He should have been under Lamp 41 at midnight. He was asleep in the mission.',
+      blurb: 'The beat constable for Gasworks Lane. He found two of the three women. He should have been under Lamp 41 at midnight. He says he was on his beat.',
       motive: 'because he walked all three women home at one time or another, and each one had told him to stop.',
       bio: 'Twenty-four. Two years a constable. His beat is Gasworks Lane and the canal, ten at night to six in the morning. He found Nora Pask under the bridge and Ada Brill under Lamp 17. He was sick both times. He walked Miriam Weiss home from the Infirmary twice in November.',
       alibi: 'On his beat, he says, from ten until six. Sister Agatha says he was asleep on the mission bench from one until five. He has changed his story once already.',
@@ -260,7 +274,7 @@ const def: CaseDef = {
         { id: 'night', q: 'Where were you on Wednesday night?', a: 'On the beat. He stops. No. Gasworks Lane until midnight, then the mission. I sat down on the bench at one and I woke up at five. She was under my lamp the whole time. My lamp. I am supposed to say I was on the beat and I cannot.' },
         { id: 'lost', needs: ['leo.complaint', 'kilbride.lost', 'item:lamp:complaint'], q: 'Nora Pask made a complaint against Marsh and it is not in the book.', a: 'He goes white. Marsh gave me five pounds. I tore the page out. A week later she was dead under the bridge and I was the one who found her. I have the five pounds in my locker. I have not spent it. I do not know what to do with it.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'boyle' } },
         { id: 'miriam', q: 'You walked Miriam Weiss home.', a: 'Twice. In November. She was kind about it. She said: Ned, I am not afraid of the dark and I do not need a policeman, and she was right, and on Wednesday I was asleep on a bench. That is the whole of it.' },
-        { id: 'midnight', q: 'You were on Gasworks Lane until midnight. What did you see?', a: 'Lamp 41 was out when I came past at a quarter to twelve. I thought: Vane. I did not stop. There was a man on the towpath below the lane, walking toward the gasworks with no lantern. Tall. I thought: stoker. I did not stop for him either.', after: 'night', cost: 1, effect: { type: 'lead', at: 'canal' } },
+        { id: 'midnight', q: 'You were on Gasworks Lane until midnight. What did you see?', a: 'Lamp 41 was out when I came past at ten to twelve. I thought: Vane. I did not stop. There was a man against the gasworks wall in the dark, tall, no lantern, and then he was going down toward the towpath. I thought: stoker, having a smoke. I did not stop for him either.', after: 'night', cost: 1, effect: { type: 'lead', at: 'canal' } },
       ] },
   ],
   culprit: 'penhale',
@@ -272,7 +286,7 @@ const def: CaseDef = {
       bio: 'Desk sergeant at Ward Station for eleven years. She keeps the ward’s complaint book, and she knows when a page is missing from it.',
       knows: ['boyle', 'vane', 'leo'],
       aboutLine: 'I have had them all across this desk at one time or another. You learn a person from how they stand in front of a sergeant.',
-      leadLine: 'The last thing Miriam Weiss did before she left the Infirmary was read a note. The boy who brought it was seen near',
+      leadLine: 'The last thing Miriam Weiss did before she left the Infirmary was read a note. The boy who brought it was seen near', leadAt: 'market',
       spentLine: 'I have four constables and three dead women. Go and find me the fourth thing.',
       opinions: { boyle: 'Ned Boyle is a good boy and a bad constable. He sleeps in the mission. I have known for a year and I have not written him up, which makes me a bad sergeant.', vane: 'Vane has been in my cells for drink eleven times. Never for anything else. He cries when he is sober.', leo: 'Marsh came to this desk in November to ask whether a complaint had been made about him. I said no. Somebody had already made sure of that.' },
       topics: [
@@ -285,7 +299,7 @@ const def: CaseDef = {
       bio: 'A machinist at the sewing works, twenty-six, lodging at Crowe’s for three years. She shared a wall with Miriam Weiss and a bench with Ada Brill.',
       knows: ['crowe', 'boyle', 'rowe'],
       aboutLine: 'This is a house of women. We notice the men who come to the door, because there are not supposed to be any.',
-      leadLine: 'Miriam kept a letter under her mattress that she would not show anybody. I think she took it with her on Wednesday. Try',
+      leadLine: 'Miriam kept a letter under her mattress that she would not show anybody. I think she took it with her on Wednesday. Try', leadAt: 'lamp41',
       spentLine: 'Mrs. Crowe will hear us through the wall. She hears everything through the wall. Go.',
       opinions: { crowe: 'Mrs. Crowe steams the post open. Everybody knows. Ada told her to her face in October and she did not even blush.', boyle: 'The constable walked Miriam home twice and stood at the gate like a dog. She sent him off kindly. He went.', rowe: 'Dr. Rowe came to see Ada’s hand in ’46 and never sent a bill. Ada said he was ashamed of something. She did not say what.' },
       topics: [
@@ -299,11 +313,11 @@ const def: CaseDef = {
       bio: 'A former docker, sixty, who came to the mission for soup in 1940 and never left. He sees every face that comes to the door.',
       knows: ['dunne', 'boyle', 'vane'],
       aboutLine: 'They all come to the door sooner or later. Hungry, drunk or ashamed. You learn a person from which.',
-      leadLine: 'Somebody came to the door at half past midnight on Wednesday and asked for a bandage for his hands, and would not come in. He went off toward',
+      leadLine: 'Somebody came to the door at a quarter past one on Wednesday night and asked for a bandage for his hands, and would not come in. He went off toward', leadAt: 'gasworks',
       spentLine: 'The soup is on. Come back when it is off.',
       opinions: { dunne: 'Sister Agatha does things with the coal that the parish would not like. The parish does not feed forty a night. I keep my mouth shut.', boyle: 'The constable came in at one and was asleep by five past. Sister let him. I would have kicked him out. That is why she is the nun and I am the ladle.', vane: 'Vane comes for soup at six and is drunk by nine. On Wednesday he did not come for soup. He was in the Gas Lamp by then.' },
       topics: [
-        { id: 'night', q: 'Who came to the mission on Wednesday night?', a: 'Forty for soup. The constable at one, asleep by five past. And at half past midnight a knock: a man asking for a bandage for his hands. He would not come into the light. Tall. I gave him lint through the door and he said thank you very properly and went.' },
+        { id: 'night', q: 'Who came to the mission on Wednesday night?', a: 'Forty for soup. The constable at one, asleep by five past. And at a quarter past one a knock: a man asking for a bandage for his hands. He would not come into the light. Tall. I gave him lint through the door and he said thank you very properly and went. The constable was asleep ten feet from him.' },
         { id: 'hands', q: 'What was wrong with his hands?', a: 'Cord burns across the palms. I have seen them on dockers when a rope runs. He held them out into the lamplight and I saw them and then he took them back. He went off toward the gasworks, along the canal, not the lane.', after: 'night', cost: 1, effect: { type: 'lead', at: 'canal' } },
         { id: 'fire', q: 'Were you here for the fire in 1946?', a: 'I carried the Kane children out. Sister laid them out in the back room with Mrs. Penhale. The inspector sat by the stove all night and said nothing. Then the inquiry, and he was gone. Sister still prays for him. I still see his face by the stove.' },
       ] },
@@ -312,7 +326,7 @@ const def: CaseDef = {
       bio: 'Landlord for twenty years. Vane has had the same stool for all of them. He has watched the man drink himself out of his own job a night at a time.',
       knows: ['vane', 'boyle', 'pask'],
       aboutLine: 'Forty regulars and I know what each one drinks and what he owes.',
-      leadLine: 'A man I did not know came in at nine on Wednesday, bought a bottle of the cheapest rum and asked me for a lamplighter’s cord. I said I sell beer. He went toward',
+      leadLine: 'A man I did not know came in at nine on Wednesday, bought a bottle of the cheapest rum and asked me for a lamplighter’s cord. I said I sell beer. He went toward', leadAt: 'pawn',
       spentLine: 'I have said it three times. It does not get truer.',
       opinions: { vane: 'Vane was on that stool from twenty to eleven until I put him out at half past twelve. He could not have turned off a tap, never mind a lamp.', boyle: 'Boyle comes in for a lemonade at ten and looks at Vane and does not write him up. Good boy. Bad constable.', pask: 'Pask drinks here after the last tram. On Wednesday he came in at a quarter to one, white as milk, and said a lamp on the lane was out. Then he heard about the nurse and put his glass down and went home.' },
       topics: [
@@ -325,7 +339,7 @@ const def: CaseDef = {
       bio: 'The ward’s chemist for fourteen years. He sells lamp oil, sleeping draughts and lint, and he writes down every hand that signs.',
       knows: ['rowe', 'crowe', 'dunne'],
       aboutLine: 'They all sign my book sooner or later. You learn a person from what they buy at night.',
-      leadLine: 'A man bought lint and iodine on Thursday morning at seven, before I had the shutters up. Cord burns on both hands. He paid and went toward',
+      leadLine: 'A man bought lint and iodine on Thursday morning at seven, before I had the shutters up. Cord burns on both hands. He paid and went toward', leadAt: 'gasworks',
       spentLine: 'I have a queue. Come back at closing.',
       opinions: { rowe: 'Dr. Rowe buys his chloral here rather than at the Infirmary, where they would count it.', crowe: 'Mrs. Crowe buys a sleeping draught every week and does not, I think, take it herself.', dunne: 'Sister Agatha buys iodine by the pint for the mission and argues about the price of every pint.' },
       topics: [
@@ -338,7 +352,7 @@ const def: CaseDef = {
       bio: 'Runs the café for the night shifts. She knew Miriam Weiss by her tea and Ada Brill by her bread, and she has fed Constable Boyle for nothing since he was sworn in.',
       knows: ['boyle', 'rowe', 'vane'],
       aboutLine: 'They come in tired and they come in honest. You learn a person at seven in the morning.',
-      leadLine: 'A boy came in at eleven on Wednesday with a penny and asked which way the Infirmary was. He had a folded note. He came from the direction of',
+      leadLine: 'A boy came in at eleven on Wednesday with a penny and asked which way the Infirmary was. He had a folded note. He came from the direction of', leadAt: 'market',
       spentLine: 'The urn is boiling over. Come back.',
       opinions: { boyle: 'Ned Boyle eats here for nothing because he has no money and no mother. He was sweet on Miriam. Everybody knew. She was kind about it.', rowe: 'Dr. Rowe takes his tea black and reads the death notices before the news.', vane: 'Vane comes in at six in the morning, sober, and is the nicest man in the ward for one hour.' },
       topics: [
@@ -351,20 +365,20 @@ const def: CaseDef = {
       bio: 'Archive clerk at the Gas Company’s Ward Office for twenty-two years. She filed the 1946 inquiry papers and was told to lose them. She did not.',
       knows: ['vane', 'rowe', 'boyle'],
       aboutLine: 'They all come to this counter to complain about a lamp. You learn a person from how they complain.',
-      leadLine: 'Somebody has been reading the old inspection cards. There is dust on every drawer but one, and a boot print on the floor under it. The print went out toward',
+      leadLine: 'Somebody has been reading the old inspection cards. There is dust on every drawer but one, and a boot print on the floor under it. The print went out toward', leadAt: 'coal',
       spentLine: 'The Company is listening. Come back when it is not.',
       opinions: { vane: 'Vane has been docked three times for lamps out. All three complaints came from women who are now dead. I noticed that in November. The Company told me not to notice it.', rowe: 'Dr. Rowe gave evidence for the Company at the inquiry. His fee is in my ledger. Forty pounds. For saying a pipe looked sound.', boyle: 'The constable came in on Thursday and asked for the card on Lamp 41. He did not ask for the card on the man who used to inspect it.' },
       topics: [
         { id: 'night', q: 'Who turns a gas lamp off?', a: 'The lamplighter, with his pole, from the top. Or an inspector, at the base valve, with a key. The Company has had no inspector in this ward since December 1946. There were seven inspector’s keys. Six came back. The seventh was never returned, and the card says it was lost in the fire.' },
-        { id: 'inspector', needs: ['vane.off', 'item:lamp:lamp-ledger', 'rowe.inquiry', 'pask.inquiry', 'tench.night'], q: 'The inspector who was dismissed in 1946. What was his name?', a: 'She takes a card out of the drawer without looking. Arthur Penhale. Inspector of lamps and mains, Wards district, 1926 to 1946. Dismissed after the Gasworks Lane fire. His wife died in it. His key was number seven. The card says he went to the country. She puts the card down. I do not think he went to the country. Somebody has been reading his old cards, and it was not the police.', after: 'night', cost: 1, effect: { type: 'lead', at: 'coal' } },
-        { id: 'where', needs: ['tench.inspector', 'hobden.coke', 'bird.visitor'], q: 'Where would a dismissed inspector go, if he did not go to the country?', a: 'She looks at the window that faces the gasworks. The old retort house. Bricked up in 1944, at the back, behind the second gasholder. Every inspector had a key to it. It is not on the Company’s map any more, because the Company does not like to remember it. If a man wanted to live where nobody would look, he would live there.', after: 'inspector', cost: 1, effect: { type: 'reveal', locationId: 'retort', suspectId: 'penhale' } },
+        { id: 'inspector', needs: ['vane.off', 'item:lamp:lamp-ledger', 'rowe.inquiry', 'pask.inquiry'], q: 'The inspector who was dismissed in 1946. What was his name?', a: 'She takes a card out of the drawer without looking. Arthur Penhale. Inspector of lamps and mains, Wards district, 1926 to 1946. Dismissed after the Gasworks Lane fire. His wife died in it. His key was number seven. The card says he went to the country. She puts the card down. I do not think he went to the country. Somebody has been reading his old cards, and it was not the police.', after: 'night', cost: 1, effect: { type: 'lead', at: 'coal' } },
+        { id: 'where', needs: ['hobden.coke', 'bird.visitor'], q: 'Where would a dismissed inspector go, if he did not go to the country?', a: 'She looks at the window that faces the gasworks. The old retort house. Bricked up in 1944, at the back, behind the second gasholder. Every inspector had a key to it. It is not on the Company’s map any more, because the Company does not like to remember it. If a man wanted to live where nobody would look, he would live there.', after: 'inspector', cost: 1, effect: { type: 'reveal', locationId: 'retort', suspectId: 'penhale' } },
       ] },
     { id: 'halloway', at: 'gasworks', name: 'Jim Halloway', role: 'stoker, found the body',
       intro: 'Big Jim Halloway. I found her. I walk down the lane to the six o’clock every morning, under the lamps, and on Thursday one of them was out and she was under it.',
       bio: 'Stoker at the gasworks for twelve years. He walks Gasworks Lane at ten to six every morning and knows every lamp on it by its light.',
       knows: ['vane', 'boyle', 'pask'],
       aboutLine: 'I see them on the lane at six in the morning. You learn a man from what he looks like before the day has started.',
-      leadLine: 'There is a stove burning somewhere at the back of the works that is not ours. I smell it on the night shift. It is over toward',
+      leadLine: 'There is a stove burning somewhere at the back of the works that is not ours. I smell it on the night shift. It is over toward', leadAt: 'coal',
       spentLine: 'The retorts want feeding. Come back at the change.',
       opinions: { vane: 'Vane’s lamps are out half the time and he is drunk all the time. He is not a killer. He cannot climb his own ladder.', boyle: 'Boyle came running when I shouted. He was coming from the mission, not from the lane. He had bench marks on his face.', pask: 'Pask’s tram passed that lamp at ten to twelve. I know because I heard it from my bed. It did not stop.' },
       topics: [
@@ -377,11 +391,11 @@ const def: CaseDef = {
       bio: 'Lock keeper for nineteen years. He sleeps by the lock and wakes at every footstep on the towpath, because a footstep at night usually means a body in the water by morning.',
       knows: ['boyle', 'pask', 'vane'],
       aboutLine: 'The towpath is where the ward walks when it does not want to be seen. You learn a man from how he walks in the dark.',
-      leadLine: 'The man on the towpath dropped something at the bend at half past twelve. I heard it hit the stones. In the morning it was gone, but there were boot marks toward',
+      leadLine: 'The man on the towpath dropped something at the bend at half past twelve. I heard it hit the stones. In the morning it was gone, but there were boot marks toward', leadAt: 'gasworks',
       spentLine: 'A boat is coming through. Come back after.',
-      opinions: { boyle: 'The constable is supposed to walk the towpath at two. He has not walked it since November. On Wednesday he was in the mission.', pask: 'Pask walked the towpath on the night his wife died, looking for her. He found the constable finding her. I heard him from here.', vane: 'Vane fell in the canal in October. I pulled him out. He is not a man who walks a towpath in the dark on purpose.' },
+      opinions: { boyle: 'The constable is supposed to walk the towpath at two. He has not walked it since November. On Wednesday he was in the mission.', pask: 'Pask walked the towpath at one on the night his wife died, looking for her, after his tram was in. He found the constable finding her. I heard him from here.', vane: 'Vane fell in the canal in October. I pulled him out. He is not a man who walks a towpath in the dark on purpose.' },
       topics: [
-        { id: 'night', q: 'Who walked the towpath on Wednesday?', a: 'A tall man, at a quarter to twelve, going toward the lane. No lantern. No pole. Walking like a man who knows the path. Then the same man at half past twelve, coming back toward the gasworks, faster, holding his hands out from his sides as if they hurt.' },
+        { id: 'night', q: 'Who walked the towpath on Wednesday?', a: 'On the night the dancer died, a tall man at a quarter past eleven going along the towpath toward the bridge. No lantern. No pole. Walking like a man who knows the path. On Wednesday the same man, once, at half past twelve, below the lane, going toward the gasworks, faster, holding his hands out from his sides as if they hurt.' },
         { id: 'hands', q: 'His hands.', a: 'Held out from his sides, the way you hold a burn. He stopped at the bend and put them in the canal. I heard the water. Then he went on, past the works, toward the back, where there is nothing but the old retort house.', after: 'night', cost: 1, effect: { type: 'culpritTrait' } },
         { id: 'bridge', q: 'Nora Pask died at the bridge.', a: 'Under Lamp 29. I heard nothing that night, which I have never forgiven myself for. The lamp was out. I noticed it at eleven and thought: Vane. Everybody thinks: Vane. That is the point of it, I think. Somebody wants us to think Vane.' },
       ] },
@@ -390,7 +404,7 @@ const def: CaseDef = {
       bio: 'Twenty years on the same pitch at the night market. She sells the blue tailor’s chalk the sewing works uses, and she remembers every stranger who buys it.',
       knows: ['klein', 'crowe', 'leo'],
       aboutLine: 'They all come through the market. You learn a person from how they haggle.',
-      leadLine: 'The boy who ran the note on Wednesday was paid sixpence by a man standing by the pawnshop window, looking at a lamplighter’s pole. He went toward',
+      leadLine: 'The boy who ran the note on Wednesday was paid sixpence by a man standing at the end of my stall with a stick of my chalk in his pocket. He went toward', leadAt: 'pawn',
       spentLine: 'I have customers. Come back when the stall is quiet.',
       opinions: { klein: 'Klein’s boy buys ink here. Klein’s broadsheet is a penny and my chalk is a penny and one of us is honest.', crowe: 'Mrs. Crowe buys buttons and haggles over every one as if buttons were the last thing between her and the poorhouse.', leo: 'Mr. Marsh buys sequins by the pound for his dancers and pays cash without looking at me.' },
       topics: [
@@ -403,7 +417,7 @@ const def: CaseDef = {
       bio: 'Pawnbroker on the Alhambra corner for thirty years. He looks at hands, not faces, and he remembers a hand.',
       knows: ['vane', 'leo', 'klein'],
       aboutLine: 'They all pledge something sooner or later. You learn a person from what they cannot bear to lose.',
-      leadLine: 'The man who bought the cords looked at a photograph in my window for a long time before he came in. A photograph of the fire. It came from',
+      leadLine: 'The man who bought the cords looked at a photograph in my window for a long time before he came in. A photograph of the fire. It came from', leadAt: 'library',
       spentLine: 'I have a customer. Come back.',
       opinions: { vane: 'Vane pledged his spare pole and cord in October for drink. He has not redeemed them. He does not need them; the boy uses his good one.', leo: 'Marsh pawned a ring in November that was not his. It was Nora Pask’s. He redeemed it the day after she died.', klein: 'Klein pledged his second press in November to buy paper for the broadsheets. He redeemed it in a week. The broadsheets paid.' },
       topics: [
@@ -416,20 +430,20 @@ const def: CaseDef = {
       bio: 'Dispatcher at the depot for fifteen years. She has watched Walter Pask go from a whistling boy to a man who does not speak.',
       knows: ['pask', 'vane', 'boyle'],
       aboutLine: 'They all ride the tram. You learn a person from where they get off.',
-      leadLine: 'A tall man rode the last tram to the gasworks stop on Wednesday at half past eleven and did not ride back. He walked off toward',
+      leadLine: 'A tall man rode the last tram to the gasworks stop on Wednesday at half past eleven and did not ride back. He walked off toward', leadAt: 'lamp41',
       spentLine: 'The eleven o’clock is late. Come back.',
       opinions: { pask: 'Walter was on the last tram from eleven until half past twelve. He came in white and said a lamp on the lane was out. He said it three times. Then he heard about the nurse.', vane: 'Vane rides for nothing with his pole across his knees. On Wednesday the boy rode with the pole and Vane was nowhere.', boyle: 'Boyle rides to the mission at one every night and thinks I do not know where he gets off.' },
       topics: [
         { id: 'night', q: 'Who rode the last tram on Wednesday?', a: 'Pask driving, eleven to half past twelve. Six passengers. A tall grey man got on at the Alhambra at twenty past eleven and off at the gasworks stop at half past. He did not ride back. Walter said the lamp at 41 was out when he came past at ten to twelve. He said it three times.' },
         { id: 'man', q: 'The tall man.', a: 'A good coat, old. He sat at the back and looked at his hands. He got off at the gasworks and walked toward the lane, not the works. I thought: that is not a stoker. Stokers do not have coats like that, even old ones.', after: 'night', cost: 1, effect: { type: 'lead', at: 'lamp41' } },
-        { id: 'nora', q: 'The night Nora Pask died.', a: 'Walter was on the last tram that night too. He got in at half past twelve and heard at one. He drove the next morning’s first tram anyway. I should have stopped him. He drove it in a straight line and did not ring the bell once.' },
+        { id: 'nora', q: 'The night Nora Pask died.', a: 'Walter was on the last tram that night too. He got in at half past twelve and she was not home, and he went down to the towpath to look. He heard at one, from the constable. He drove the next morning’s first tram anyway. I should have stopped him. He drove it in a straight line and did not ring the bell once.' },
       ] },
     { id: 'lark', at: 'music', name: 'Sid Lark', role: 'stage doorman, the Alhambra',
       intro: 'Sid Lark. Stage door. Nobody gets in or out of this hall at night without passing me, and I write them all down, because Mr. Marsh likes to know who his dancers leave with.',
       bio: 'Stage doorman for eleven years. He kept the book that shows who Nora Pask left with, and who waited across the road.',
       knows: ['leo', 'pask', 'rowe'],
       aboutLine: 'They come to the stage door for the girls. You learn a man from how long he waits.',
-      leadLine: 'A man stood across the road from this door on the nineteenth, the night before Nora died, and he was not Pask. He was watching Nora. He walked off after her toward',
+      leadLine: 'A man stood across the road from this door on the nineteenth, the night before Nora died, and he was not Pask. He was watching Nora. He walked off after her toward', leadAt: 'bridge',
       spentLine: 'Curtain in ten minutes. Come back after.',
       opinions: { leo: 'Mr. Marsh was in his office from the curtain until one on Wednesday. I took him his tea at half past twelve. He was counting. He does not leave when he is counting.', pask: 'Pask stood across the road every Saturday for a year. On the night Nora died he was there until a quarter past eleven and then he went to drive his tram, and she came out at half past, and I let her walk home alone because I always did.', rowe: 'Dr. Rowe comes to the second show on Fridays and sits at the back and signs the girls’ certificates on Mondays.' },
       topics: [
@@ -442,12 +456,12 @@ const def: CaseDef = {
       bio: 'Night porter at the Infirmary for eight years. He has known Miriam Weiss for four of them and Dr. Rowe for all eight.',
       knows: ['rowe', 'boyle', 'crowe'],
       aboutLine: 'They come through my door at night when they are frightened. You learn a person from how they ask for a doctor.',
-      leadLine: 'The boy who brought the note said the man who sent him was waiting under a lamp on Gasworks Lane. He pointed. He pointed toward',
+      leadLine: 'The boy who brought the note said the man who sent him had walked off from the market toward Gasworks Lane. He pointed the way. He pointed toward', leadAt: 'lamp41',
       spentLine: 'I have the door to mind. Go.',
       opinions: { rowe: 'Dr. Rowe read the note over her shoulder and said: go on, Miriam, go. He did not read it. He never reads anything. He signs.', boyle: 'The constable walked her home twice and she told him to stop. He stopped. On Wednesday I wished he had not.', crowe: 'Mrs. Crowe has never been ill in her life. If the note said she was, whoever wrote it had never met her.' },
       topics: [
         { id: 'night', q: 'Tell me about the note.', a: 'A boy at twenty past eleven, out of breath, with a folded paper. For Nurse Weiss. It said: Your landlady has been taken ill. Come home at once. No name. She showed the doctor, he said go, she went. Out of the side gate at twenty to twelve, toward Gasworks Lane, because that is the short way to Wick Street. Under Lamp 41.' },
-        { id: 'boy', q: 'What did the boy say?', a: 'I asked him who sent it. He said: a tall man, sixpence, under the lamp on the lane. He pointed up the lane. Then he ran. I have thought since: the man was standing under the lamp where he was going to do it, sending for her.', after: 'night', cost: 1, effect: { type: 'lead', at: 'lamp41' } },
+        { id: 'boy', q: 'What did the boy say?', a: 'I asked him who sent it. He said: a tall man at the market, sixpence, and he went off toward the lane. He pointed the way. Then he ran. I have thought since: the man was already walking to the lamp where he was going to do it while she was still reading the note.', after: 'night', cost: 1, effect: { type: 'lead', at: 'lamp41' } },
         { id: 'fire', q: 'Was Miriam here for the fire in 1946?', a: 'Her first year. She nursed the two Kane children for a night and a day and they died anyway. She gave evidence at the inquiry about the burns. She told me once she had said the burns were from gas, because they were, and that a man had lost everything because of it, and that she would say it again because it was true. She was like that.' },
       ] },
     { id: 'rusk', at: 'printworks', name: 'Davy Rusk', role: 'apprentice printer',
@@ -455,7 +469,7 @@ const def: CaseDef = {
       bio: 'Seventeen, apprentice to Klein for two years. He set every Lamplighter broadsheet, including the one with the letter that nobody wrote.',
       knows: ['klein', 'pask', 'boyle'],
       aboutLine: 'They come in to complain about what we printed. You learn a person from what they want taken out.',
-      leadLine: 'Mr. Klein keeps the original of the Lamplighter letter in the safe. There is no original. There is a draft, in his hand, and a proof. He burned the proof in the stove at',
+      leadLine: 'Mr. Klein keeps the original of the Lamplighter letter in the safe. There is no original. There is a draft, in his hand, and a proof. He burned the proof in the stove at', leadAt: 'pub',
       spentLine: 'The press is running. I cannot hear you.',
       opinions: { klein: 'Mr. Klein wrote the letter. I set it. I know his hand and I set his hand. He has not said so and I have not said so and now I have.', pask: 'Pask stood in front of the press and I hid under the bench. I am not proud of it.', boyle: 'The constable buys two sheets and tells the milkman everything. The milkman tells us. That is how we know about the chalk.' },
       topics: [
@@ -468,7 +482,7 @@ const def: CaseDef = {
       bio: 'Mortuary attendant for twenty years. He washed all three women and wrote down what the doctor did not.',
       knows: ['rowe', 'boyle', 'pask'],
       aboutLine: 'They come here to look at the dead. You learn a person from what they look at first.',
-      leadLine: 'Ada Brill had a slip of paper in her shoe that the constable did not find and I did. A card from the Gas Company archive, with a lamp number on it. I gave it to the sergeant, who put it in a file at',
+      leadLine: 'Ada Brill had a slip of paper in her shoe that the constable did not find and I did. A card from the Gas Company archive, with a lamp number on it. I gave it to the sergeant, who put it in a file at', leadAt: 'wickstation',
       spentLine: 'I have three of them to look after. Go and find the fourth before I have to.',
       opinions: { rowe: 'Dr. Rowe writes ‘strangulation’ and signs. He does not write what I write: that the cord was tied with a lamplighter’s hitch, the knot they use on ladders, and that whoever tied it had tied a thousand.', boyle: 'The constable was sick in my sink twice. He looks at the faces. That is the wrong thing to look at. I told him: look at the hands.', pask: 'Pask came to see his wife and stood for an hour and did not touch her. Then he hit the porter. I understood both.' },
       topics: [
@@ -481,7 +495,7 @@ const def: CaseDef = {
       bio: 'Librarian of the Wards Reading Room for eighteen years. She notices who reads what, and she noticed a tall man reading about the fire every night in October.',
       knows: ['klein', 'rowe', 'dunne'],
       aboutLine: 'They come here to read what the ward says about them. You learn a person from which page they turn to.',
-      leadLine: 'The Herald’s report on the inquiry names three witnesses. The full transcript is not here. It is at',
+      leadLine: 'The Herald’s report on the inquiry names three witnesses. The full transcript is not here. It is at', leadAt: 'courthouse',
       spentLine: 'This is a reading room. Read.',
       opinions: { klein: 'Klein comes in to read what the Herald printed of his letter and goes out looking ill. Guilt reads slowly.', rowe: 'Dr. Rowe read the inquiry report in November and tore his name out of it. I have the page. It was the Company’s paper, not mine.', dunne: 'Sister Agatha reads the deaths and prays over them at the table. She prayed over Mary Penhale’s in ’46 for an hour.' },
       topics: [
@@ -494,20 +508,20 @@ const def: CaseDef = {
       bio: 'Teacher at the Ragged School for nine years. She knew all three victims as mothers, patients or neighbours, and she visits the cemetery on the anniversary of the fire.',
       knows: ['dunne', 'crowe', 'klein'],
       aboutLine: 'I know them by their children. You learn a person from what their child will not say.',
-      leadLine: 'Kitty Brill drew a picture in November of a tall man at her mother’s door. She said he was the gas man. She drew him again this week, standing at',
+      leadLine: 'Kitty Brill drew a picture in November of a tall man at her mother’s door. She said he was the gas man. She drew him again this week, standing at', leadAt: 'lamp41',
       spentLine: 'The bell has gone. Come back at four.',
       opinions: { dunne: 'Sister Agatha keeps Kitty out of the orphanage by means I do not ask about. I would do the same.', crowe: 'Mrs. Crowe told me Kitty could not stay at the boarding house after her mother died. Women only, no children. She said it kindly. It was still cruel.', klein: 'Klein’s broadsheet is read aloud in my playground by children who cannot read. I have burned eleven of them.' },
       topics: [
         { id: 'night', q: 'What does Kitty Brill say?', a: 'That a tall gas man came to her mother’s door in October and asked which room, and her mother said afterwards: that was Mr. Penhale, Kitty, from the lane, before the fire. He looked so old. That is what Kitty says her mother said. I told the constable in November. He wrote down ‘gas man’ and nothing else.' },
         { id: 'fire', q: 'Tell me about the fire.', a: 'The Kane twins, seven. Top floor of the tenement. The gas came up through the floor in the night. Ada Brill lived below and got out with Kitty. Mrs. Penhale was visiting the Kanes and did not get out. The inspector had lived on the lane for twenty years and knew every family in it. After the inquiry he had no family and no lane. I saw him once more, at the cemetery, in ’47, at night. Then never.', cost: 1, effect: { type: 'lead', at: 'cemetery' } },
-        { id: 'chalk', q: 'Blue chalk.', a: 'Tailor’s chalk. The sewing works. I use white. The number on the pavement is written the way a Company man writes a lamp number on a post: the four with an open top. Nobody in my school writes a four like that. The Gas Company taught its men to.' },
+        { id: 'chalk', after: 'night', q: 'Blue chalk.', a: 'Tailor’s chalk. The sewing works. I use white. The number on the pavement is written the way a Company man writes a lamp number on a post: the four with an open top. Nobody in my school writes a four like that. The Gas Company taught its men to.' },
       ] },
     { id: 'hobden', at: 'coal', name: 'Jack Hobden', role: 'coal merchant',
       intro: 'Hobden. Coal and coke by the sack, delivered. I know every stove in the ward by what it burns, and there is one stove in this ward that should not exist and burns my best coke.',
       bio: 'Coal merchant on Gasworks Lane for twenty-five years. He delivers to the gasworks, the mission, and to a place behind the gasworks that is not on his book under any name.',
       knows: ['dunne', 'vane', 'boyle'],
       aboutLine: 'They all buy coal. You learn a person from whether they pay before the winter or after it.',
-      leadLine: 'The man who buys my coke for the place behind the works pays in old coins and carries the sack himself. He carries it along the towpath, toward',
+      leadLine: 'The man who buys my coke for the place behind the works pays in old coins and carries the sack himself. He carries it along the towpath, toward', leadAt: 'gasworks',
       spentLine: 'The cart is loaded. Come back tonight.',
       opinions: { dunne: 'Sister Agatha sells me back the mission’s coal at half price and buys coke with the money. I do not ask. I am not a priest.', vane: 'Vane buys nothing. The Company heats his room and he drinks the difference.', boyle: 'The constable asked me in November whether I had sold rope. Rope. I sell coal.' },
       topics: [
@@ -520,20 +534,20 @@ const def: CaseDef = {
       bio: 'Fifty. Lost her twin sons in the gas fire of 1946 and stayed in the building. She was the neighbour Mary Penhale was visiting when the gas came up through the floor.',
       knows: ['rowe', 'dunne', 'crowe'],
       aboutLine: 'I have had every one of them at my door since the fire, with soup or a form. You learn a person from what they bring to a grieving house.',
-      leadLine: 'The night before Miriam Weiss died, somebody stood under Lamp 41 for an hour and looked up at my window. When the lamp went out he was gone. His boots went toward',
+      leadLine: 'The night before Miriam Weiss died, somebody stood under Lamp 41 for an hour and looked up at my window. When the lamp went out he was gone. His boots went toward', leadAt: 'coal',
       spentLine: 'I have said enough for one day. Come back tomorrow.',
       opinions: { rowe: 'Dr. Rowe told the inquiry the pipes were sound. He came to my door a year later and could not look at me. I gave him tea. I do not know why.', dunne: 'Sister Agatha laid out my boys. I would give her my life. She does not want it.', crowe: 'Mrs. Crowe would not let me lodge with her after the fire. Widows with no children, she said, are bad luck. She said it to my face.' },
       topics: [
         { id: 'night', q: 'What did you see on Wednesday night?', a: 'Lamp 41 go out at a quarter to twelve. I was at the window. A tall man was standing under it with something in his hand, low down, at the base of the post, and then the lamp went out and he stepped back into the dark under the gasworks wall. I thought: Vane, and I went to bed. I went to bed.' },
         { id: 'penhale', q: 'Tell me about Arthur Penhale.', a: 'He lived on the ground floor for twenty years with Mary. He was the Company’s inspector and he was ours too; he knew every pipe in this building. He told the Company the main was bad in the October. I know because Mary told me. The Company said spring. In December it burned. Mary was in my kitchen when it came up through the floor. Arthur went in for her. They blamed him. The three who spoke at the inquiry only said what they saw. It was the Company that killed my boys, and Arthur, and now it is Arthur killing the ones who spoke. I have known since the second one. God forgive me, I have known.', after: 'night', cost: 1, effect: { type: 'culpritTrait' } },
-        { id: 'where', needs: ['kane.penhale', 'hobden.night', 'halloway.stove'], q: 'Where is he?', a: 'Where the Company cannot see him. Behind the works, in the old retort house, with a stove. He came to my door once, in ’47, at night, and stood there, and I said: Arthur, go and live, and he said: I am trying to, Bridget, and he went. I did not know then what he was trying to do.', after: 'penhale', cost: 1, effect: { type: 'reveal', locationId: 'retort', suspectId: 'penhale' } },
+        { id: 'where', needs: ['hobden.night', 'halloway.stove'], q: 'Where is he?', a: 'Where the Company cannot see him. Behind the works, in the old retort house, with a stove. He came to my door once, in ’47, at night, and stood there, and I said: Arthur, go and live, and he said: I am trying to, Bridget, and he went. I did not know then what he was trying to do.', after: 'penhale', cost: 1, effect: { type: 'reveal', locationId: 'retort', suspectId: 'penhale' } },
       ] },
     { id: 'sayer', at: 'courthouse', name: 'Leonard Sayer', role: 'coroner’s clerk',
       intro: 'Sayer. I keep the coroner’s files. The inquiry into the Gasworks Lane fire is in the basement, three boxes, and I can tell you now that nobody from the police has asked for it in two years.',
       bio: 'Coroner’s clerk for twenty years. He took down the 1946 inquiry in shorthand and has never forgotten the inspector’s face when the three witnesses spoke.',
       knows: ['rowe', 'boyle', 'leo'],
       aboutLine: 'They all give evidence here sooner or later. You learn a person from how they swear the oath.',
-      leadLine: 'The inspector kept a notebook of every lamp on his round, and it was entered as an exhibit at the inquiry. It was never returned. It went, with his key, to',
+      leadLine: 'The inspector kept a notebook of every lamp on his round, and it was entered as an exhibit at the inquiry. It was never returned. It went, with his key, to', leadAt: 'gasoffice',
       spentLine: 'The coroner is sitting. Come back after four.',
       opinions: { rowe: 'Dr. Rowe swore the main was sound and took forty pounds from the Company that month. Both facts are in my files. Only one is in his.', boyle: 'The constable has given evidence at two inquests this winter and cried at both. The coroner was kind to him. I would not have been.', leo: 'Mr. Marsh gave evidence at Nora Pask’s inquest and lied about where he was. I know, because the doorman’s book says otherwise and I have read it.' },
       topics: [
@@ -546,13 +560,13 @@ const def: CaseDef = {
       bio: 'Sexton of Wards Cemetery for thirty years. He buried the two Kane children and Mary Penhale in 1946, and he has watched her husband stand at her grave every week since.',
       knows: ['dunne'],
       aboutLine: 'They come to stand at graves. You learn a person from how long they stand.',
-      leadLine: 'The man who visits Mary Penhale’s grave at night leaves the cemetery by the back gate, along the canal, toward',
+      leadLine: 'The man who visits Mary Penhale’s grave at night leaves the cemetery by the back gate, along the canal, toward', leadAt: 'coal',
       spentLine: 'I have a grave to finish before dark. Go.',
       opinions: { dunne: 'Sister Agatha buried the Kane children out of the mission’s money and never told the parish. I dug for nothing.' },
       topics: [
-        { id: 'visitor', q: 'Who visits at night?', a: 'Mary Penhale, died December 1946, row nine. Her husband comes every Sunday night after midnight and stands for an hour and puts a stone on the grave. He has put a hundred stones on it. He is tall and grey and he was not tall and grey in 1946. He thinks I do not see him. I have never once gone out to him. I am ashamed of that now.' },
-        { id: 'where', q: 'Where does he go?', a: 'Out by the back gate and along the canal toward the gasworks. Not the lane. He does not use the lane, except when he does, and then somebody is dead under a lamp. He went that way on Wednesday at eleven. I have known since the second one what he is. I am telling you now.', after: 'visitor', cost: 1, effect: { type: 'lead', at: 'coal' } },
-        { id: 'stones', q: 'A hundred stones.', a: 'One a week, since ’47. Three of them are different: bigger, from the canal bed, put down in November and December. One after each woman. He is telling her. God help him, he thinks he is telling her something.' },
+        { id: 'visitor', q: 'Who visits at night?', a: 'Mary Penhale, died December 1946, row nine. Her husband comes every Sunday night after midnight and stands for an hour and puts a stone on the grave. On Wednesday he came at ten, which is not his night and not his hour, and did not stay. He has put a hundred stones on it. He is tall and grey and he was not tall and grey in 1946. He thinks I do not see him. I have never once gone out to him. I am ashamed of that now.' },
+        { id: 'where', q: 'Where does he go?', a: 'Out by the back gate and along the canal toward the gasworks. Not the lane. He does not use the lane, except when he does, and then somebody is dead under a lamp. He went that way on Wednesday at ten. I have known since the second one what he is. I am telling you now.', after: 'visitor', cost: 1, effect: { type: 'lead', at: 'coal' } },
+        { id: 'stones', after: 'visitor', q: 'A hundred stones.', a: 'One a week, since ’47. Three of them are different: bigger, from the canal bed, put down in November and December. One after each woman. He is telling her. God help him, he thinks he is telling her something.' },
       ] },
   ],
 
@@ -709,14 +723,16 @@ const def: CaseDef = {
       { time: '9:30 PM', text: 'A tall grey man buys one stick of blue chalk at the night market, as he did in October and November.' },
       { time: '9:30 PM', text: 'The same man buys a lamplighter’s cord at Ziegler’s, the third he has bought.' },
       { time: '10:40 PM', text: 'Vane the lamplighter is in the Gas Lamp with his flask. The boy Dickie finishes the round with his pole.' },
-      { time: '11:00 PM', text: 'A man in an old good coat stands at a grave in Wards Cemetery and leaves by the back gate along the canal.' },
+      { time: '10:00 PM', text: 'A man in an old good coat stands at a grave in Wards Cemetery, an hour before his usual hour, and leaves by the back gate along the canal.' },
+      { time: '11:00 PM', text: 'At the night market the same man gives a boy sixpence and a folded note, and walks off toward the tram.' },
       { time: '11:20 PM', text: 'A market boy runs a note to the Infirmary: “Your landlady has been taken ill. Come home at once.”' },
       { time: '11:30 PM', text: 'The tall man rides the last tram to the gasworks stop and walks toward the lane.' },
       { time: '11:40 PM', text: 'Miriam Weiss leaves the Infirmary by the side gate, the short way home, along Gasworks Lane.' },
-      { time: '11:45 PM', text: 'Lamp 41 goes out. Mrs. Kane sees a man crouched at the base of the post. The lock keeper sees him on the towpath. Constable Boyle walks past the dark lamp and does not stop.' },
+      { time: '11:45 PM', text: 'Lamp 41 goes out. Mrs. Kane sees a man crouched at the base of the post step back under the gasworks wall. Constable Boyle walks past the dark lamp at ten to twelve and does not stop.' },
       { time: '12:05 AM', text: 'Miriam Weiss dies under Lamp 41. The number is chalked beside her. The inspector’s key falls from a bandaged hand.' },
-      { time: '12:30 AM', text: 'A man with cord burns on his palms puts his hands in the canal at the bend, asks the mission for lint through the door, and walks to the back of the gasworks.' },
+      { time: '12:30 AM', text: 'A man with cord burns on his palms puts his hands in the canal at the bend and goes on along the towpath toward the gasworks.' },
       { time: '1:00 AM', text: 'Constable Boyle falls asleep on the mission bench.' },
+      { time: '1:15 AM', text: 'A tall man asks the mission for lint through the door and will not come into the light. He walks to the back of the gasworks.' },
       { time: '5:50 AM', text: 'The stoker finds her on his way to the six o’clock shift.' },
     ],
     truth: [
