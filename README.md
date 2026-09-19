@@ -74,38 +74,62 @@ turn it is. Argue about the board together.
 
 ## Narration
 
-Every briefing, clue, tell and event is spoken through the browser's built-in
-speech synthesis. No API key, no audio files, works offline.
+Every briefing, clue, exchange and event is narrated. There are two ways it
+can be voiced, and the game prefers the better one when it is available.
 
-The synthesiser itself belongs to your operating system, so `js/voice.js`
-concentrates on the parts that are ours:
+### Baked audio (recommended)
+
+Browser speech synthesis is the weakest part of this project and there is no
+fixing it from inside a browser. So the whole script is enumerable ahead of
+time — `js/lines.js` collects every line the narrator can say — and
+`tools/render-voices.mjs` bakes it to audio with a real model:
+
+```bash
+npm run voices -- --list-voices     # what this machine has
+npm run voices                      # bake it
+```
+
+It picks the best engine present: ElevenLabs or OpenAI if you export a key,
+Piper if it is on your PATH, and macOS `say` otherwise. On a Mac, install a
+free Premium voice first (System Settings › Accessibility › Spoken Content ›
+System Voice › Manage Voices) and pass it:
+
+```bash
+npm run voices -- --voice="Daniel (Enhanced)"
+```
+
+Clips land in `voice/` with a manifest; reload and the game uses them. Around
+300 clips, roughly sixteen minutes of audio. Rendering is incremental, so a
+rerun only does what changed, and a half-finished render still works — the
+game falls back per line.
+
+The trick that makes this possible is that composite lines are narrated as
+**fragments**. "Vera Lang strikes the match left-handed" would need every name
+times every tell — thousands of files. Split into `["Vera Lang", "strikes the
+match left-handed"]` it is two clips from small closed sets. A test asserts
+that 100% of the fragments spoken across 160 real games exist in the corpus,
+so nothing falls back by accident.
+
+### Browser speech (the fallback)
+
+With no `voice/` directory the game synthesises, and `js/voice.js` works on
+the parts that are ours:
 
 - **Voice ranking.** Voices are scored by class (natural/neural, network,
   standard), penalised if they are known low-fidelity engines, and nudged
-  toward English accents that suit the material. The best one is picked
-  automatically; the settings list is grouped and labelled so you can see which
-  of yours are the good ones.
-- **No mangling.** Pitch-shifting a neural voice is exactly what makes it sound
-  synthetic, so prosody is per voice class — the good ones are left alone and
-  only the older engines get nudged.
+  toward English accents that suit the material. The best is picked
+  automatically; the settings list is grouped so you can see which of yours
+  are the good ones.
+- **No mangling.** Pitch-shifting a neural voice is exactly what makes it
+  sound synthetic, so prosody is per voice class.
 - **Phrasing.** Lines are split at sentence and clause boundaries and spoken
-  with real silence between them, weighted by punctuation: a comma is a breath,
-  an em dash is a beat, a question mark is longer than a full stop. Tiny
-  fragments are merged so the reading never turns choppy, and the rate drifts a
-  fraction phrase to phrase, because dead-even timing is the most machine-like
-  thing about synthesised speech.
-- **A room to speak in.** Browser speech cannot be routed through Web Audio —
-  there is no way to capture it — so the voice itself cannot be processed. What
-  `js/audio.js` can do is put something behind it: generated rain under
-  everything, and a precinct-radio carrier that opens with a relay click when
-  the narrator starts and ducks the rain while they talk. Dry speech in silence
-  reads as a machine; the same speech over a radio in a rainy room does not.
-  All synthesised from noise buffers and oscillators, so there is nothing to
-  download.
+  with silence between them, weighted by punctuation.
+- **A room to speak in.** `js/audio.js` puts rain under everything and a
+  precinct-radio carrier that opens with a relay click while the narrator
+  talks. Dry speech in silence reads as a machine; the same speech over a
+  radio in a rainy room does not.
 
-If it still sounds mechanical, the machine has no natural voice installed and
-the settings panel explains how to add one per platform — it is free and it is
-the single biggest improvement available. Subtitles show every line either way.
+Subtitles show every line either way.
 
 ## How it is built
 

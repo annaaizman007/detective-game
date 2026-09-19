@@ -17,6 +17,8 @@
 //   4. GIVE IT A ROOM. Perfectly dry speech sounds synthetic; the same speech
 //      over a radio in a rainy room does not. See js/audio.js.
 
+import { clipId, normaliseLine } from './lines.js';
+
 const MAX_UTTERANCE = 190;
 
 // Voice classes, best first. `rate`/`pitch` are the baseline for that class.
@@ -164,6 +166,12 @@ export class Narrator {
     this.speaking = false;
     this.subscribers = new Set();
     this._token = 0;
+    // Pre-rendered narration, if somebody has run `npm run voices`.
+    this.clips = null;
+    this.useClips = true;
+    try {
+      if (localStorage.getItem('ashgrave.useClips') === '0') this.useClips = false;
+    } catch { /* private mode */ }
 
     try {
       if (localStorage.getItem('ashgrave.voiceOn') === '0') this.enabled = false;
@@ -178,6 +186,66 @@ export class Narrator {
       setTimeout(() => this._loadVoices(), 250);
       setTimeout(() => this._loadVoices(), 1200);
     }
+  }
+
+  /**
+   * Look for narration baked to audio files. A real TTS model beats anything
+   * the browser can synthesise, so when a manifest is present those clips are
+   * used and speech synthesis becomes the fallback for anything missing.
+   */
+  async loadClips(base = 'voice/') {
+    try {
+      const res = await fetch(`${base}manifest.json`, { cache: 'no-cache' });
+      if (!res.ok) return false;
+      const m = await res.json();
+      if (!m || !Array.isArray(m.clips) || !m.clips.length) return false;
+      this.clips = {
+        base,
+        format: m.format || 'mp3',
+        voice: m.voice || m.engine || 'recorded',
+        ids: new Set(m.clips.map((c) => c.id)),
+      };
+      this._emit({ type: 'clips', count: this.clips.ids.size });
+      return true;
+    } catch {
+      return false; // no pre-rendered narration; synthesise instead
+    }
+  }
+
+  get recorded() { return !!(this.clips && this.useClips); }
+
+  setUseClips(on) {
+    this.useClips = on;
+    try { localStorage.setItem('ashgrave.useClips', on ? '1' : '0'); } catch { /* ignore */ }
+  }
+
+  /** Only worth using the recording if every fragment of the line exists. */
+  _clipsFor(parts) {
+    if (!this.recorded || !parts?.length) return null;
+    const urls = [];
+    for (const part of parts) {
+      const id = clipId(part);
+      if (!this.clips.ids.has(id)) return null;
+      urls.push({ url: `${this.clips.base}${id}.${this.clips.format}`, text: normaliseLine(part) });
+    }
+    return urls;
+  }
+
+  _playClip(url, token) {
+    return new Promise((resolve) => {
+      const a = new Audio(url);
+      a.preload = 'auto';
+      let done = false;
+      const finish = () => { if (!done) { done = true; this._current = null; resolve(); } };
+      a.addEventListener('ended', finish, { once: true });
+      a.addEventListener('error', finish, { once: true });
+      // Never let a stalled file wedge the queue.
+      const bail = setTimeout(finish, 30000);
+      a.addEventListener('ended', () => clearTimeout(bail), { once: true });
+      this._current = a;
+      if (token !== this._token) { finish(); return; }
+      a.play().catch(finish);
+    });
   }
 
   _loadVoices() {
@@ -233,19 +301,22 @@ export class Narrator {
   subscribe(fn) { this.subscribers.add(fn); return () => this.subscribers.delete(fn); }
   _emit(ev) { for (const fn of this.subscribers) fn(ev); }
 
-  say(text, tone = 'narrator') {
+  say(text, tone = 'narrator', parts = null) {
     const line = normalise(text);
     if (!line) return;
-    this.queue.push({ line, tone });
+    this.queue.push({ line, tone, parts: parts || [text] });
     if (!this.speaking) this._drain();
   }
 
-  sayAll(lines) { for (const l of lines) this.say(l.text ?? l, l.tone ?? 'narrator'); }
+  sayAll(lines) {
+    for (const l of lines) this.say(l.text ?? l, l.tone ?? 'narrator', l.parts ?? null);
+  }
 
   stop() {
     this._token += 1;
     this.queue = [];
     this.speaking = false;
+    if (this._current) { try { this._current.pause(); } catch { /* ignore */ } this._current = null; }
     if (this.supported) { try { window.speechSynthesis.cancel(); } catch { /* ignore */ } }
     this._emit({ type: 'idle' });
   }
@@ -262,7 +333,21 @@ export class Narrator {
       if (token !== this._token) return;
       this._emit({ type: 'line', text: item.line, tone: item.tone });
 
-      if (this.enabled && this.supported && this.voice) {
+      const recorded = this.enabled ? this._clipsFor(item.parts) : null;
+      if (recorded) {
+        // Baked audio: play the fragments back to back with the same
+        // punctuation-weighted pauses the synthesiser would have used.
+        for (let i = 0; i < recorded.length; i++) {
+          if (token !== this._token) return;
+          await this._playClip(recorded[i].url, token);
+          if (token !== this._token) return;
+          const last = i === recorded.length - 1;
+          const t = recorded[i].text;
+          const pause = last ? (/[?!]$/.test(t) ? 520 : 400)
+            : /[,:;]$/.test(t) ? 190 : 150;
+          await sleep(pause);
+        }
+      } else if (this.enabled && this.supported && this.voice) {
         const phrases = toPhrases(item.line);
         const tone = TONES[item.tone] || TONES.narrator;
         for (let i = 0; i < phrases.length; i++) {

@@ -10,6 +10,7 @@ import { DIFFICULTIES } from '../js/gen.js';
 import * as R from '../js/rules.js';
 import { stream } from '../js/rng.js';
 import { APPROACHES } from '../js/dialogue.js';
+import { collectLines, normaliseLine } from '../js/lines.js';
 
 let pass = 0, fail = 0;
 const test = (name, fn) => {
@@ -213,6 +214,64 @@ test('the trail running out ends the game in a loss', () => {
   }
   assert.equal(s.result, 'loss');
   assert.ok(s.cold >= s.coldMax, 'lost without the clock running out');
+});
+
+test('every spoken fragment is in the pre-rendered corpus', () => {
+  const corpus = new Set(collectLines().map((l) => l.text));
+  const missing = new Map();
+  let total = 0;
+
+  for (let i = 0; i < 160; i++) {
+    const c = CASES[i % CASES.length];
+    const d = Object.keys(DIFFICULTIES)[i % 3];
+    let s = newGame(c.id, d, `voice${i}`, 1 + (i % 4));
+    let guard = 0;
+    while (s.phase === 'play' && guard++ < 900) {
+      const p = R.currentPlayer(s);
+      if (!p) break;
+      for (const n of s.narration) {
+        for (const part of n.parts) {
+          total++;
+          const t = normaliseLine(part);
+          if (!corpus.has(t)) missing.set(t, (missing.get(t) || 0) + 1);
+        }
+      }
+      // exercise every action type, abilities included
+      const live = R.liveSuspects(s);
+      if (live.length === 1 && R.canAccuse(s, p)) {
+        s = applyAction(s, { type: 'ACCUSE', playerId: p.id, suspectId: live[0].id }); continue;
+      }
+      if (R.canUseAbility(s, p) && !R.abilityBlocker(s, p) && guard % 5 === 0) {
+        const need = R.abilityTarget(p.charId);
+        const a = { type: 'ABILITY', playerId: p.id };
+        if (need === 'location') a.locationId = s.map.locations[guard % s.map.locations.length].id;
+        else if (need === 'suspect-here') a.suspectId = R.suspectsAt(s, p.at)[0]?.id;
+        else if (need !== 'none') a.suspectId = s.suspects[guard % s.suspects.length].id;
+        if (need === 'none' || a.suspectId || a.locationId) { s = applyAction(s, a); continue; }
+      }
+      const here = R.suspectsAt(s, p.at).filter((x) => R.canInterrogate(s, p, x));
+      if (here.length) {
+        s = applyAction(s, { type: 'INTERROGATE', playerId: p.id, suspectId: here[0].id,
+          approach: APPROACHES[guard % APPROACHES.length].id });
+        continue;
+      }
+      if (!R.looksExhausted(s, p.at) && p.ap >= 1 && !s.sealed[p.at]) {
+        s = applyAction(s, { type: 'SEARCH', playerId: p.id }); continue;
+      }
+      const opts = R.moveOptions(s, p).filter((o) => R.canMove(s, p, o.id));
+      if (opts.length) { s = applyAction(s, { type: 'MOVE', playerId: p.id, to: opts[guard % opts.length].id }); continue; }
+      s = applyAction(s, { type: 'END_TURN', playerId: p.id });
+    }
+  }
+
+  const missedCount = [...missing.values()].reduce((a, b) => a + b, 0);
+  const coverage = total ? (100 * (total - missedCount)) / total : 100;
+  console.log(`       (${total} fragments spoken, ${coverage.toFixed(1)}% pre-renderable)`);
+  if (missing.size) {
+    const worst = [...missing.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
+    console.log('       uncovered:', worst.map(([t, n]) => `${n}x "${t.slice(0, 54)}"`).join('\n                  '));
+  }
+  assert.ok(coverage > 99.5, `only ${coverage.toFixed(1)}% of spoken fragments can be pre-rendered`);
 });
 
 console.log(`\n  ${pass} passed, ${fail} failed\n`);

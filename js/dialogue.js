@@ -81,3 +81,11 @@ export function replyFor(approachId, index) {
 }
 
 export const spentReply = (index) => REPLIES.spent[index % REPLIES.spent.length];
+
+/** Every line either side of a conversation can say, for the voice renderer. */
+export function allDialogueLines() {
+  return [
+    ...APPROACHES.flatMap((a) => a.ask),
+    ...Object.values(REPLIES).flat(),
+  ];
+}

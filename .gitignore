@@ -1,3 +1,8 @@
 node_modules/
 *.log
 .DS_Store
+
+# Baked narration, produced by `npm run voices`. Large, and specific to
+# whichever engine and voice rendered it. Delete these lines if you want to
+# commit a voice pack so other people get it too.
+voice/

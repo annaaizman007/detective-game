@@ -20,7 +20,7 @@ export const EVENTS = [
       const loc = api.pick(s.map.locations.filter((l) => l.id !== s.map.start));
       if (!loc) return null;
       s.sealed[loc.id] = 2;
-      return `${loc.name} is sealed off.`;
+      return { text: `${loc.name} is sealed off.`, parts: [loc.name, 'is sealed off.'] };
     },
   },
   {
@@ -38,7 +38,9 @@ export const EVENTS = [
     text: 'The desk sergeant holds out the receiver. Nobody on the other end gives a name.',
     effect: (s, api) => {
       const t = api.revealCulpritTrait();
-      return t ? `The caller knew something: ${t}` : 'The caller told you nothing you did not already have.';
+      return t
+        ? { text: `The caller knew something: ${t.text}`, parts: ['The caller knew something:', ...t.parts] }
+        : 'The caller told you nothing you did not already have.';
     },
   },
   {
@@ -57,7 +59,8 @@ export const EVENTS = [
       if (victims.length <= 1) return 'This time the body is nobody you were looking for.';
       const v = api.pick(victims);
       v.dead = true; v.cleared = true;
-      return `${v.name} is dead. Whoever you are hunting, it was not them.`;
+      return { text: `${v.name} is dead. Whoever you are hunting, it was not them.`,
+        parts: [v.name, 'is dead. Whoever you are hunting, it was not them.'] };
     },
   },
 ];

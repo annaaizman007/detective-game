@@ -51,6 +51,10 @@ export class App {
     this.transport.onAction((action) => this.commit(action));
     const canvas = document.getElementById('rain');
     if (canvas) this._rain = startRain(canvas);
+    // If somebody has baked the narration to audio, prefer it over synthesis.
+    this.narrator.loadClips().then((found) => {
+      if (found && this.modal === 'settings') this.renderModal();
+    });
     this.bind();
     this.render();
   }
@@ -100,7 +104,7 @@ export class App {
 
     if (next.narration.length) {
       this.narrator.stop();
-      this.narrator.sayAll(next.narration.map((n) => ({ text: n.text, tone: n.tone })));
+      this.narrator.sayAll(next.narration.map((n) => ({ text: n.text, tone: n.tone, parts: n.parts })));
       const big = next.narration.find((n) => n.tone === 'clue' || n.tone === 'alert');
       if (big) flash(big.tone === 'clue' ? 'clue' : 'alert');
     }
@@ -153,6 +157,7 @@ export class App {
       case 'handoff-ready': this.pendingHandoff = null; return this.render();
 
       case 'toggle-voice': this.narrator.setEnabled(el.checked); return;
+      case 'toggle-clips': this.narrator.setUseClips(el.checked); return this.renderModal();
       case 'pick-voice':
         this.narrator.setVoice(el.value);
         this.renderModal();

@@ -13,6 +13,7 @@ import { characterById } from './characters.js';
 import { buildCase, DIFFICULTIES, BOONS } from './gen.js';
 import { EVENTS } from './events.js';
 import { approachById, replyFor, spentReply } from './dialogue.js';
+import { traitFact, traitPhrase } from './lines.js';
 
 export const ACCUSE_COST = 2;
 export const ABILITY_COST = 1;
@@ -105,14 +106,28 @@ function pushLog(s, text, kind = 'info', actor = null) {
   if (s.log.length > 200) s.log.pop();
 }
 
-function say(s, text, tone = 'narrator') {
-  s.narration.push({ text, tone });
+/**
+ * `parts` breaks a line into independently renderable fragments. Narration is
+ * pre-rendered to audio ahead of time (see js/lines.js), and a line like
+ * "Vera Lang strikes the match left-handed" cannot be baked as one clip --
+ * every name times every tell would be thousands of files. Split into
+ * ["Vera Lang", "strikes the match left-handed"] it is two clips drawn from
+ * small closed sets. Lines with no dynamic part need no split.
+ */
+function say(s, text, tone = 'narrator', parts = null) {
+  s.narration.push({ text, tone, parts: parts || [text] });
 }
 
 /** Both at once: written to the case log and spoken by the narrator. */
-function tell(s, text, kind = 'info', tone = 'narrator') {
+function tell(s, text, kind = 'info', tone = 'narrator', parts = null) {
   pushLog(s, text, kind);
-  say(s, text, tone);
+  say(s, text, tone, parts);
+}
+
+/** Speak a `{ text, parts }` result from one of the reveal helpers. */
+function tellResult(s, lead, result, kind = 'fact', tone = 'narrator') {
+  if (!result) return;
+  tell(s, `${lead} ${result.text}`, kind, tone, [lead, ...result.parts]);
 }
 
 export function distance(s, from, to) {
@@ -143,7 +158,8 @@ function revealCulpritTrait(s, traitId = null) {
   s.knownCulprit[t] = v;
   const ev = s.evidence.find((e) => e.kind === 'clue' && e.trait === t);
   if (ev) ev.found = true;
-  return `${TRAITS[t].label}: ${traitLabel(t, v)}.`;
+  const text = traitFact(t, v);
+  return { text, parts: [text] };
 }
 
 function revealSuspectTrait(s, suspectId = null, count = 1) {
@@ -156,8 +172,8 @@ function revealSuspectTrait(s, suspectId = null, count = 1) {
   if (!open.length) return null;
   const picked = drawShuffle(s, open).slice(0, count);
   picked.forEach((t) => { target.known[t] = true; });
-  const parts = picked.map((t) => `${TRAITS[t].label.toLowerCase()} — ${traitLabel(t, target.traits[t]).toLowerCase()}`);
-  return `${target.name}: ${parts.join('; ')}.`;
+  const phrases = picked.map((t) => traitPhrase(t, target.traits[t]));
+  return { text: `${target.name}: ${phrases.join('; ')}.`, parts: [target.name, ...phrases] };
 }
 
 function moveSuspects(s) {
@@ -192,17 +208,20 @@ function collect(s, p, ev) {
   tell(s, boon.text, 'boon', 'narrator');
   if (ev.boon === 'tip') {
     const r = revealCulpritTrait(s);
-    tell(s, r ? `The note names a fact about your killer. ${r}` : 'The note says nothing you had not already worked out.', 'fact');
+    if (r) tellResult(s, 'The note names a fact about your killer.', r);
+    else tell(s, 'The note says nothing you had not already worked out.', 'fact');
   } else if (ev.boon === 'spur') {
     s.cold = Math.max(0, s.cold - 2);
     tell(s, 'The trail warms up. You have bought yourself time.', 'good');
   } else if (ev.boon === 'coffee') {
     p.ap += 1;
     s.cold = Math.max(0, s.cold - 1); // the extra action is genuinely free
-    tell(s, `${p.name} finds a second wind. One more action, and it costs nothing.`, 'good');
+    pushLog(s, `${p.name} finds a second wind.`, 'good');
+    say(s, 'A second wind. One more action, and it costs nothing.', 'narrator');
   } else if (ev.boon === 'ledger') {
     const r = revealSuspectTrait(s);
-    tell(s, r ? `The ledger gives somebody up. ${r}` : 'The ledger tells you nothing new.', 'fact');
+    if (r) tellResult(s, 'The ledger gives somebody up.', r);
+    else tell(s, 'The ledger tells you nothing new.', 'fact');
   }
 }
 
@@ -212,7 +231,8 @@ function searchLocation(s, p, locId, picks) {
   rec.times += 1;
   if (here.length <= picks) rec.empty = true;
   if (!here.length) {
-    tell(s, `Nothing left at ${locName(s, locId)}. It has been turned over twice already.`, 'info');
+    tell(s, `Nothing left at ${locName(s, locId)}. It has been turned over twice already.`, 'info', 'narrator',
+      ['Nothing left at', locName(s, locId), 'It has been turned over twice already.']);
     return 0;
   }
   const take = here.slice(0, picks);
@@ -240,7 +260,10 @@ function nightfall(s) {
   s.lastEvent = ev.id;
   tell(s, `${ev.title.toUpperCase()}. ${ev.text}`, ev.kind === 'good' ? 'good' : 'event', 'alert');
   const outcome = ev.effect(s, eventApi(s));
-  if (outcome) tell(s, outcome, 'event');
+  if (outcome) {
+    const o = typeof outcome === 'string' ? { text: outcome, parts: [outcome] } : outcome;
+    tell(s, o.text, 'event', 'narrator', o.parts);
+  }
 
   const left = Math.max(0, s.coldMax - s.cold);
   pushLog(s, `\u2014 ${left} ${left === 1 ? 'hour' : 'hours'} before the trail is cold. \u2014`, 'round');
@@ -353,14 +376,18 @@ export function applyAction(prev, action) {
       tell(s, s.conversation.reply, 'talk', 'reply');
 
       if (!open.length) {
-        tell(s, `${x.name} has nothing left to give. You already have all of it.`, 'info');
+        tell(s, `${x.name} has nothing left to give. You already have all of it.`, 'info', 'narrator',
+          [x.name, 'has nothing left to give. You already have all of it.']);
       } else {
         const picked = drawShuffle(s, open).slice(0, approach.reveals + extra);
         picked.forEach((t) => {
           subject.known[t] = true;
           s.conversation.learned.push({ trait: t, who: subject.id });
           const about = subject.id === x.id ? x.name : `${subject.name}, by the sound of it,`;
-          tell(s, `${about} ${traitValue(t, subject.traits[t]).tell}`, 'tell', 'clue');
+          const said = traitValue(t, subject.traits[t]).tell;
+          tell(s, `${about} ${said}`, 'tell', 'clue', subject.id === x.id
+            ? [x.name, said]
+            : [subject.name, 'by the sound of it,', said]);
         });
       }
 
@@ -388,11 +415,13 @@ export function applyAction(prev, action) {
         s.phase = 'over';
         s.result = 'win';
         s.solvedBy = p.id;
-        tell(s, `${x.name} does not deny it. ${x.name.split(' ')[0]} did it ${x.motive}`, 'win', 'alert');
+        tell(s, `${x.name} does not deny it. ${x.name.split(' ')[0]} did it ${x.motive}`, 'win', 'alert',
+          [x.name, 'does not deny it.', x.name.split(' ').slice(-1)[0], 'did it', x.motive]);
       } else {
         x.cleared = true;
         s.wrongAccusations.push(x.id);
-        tell(s, `${x.name} is not your killer, and now every lawyer in Ashgrave knows your name. Three more hours gone.`, 'bad', 'alert');
+        tell(s, `${x.name} is not your killer, and now every lawyer in Ashgrave knows your name. Three more hours gone.`, 'bad', 'alert',
+          [x.name, 'is not your killer, and now every lawyer in Ashgrave knows your name. Three more hours gone.']);
         tickClock(s, 3);
       }
       break;
@@ -428,16 +457,19 @@ function runAbility(s, p, ch, action) {
       if (!x || x.dead) return false;
       if (x.id === s.culpritId) {
         s.chosenTraits.forEach((t) => { x.known[t] = true; });
-        tell(s, `Hale looks at ${x.name} for a long moment and says nothing at all. It is them. Everything about them matches.`, 'fact', 'alert');
+        tell(s, `Hale looks at ${x.name} for a long moment and says nothing at all. It is them. Everything about them matches.`, 'fact', 'alert',
+          ['Hale looks at', x.name, 'for a long moment and says nothing at all. It is them. Everything about them matches.']);
       } else {
         x.cleared = true;
-        tell(s, `Thirty-one years of instinct says ${x.name} did not do this. Cross them off.`, 'fact', 'clue');
+        tell(s, `Thirty-one years of instinct says ${x.name} did not do this. Cross them off.`, 'fact', 'clue',
+          ['Thirty-one years of instinct says', x.name, 'did not do this. Cross them off.']);
       }
       return true;
     }
     case 'AUTOPSY': {
       const r = revealCulpritTrait(s);
-      tell(s, r ? `Vale goes back to the body and finds what the first pass missed. ${r}` : 'The body has nothing left to say.', 'fact', 'clue');
+      if (r) tellResult(s, 'Vale goes back to the body and finds what the first pass missed.', r, 'fact', 'clue');
+      else tell(s, 'The body has nothing left to say.', 'fact', 'clue');
       return true;
     }
     case 'HEADLINE': {
@@ -457,12 +489,14 @@ function runAbility(s, p, ch, action) {
       if (!x || x.dead || x.at !== p.at) return false;
       const open = s.chosenTraits.filter((t) => !x.known[t]);
       if (!open.length) {
-        tell(s, `${x.name} has already told you everything. Kell gives them absolution anyway.`, 'info');
+        tell(s, `${x.name} has already told you everything. Kell gives them absolution anyway.`, 'info', 'narrator',
+          [x.name, 'has already told you everything. Kell gives them absolution anyway.']);
         return true;
       }
       open.forEach((t) => { x.known[t] = true; });
-      const parts = open.map((t) => `${TRAITS[t].label.toLowerCase()}, ${traitLabel(t, x.traits[t]).toLowerCase()}`);
-      tell(s, `${x.name} tells Kell all of it: ${parts.join('; ')}.`, 'fact', 'clue');
+      const phrases = open.map((t) => traitPhrase(t, x.traits[t]));
+      tell(s, `${x.name} tells Kell all of it: ${phrases.join('; ')}.`, 'fact', 'clue',
+        [x.name, 'tells Kell all of it:', ...phrases]);
       return true;
     }
     case 'APB': {
@@ -471,7 +505,8 @@ function runAbility(s, p, ch, action) {
       x.at = p.at;
       x.frozen = 2;
       x.clammed = 0;
-      tell(s, `Quist puts out the bulletin. Two hours later ${x.name} is sitting across from her at ${locName(s, p.at)}, and not going anywhere.`, 'good', 'alert');
+      tell(s, `Quist puts out the bulletin. Two hours later ${x.name} is sitting across from her at ${locName(s, p.at)}, and not going anywhere.`, 'good', 'alert',
+        ['Quist puts out the bulletin. Two hours later', x.name, 'is sitting across from her at', locName(s, p.at), 'and not going anywhere.']);
       return true;
     }
     default:
