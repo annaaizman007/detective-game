@@ -260,8 +260,12 @@ export class Narrator {
 
   /** Warm the sprites a case will need first, in the background. */
   prefetch(groups = ['briefing', 'stock', 'name']): void {
-    if (!this.clips?.sprites) return;
-    void (async () => { for (const g of groups) { try { await this.spriteBuffer(g); } catch { /* offline */ } } })();
+    const sprites = this.clips?.sprites;
+    if (!sprites) return;
+    // A group may be cut into parts (`briefing-1`, `briefing-2`); warm them all.
+    const names = new Set<string>();
+    for (const s of sprites.slices.values()) if (groups.some((g) => s.sprite === g || s.sprite.startsWith(`${g}-`))) names.add(s.sprite);
+    void (async () => { for (const g of names) { try { await this.spriteBuffer(g); } catch { /* offline */ } } })();
   }
 
   private async playSlice(slice: Slice, token: number): Promise<void> {

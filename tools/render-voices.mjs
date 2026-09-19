@@ -454,30 +454,43 @@ if (!flag('no-sprites') && failed === 0 && (await has('ffmpeg')) && (await has('
   for (const c of manifest.clips) (byGroup.get(c.group) ?? byGroup.set(c.group, []).get(c.group)).push(c);
 
   const silence = Buffer.alloc(Math.round(GAP * rate) * 2); // s16le mono
+  // A group longer than this is cut into parts (`witness-1`, `witness-2`...):
+  // hosts cap a file around 15 MB, and a part is decoded whole in the browser.
+  const MAX_SECONDS = 900;
   let spriteBytes = 0;
+  const parts = [];
   for (const [group, clips] of byGroup) {
-    const chunks = [];
+    let chunks = [];
     let samples = 0;
+    let n = 1;
+    const flush = async () => {
+      if (!chunks.length) return;
+      chunks.push(silence);
+      const name = `${group}-${n}`;
+      const file = join(SPRITES, `${name}.mp3`);
+      await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 's16le', '-ac', '1', '-ar', String(rate), '-i', '-',
+        '-codec:a', 'libmp3lame', '-b:a', '64k', file], { input: Buffer.concat(chunks) });
+      spriteBytes += (await stat(file)).size;
+      parts.push(name);
+      process.stdout.write(`\r    ${name}: ${(samples / rate).toFixed(0)} s   `);
+      chunks = []; samples = 0; n += 1;
+    };
     for (const c of clips) {
       const pcm = await capture('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-i', join(OUT, `${c.id}.${format}`),
         '-f', 's16le', '-ac', '1', '-ar', String(rate), '-']);
+      if (samples / rate + pcm.length / 2 / rate > MAX_SECONDS) await flush();
       chunks.push(silence, pcm);
       samples += silence.length / 2;
-      c.sprite = group;
+      c.sprite = `${group}-${n}`;
       c.start = samples / rate;
       c.duration = pcm.length / 2 / rate;
       samples += pcm.length / 2;
     }
-    chunks.push(silence);
-    const file = join(SPRITES, `${group}.mp3`);
-    await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-f', 's16le', '-ac', '1', '-ar', String(rate), '-i', '-',
-      '-codec:a', 'libmp3lame', '-b:a', '64k', file], { input: Buffer.concat(chunks) });
-    spriteBytes += (await stat(file)).size;
-    process.stdout.write(`\r    ${group}: ${clips.length} clips, ${(samples / rate).toFixed(0)} s   `);
+    await flush();
   }
   process.stdout.write('\n');
-  manifest.sprites = { dir: 'sprites/', format: 'mp3', rate, groups: [...byGroup.keys()] };
-  console.log(`    ${byGroup.size} sprite files, ${(spriteBytes / 1e6).toFixed(1)} MB -- these plus the manifest are what to publish`);
+  manifest.sprites = { dir: 'sprites/', format: 'mp3', rate, groups: parts };
+  console.log(`    ${parts.length} sprite files, ${(spriteBytes / 1e6).toFixed(1)} MB -- these plus the manifest are what to publish`);
 }
 
 await writeFile(join(OUT, 'manifest.json'), `${JSON.stringify(manifest, null, 1)}\n`);
