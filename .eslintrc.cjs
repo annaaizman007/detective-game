@@ -11,5 +11,6 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     'no-console': ['warn', { allow: ['warn', 'error'] }],
   },
+  overrides: [{ files: ['test/**/*.ts'], rules: { 'no-console': 'off' } }],
   ignorePatterns: ['dist', 'node_modules', 'tools', 'public'],
 };
