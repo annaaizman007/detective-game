@@ -165,3 +165,36 @@
   background: var(--panel-2); border: 1px solid var(--line); border-radius: var(--r-s); }
 .found-i .ex-main em { display: block; font-style: normal; font-size: .76rem; color: var(--brass); margin-top: .2rem; }
 .found-i .obj-fig .fig { width: 84px; height: auto; }
+
+/* ---- the picture of a place */
+.loc-pic { position: relative; margin: -.2rem -.2rem .8rem; border-radius: var(--r-s); overflow: hidden; border: 1px solid var(--line); background: #0a0c10; }
+.loc-pic .building { display: block; width: 100%; height: auto; }
+.loc-pic-cap { position: absolute; left: .6rem; bottom: .5rem; display: inline-flex; gap: .35rem; align-items: center; padding: .25rem .6rem;
+  background: rgba(10,13,19,.8); border-radius: 999px; font-family: var(--display); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass-hi); }
+.loc-pic-cap .ico { width: 13px; height: 13px; }
+.building--painted { object-fit: cover; }
+
+/* Provenance: how the paper came to hand, under the footer. */
+.doc-how {
+  margin: 10px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+  font-family: var(--font-type, 'Special Elite', monospace);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(20, 16, 10, 0.75);
+}
+.doc-how b { font-weight: 600; color: rgba(20, 16, 10, 0.9); }
+
+/* The story of the search, above the list of what turned up. */
+.found-story { margin: .2rem 0 .8rem; padding: .7rem .9rem; border-left: 3px solid var(--brass); background: rgba(255,255,255,.03); }
+.found-story p { margin: 0 0 .45rem; font-size: .92rem; line-height: 1.5; color: var(--paper-dim, #d8d0c0); }
+.found-story p:last-child { margin-bottom: 0; }
+.found-story b { color: var(--brass); font-weight: 600; margin-right: .3rem; }
+.found-btns { display: flex; flex-direction: column; gap: .35rem; }
+.found-btns .btn { white-space: nowrap; }
+.found-btns .btn svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: .2rem; }
+@media (max-width: 520px) {
+  .found-i { grid-template-columns: auto minmax(0,1fr); }
+  .found-btns { grid-column: 1 / -1; flex-direction: row; }
+}

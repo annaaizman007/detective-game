@@ -16,7 +16,8 @@ import { BOONS } from './gen';
 import { CHARACTERS } from './characters';
 import { CASES } from './cases/index';
 import { allDialogueLines } from './dialogue';
-import { EXHIBITS } from './exhibits';
+import { EXHIBITS, allExhibitFragments } from './exhibits';
+import { allSearchLines } from './search';
 import { allWitnessLines } from './witnesses';
 
 /** Must match on the renderer and in the browser, or nothing lines up. */
@@ -121,15 +122,18 @@ export function collectLines(): CorpusLine[] {
   }
 
   for (const ex of Object.values(EXHIBITS)) if (ex.spoken) add(ex.spoken, 'evidence');
+  for (const frag of allExhibitFragments()) add(frag, 'paper');
+  for (const line of allSearchLines()) add(line, 'search');
   for (const ev of EVENTS) add(`${ev.title.toUpperCase()}. ${ev.text}`, 'event');
   for (const b of Object.values(BOONS)) add(b.text, 'evidence');
   for (const line of allDialogueLines()) add(line, 'dialogue');
   for (const line of allWitnessLines()) add(line, 'witness');
-  for (const c of CHARACTERS) add(c.short, 'name');
+  for (const c of CHARACTERS) { add(c.short, 'name'); add(c.name, 'name'); }
 
   for (const c of CASES) {
     add(`Ashgrave Bay. ${c.title}.`, 'briefing');
     add(c.briefing, 'briefing');
+    add(c.victim, 'name');
     c.radio.forEach((r) => add(r, 'briefing'));
     add(c.epilogue.win, 'epilogue');
     add(c.epilogue.loss, 'epilogue');

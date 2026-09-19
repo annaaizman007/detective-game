@@ -364,6 +364,44 @@ export function fill(text: string, data: Record<string, string>): string {
   return text.replace(/\{(\w+)\}/g, (m, k: string) => (k in data ? data[k] : m));
 }
 
+/** The fixed pieces of a template, for the voice corpus: everything between the `{slots}`. */
+export function fragmentsOf(text: string): string[] {
+  return text.split(/\{\w+\}/g).map((f) => f.trim()).filter((f) => /[A-Za-z]/.test(f));
+}
+
+/**
+ * A document read aloud: the title, then each paragraph. Slots become their own
+ * parts so the narrator can stitch fixed clips around names it already has.
+ * A statement carries its quoted words pre-split under `parts`.
+ */
+export function readAloud(def: ExhibitDef, data: Record<string, string>): { text: string; parts: string[] } {
+  const parts: string[] = [];
+  const push = (t: string) => { const v = t.trim(); if (/[A-Za-z]/.test(v)) parts.push(v); };
+  for (const line of [def.title, ...def.body]) {
+    const re = /\{(\w+)\}/g;
+    let last = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(line))) {
+      push(line.slice(last, m.index));
+      const k = m[1];
+      if (k === 'text' && data.parts) data.parts.split('\n').forEach(push);
+      else if (k in data) push(data[k]);
+      else push(m[0]);
+      last = m.index + m[0].length;
+    }
+    push(line.slice(last));
+  }
+  const text = [def.title, ...def.body].map((l) => fill(l, data)).join(' ');
+  return { text, parts };
+}
+
+/** Every fixed fragment of every document, for the corpus. */
+export function allExhibitFragments(): string[] {
+  const out: string[] = [];
+  for (const ex of Object.values(EXHIBITS)) for (const line of [ex.title, ...ex.body]) out.push(...fragmentsOf(line));
+  return out;
+}
+
 /** The plain-language conclusion for a clue exhibit, e.g. "Handedness: Left-handed." */
 export const conclusionOf = (def: ExhibitDef): string =>
   def.trait && def.value ? `${TRAITS[def.trait].label}: ${traitLabel(def.trait, def.value)}.` : def.reading;

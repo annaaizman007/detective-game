@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Paint the cast with a local diffusion model.
+"""Paint the cast -- or the city -- with a local diffusion model.
 
 Reads public/assets/images/people/prompts.json (from tools/portrait-prompts.mjs)
 and writes one PNG per character next to it, plus people.json listing what
@@ -18,9 +18,10 @@ ap.add_argument('--size', default='512x640')
 ap.add_argument('--only', default='')
 ap.add_argument('--force', action='store_true')
 ap.add_argument('--guidance', type=float, default=7.0)
+ap.add_argument('--dir', default='public/assets/images/people', help='folder with prompts.json; manifest.json lists what exists')
 args = ap.parse_args()
 
-OUT = 'public/assets/images/people'
+OUT = args.dir
 prompts = json.load(open(os.path.join(OUT, 'prompts.json')))
 only = set(filter(None, args.only.split(',')))
 todo = [p for p in prompts if (not only or p['id'] in only) and (args.force or not os.path.exists(os.path.join(OUT, p['id'] + '.png')))]
@@ -28,7 +29,8 @@ print(f'{len(todo)} to render', flush=True)
 
 def write_manifest():
     have = sorted(p['id'] for p in prompts if os.path.exists(os.path.join(OUT, p['id'] + '.png')))
-    json.dump({'people': have}, open(os.path.join(OUT, 'people.json'), 'w'))
+    name = 'people.json' if OUT.endswith('people') else 'manifest.json'
+    json.dump({'people': have, 'ids': have}, open(os.path.join(OUT, name), 'w'))
 
 if not todo:
     write_manifest(); sys.exit(0)

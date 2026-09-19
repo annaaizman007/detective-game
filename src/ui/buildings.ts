@@ -190,3 +190,32 @@ export function buildingSvg(type: LocationType, seed: string, opts: { size?: num
     ${Array.from({ length: 26 }, () => `<path d="M${r.i(W)} ${r.i(H)}l-2 9" stroke="#adc4d6" stroke-opacity=".35" stroke-width="1"/>`).join('')}
   </svg>`;
 }
+
+// ------------------------------------------------------------ painted
+
+/** Painted facades from tools/render-portraits.py --dir buildings. */
+export const PAINTED_BUILDINGS = new Set<string>();
+export const BUILDINGS_BASE = 'assets/images/buildings/';
+
+export async function loadPaintedBuildings(): Promise<Set<string>> {
+  try {
+    const res = await fetch(`${BUILDINGS_BASE}manifest.json`, { cache: 'no-cache' });
+    if (res.ok) {
+      const j = (await res.json()) as { ids?: string[] };
+      for (const id of j.ids ?? []) PAINTED_BUILDINGS.add(id);
+    }
+  } catch { /* draw them */ }
+  return PAINTED_BUILDINGS;
+}
+
+export const buildingKey = (caseId: string, locId: string): string => `${caseId}-${locId}`;
+export const isPaintedBuilding = (caseId: string, locId: string): boolean => PAINTED_BUILDINGS.has(buildingKey(caseId, locId));
+export const paintedBuildingUrl = (caseId: string, locId: string): string => `${BUILDINGS_BASE}${buildingKey(caseId, locId)}.png`;
+
+/** The picture of a place: the painting if there is one, the drawing otherwise. */
+export function buildingHtml(caseId: string, loc: { id: string; type: LocationType }, size = 200): string {
+  if (isPaintedBuilding(caseId, loc.id)) {
+    return `<img class="building building--painted" src="${paintedBuildingUrl(caseId, loc.id)}" width="${size}" height="${Math.round(size * 0.7)}" alt="" draggable="false">`;
+  }
+  return buildingSvg(loc.type, `${caseId}:${loc.id}`, { size });
+}

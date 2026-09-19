@@ -3,7 +3,7 @@ import { CASES } from '../game/cases/index';
 import { CHARACTERS } from '../game/characters';
 import { iconSvg, svgDataUri, ICON_NAMES } from '../ui/icons';
 import { portraitSvg, isPainted, paintedUrl } from '../ui/portraits';
-import { buildingSvg } from '../ui/buildings';
+import { buildingSvg, isPaintedBuilding, paintedBuildingUrl } from '../ui/buildings';
 
 export const INK = '#2a2118';
 
@@ -28,7 +28,10 @@ export class PreloadScene extends Phaser.Scene {
 
     // One drawn facade per location, at night, in the rain.
     for (const c of CASES) {
-      for (const l of c.locations) this.load.svg(`bld-${c.id}-${l.id}`, svgDataUri(buildingSvg(l.type, `${c.id}:${l.id}`)), { width: 200, height: 170 });
+      for (const l of c.locations) {
+        if (isPaintedBuilding(c.id, l.id)) this.load.image(`bld-${c.id}-${l.id}`, paintedBuildingUrl(c.id, l.id));
+        else this.load.svg(`bld-${c.id}-${l.id}`, svgDataUri(buildingSvg(l.type, `${c.id}:${l.id}`)), { width: 200, height: 170 });
+      }
     }
     for (const name of ICON_NAMES) {
       this.load.svg(`ico-${name}`, svgDataUri(iconSvg(name, INK, 64, 1.6)), { width: 64, height: 64 });

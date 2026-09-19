@@ -122,31 +122,34 @@ export function setupScreen(draft: Draft): string {
 
 export function briefingScreen(s: GameState, caseDef: CaseDef): string {
   const diff = DIFFICULTIES[s.difficulty];
+  const paras = caseDef.briefing.replace(/\s+/g, ' ').trim().split(/(?<=[.!?])\s+(?=[A-Z])/);
+  // Group sentences into three or four cards so each reads as one beat.
+  const cards: string[] = [];
+  const per = Math.max(1, Math.ceil(paras.length / 4));
+  for (let i = 0; i < paras.length; i += per) cards.push(paras.slice(i, i + per).join(' '));
   return `
-  <section class="scene scene--brief">
-    <article class="dossier">
-      <div class="dossier-stamp">CONFIDENTIAL</div>
-      <header class="dossier-head">
-        <p class="dossier-dept">Ashgrave Bay Police · Homicide Division</p>
+  <section class="scene scene--cine">
+    <div class="cine-cards">
+      <div class="cine-card cine-card--title">
+        <p class="cine-kicker">Ashgrave Bay Police · Homicide</p>
         <h2>${esc(caseDef.title)}</h2>
-        <p class="dossier-sub">${esc(caseDef.subtitle)}</p>
-      </header>
-      <dl class="dossier-facts">
-        <div><dt>Victim</dt><dd>${esc(caseDef.victim)}</dd></div>
-        <div><dt>Suspects</dt><dd>${s.suspects.length}</dd></div>
-        <div><dt>On the clock</dt><dd>${s.coldMax} hours</dd></div>
-        <div><dt>Assignment</dt><dd>${esc(diff.label)}</dd></div>
-      </dl>
-      <p class="dossier-body" data-type-target>${esc(caseDef.briefing.replace(/\s+/g, ' ').trim())}</p>
-      <p class="dossier-note">
-        ${icon('clock')} Every action any detective takes burns one hour. When the hours run out, the trail is cold.
-      </p>
-      <div class="dossier-actions">
-        <button class="btn btn--hero" data-act="enter-game">Take the case</button>
-        <button class="btn btn--ghost" data-act="replay-brief">${icon('speaker')} Read it again</button>
-        <button class="btn btn--ghost" data-act="skip-voice">Skip narration</button>
+        <p class="cine-sub">${esc(caseDef.subtitle)}</p>
       </div>
-    </article>
+      ${cards.map((c, i) => `<div class="cine-card" style="--i:${i + 1}"><p>${esc(c)}</p></div>`).join('')}
+      <div class="cine-card cine-card--facts" style="--i:${cards.length + 1}">
+        <dl class="dossier-facts">
+          <div><dt>Victim</dt><dd>${esc(caseDef.victim)}</dd></div>
+          <div><dt>Suspects</dt><dd>${s.suspects.length}</dd></div>
+          <div><dt>On the clock</dt><dd>${s.coldMax} hours</dd></div>
+          <div><dt>Assignment</dt><dd>${esc(diff.label)}</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="cine-actions">
+      <button class="btn btn--hero" data-act="enter-game">Take the case</button>
+      <button class="btn btn--ghost" data-act="replay-brief">${icon('speaker')} Read it again</button>
+      <button class="btn btn--ghost" data-act="skip-voice">Skip narration</button>
+    </div>
   </section>`;
 }
 

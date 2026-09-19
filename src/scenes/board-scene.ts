@@ -93,6 +93,9 @@ export class BoardScene extends Phaser.Scene {
   private drag: { x: number; y: number; sx: number; sy: number } | null = null;
   private pinch = 0;
   private fitted = false;
+  private cine: Phaser.Tweens.TweenChain | null = null;
+  private pressed: Phaser.GameObjects.Container | null = null;
+  private cineZoom: Phaser.Tweens.Tween | null = null;
 
   constructor() { super('board'); }
 
@@ -176,6 +179,7 @@ export class BoardScene extends Phaser.Scene {
   /** Frame the board for whatever shape the panel happens to be. */
   fit(focusId: string | null = null, pad = 60): void {
     if (!this.state) return;
+    this.stopCinematic();
     const cam = this.cameras.main;
     const sw = this.scale.width;
     const sh = this.scale.height;
@@ -203,7 +207,7 @@ export class BoardScene extends Phaser.Scene {
     this.updateRoads(state, view);
     this.updateChips(state, view);
     this.updatePawns(state, view);
-    if (!this.fitted) this.fit(view.currentPlayerId ? state.players.find((p) => p.id === view.currentPlayerId)?.at ?? null : null);
+    if (!this.fitted && !this.cine) this.fit(view.currentPlayerId ? state.players.find((p) => p.id === view.currentPlayerId)?.at ?? null : null);
   }
 
   /** Forget the case so the next render rebuilds. */
@@ -337,7 +341,10 @@ export class BoardScene extends Phaser.Scene {
     // The facade stands on the pin: 160x136, its base at the location.
     const shadow = this.add.graphics();
     shadow.fillStyle(0x100b06, 0.45); shadow.fillEllipse(0, 4, 176, 26);
-    const building = this.add.image(0, 8, `bld-${state.caseId}-${l.id}`).setOrigin(0.5, 1).setScale(0.8);
+    const building = this.add.image(0, 8, `bld-${state.caseId}-${l.id}`).setOrigin(0.5, 1);
+    building.setScale(160 / (building.width || 200)); // drawn facades are 200 wide, paintings 640
+    const frameG = this.add.graphics();
+    frameG.lineStyle(3, COLOR.plate, 1); frameG.strokeRect(-80 - 1.5, 8 - building.displayHeight - 1.5, 163, building.displayHeight + 3);
     const ring = this.add.graphics();
     const name = this.add.text(0, 30, l.name, {
       fontFamily: '"Oswald"', fontSize: '21px', color: '#2a2118', fontStyle: '500', letterSpacing: 1,
@@ -366,18 +373,28 @@ export class BoardScene extends Phaser.Scene {
       // half the size back), so shapes are centred at (w/2, h/2).
       witness = this.add.container(-76, -10, [wb, face]).setSize(40, 40)
         .setInteractive(new Phaser.Geom.Circle(20, 20, 20), Phaser.Geom.Circle.Contains);
-      witness.on('pointerup', (p: Phaser.Input.Pointer) => { if (p.getDistance() < 10) this.handlers.onWitness?.(w.id); });
+      this.tappable(witness, () => this.handlers.onWitness?.(w.id));
       this.hoverable(witness, 1.12);
     }
 
-    root.add([halo, shadow, building, ring, nameBg, name, flagBg, flag, lead]);
+    root.add([halo, shadow, building, frameG, ring, nameBg, name, flagBg, flag, lead]);
     if (witness) root.add(witness);
     // Hit area: the facade plus the name plate, centred on the container's box.
     root.setSize(170, 180).setInteractive(new Phaser.Geom.Rectangle(5, 0, 160, 180), Phaser.Geom.Rectangle.Contains);
-    root.on('pointerup', (p: Phaser.Input.Pointer) => { if (p.getDistance() < 10) this.handlers.onLocation?.(l.id); });
+    this.tappable(root, () => this.handlers.onLocation?.(l.id));
     this.hoverable(root, 1.05);
     this.layers.pins.add(root);
     this.nodes.set(l.id, { loc: l, root, halo, building, ring, flag, flagBg, lead, witness, pulse: null });
+  }
+
+  /** A tap is a press and a release on the same thing, without dragging. */
+  private tappable(obj: Phaser.GameObjects.Container, fn: () => void): void {
+    obj.on('pointerdown', () => { this.pressed = obj; });
+    obj.on('pointerup', (p: Phaser.Input.Pointer) => {
+      const ok = this.pressed === obj && p.getDistance() < 10;
+      this.pressed = null;
+      if (ok) fn();
+    });
   }
 
   private hoverable(obj: Phaser.GameObjects.Container, scale: number): void {
@@ -457,7 +474,7 @@ export class BoardScene extends Phaser.Scene {
     root.add([ring, face, slash, dead]);
     const box = size * 2 + 6;
     root.setSize(box, box).setInteractive(new Phaser.Geom.Circle(box / 2, box / 2, size + 3), Phaser.Geom.Circle.Contains);
-    root.on('pointerup', (p: Phaser.Input.Pointer) => { if (p.getDistance() < 10) onTap(); });
+    this.tappable(root, onTap);
     this.hoverable(root, 1.15);
     this.layers.tokens.add(root);
     void id;
@@ -557,6 +574,33 @@ export class BoardScene extends Phaser.Scene {
     const out: string[] = [];
     for (let n: string | null = to; n; n = prev.get(n) ?? null) out.unshift(n);
     return out;
+  }
+
+  /**
+   * The opening: the camera drifts across the city at night, scene to
+   * precinct to somewhere in between, close enough to read the signs. Runs
+   * until stopCinematic() or the next fit().
+   */
+  cinematic(state: GameState): void {
+    const cam = this.cameras.main;
+    const stops = [state.map.scene, ...state.map.locations.map((l) => l.id).filter((id) => id !== state.map.scene && id !== state.map.start).slice(0, 2), state.map.start]
+      .map((id) => this.placed.get(id)).filter((l): l is Placed => !!l);
+    if (!stops.length) return;
+    this.stopCinematic();
+    cam.setZoom(1.15);
+    cam.centerOn(stops[0].px, stops[0].py - 60);
+    const steps = stops.slice(1).map((l) => ({
+      targets: cam, scrollX: l.px - cam.width / 2 / cam.zoom, scrollY: l.py - 60 - cam.height / 2 / cam.zoom,
+      duration: 9000, ease: 'Sine.easeInOut', hold: 1500,
+    }));
+    this.cine = this.tweens.chain({ targets: cam, tweens: steps, loop: -1 });
+    // A slow breathing zoom on top of the drift.
+    this.cineZoom = this.tweens.add({ targets: cam, zoom: 1.32, duration: 14000, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+  }
+
+  stopCinematic(): void {
+    this.cine?.stop(); this.cine = null;
+    this.cineZoom?.stop(); this.cineZoom = null;
   }
 
   /** Board coordinates of a location, for anything the DOM wants to anchor. */

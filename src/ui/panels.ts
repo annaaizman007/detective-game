@@ -4,6 +4,7 @@ import type { GameState } from '../types/game-types';
 import { characterById } from '../game/characters';
 import * as R from '../game/rules';
 import { icon, locIcon } from './icons';
+import { buildingHtml } from './buildings';
 import { portraitSvg } from './portraits';
 import { esc } from './fx';
 import type { Profile } from '../game/rules';
@@ -33,7 +34,7 @@ export function locationPanel(s: GameState, locId: string, profile: Profile): st
   return `
     <div class="sheet sheet--loc">
       <button class="sheet-x" data-act="close-modal" aria-label="Close">×</button>
-      <span class="sheet-ico">${locIcon(l.type)}</span>
+      <div class="loc-pic">${buildingHtml(s.caseId, l, 560)}<span class="loc-pic-cap">${locIcon(l.type)} ${esc(l.district ?? '')}</span></div>
       <h3>${esc(l.name)}</h3>
       <p class="sheet-lead">${esc(l.desc)}</p>
       <p class="sheet-tags">

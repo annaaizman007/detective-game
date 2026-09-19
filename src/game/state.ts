@@ -7,7 +7,7 @@
 // transport later without any of this file changing.
 
 import type {
-  Action, CaseDef, CharacterDef, EvidenceState, GameState, JournalEntry, LogKind, NewGameOptions, PlayerState,
+  Action, CaseDef, CharacterDef, EvidenceState, ExhibitInstance, GameState, JournalEntry, LogKind, NewGameOptions, PlayerState,
   SuspectState, Tone, TraitId, UnlockEffect, WitnessDef,
 } from '../types/game-types';
 import { drawInt, drawPick, drawShuffle } from './rng';
@@ -20,6 +20,7 @@ import { approachById, replyFor, spentReply } from './dialogue';
 import { traitFact, traitPhrase } from './lines';
 import { exhibitById, itemById } from './exhibits';
 import { WITNESS_ASKS, SHOW_LINES } from './witnesses';
+import { searchNarrative, searchEmptyLine } from './search';
 
 export const ACCUSE_COST = 2;
 export const ABILITY_COST = 1;
@@ -222,16 +223,17 @@ const eventApi = (s: GameState): EventApi => ({
 // ---------------------------------------------------------------------------
 
 /** Put a document in the locker and note it in the journal. */
-function file(s: GameState, p: PlayerState | null, defId: string, at: string, data?: Record<string, string>, label?: string) {
+function file(s: GameState, p: PlayerState | null, defId: string, at: string, data?: Record<string, string>, label?: string, how?: string) {
   const def = exhibitById(defId);
   const key = `${defId}#${s.exhibits.length + 1}`;
-  const inst = { key, def: defId, label: label || def.label, at, hour: s.cold, by: p?.id ?? null, ...(data ? { data } : {}) };
+  const inst: ExhibitInstance = { key, def: defId, label: label || def.label, at, hour: s.cold, by: p?.id ?? null, ...(how ? { how } : {}), ...(data ? { data } : {}) };
   s.exhibits.push(inst);
-  journal(s, p, 'exhibit', `Filed: ${inst.label}, from ${locName(s, at)}.`, { exhibit: key });
+  // The journal always says where it came from and how it came to hand.
+  journal(s, p, 'exhibit', `Filed: ${inst.label}. ${how ?? `From ${locName(s, at)}.`}`, { exhibit: key, location: at });
   return inst;
 }
 
-function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
+function collect(s: GameState, p: PlayerState, ev: EvidenceState, how?: string) {
   ev.found = true;
   if (ev.kind === 'object') {
     const obj = objectById(s, ev.object);
@@ -239,7 +241,7 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
     s.objects.push(obj.id);
     tell(s, obj.spoken, 'clue', 'clue');
     pushLog(s, `Found — ${obj.name}. You are carrying it.`, 'fact');
-    journal(s, p, 'exhibit', `Picked up ${obj.name.toLowerCase()} at ${locName(s, p.at)}. Somebody in this city will know it.`, { location: p.at });
+    journal(s, p, 'exhibit', `Picked up ${obj.name.toLowerCase()}. ${how ?? `At ${locName(s, p.at)}.`} Somebody in this city will know it.`, { location: p.at });
     return;
   }
   const def = exhibitById(ev.exhibit);
@@ -248,7 +250,7 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
     // The narrator reads the observation. The conclusion is the table's job.
     tell(s, def.spoken, 'clue', 'clue');
     pushLog(s, `Exhibit filed — ${def.label}.`, 'fact');
-    file(s, p, ev.exhibit, p.at);
+    file(s, p, ev.exhibit, p.at, undefined, undefined, how);
     return;
   }
   if (ev.kind === 'item') {
@@ -256,7 +258,7 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
     if (!item) return;
     tell(s, item.spoken, 'clue', 'clue');
     pushLog(s, `Found — ${item.label}.`, 'fact');
-    file(s, p, ev.exhibit, p.at);
+    file(s, p, ev.exhibit, p.at, undefined, undefined, how);
     const fx = item.effect;
     if (fx?.type === 'suspectTrait') {
       const r = revealSuspectTrait(s, fx.suspectId);
@@ -281,30 +283,30 @@ function collect(s: GameState, p: PlayerState, ev: EvidenceState) {
     const r = revealCulpritTrait(s);
     if (r) {
       tellResult(s, 'The note names a fact about your killer.', r);
-      file(s, p, ev.exhibit, p.at, { fact: r.text });
+      file(s, p, ev.exhibit, p.at, { fact: r.text }, undefined, how);
     } else {
       tell(s, 'The note says nothing you had not already worked out.', 'fact');
-      file(s, p, ev.exhibit, p.at, { fact: 'nothing you had not already worked out.' });
+      file(s, p, ev.exhibit, p.at, { fact: 'nothing you had not already worked out.' }, undefined, how);
     }
   } else if (ev.boon === 'spur') {
     s.cold = Math.max(0, s.cold - 2);
     tell(s, 'The trail warms up. You have bought yourself time.', 'good');
-    file(s, p, ev.exhibit, p.at);
+    file(s, p, ev.exhibit, p.at, undefined, undefined, how);
   } else if (ev.boon === 'coffee') {
     p.ap += 1;
     s.cold = Math.max(0, s.cold - 1); // the extra action is genuinely free
     pushLog(s, `${p.name} finds a second wind.`, 'good');
     say(s, 'A second wind. One more action, and it costs nothing.', 'narrator');
-    file(s, p, ev.exhibit, p.at);
+    file(s, p, ev.exhibit, p.at, undefined, undefined, how);
   } else if (ev.boon === 'ledger') {
     const r = revealSuspectTrait(s);
     if (r) {
       tellResult(s, 'The ledger gives somebody up.', r);
       const who = sus(s, r.who) as SuspectState;
-      file(s, p, ev.exhibit, p.at, { who: who.name, phrase: r.traits.map((t) => traitPhrase(t, who.traits[t])).join('; ') });
+      file(s, p, ev.exhibit, p.at, { who: who.name, phrase: r.traits.map((t) => traitPhrase(t, who.traits[t])).join('; ') }, undefined, how);
     } else {
       tell(s, 'The ledger tells you nothing new.', 'fact');
-      file(s, p, ev.exhibit, p.at, { who: 'a name you already have', phrase: 'nothing new' });
+      file(s, p, ev.exhibit, p.at, { who: 'a name you already have', phrase: 'nothing new' }, undefined, how);
     }
   }
 }
@@ -315,15 +317,20 @@ function searchLocation(s: GameState, p: PlayerState, locId: string, picks: numb
   rec.times += 1;
   if (here.length <= picks) rec.empty = true;
   delete s.leads[locId];
+  const where = loc(s, locId);
+  const story = searchNarrative(locId, where?.type ?? 'office', rec.times, here.length > 0);
+  // Where the detective looked, then the thing that made them look closer.
+  tell(s, story.looked, 'info', 'narrator');
   if (!here.length) {
-    tell(s, `Nothing left at ${locName(s, locId)}. It has been turned over twice already.`, 'info', 'narrator',
-      ['Nothing left at', locName(s, locId), 'It has been turned over twice already.']);
+    tell(s, searchEmptyLine(locId, rec.times), 'info', 'narrator');
     journal(s, p, 'search', `Searched ${locName(s, locId)}. Nothing there.`, { location: locId });
     return 0;
   }
+  if (story.off) tell(s, story.off, 'info', 'narrator');
   const take = here.slice(0, picks);
-  journal(s, p, 'search', `Searched ${locName(s, locId)}.`, { location: locId });
-  take.forEach((e) => collect(s, p, e));
+  journal(s, p, 'search', `Searched ${locName(s, locId)}. ${story.looked}${story.off ? ` ${story.off}` : ''}`, { location: locId });
+  const how = `Found at ${locName(s, locId)}, searching. ${story.off ?? story.looked}`;
+  take.forEach((e) => collect(s, p, e, how));
   return take.length;
 }
 
@@ -532,9 +539,9 @@ export function applyAction(prev: GameState, action: Action): GameState {
           tell(s, reply, 'witness', 'witness', [subject.name, opinion, surname, said]);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
-            text: reply,
+            text: reply, parts: [subject.name, opinion, surname, said].join('\n'),
             reading: `${subject.name} — ${traitPhrase(t, subject.traits[t])}.`,
-          }, `Statement — ${def.name}`);
+          }, `Statement — ${def.name}`, `Taken down at ${locName(s, p.at)} from ${def.name}, ${def.role}, when asked about ${subject.name}.`);
           s.testimony.exhibit = inst.key;
           journal(s, p, 'ask', `Asked ${def.name} about ${subject.name}: ${surname} ${said}`, { witness: w.id, suspect: subject.id });
         }
@@ -562,8 +569,8 @@ export function applyAction(prev: GameState, action: Action): GameState {
           tell(s, reply, 'lead', 'witness', [def.leadLine, where]);
           const inst = file(s, p, 'statement', p.at, {
             witness: def.name, role: def.role, where: locName(s, p.at), by: p.name,
-            text: reply, reading: `Something to find at ${where}.`,
-          }, `Statement — ${def.name}`);
+            text: reply, parts: [def.leadLine, where].join('\n'), reading: `Something to find at ${where}.`,
+          }, `Statement — ${def.name}`, `Taken down at ${locName(s, p.at)} from ${def.name}, ${def.role}, when asked what they had seen.`);
           s.testimony.exhibit = inst.key;
           journal(s, p, 'ask', `${def.name} pointed at ${where}: "${reply}"`, { witness: w.id, location: ev.at });
         }

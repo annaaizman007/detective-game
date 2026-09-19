@@ -510,6 +510,8 @@ export interface ExhibitInstance {
   at: string;
   hour: number;
   by: string | null;
+  /** How it came to hand: the search that turned it up, or who handed it over. */
+  how?: string;
   data?: Record<string, string>;
 }
 

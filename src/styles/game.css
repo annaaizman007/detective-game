@@ -562,3 +562,17 @@
 
 .talk-warn { margin-top: .8rem; font-size: .82rem; color: var(--crimson-hi);
   border-left: 2px solid var(--crimson); padding-left: .7rem; }
+
+/* ---- the opening: the city drifts under the briefing */
+.scene--cine { position: fixed; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(7,9,16,.55), rgba(7,9,16,.15) 30%, rgba(7,9,16,.15) 55%, rgba(7,9,16,.92) 100%); }
+.cine-cards { pointer-events: auto; max-width: 760px; margin: 0 auto; padding: 0 1.2rem; display: grid; gap: .6rem; }
+.cine-card { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.cine-card.is-on { opacity: 1; transform: none; }
+.cine-card p { margin: 0; font-family: var(--type); font-size: 1.08rem; line-height: 1.75; color: var(--paper); text-shadow: 0 2px 12px rgba(0,0,0,.9); min-height: 1.75em; }
+.cine-card--title { text-align: center; margin-bottom: .6rem; }
+.cine-kicker { font-family: var(--display) !important; font-size: .72rem !important; letter-spacing: .3em; text-transform: uppercase; color: var(--brass) !important; }
+.cine-card--title h2 { margin: .2rem 0; font-family: var(--display); font-size: clamp(2rem, 6vw, 3.6rem); letter-spacing: .06em; text-transform: uppercase; color: var(--brass-hi); text-shadow: 0 0 30px rgba(200,150,62,.35), 0 3px 18px rgba(0,0,0,.9); }
+.cine-sub { font-family: var(--display) !important; font-size: .8rem !important; letter-spacing: .2em; text-transform: uppercase; color: var(--text-dim) !important; }
+.cine-card--facts .dossier-facts { margin: .4rem 0 0; }
+.cine-actions { pointer-events: auto; display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; padding: 1.2rem 1rem calc(1.4rem + env(safe-area-inset-bottom)); }

@@ -8,6 +8,7 @@
 
 import type { ExhibitInstance, GameState, TraitId } from '../types/game-types';
 import { exhibitById, fill, type ExhibitDef } from '../game/exhibits';
+import { searchNarrative } from '../game/search';
 import { TRAITS, traitLabel } from '../game/traits';
 import { caseById } from '../game/cases/index';
 import { clockAt, locationById, heldObjects } from '../game/rules';
@@ -100,6 +101,7 @@ export function documentHtml(inst: ExhibitInstance, def: ExhibitDef, s: GameStat
       <span>${by ? `Found by ${esc(by)} at ${esc(where)}` : `From ${esc(where)}`}, ${clockAt(inst.hour)}</span>
       <span class="doc-case">${esc(caseById(s.caseId).title)}</span>
     </footer>
+    ${inst.how ? `<p class="doc-how"><b>How it came to hand.</b> ${esc(inst.how)}</p>` : ''}
   </article>`;
 }
 
@@ -143,6 +145,7 @@ export function exhibitView(s: GameState, v: LockerView): string {
         <span>${letter} of ${letterOf(s.exhibits.length - 1)}</span>
         <button class="icon-btn" data-act="open-exhibit" data-key="${esc(next ?? '')}" ${next ? '' : 'disabled'} aria-label="Next exhibit">›</button>
       </span>
+      <button class="icon-btn" data-act="read-aloud" data-key="${esc(inst.key)}" title="The narrator reads it out">${icon('speaker')}</button>
       <button class="icon-btn" data-act="zoom-exhibit" title="Read it large">⤢</button>
     </div>
     <div class="viewer-paper">${documentHtml(inst, def, s, letter)}</div>
@@ -166,7 +169,10 @@ export function foundSheet(s: GameState, f: { location: string; exhibits: string
     return `<li class="found-i">
       <span class="ex-letter">${letterOf(i)}</span>
       <span class="ex-main"><b>${esc(inst.label)}</b><i>${esc(KIND_LABEL[def.kind] ?? def.kind)}</i><em>${esc(hint)}</em></span>
-      <button class="btn btn--small btn--hero" data-act="open-exhibit" data-key="${esc(key)}">Open</button>
+      <span class="found-btns">
+        <button class="btn btn--small btn--hero" data-act="open-exhibit" data-key="${esc(key)}">Read it</button>
+        <button class="btn btn--small btn--ghost" data-act="read-aloud" data-key="${esc(key)}" title="The narrator reads it out">${icon('speaker')} Read to me</button>
+      </span>
     </li>`;
   }).join('');
   const objs = f.objects.map((id) => {
@@ -178,18 +184,23 @@ export function foundSheet(s: GameState, f: { location: string; exhibits: string
     </li>`;
   }).join('');
   const nothing = !docs && !objs;
+  const count = f.exhibits.length + f.objects.length;
+  const story = searchNarrative(f.location, loc?.type ?? 'office', rec.times, count > 0);
   return `
   <div class="sheet sheet--found">
     <button class="sheet-x" data-act="close-modal" aria-label="Close">×</button>
     <p class="dossier-dept">${esc(f.by)} searched</p>
     <h3>${esc(loc?.name ?? f.location)}</h3>
-    <p class="sheet-lead">${nothing
-      ? (rec.empty ? 'Nothing here. The place is picked clean.' : 'Nothing this time.')
-      : `${f.exhibits.length + f.objects.length === 1 ? 'One thing' : `${f.exhibits.length + f.objects.length} things`} turned up${rec.empty ? '. That is everything this place had.' : '. There may be more; a second search would say.'}`}</p>
+    <div class="found-story">
+      <p><b>Where you looked.</b> ${esc(story.looked)}</p>
+      ${story.off ? `<p><b>What looked off.</b> ${esc(story.off)}</p>` : ''}
+      <p><b>What turned up.</b> ${nothing
+        ? (rec.times <= 1 ? 'Nothing. Not every door in this city has something behind it.' : 'Nothing. The place has been turned over already; there is nothing left here.')
+        : `${count === 1 ? 'One thing' : `${count} things`}${rec.empty ? '. That is everything this place had.' : '. There may be more; a second search would say.'}`}</p>
+    </div>
     ${docs ? `<h4 class="sheet-h">Documents</h4><ul class="found">${docs}</ul>` : ''}
     ${objs ? `<h4 class="sheet-h">Objects</h4><ul class="found">${objs}</ul>` : ''}
     <div class="sheet-actions">
-      ${f.exhibits.length ? `<button class="btn btn--hero" data-act="open-exhibit" data-key="${esc(f.exhibits[0])}">Read the first one</button>` : ''}
       <button class="btn btn--ghost" data-act="close-modal">Back to the map</button>
     </div>
   </div>`;

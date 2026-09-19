@@ -143,7 +143,8 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
     order: i,
   }));
 
-  const boonPlan: BoonId[] = (['tip', 'spur', 'coffee', 'ledger', 'spur', 'coffee'] as BoonId[]).slice(0, diff.traits >= 6 ? 6 : 4);
+  // Fewer finds than places: about a third of the city turns up nothing.
+  const boonPlan: BoonId[] = (['tip', 'spur', 'ledger', 'coffee'] as BoonId[]).slice(0, diff.traits >= 6 ? 4 : 3);
   boonPlan.forEach((b, i) => evidence.push({
     id: `boon-${b}-${i}`, kind: 'boon', boon: b, text: BOONS[b].text, exhibit: boonExhibitId(b),
     found: false, at: '',

@@ -28,7 +28,9 @@ export function gameConfig(parent: HTMLElement): Phaser.Types.Core.GameConfig {
       min: { width: 320, height: 240 },
     },
     render: { pixelArt: false, powerPreference: 'high-performance' },
-    input: { activePointers: 3 },
+    // No window-level mouse events: a click released over a DOM panel must
+    // never land on the map underneath it.
+    input: { activePointers: 3, windowEvents: false },
     audio: { noAudio: true }, // the room is Web Audio, in systems/audio-manager.ts
     scene: [BootScene, PreloadScene, BoardScene, WeatherScene],
   };

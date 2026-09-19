@@ -11,7 +11,8 @@ import * as R from '../src/game/rules';
 import { stream } from '../src/game/rng';
 import { APPROACHES } from '../src/game/dialogue';
 import { collectLines, normaliseLine } from '../src/game/lines';
-import { EXHIBITS, missingExhibits } from '../src/game/exhibits';
+import { EXHIBITS, missingExhibits, readAloud } from '../src/game/exhibits';
+import { searchNarrative } from '../src/game/search';
 import type { Action, DifficultyId, GameState } from '../src/types/game-types';
 
 const DIFFS = Object.keys(DIFFICULTIES) as DifficultyId[];
@@ -302,6 +303,33 @@ describe('THE ASHGRAVE FILES -- logic suite', () => {
     expect(s.exhibits.length).toBeGreaterThanOrEqual(1);
     expect(s.exhibits[0].def).toMatch(/^(clue|boon):/);
     expect(s.journal.filter((j) => j.kind === 'exhibit').length).toBe(s.exhibits.length);
+    // Every filed paper says how it came to hand, on the paper and in the journal.
+    for (const ex of s.exhibits) {
+      expect(ex.how).toMatch(/^Found at /);
+      const entry = s.journal.find((j) => j.ref?.exhibit === ex.key)!;
+      expect(entry.text).toContain(ex.how);
+      expect(entry.ref?.location).toBe(ex.at);
+    }
+  });
+
+  it('a search tells the same story every time, and a document reads aloud from corpus clips', () => {
+    const a = searchNarrative('tower', 'tower', 1, true);
+    expect(a).toEqual(searchNarrative('tower', 'tower', 1, true));
+    expect(a.off).not.toBeNull();
+    expect(searchNarrative('tower', 'tower', 1, false).off).toBeNull();
+
+    const corpus = new Set(collectLines().map((l) => l.text));
+    let s = newGame('orchid', 'rookie', 'aloud', 1);
+    const p = s.players[0];
+    const ev = s.evidence.find((e) => e.kind === 'clue')!;
+    p.at = ev.at;
+    s = applyAction(s, { type: 'SEARCH', playerId: p.id });
+    const inst = s.exhibits[0];
+    const c = CASES.find((x) => x.id === s.caseId)!;
+    const { text, parts } = readAloud(EXHIBITS[inst.def], { victim: c.victim, scene: c.scene, ...(inst.data ?? {}) });
+    expect(text.length).toBeGreaterThan(20);
+    expect(parts.length).toBeGreaterThan(0);
+    for (const part of parts) expect(corpus.has(normaliseLine(part))).toBe(true);
   });
 
   it('the journal records every step in order', () => {

@@ -25,7 +25,7 @@ import { icon, locIcon } from './icons';
 import { portraitSvg } from './portraits';
 import * as S from './screens';
 import { typewriter, flash, esc, download } from './fx';
-import { exhibitById } from '../game/exhibits';
+import { exhibitById, readAloud } from '../game/exhibits';
 import { STORAGE } from '../config/constants';
 
 type Screen = 'title' | 'setup' | 'briefing' | 'game' | 'end';
@@ -256,7 +256,8 @@ export class App {
       case 'start-game': return this.startGame();
       case 'resume-game': return this.resumeGame();
 
-      case 'enter-game': this.screen = 'game'; this.narrator.stop(); return this.render();
+      case 'enter-game': this.screen = 'game'; this.narrator.stop(); this.board?.stopCinematic(); this.board?.reset(); return this.render();
+      case 'skip-cards': this.cancelType?.(); this.cancelType = null; return;
       case 'replay-brief': return this.narrateBriefing();
       case 'skip-voice': return this.narrator.stop();
       case 'handoff-ready': this.pendingHandoff = null; return this.render();
@@ -343,6 +344,7 @@ export class App {
         if (this.modal && this.modal !== 'exhibit-zoom') this.modal = null;
         return this.render();
       case 'close-exhibit': this.ui.selectedExhibit = null; return this.render();
+      case 'read-aloud': return this.readAloud(d('key'));
       case 'zoom-exhibit': this.modal = 'exhibit-zoom'; return this.renderModal();
       case 'reveal-reading': this.ui.revealed.add(d('key')); return this.render();
       case 'mark': this.setMark(d('trait') as TraitId, d('value') || null); return this.render();
@@ -376,6 +378,19 @@ export class App {
       case 'quit': this.screen = 'title'; this.state = null; this.saves.clear(); this.narrator.stop(); this.board?.reset(); return this.render();
       default: return undefined;
     }
+  }
+
+  /** The narrator reads a document out: the title, then the paragraphs. */
+  private readAloud(key: string): void {
+    const s = this.state;
+    const inst = s?.exhibits.find((e) => e.key === key);
+    if (!s || !inst) return;
+    const def = exhibitById(inst.def);
+    const c = caseById(s.caseId);
+    const data = { victim: c.victim, scene: R.locationById(s, c.scene)?.name ?? c.scene, ...(inst.data ?? {}) };
+    const { text, parts } = readAloud(def, data);
+    this.narrator.stop();
+    this.narrator.say(text, 'narrator', parts);
   }
 
   private setMark(trait: TraitId, value: string | null): void {
@@ -487,24 +502,52 @@ export class App {
     else if (this.state) this.root.innerHTML = this.gameScreen();
 
     const boardOn = this.screen === 'game';
+    const cine = this.screen === 'briefing';
     if (this.board) {
-      if (boardOn) { if (this.game.scene.isSleeping('board')) this.game.scene.wake('board'); this.paintBoard(); }
+      if (boardOn || cine) { if (this.game.scene.isSleeping('board')) this.game.scene.wake('board'); }
       else if (!this.game.scene.isSleeping('board') && this.game.scene.isActive('board')) this.game.scene.sleep('board');
+      if (boardOn) this.paintBoard();
+      if (cine && this.state) {
+        // The city, full screen, drifting under the briefing.
+        this.board.cameras.main.setViewport(0, 0, this.game.scale.width, this.game.scale.height);
+        this.paintBoard();
+        this.board.cinematic(this.state);
+      }
     }
     if (boardOn) {
       const body = this.root.querySelector('.book-body');
       if (body && prevScroll != null) body.scrollTop = prevScroll;
       this.paintSubtitle(this.narrator.speaking);
     }
-    if (this.screen === 'briefing') {
-      const target = this.root.querySelector<HTMLElement>('[data-type-target]');
-      if (target) this.cancelType = typewriter(target, target.textContent || '', { speed: 12 });
-    }
+    if (this.screen === 'briefing') this.runCards();
     if (boardOn && this.pendingHandoff && this.state) {
       const nextP = this.state.players.find((q) => q.id === this.pendingHandoff);
       if (nextP) this.root.insertAdjacentHTML('beforeend', S.handoffScreen(nextP, characterById(nextP.charId)));
     }
     this.renderModal();
+  }
+
+  /** The briefing cards, one after another, each typed. */
+  private runCards(): void {
+    const cards = [...this.root.querySelectorAll<HTMLElement>('.cine-card')];
+    let i = 0;
+    let stopped = false;
+    const next = () => {
+      if (stopped || this.screen !== 'briefing') return;
+      const card = cards[i++];
+      if (!card) return;
+      card.classList.add('is-on');
+      const p = card.querySelector<HTMLElement>('p:not(.cine-kicker):not(.cine-sub)');
+      const isTitle = card.classList.contains('cine-card--title');
+      if (p && !isTitle) {
+        const text = p.textContent || '';
+        this.cancelType = typewriter(p, text, { speed: 14, onDone: () => setTimeout(next, 700) });
+      } else {
+        setTimeout(next, isTitle ? 1800 : 400);
+      }
+    };
+    this.cancelType = () => { stopped = true; cards.forEach((c) => { c.classList.add('is-on'); c.querySelectorAll('p').forEach((q) => { q.textContent = q.textContent; }); }); };
+    setTimeout(next, 400);
   }
 
   /** Keep the board camera inside the map panel, whatever the layout does. */
