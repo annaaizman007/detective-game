@@ -202,6 +202,9 @@ export class BoardScene extends Phaser.Scene {
   render(state: GameState, view: BoardView): void {
     this.state = state;
     this.view = view;
+    // Asked to draw before create() has run (a resumed game races the
+    // launch): come back the moment the scene exists.
+    if (!this.layers) { this.events.once(Phaser.Scenes.Events.CREATE, () => this.render(state, view)); return; }
     if (this.cityFor !== state.caseId) this.buildBoard(state);
     this.updateNodes(state, view);
     this.updateRoads(state, view);
@@ -243,47 +246,178 @@ export class BoardScene extends Phaser.Scene {
   /** Everything static about the city, drawn once into a texture. */
   private bakeCity(state: GameState, city: City): void {
     const g = this.make.graphics({ x: 0, y: 0 }, false);
-    // A painted map, when the city has one, is the ground; the drawn one is
-    // only the roads on top of it. Otherwise everything is drawn.
-    const painted = this.textures.exists(`map-${state.caseId}`);
-    if (painted) {
-      const img = this.add.image(0, 0, `map-${state.caseId}`).setOrigin(0);
-      img.setDisplaySize(BOARD.w, BOARD.h);
-      this.layers.ground.add(img);
-    } else {
-      // Paper.
-      g.fillStyle(COLOR.paper, 1);
-      g.fillRect(0, 0, BOARD.w, BOARD.h);
-      g.fillStyle(COLOR.paperDark, 0.35);
-      g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
+    // A seed for the hand-made variation, fixed per city.
+    let h = 2166136261 >>> 0;
+    for (const ch of state.caseId) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619) >>> 0; }
+    const rnd = () => { h ^= h << 13; h >>>= 0; h ^= h >>> 17; h ^= h << 5; h >>>= 0; return h / 4294967296; };
+
+    // The board: green baize under the model, a paper margin for the hills.
+    g.fillStyle(COLOR.paper, 1); g.fillRect(0, 0, BOARD.w, BOARD.h);
+    g.fillStyle(COLOR.paperDark, 0.35); g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
+
+    // Hills in the margins: contour rings around a few rises, outside the city.
+    const rises = Array.from({ length: 5 }, () => ({ x: rnd() * BOARD.w, y: rnd() < 0.5 ? rnd() * 90 : BOARD.h - 60 - rnd() * 200, r: 90 + rnd() * 160 }));
+    for (const rise of rises) {
+      for (let k = 1; k <= 5; k++) {
+        const r = (rise.r * k) / 5;
+        const pts: Pt[] = [];
+        for (let i = 0; i < 40; i++) { const a = (i / 40) * Math.PI * 2; const w = 1 + Math.sin(a * 3 + k) * 0.08 + Math.cos(a * 5 - k) * 0.05; pts.push([rise.x + Math.cos(a) * r * w, rise.y + Math.sin(a) * r * 0.55 * w]); }
+        g.fillStyle(0xd7c9a4, 0.18); g.fillPoints(toPoints(pts), true);
+        g.lineStyle(1.3, COLOR.ink, 0.18); g.strokePoints(toPoints(pts), true);
+      }
     }
-    if (!painted) {
-    // Blocks: the lots between the streets, with a hairline of ink.
-    for (const b of city.blocks) {
-      g.fillStyle(COLOR.block, 1);
-      g.fillRect(b.x, b.y, b.w, b.h);
-      g.lineStyle(1.2, COLOR.ink, 0.35);
-      g.strokeRect(b.x, b.y, b.w, b.h);
-    }
-    // The grid, then the avenues cut across it.
+
+    // The street grid and the avenues, as the ground the model stands on.
+    for (const b of city.blocks) { g.fillStyle(0xd9ccab, 1); g.fillRect(b.x, b.y, b.w, b.h); }
     g.lineStyle(4, COLOR.street, 0.9);
     for (const [a, b] of city.streets) g.lineBetween(a[0], a[1], b[0], b[1]);
     for (const [a, b] of city.avenues) { g.lineStyle(26, COLOR.paper, 1); g.lineBetween(a[0], a[1], b[0], b[1]); g.lineStyle(2, COLOR.ink, 0.35); g.lineBetween(a[0], a[1], b[0], b[1]); }
-    // Water over the grid, then the shoreline.
-    const water = (pts: Pt[]) => { g.fillStyle(COLOR.water, 1); g.fillPoints(toPoints(pts), true); g.lineStyle(3, COLOR.waterInk, 0.9); g.strokePoints(toPoints(pts), true); };
-    if (city.sea) water(city.sea);
-    if (city.river) water(city.river.band);
+
+    // Water: sea, river, lake, with ripples; the harbour gets a quay, piers and boats.
+    const waters: Phaser.Geom.Polygon[] = [];
+    const water = (pts: Pt[]) => {
+      const poly = new Phaser.Geom.Polygon(toPoints(pts)); waters.push(poly);
+      g.fillStyle(0x8fb3b8, 1); g.fillPoints(toPoints(pts), true);
+      const xs = pts.map((p) => p[0]); const ys = pts.map((p) => p[1]);
+      const x0 = Math.min(...xs); const x1 = Math.max(...xs); const y0 = Math.min(...ys); const y1 = Math.max(...ys);
+      g.lineStyle(1.2, 0xe4eef0, 0.55);
+      for (let y = y0 + 14; y < y1; y += 22) {
+        for (let x = x0 + 10 + ((y / 22) % 2) * 18; x < x1; x += 36) {
+          if (!poly.contains(x, y) || !poly.contains(x + 16, y) || rnd() < 0.35) continue;
+          g.beginPath(); g.moveTo(x, y); g.lineTo(x + 5, y - 2); g.lineTo(x + 10, y); g.lineTo(x + 15, y - 2); g.strokePath();
+        }
+      }
+      g.lineStyle(3, COLOR.waterInk, 0.9); g.strokePoints(toPoints(pts), true);
+    };
+    const boat = (bx: number, by: number, big: boolean) => {
+      const L = big ? 34 : 20; const W = big ? 12 : 7;
+      g.fillStyle(COLOR.ink, 0.25); g.fillEllipse(bx + 3, by + 4, L, W);
+      g.fillStyle(0x4a3a2c, 1); g.fillEllipse(bx, by, L, W);
+      g.fillStyle(0xe8dcc0, 1); g.fillEllipse(bx, by - 1, L * 0.7, W * 0.45);
+      if (big) { g.fillStyle(0xf1e9d6, 1); g.fillTriangle(bx - 2, by - 3, bx - 2, by - 26, bx + 14, by - 8); g.lineStyle(1.5, COLOR.ink, 0.8); g.lineBetween(bx - 2, by - 2, bx - 2, by - 28); }
+      else { g.lineStyle(1.5, COLOR.ink, 0.8); g.lineBetween(bx, by - 2, bx, by - 12); }
+    };
+    if (city.sea) {
+      water(city.sea);
+      const shore = city.shore ?? [];
+      if (shore.length > 4) {
+        g.lineStyle(6, 0x8a7a5e, 0.7); g.strokePoints(toPoints(shore), false);
+        for (let k = 0; k < 6; k++) {
+          const i = Math.floor(rnd() * (shore.length - 2)) + 1;
+          const [x, y] = shore[i]; const len = 40 + rnd() * 60; const w = 10 + rnd() * 8;
+          g.fillStyle(0xb7a27a, 1); g.fillRect(x - w / 2, y, w, len);
+          g.lineStyle(1.5, COLOR.ink, 0.6); g.strokeRect(x - w / 2, y, w, len);
+          for (let t = 8; t < len; t += 10) g.lineBetween(x - w / 2, y + t, x + w / 2, y + t);
+        }
+        for (let k = 0; k < 8; k++) {
+          const i = Math.floor(rnd() * (shore.length - 2)) + 1;
+          const [x, y] = shore[i]; boat(x + (rnd() - 0.5) * 140, y + 50 + rnd() * 140, rnd() < 0.45);
+        }
+      }
+    }
+    if (city.river) { water(city.river.band); const sp = city.river.spine; if (sp.length > 6) for (let k = 0; k < 3; k++) { const [x, y] = sp[Math.floor(rnd() * (sp.length - 1))]; boat(x, y, false); } }
     if (city.lake) water(city.lake);
     if (city.shoreEcho) { g.lineStyle(1.5, COLOR.waterInk, 0.45); g.strokePoints(toPoints(city.shoreEcho), false); }
-    // Bridges: a deck across the water where a street meets it.
+
+    // The playable connections: roads between the places, under the buildings.
+    const hiddenIds = new Set(state.map.locations.filter((l) => l.hidden).map((l) => l.id));
+    const baked = state.map.edges.filter(([a, b]) => !hiddenIds.has(a) && !hiddenIds.has(b));
+    const roadSegs: [Pt, Pt][] = [];
+    for (const [a, b] of baked) {
+      const A = this.placed.get(a); const B = this.placed.get(b);
+      if (!A || !B) continue;
+      roadSegs.push([[A.px, A.py], [B.px, B.py]]);
+      g.lineStyle(14, COLOR.roadCase, 0.9); g.lineBetween(A.px, A.py, B.px, B.py);
+    }
+    for (const [A, B] of roadSegs) { g.lineStyle(9, COLOR.road, 1); g.lineBetween(A[0], A[1], B[0], B[1]); }
+
+    // Parks: lawn, a path, trees with a shadow side.
+    for (const p of city.parks) {
+      g.fillStyle(0xa9b986, 1); g.fillPoints(toPoints(p.pts), true);
+      g.lineStyle(2, COLOR.parkInk, 0.7); g.strokePoints(toPoints(p.pts), true);
+      g.lineStyle(3, COLOR.paper, 0.8); g.lineBetween(p.cx - p.r * 0.7, p.cy + p.r * 0.2, p.cx + p.r * 0.7, p.cy - p.r * 0.2);
+      for (let i = 0; i < 34; i++) {
+        const a = (i / 34) * Math.PI * 2 + 0.3; const r = p.r * (0.2 + ((i * 37) % 10) / 16);
+        const x = p.cx + Math.cos(a) * r; const y = p.cy + Math.sin(a) * r * 0.78; const cr = 5 + ((i * 13) % 5);
+        g.fillStyle(COLOR.ink, 0.2); g.fillCircle(x + 2, y + 3, cr);
+        g.fillStyle(0x6f8a4e, 1); g.fillCircle(x, y, cr);
+        g.fillStyle(0x9cb46a, 1); g.fillCircle(x - cr * 0.3, y - cr * 0.3, cr * 0.5);
+      }
+    }
+
+    // The model city: every lot becomes a little building with a roof, a lit
+    // face and a shadowed face, drawn back to front so the near ones stand in
+    // front. Nothing is built on water, on a road or where a facade will sit.
+    interface Bld { x: number; y: number; w: number; h: number; z: number; wall: number; roof: number; dome: boolean }
+    const blds: Bld[] = [];
+    const WALLS = [0xe6d9b8, 0xdcc9a3, 0xd9b98f, 0xc9b9a6, 0xe2cfb4, 0xd4c4b0, 0xcdb894];
+    const ROOFS = [0xa8503a, 0x9c4a36, 0x7a5a48, 0x6b6f78, 0x8a4c3c, 0x5f6a72];
+    const distToSeg = (px: number, py: number, [a, b]: [Pt, Pt]) => {
+      const vx = b[0] - a[0]; const vy = b[1] - a[1]; const L2 = vx * vx + vy * vy || 1;
+      const t = Math.max(0, Math.min(1, ((px - a[0]) * vx + (py - a[1]) * vy) / L2));
+      return Math.hypot(px - (a[0] + vx * t), py - (a[1] + vy * t));
+    };
+    const pins = [...this.placed.values()].filter((l) => !l.hidden);
+    // Build on a fine grid over the whole city, not just the drawn lots, so
+    // the model is dense the way a city is; leave the streets, the avenues,
+    // the water, the parks and the roads clear.
+    const bx0 = Math.min(...city.blocks.map((b) => b.x)) - 20; const bx1 = Math.max(...city.blocks.map((b) => b.x + b.w)) + 20;
+    const by0 = Math.min(...city.blocks.map((b) => b.y)) - 20; const by1 = Math.max(...city.blocks.map((b) => b.y + b.h)) + 20;
+    const parkPolys = city.parks.map((p) => new Phaser.Geom.Polygon(toPoints(p.pts)));
+    const STEP = 30;
+    for (let gy = by0; gy < by1; gy += STEP) for (let gx = bx0; gx < bx1; gx += STEP) {
+      if (rnd() < 0.08) continue; // a yard, a gap
+      const w = 18 + rnd() * 9; const hh = 18 + rnd() * 9;
+      const x = gx + (STEP - w) / 2 + (rnd() - 0.5) * 4; const y = gy + (STEP - hh) / 2 + (rnd() - 0.5) * 4;
+      const cx = x + w / 2; const cy = y + hh / 2;
+      if (waters.some((poly) => poly.contains(cx, cy) || poly.contains(x, y) || poly.contains(x + w, y + hh) || poly.contains(x, y + hh) || poly.contains(x + w, y))) continue;
+      if (parkPolys.some((poly) => poly.contains(cx, cy))) continue;
+      if (city.streets.some((seg) => distToSeg(cx, cy, seg) < 7 + Math.min(w, hh) / 2)) continue;
+      if (city.avenues.some((seg) => distToSeg(cx, cy, seg) < 16 + Math.min(w, hh) / 2)) continue;
+      if (roadSegs.some((seg) => distToSeg(cx, cy, seg) < 9 + Math.min(w, hh) / 2)) continue;
+      if (pins.some((l) => Math.abs(cx - l.px) < 72 && cy > l.py - 125 && cy < l.py + 22)) continue;
+      if (city.rail && city.rail.line.some((pt, i, arr) => i < arr.length - 1 && distToSeg(cx, cy, [pt, arr[i + 1]]) < 12)) continue;
+      const z = 14 + rnd() * 24 + (rnd() < 0.15 ? 20 : 0);
+      blds.push({ x, y, w, h: hh, z, wall: WALLS[Math.floor(rnd() * WALLS.length)], roof: ROOFS[Math.floor(rnd() * ROOFS.length)], dome: rnd() < 0.03 });
+    }
+    blds.sort((a, b) => (a.y + a.h) - (b.y + b.h));
+    const shade = (c: number, k: number) => {
+      const r = Math.round(((c >> 16) & 255) * k); const gg = Math.round(((c >> 8) & 255) * k); const bb = Math.round((c & 255) * k);
+      return (r << 16) | (gg << 8) | bb;
+    };
+    for (const b of blds) {
+      const dx = b.z * 0.28; const dy = -b.z * 0.85; // the oblique lift
+      // ground shadow
+      g.fillStyle(COLOR.ink, 0.18); g.fillRect(b.x + 4, b.y + 4, b.w, b.h);
+      // east face (shadow side) and south face (lit)
+      g.fillStyle(shade(b.wall, 0.62), 1); g.fillPoints([new Phaser.Geom.Point(b.x + b.w, b.y), new Phaser.Geom.Point(b.x + b.w + dx, b.y + dy), new Phaser.Geom.Point(b.x + b.w + dx, b.y + b.h + dy), new Phaser.Geom.Point(b.x + b.w, b.y + b.h)], true);
+      g.fillStyle(shade(b.wall, 0.86), 1); g.fillPoints([new Phaser.Geom.Point(b.x, b.y + b.h), new Phaser.Geom.Point(b.x + b.w, b.y + b.h), new Phaser.Geom.Point(b.x + b.w + dx, b.y + b.h + dy), new Phaser.Geom.Point(b.x + dx, b.y + b.h + dy)], true);
+      // windows on the south face
+      g.fillStyle(0x3a2e24, 0.75);
+      const floors = Math.max(1, Math.floor(b.z / 9)); const bays = Math.max(1, Math.floor(b.w / 9));
+      for (let f = 0; f < floors; f++) for (let k = 0; k < bays; k++) {
+        const t = (f + 0.5) / floors; const wx = b.x + 3 + k * (b.w - 4) / bays + dx * t; const wy = b.y + b.h + dy * t - 1;
+        g.fillRect(wx, wy - 2, 3, 4);
+      }
+      // roof
+      g.fillStyle(b.roof, 1); g.fillRect(b.x + dx, b.y + dy, b.w, b.h);
+      g.lineStyle(1, shade(b.roof, 0.7), 0.9);
+      for (let t = 4; t < b.h; t += 5) g.lineBetween(b.x + dx, b.y + dy + t, b.x + dx + b.w, b.y + dy + t);
+      g.lineStyle(1.2, shade(b.roof, 1.25), 0.9); g.lineBetween(b.x + dx + 2, b.y + dy + b.h / 2, b.x + dx + b.w - 2, b.y + dy + b.h / 2);
+      if (b.dome) { g.fillStyle(0x5f8a7a, 1); g.fillCircle(b.x + dx + b.w / 2, b.y + dy + b.h / 2, Math.min(b.w, b.h) * 0.42); g.fillStyle(0xa9cabc, 1); g.fillCircle(b.x + dx + b.w / 2 - 2, b.y + dy + b.h / 2 - 2, Math.min(b.w, b.h) * 0.2); }
+      if (rnd() < 0.3) { g.fillStyle(0x5a4438, 1); g.fillRect(b.x + dx + b.w * 0.7, b.y + dy + 2, 3, 5); }
+      g.lineStyle(1, COLOR.ink, 0.45); g.strokeRect(b.x + dx, b.y + dy, b.w, b.h);
+    }
+
+    // Bridges: a deck across the water where a street meets it (only there).
     for (const b of city.bridges) {
-      const dx = Math.cos(b.angle) * b.len / 2; const dy = Math.sin(b.angle) * b.len / 2;
-      g.lineStyle(20, COLOR.roadCase, 1); g.lineBetween(b.x - dx, b.y - dy, b.x + dx, b.y + dy);
-      g.lineStyle(12, COLOR.road, 1); g.lineBetween(b.x - dx, b.y - dy, b.x + dx, b.y + dy);
+      const ddx = Math.cos(b.angle) * b.len / 2; const ddy = Math.sin(b.angle) * b.len / 2;
+      g.lineStyle(20, COLOR.roadCase, 1); g.lineBetween(b.x - ddx, b.y - ddy, b.x + ddx, b.y + ddy);
+      g.lineStyle(12, COLOR.road, 1); g.lineBetween(b.x - ddx, b.y - ddy, b.x + ddx, b.y + ddy);
       g.lineStyle(2, COLOR.ink, 0.6);
       const nx = -Math.sin(b.angle) * 12; const ny = Math.cos(b.angle) * 12;
-      g.lineBetween(b.x - dx + nx, b.y - dy + ny, b.x + dx + nx, b.y + dy + ny);
-      g.lineBetween(b.x - dx - nx, b.y - dy - ny, b.x + dx - nx, b.y + dy - ny);
+      g.lineBetween(b.x - ddx + nx, b.y - ddy + ny, b.x + ddx + nx, b.y + ddy + ny);
+      g.lineBetween(b.x - ddx - nx, b.y - ddy - ny, b.x + ddx - nx, b.y + ddy - ny);
     }
     // The El: a double line on ties, with its stations.
     if (city.rail) {
@@ -301,37 +435,12 @@ export class BoardScene extends Phaser.Scene {
         g.lineStyle(2, COLOR.ink, 0.9); g.strokeRect(x - 12, y - 8, 24, 16);
       }
     }
-    // Parks.
-    for (const p of city.parks) {
-      g.fillStyle(COLOR.park, 1); g.fillPoints(toPoints(p.pts), true);
-      g.lineStyle(2, COLOR.parkInk, 0.7); g.strokePoints(toPoints(p.pts), true);
-      g.fillStyle(COLOR.parkInk, 0.35);
-      for (let i = 0; i < 26; i++) {
-        const a = (i / 26) * Math.PI * 2 + 0.3; const r = p.r * (0.25 + ((i * 37) % 10) / 20);
-        g.fillCircle(p.cx + Math.cos(a) * r, p.cy + Math.sin(a) * r * 0.78, 2.4);
-      }
-    }
-    }
-    // The playable connections, as arterial roads. A road to a hidden place
-    // would give it away, so those are drawn live once the place is found.
-    const hiddenIds = new Set(state.map.locations.filter((l) => l.hidden).map((l) => l.id));
-    const baked = state.map.edges.filter(([a, b]) => !hiddenIds.has(a) && !hiddenIds.has(b));
-    for (const [a, b] of baked) {
-      const A = this.placed.get(a); const B = this.placed.get(b);
-      if (!A || !B) continue;
-      g.lineStyle(14, COLOR.roadCase, 0.9); g.lineBetween(A.px, A.py, B.px, B.py);
-    }
-    for (const [a, b] of baked) {
-      const A = this.placed.get(a); const B = this.placed.get(b);
-      if (!A || !B) continue;
-      g.lineStyle(9, COLOR.road, 1); g.lineBetween(A.px, A.py, B.px, B.py);
-    }
+
     g.generateTexture('city', BOARD.w, BOARD.h);
     g.destroy();
     this.cityImage = this.add.image(0, 0, 'city').setOrigin(0);
-    if (painted) this.cityImage.setAlpha(0.72);
     this.layers.ground.add(this.cityImage);
-    const grain = this.add.tileSprite(0, 0, BOARD.w, BOARD.h, 'grain').setOrigin(0).setAlpha(painted ? 0.35 : 0.7).setBlendMode(Phaser.BlendModes.MULTIPLY);
+    const grain = this.add.tileSprite(0, 0, BOARD.w, BOARD.h, 'grain').setOrigin(0).setAlpha(0.45).setBlendMode(Phaser.BlendModes.MULTIPLY);
     this.layers.ground.add(grain);
   }
 

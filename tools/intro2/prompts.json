@@ -1,0 +1,37 @@
+[
+ {
+  "id": "squad",
+  "name": "squad",
+  "prompt": "six detectives of the 1940s seated around a long table in a smoky police squad room at night: an old inspector with a moustache, a woman doctor, a priest in a collar, a reporter with a notebook, a young woman in a hat, a big man in a trench coat, case files and a green desk lamp on the table, rain on the tall window behind, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 11
+ },
+ {
+  "id": "squad2",
+  "name": "squad2",
+  "prompt": "six detectives of the 1940s seated around a long table in a smoky police squad room at night: an old inspector with a moustache, a woman doctor, a priest in a collar, a reporter with a notebook, a young woman in a hat, a big man in a trench coat, case files and a green desk lamp on the table, rain on the tall window behind, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 2024
+ },
+ {
+  "id": "run",
+  "name": "run",
+  "prompt": "a man in a wet raincoat and fedora running down a long dark police station corridor toward the viewer, urgent, motion blur, a single bulb, wet floor tiles, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 3
+ },
+ {
+  "id": "burst",
+  "name": "burst",
+  "prompt": "a door flung wide open into a smoky squad room, a breathless man in a wet raincoat and hat in the doorway with one hand on the door, backlit by the corridor, seated detectives turning to look at him, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 77
+ },
+ {
+  "id": "tell",
+  "name": "tell",
+  "prompt": "close-up of a breathless middle-aged police sergeant in a wet raincoat, hat pushed back, leaning on a table and talking urgently, green lamp light on his face, rain on the window behind, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
+  "negative": "text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 5
+ }
+]

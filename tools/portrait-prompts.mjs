@@ -54,10 +54,10 @@ const CASTING = {
   rowe: { extra: 'a hospital doctor in a white coat over a dark suit, tired', hair: 'dark' },
   leo: { extra: 'a music hall manager in a loud checked suit with a carnation, a cane', hair: 'dark' },
   dunne: { extra: 'a nun of fifty-five in a black habit and white wimple, kind stern face', hair: 'grey', neg: 'hat, cigarette' },
-  pask: { extra: 'a tram driver in a dark uniform coat and peaked cap, grief in the face', hair: 'red' },
+  pask: { extra: 'a tram driver with ginger hair and a ginger moustache, wearing a dark navy blue uniform coat and a black peaked cap, grief in the face', hair: 'red', neg: 'red coat, red uniform, red clothing, dark hair, black hair, brown hair', seed: 8183 },
   klein: { extra: 'a printer in an ink-stained apron over a waistcoat, sleeves rolled, wire glasses', hair: 'fair' },
   crowe: { extra: 'a stout landlady of sixty in a dark dress with a cameo brooch and a shawl', hair: 'grey' },
-  boyle: { extra: 'a young police constable of twenty-four in a dark tunic and helmet, anxious', hair: 'fair' },
+  boyle: { extra: 'a young 1940s British police constable in a dark wool tunic with silver buttons and a tall rounded custodian helmet with a badge, anxious face', hair: 'fair', neg: 'armor, armour, knight, fantasy, medieval, steel helmet, visor', seed: 4242 },
   kilbride: { extra: 'a woman police sergeant in a dark uniform tunic, sergeant stripes, steady gaze', hair: 'dark' },
   dwyer: { extra: 'a young factory machinist in a plain blouse and cardigan', hair: 'dark' },
   amos: { extra: 'an old former docker in a rough jersey and apron, gentle', hair: 'grey' },
@@ -91,6 +91,19 @@ const CASTING = {
   sister: { extra: 'a thin woman in a plain grey house dress and a cardigan, hair loose, a patient of an asylum', hair: 'dark', age: 1, smoke: false, neg: 'nun, habit, wimple, veil, rosary, cross, uniform' },
 };
 
+// A few people smoke. Said this way (held in the fingers) the model paints
+// the hand and the cigarette together instead of a cigarette floating in air.
+const SMOKES = {
+  hale: 'holding a lit cigar between two fingers at chest height, a little smoke',
+  crane: 'a lit cigarette held between two fingers near the chin, a thin line of smoke',
+  salvi: 'holding a thin cigar between two fingers, smoke rising',
+  ledoux: 'a hand-rolled cigarette held between thumb and finger, smoke',
+  leo: 'holding a fat cigar between two fingers, smoke curling',
+  vane: 'a short clay pipe held in one hand, a little smoke',
+  gurney: 'a cigarette held between two fingers resting on the bar',
+  keeper: 'holding a briar pipe in one hand, smoke',
+};
+
 const STYLE = 'solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer';
 const NEGATIVE = 'two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border';
 
@@ -99,12 +112,15 @@ const out = people.map((p) => {
   const cast = CASTING[p.id] ?? {};
   const who = l.fem ? 'woman' : 'man';
   const hairWords = cast.hair ? `${cast.hair === 'fair' ? 'blond' : cast.hair === 'grey' ? 'grey' : cast.hair} ${HAIR[l.hair]}` : HAIR[l.hair];
+  const smoke = SMOKES[p.id] ?? '';
   const bits = [
     `portrait of one ${who} ${AGE[cast.age ?? l.age]}, ${cast.extra ?? p.role.split(',')[0]}`,
+    smoke,
     hairWords, cast.extra ? '' : HAT[l.hat], l.fem ? '' : BEARD[l.beard], l.glasses ? 'round wire glasses' : '',
     cast.extra ? '' : COAT[l.coat], MOOD[l.mood],
   ].filter(Boolean).join(', ');
-  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: cast.neg ? `${cast.neg}, ${NEGATIVE}` : NEGATIVE, seed: cast.seed ?? [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
+  const negative = smoke ? NEGATIVE.replace('cigarette, cigar, pipe, smoke, smoking, ', 'floating cigarette, disembodied cigarette, extra cigarette, ') : NEGATIVE;
+  return { id: p.id, name: p.name, prompt: `${bits}, ${STYLE}`, negative: cast.neg ? `${cast.neg}, ${negative}` : negative, seed: cast.seed ?? [...p.id].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 7) };
 });
 
 await mkdir('public/assets/images/people', { recursive: true });

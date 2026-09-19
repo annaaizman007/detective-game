@@ -2,638 +2,869 @@
  {
   "id": "hale",
   "name": "Chief Insp. Aldous Hale",
-  "prompt": "portrait of one man elderly, lined face, the veteran, receding hairline, balding, a fedora, a moustache, dark trench coat, stern, hard stare, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, the veteran, holding a lit cigar between two fingers at chest height, a little smoke, receding hairline, balding, a fedora, a moustache, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9659577
  },
  {
   "id": "vale",
   "name": "Dr. Imogen Vale",
   "prompt": "portrait of one woman in their forties, the coroner, hair in an updo, round wire glasses, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 10076651
  },
  {
   "id": "crane",
   "name": "Silas Crane",
-  "prompt": "portrait of one man in their forties, a newspaper reporter in a rumpled grey suit, press card in the hat band, dark side-parted hair, clean-shaven, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, a newspaper reporter in a rumpled grey suit, press card in the hat band, a lit cigarette held between two fingers near the chin, a thin line of smoke, dark side-parted hair, clean-shaven, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 295325538
  },
  {
   "id": "ruby",
   "name": "\"Ruby\" Okonkwo",
   "prompt": "portrait of one woman in their forties, a Nigerian woman, dark skin, elegant, a fixer who knows every door in the city, in a dark tailored coat, dark bobbed hair, round wire glasses, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9976417
  },
  {
   "id": "kell",
   "name": "Fr. Ambrose Kell",
   "prompt": "portrait of one man elderly, lined face, a Catholic priest in a black cassock with a white clerical collar, grey short cropped hair, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "hat, cigarette, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "hat, cigarette, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9752801
  },
  {
   "id": "quist",
   "name": "Det. Mara Quist",
   "prompt": "portrait of one woman in their twenties, the beat cop, short cropped hair, a peaked uniform cap, navy overcoat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 308352063
  },
  {
   "id": "vera",
   "name": "Vera Lang",
-  "prompt": "portrait of one woman in their twenties, a nightclub singer with vivid copper red hair, in a buttoned dark velvet coat with a fur collar, gloved hands, red long wavy hair, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "cleavage, bare shoulders, dress, lingerie, black hair, dark hair, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman in their twenties, a nightclub singer with vivid copper red hair, in a buttoned dark velvet coat with a fur collar, gloved hands, red long wavy hair, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "cleavage, bare shoulders, dress, lingerie, black hair, dark hair, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 4401
  },
  {
   "id": "strand",
   "name": "Emil Strand",
   "prompt": "portrait of one man in their forties, night manager, dark slicked-back hair, a moustache, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1025564877
  },
  {
   "id": "pike",
   "name": "Dr. Aurelio Pike",
   "prompt": "portrait of one man elderly, lined face, society physician, grey receding hairline, balding, a bowler hat, a goatee, round wire glasses, cream jacket, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9905562
  },
  {
   "id": "mireaux",
   "name": "Cass Mireaux",
   "prompt": "portrait of one woman in their forties, importer of rare flowers, dark hair in an updo, a cloche hat, round wire glasses, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 382871982
  },
  {
   "id": "tovar",
   "name": "Deacon Iris Tovar",
   "prompt": "portrait of one woman elderly, lined face, st. ordell’s, dark hair in an updo, a nun's wimple, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 310955813
  },
  {
   "id": "roland",
   "name": "Roland Voss",
-  "prompt": "portrait of one man in their twenties, the victim’s brother, dark side-parted hair, clean-shaven, cream jacket, worried, tired eyes, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their twenties, the victim’s brother, dark side-parted hair, clean-shaven, cream jacket, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 992139375
  },
  {
   "id": "brandt",
   "name": "Nikolai Brandt",
-  "prompt": "portrait of one man in their forties, dock union enforcer, dark short cropped hair, a flat cap, a full beard, brown wool coat, stern, hard stare, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, dock union enforcer, dark short cropped hair, a flat cap, a full beard, brown wool coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 536528020
  },
  {
   "id": "shaw",
   "name": "Perpetua Shaw",
   "prompt": "portrait of one woman in their forties, columnist, dark bobbed hair, a cloche hat, round wire glasses, grey suit, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9993682
  },
  {
   "id": "pruett",
   "name": "Ada Pruett",
   "prompt": "portrait of one woman in their forties, night clerk, hair in an updo, round wire glasses, cream jacket, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 937923801
  },
  {
   "id": "marlowe",
   "name": "Bix Marlowe",
-  "prompt": "portrait of one man in their forties, barman, slicked-back hair, a moustache, grey suit, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, barman, slicked-back hair, a moustache, grey suit, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 154060808
  },
  {
   "id": "flett",
   "name": "Oona Flett",
   "prompt": "portrait of one woman in their forties, night sister, hair in an updo, a nun's wimple, grey suit, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 297921400
  },
  {
   "id": "rainer",
   "name": "Sal Rainer",
-  "prompt": "portrait of one man elderly, lined face, night watchman, receding hairline, balding, a flat cap, a full beard, round wire glasses, tan overcoat, calm expression, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, night watchman, receding hairline, balding, a flat cap, a full beard, round wire glasses, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 979132936
  },
  {
   "id": "wyn",
   "name": "Old Wyn",
   "prompt": "portrait of one man elderly, lined face, sexton, receding hairline, balding, a goatee, dark trench coat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 326757
  },
  {
   "id": "cobb",
   "name": "Ezra Cobb",
-  "prompt": "portrait of one man elderly, lined face, pawnbroker, receding hairline, balding, clean-shaven, round wire glasses, brown wool coat, stern, hard stare, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, pawnbroker, receding hairline, balding, clean-shaven, round wire glasses, brown wool coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9523763
  },
  {
   "id": "bell",
   "name": "Dot Bell",
   "prompt": "portrait of one woman in their twenties, usherette, bobbed hair, a peaked uniform cap, round wire glasses, burgundy coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9484682
  },
  {
   "id": "pardo",
   "name": "Louis Pardo",
   "prompt": "portrait of one man in their forties, waiter, slicked-back hair, a moustache, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 306840901
  },
  {
   "id": "amory",
   "name": "Kit Amory",
-  "prompt": "portrait of one man in their forties, night keeper, side-parted hair, a flat cap, clean-shaven, olive jacket, worried, tired eyes, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, night keeper, side-parted hair, a flat cap, clean-shaven, olive jacket, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 293343139
  },
  {
   "id": "vine",
   "name": "Hedda Vine",
   "prompt": "portrait of one woman in their forties, teller, hair in an updo, round wire glasses, grey suit, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 10084401
  },
  {
   "id": "quill",
   "name": "Bea Quill",
   "prompt": "portrait of one woman in their twenties, night operator, bobbed hair, navy overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 308351838
  },
  {
   "id": "marsh",
   "name": "Ollie Marsh",
   "prompt": "portrait of one man elderly, lined face, conductor, receding hairline, balding, a peaked uniform cap, a moustache, round wire glasses, navy overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 304070796
  },
  {
   "id": "grey",
   "name": "Tobias Grey",
   "prompt": "portrait of one man elderly, lined face, night librarian, receding hairline, balding, clean-shaven, round wire glasses, grey suit, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9645926
  },
  {
   "id": "roe",
   "name": "Nettie Roe",
   "prompt": "portrait of one woman in their forties, attendant, hair in an updo, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 321633
  },
  {
   "id": "dunn",
   "name": "Cyril Dunn",
   "prompt": "portrait of one man in their forties, dispensing chemist, side-parted hair, clean-shaven, round wire glasses, cream jacket, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9559704
  },
  {
   "id": "fane",
   "name": "Lulu Fane",
-  "prompt": "portrait of one woman in their forties, barmaid, long wavy hair, burgundy coat, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman in their forties, barmaid, long wavy hair, burgundy coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9600057
  },
  {
   "id": "vasko",
   "name": "Pete Vasko",
   "prompt": "portrait of one man in their forties, mechanic, short cropped hair, a flat cap, a full beard, tan overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 312383205
  },
  {
   "id": "latimer",
   "name": "Hugh Latimer",
   "prompt": "portrait of one man in their forties, bond clerk, side-parted hair, a bowler hat, clean-shaven, round wire glasses, dark trench coat, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 3563279625
  },
  {
   "id": "denk",
   "name": "Milo Denk",
-  "prompt": "portrait of one man elderly, lined face, steward, short cropped hair, a peaked uniform cap, a full beard, navy overcoat, calm expression, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, steward, short cropped hair, a peaked uniform cap, a full beard, navy overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9544325
  },
  {
   "id": "sorrel",
   "name": "Ned Sorrel",
   "prompt": "portrait of one man elderly, lined face, keeper, receding hairline, balding, a flat cap, a full beard, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1020963338
+ },
+ {
+  "id": "hendriks",
+  "name": "Dutch Hendriks",
+  "prompt": "portrait of one man in their forties, a broad Dutch sailor of thirty-five in a thick jersey and oilskin, unshaven, weather-beaten, blond short cropped hair, a moustache, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 3784986841
  },
  {
   "id": "hollis",
   "name": "Dov Hollis",
-  "prompt": "portrait of one man in their forties, union vice-chair, dark short cropped hair, a flat cap, a moustache, brown wool coat, stern, hard stare, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, union vice-chair, dark short cropped hair, a flat cap, a moustache, brown wool coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 705858296
  },
  {
   "id": "wren",
   "name": "Etta Wren",
   "prompt": "portrait of one woman in their forties, customs inspector, dark hair in an updo, a peaked uniform cap, round wire glasses, navy overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 10122571
  },
  {
   "id": "okafor",
   "name": "Bernard Okafor",
-  "prompt": "portrait of one man elderly, lined face, a Nigerian man of fifty-eight, dark skin, shopkeeper, chandler, grey receding hairline, balding, a full beard, calm expression, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, a Nigerian man of fifty-eight, dark skin, shopkeeper, chandler, grey receding hairline, balding, a full beard, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 902234987
  },
  {
   "id": "salvi",
   "name": "Nunzio Salvi",
-  "prompt": "portrait of one man in their forties, shipping agent, dark slicked-back hair, a bowler hat, a moustache, round wire glasses, cream jacket, wry half-smile, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, shipping agent, holding a thin cigar between two fingers, smoke rising, dark slicked-back hair, a bowler hat, a moustache, round wire glasses, cream jacket, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 309606250
  },
  {
   "id": "tilda",
   "name": "Tilda Rask",
-  "prompt": "portrait of one woman elderly, lined face, a widow of fifty in black, grey hair in an updo, stern, hard stare, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman elderly, lined face, a widow of fifty in black, grey hair in an updo, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 310767533
  },
  {
   "id": "keeper",
   "name": "Mr. Garrow",
-  "prompt": "portrait of one man elderly, lined face, lighthouse keeper, grey receding hairline, balding, a flat cap, a full beard, tan overcoat, calm expression, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, lighthouse keeper, holding a briar pipe in one hand, smoke, grey receding hairline, balding, a flat cap, a full beard, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 782305721
  },
  {
   "id": "fenn",
   "name": "Dr. Ilse Fenn",
   "prompt": "portrait of one woman in their forties, a doctor, white coat under the overcoat, stethoscope, blond bobbed hair, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9603910
  },
  {
   "id": "ledoux",
   "name": "Marcel Ledoux",
-  "prompt": "portrait of one man in their forties, a trawler skipper in a plain dark oilskin coat, no markings, no text, dark curly hair, a goatee, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "text, lettering, letters, logo, poster, title, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, a trawler skipper in a plain dark oilskin coat, no markings, no text, a hand-rolled cigarette held between thumb and finger, smoke, dark curly hair, a goatee, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "text, lettering, letters, logo, poster, title, two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9102
  },
  {
   "id": "teague",
   "name": "Mags Teague",
   "prompt": "portrait of one woman elderly, lined face, landlady, hair in an updo, burgundy coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1039840750
  },
  {
   "id": "aldous",
   "name": "Percy Aldous",
   "prompt": "portrait of one man in their twenties, night clerk, side-parted hair, clean-shaven, round wire glasses, grey suit, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 502448603
  },
  {
   "id": "vetch",
   "name": "Young Vetch",
-  "prompt": "portrait of one man in their twenties, apprentice, curly hair, a flat cap, clean-shaven, round wire glasses, tan overcoat, wry half-smile, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their twenties, apprentice, curly hair, a flat cap, clean-shaven, round wire glasses, tan overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 312503075
  },
  {
   "id": "kite",
   "name": "Amos Kite",
-  "prompt": "portrait of one man in their forties, attendant, short cropped hair, clean-shaven, grey suit, calm expression, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, attendant, short cropped hair, clean-shaven, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9756886
  },
  {
   "id": "pell",
   "name": "Iggy Pell",
-  "prompt": "portrait of one man in their twenties, deckhand, short cropped hair, a flat cap, clean-shaven, round wire glasses, navy overcoat, worried, tired eyes, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their twenties, deckhand, short cropped hair, a flat cap, clean-shaven, round wire glasses, navy overcoat, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9901756
  },
  {
   "id": "harrow",
   "name": "Nell Harrow",
   "prompt": "portrait of one woman in their forties, attendant, bobbed hair, round wire glasses, cream jacket, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 693113704
  },
  {
   "id": "gault",
   "name": "Ruth Gault",
   "prompt": "portrait of one woman in their forties, clerk, hair in an updo, round wire glasses, navy overcoat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 298532348
  },
  {
   "id": "sparks",
   "name": "Tommy Sparks",
-  "prompt": "portrait of one man in their twenties, wireless operator, short cropped hair, clean-shaven, navy overcoat, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their twenties, wireless operator, short cropped hair, clean-shaven, navy overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1021380605
  },
  {
   "id": "brack",
   "name": "Mabel Brack",
   "prompt": "portrait of one woman elderly, lined face, caretaker, hair in an updo, a cloche hat, round wire glasses, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 294401682
  },
  {
   "id": "delacroix",
   "name": "Émile Delacroix",
   "prompt": "portrait of one man in their forties, typesetter, slicked-back hair, a moustache, round wire glasses, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 2430849778
  },
  {
   "id": "oyelaran",
   "name": "Femi Oyelaran",
   "prompt": "portrait of one man in their forties, a Nigerian man, dark skin, retired customs officer, night watchman in a peaked cap, grey short cropped hair, clean-shaven, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 3419189430
  },
  {
   "id": "mott",
   "name": "Nan Mott",
-  "prompt": "portrait of one woman elderly, lined face, owner, hair in an updo, cream jacket, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman elderly, lined face, owner, hair in an updo, cream jacket, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9822249
  },
  {
   "id": "penrose",
   "name": "Aldo Penrose",
   "prompt": "portrait of one man elderly, lined face, verger, receding hairline, balding, clean-shaven, dark trench coat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 2927572993
  },
  {
   "id": "sable",
   "name": "Jean Sable",
   "prompt": "portrait of one woman in their forties, petty officer, short cropped hair, a peaked uniform cap, navy overcoat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 309596326
  },
  {
   "id": "ives",
   "name": "Maud Ives",
   "prompt": "portrait of one woman in their forties, nurse, hair in an updo, a nun's wimple, round wire glasses, grey suit, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9709346
  },
  {
   "id": "cully",
   "name": "Bram Cully",
-  "prompt": "portrait of one man in their forties, foreman, short cropped hair, a flat cap, a full beard, tan overcoat, calm expression, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, foreman, short cropped hair, a flat cap, a full beard, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 295425440
  },
  {
   "id": "lundy",
   "name": "Ma Lundy",
   "prompt": "portrait of one woman elderly, lined face, pawnbroker, hair in an updo, round wire glasses, brown wool coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 303738803
  },
  {
   "id": "rook",
   "name": "Tamsin Rook",
   "prompt": "portrait of one woman in their forties, conductor, short cropped hair, a peaked uniform cap, navy overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9971040
  },
  {
   "id": "orme",
   "name": "Jack Orme",
   "prompt": "portrait of one man in their forties, night man, short cropped hair, a flat cap, clean-shaven, round wire glasses, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9884482
  },
  {
   "id": "cotter",
   "name": "Sam Cotter",
   "prompt": "portrait of one man elderly, lined face, an old fisherman in a woollen jersey and oilskin, weathered face, grey short cropped hair, a full beard, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 562958432
  },
  {
   "id": "fry",
   "name": "Brother Fry",
   "prompt": "portrait of one man elderly, lined face, warden, receding hairline, balding, a full beard, dark trench coat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 310214
+ },
+ {
+  "id": "harris",
+  "name": "Tom Harris",
+  "prompt": "portrait of one man in their twenties, a thin schoolboy of fifteen in a grey school uniform with a striped tie, frightened, blond side-parted hair, clean-shaven, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "adult, beard, moustache, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 693113514
  },
  {
   "id": "verger",
   "name": "Cormac Ill",
   "prompt": "portrait of one man elderly, lined face, the verger, grey receding hairline, balding, clean-shaven, round wire glasses, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1097605016
  },
  {
   "id": "canon",
   "name": "Canon Aldritch",
   "prompt": "portrait of one man elderly, lined face, an Anglican canon in a black cassock with a white clerical collar, grey short cropped hair, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "hat, cigarette, cigar, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "hat, cigarette, cigar, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 294831624
  },
  {
   "id": "matron",
   "name": "Matron Sybil Crake",
   "prompt": "portrait of one woman elderly, lined face, an asylum matron in a starched grey nurse’s uniform with a white nurse’s cap and a watch pinned to the chest, grey hair in an updo, round wire glasses, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "nun, habit, wimple, veil, rosary, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "nun, habit, wimple, veil, rosary, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 836319032
  },
  {
   "id": "tutor",
   "name": "Mr. Ewan Blake",
-  "prompt": "portrait of one man in their forties, master at ordell academy, blond side-parted hair, clean-shaven, round wire glasses, brown wool coat, worried, tired eyes, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, master at ordell academy, blond side-parted hair, clean-shaven, round wire glasses, brown wool coat, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 311133071
  },
  {
   "id": "astro",
   "name": "Dr. Halla Quint",
   "prompt": "portrait of one woman in their forties, astronomer, dark hair in an updo, round wire glasses, navy overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 293526680
  },
  {
   "id": "gardener",
   "name": "Peter Nane",
   "prompt": "portrait of one man in their twenties, glasshouse gardener, dark curly hair, a flat cap, clean-shaven, tan overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 2901263017
  },
  {
   "id": "driver",
   "name": "Rosalind Fay",
-  "prompt": "portrait of one woman in their twenties, a tram driver in a dark uniform coat and peaked cap, red short cropped hair, wry half-smile, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman in their twenties, a tram driver in a dark uniform coat and peaked cap, red short cropped hair, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 594032367
  },
  {
   "id": "sister",
   "name": "Beatrix Ayre",
   "prompt": "portrait of one woman in their forties, a thin woman in a plain grey house dress and a cardigan, hair loose, a patient of an asylum, dark bobbed hair, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "nun, habit, wimple, veil, rosary, cross, uniform, two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "nun, habit, wimple, veil, rosary, cross, uniform, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 1015453931
  },
  {
   "id": "tull",
   "name": "Ivy Tull",
   "prompt": "portrait of one woman elderly, lined face, housekeeper, hair in an updo, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 10036296
  },
  {
   "id": "wick",
   "name": "Josiah Wick",
-  "prompt": "portrait of one man elderly, lined face, porter, receding hairline, balding, a peaked uniform cap, a moustache, dark trench coat, stern, hard stare, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, porter, receding hairline, balding, a peaked uniform cap, a moustache, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 10113857
  },
  {
   "id": "greer",
   "name": "Mother Greer",
   "prompt": "portrait of one woman elderly, lined face, resident, hair in an updo, a cloche hat, brown wool coat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 299023200
  },
  {
   "id": "marley",
   "name": "Fen Marley",
-  "prompt": "portrait of one man in their forties, night dispatcher, slicked-back hair, a peaked uniform cap, clean-shaven, navy overcoat, calm expression, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, night dispatcher, slicked-back hair, a peaked uniform cap, clean-shaven, navy overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 836253385
  },
  {
   "id": "lister",
   "name": "Bo Lister",
   "prompt": "portrait of one man in their forties, stoker, short cropped hair, a flat cap, a full beard, tan overcoat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 815049874
  },
  {
   "id": "grimm",
   "name": "Silas Grimm",
-  "prompt": "portrait of one man elderly, lined face, gravedigger, receding hairline, balding, a flat cap, a full beard, brown wool coat, stern, hard stare, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, gravedigger, receding hairline, balding, a flat cap, a full beard, brown wool coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 299027287
  },
  {
   "id": "ansell",
   "name": "Hew Ansell",
   "prompt": "portrait of one man elderly, lined face, bell founder, receding hairline, balding, a flat cap, a moustache, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 504732614
  },
  {
   "id": "pym",
   "name": "Dorcas Pym",
   "prompt": "portrait of one woman elderly, lined face, archivist, hair in an updo, round wire glasses, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 320029
  },
  {
   "id": "oakes",
   "name": "Cyrus Oakes",
   "prompt": "portrait of one man in their forties, clerk, side-parted hair, clean-shaven, round wire glasses, grey suit, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 305910688
  },
  {
   "id": "brannock",
   "name": "Mrs. Brannock",
-  "prompt": "portrait of one woman elderly, lined face, housekeeper, hair in an updo, dark trench coat, stern, hard stare, cigarette in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one woman elderly, lined face, housekeeper, hair in an updo, dark trench coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 207647981
  },
  {
   "id": "lamb",
   "name": "Enid Lamb",
   "prompt": "portrait of one woman in their forties, dispenser, hair in an updo, round wire glasses, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9778769
  },
  {
   "id": "quaile",
   "name": "Sam Quaile",
   "prompt": "portrait of one man in their twenties, orderly, short cropped hair, clean-shaven, grey suit, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 968731276
  },
  {
   "id": "hobb",
   "name": "Zeb Hobb",
   "prompt": "portrait of one man elderly, lined face, pawnbroker, receding hairline, balding, a goatee, round wire glasses, brown wool coat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 9672718
  },
  {
   "id": "amsel",
   "name": "Old Amsel",
   "prompt": "portrait of one man elderly, lined face, bookseller, receding hairline, balding, a full beard, round wire glasses, brown wool coat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 293346567
  },
  {
   "id": "petty",
   "name": "Mrs. Petty",
   "prompt": "portrait of one woman elderly, lined face, proprietress, hair in an updo, round wire glasses, burgundy coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 306962493
  },
  {
   "id": "rudge",
   "name": "Tam Rudge",
-  "prompt": "portrait of one man in their forties, landlord, short cropped hair, a moustache, brown wool coat, wry half-smile, cigar in mouth, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man in their forties, landlord, short cropped hair, a moustache, brown wool coat, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 309270392
  },
  {
   "id": "shale",
   "name": "Wat Shale",
   "prompt": "portrait of one man in their forties, pumpman, short cropped hair, a flat cap, clean-shaven, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 309803902
  },
  {
   "id": "ferris",
   "name": "Old Ferris",
-  "prompt": "portrait of one man elderly, lined face, boatman, receding hairline, balding, a flat cap, a full beard, tan overcoat, calm expression, smoking a pipe, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "prompt": "portrait of one man elderly, lined face, boatman, receding hairline, balding, a flat cap, a full beard, tan overcoat, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 639549296
  },
  {
   "id": "agnes",
   "name": "Sister Agnes",
   "prompt": "portrait of one woman in their forties, laundress, hair in an updo, a nun's wimple, grey suit, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 293163023
  },
  {
   "id": "coyle",
   "name": "Hettie Coyle",
   "prompt": "portrait of one woman in their forties, clerk, bobbed hair, round wire glasses, navy overcoat, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
-  "negative": "two people, couple, multiple people, crowd, second face, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
   "seed": 295259167
+ },
+ {
+  "id": "penhale",
+  "name": "Arthur Penhale",
+  "prompt": "portrait of one man elderly, lined face, a gaunt man of fifty in a once-good dark overcoat gone shabby, hollow eyes, a former gas company inspector, grey side-parted hair, clean-shaven, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 2927261412
+ },
+ {
+  "id": "vane",
+  "name": "Cyrus Vane",
+  "prompt": "portrait of one man elderly, lined face, a red-faced old lamplighter in a flat cap and a worn moleskin jacket, unshaven, a short clay pipe held in one hand, a little smoke, grey receding hairline, balding, a moustache, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 10076713
+ },
+ {
+  "id": "rowe",
+  "name": "Dr. Emmett Rowe",
+  "prompt": "portrait of one man in their forties, a hospital doctor in a white coat over a dark suit, tired, dark slicked-back hair, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9971282
+ },
+ {
+  "id": "leo",
+  "name": "Leo Marsh",
+  "prompt": "portrait of one man in their forties, a music hall manager in a loud checked suit with a carnation, a cane, holding a fat cigar between two fingers, smoke curling, dark slicked-back hair, a moustache, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 315567
+ },
+ {
+  "id": "dunne",
+  "name": "Sister Agatha Dunne",
+  "prompt": "portrait of one woman elderly, lined face, a nun of fifty-five in a black habit and white wimple, kind stern face, grey hair in an updo, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "hat, cigarette, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 296350925
+ },
+ {
+  "id": "pask",
+  "name": "Walter Pask",
+  "prompt": "portrait of one man in their forties, a tram driver with ginger hair and a ginger moustache, wearing a dark navy blue uniform coat and a black peaked cap, grief in the face, red short cropped hair, a moustache, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "red coat, red uniform, red clothing, dark hair, black hair, brown hair, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 8183
+ },
+ {
+  "id": "klein",
+  "name": "Isidore Klein",
+  "prompt": "portrait of one man in their forties, a printer in an ink-stained apron over a waistcoat, sleeves rolled, wire glasses, blond side-parted hair, clean-shaven, round wire glasses, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 302538658
+ },
+ {
+  "id": "crowe",
+  "name": "Hattie Crowe",
+  "prompt": "portrait of one woman elderly, lined face, a stout landlady of sixty in a dark dress with a cameo brooch and a shawl, grey hair in an updo, round wire glasses, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 295339271
+ },
+ {
+  "id": "boyle",
+  "name": "Constable Ned Boyle",
+  "prompt": "portrait of one man in their twenties, a young 1940s British police constable in a dark wool tunic with silver buttons and a tall rounded custodian helmet with a badge, anxious face, blond side-parted hair, clean-shaven, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "armor, armour, knight, fantasy, medieval, steel helmet, visor, two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 4242
+ },
+ {
+  "id": "kilbride",
+  "name": "Sergeant Ada Kilbride",
+  "prompt": "portrait of one woman in their forties, a woman police sergeant in a dark uniform tunic, sergeant stripes, steady gaze, dark bobbed hair, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 3914392403
+ },
+ {
+  "id": "dwyer",
+  "name": "Peg Dwyer",
+  "prompt": "portrait of one woman in their twenties, a young factory machinist in a plain blouse and cardigan, dark bobbed hair, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 296420812
+ },
+ {
+  "id": "amos",
+  "name": "Brother Amos",
+  "prompt": "portrait of one man elderly, lined face, an old former docker in a rough jersey and apron, gentle, grey receding hairline, balding, a full beard, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9462679
+ },
+ {
+  "id": "gurney",
+  "name": "Tom Gurney",
+  "prompt": "portrait of one man in their forties, a pub landlord in shirtsleeves and waistcoat behind a bar, moustache, a cigarette held between two fingers resting on the bar, dark short cropped hair, a moustache, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, floating cigarette, disembodied cigarette, extra cigarette, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 682950821
+ },
+ {
+  "id": "nunn",
+  "name": "Percival Nunn",
+  "prompt": "portrait of one man in their forties, a chemist in a white coat with wire spectacles, precise, dark side-parted hair, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9857614
+ },
+ {
+  "id": "aldridge",
+  "name": "May Aldridge",
+  "prompt": "portrait of one woman in their forties, a cafe owner in an apron with her sleeves rolled, warm face, grey hair in an updo, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 1819172281
+ },
+ {
+  "id": "tench",
+  "name": "Olive Tench",
+  "prompt": "portrait of one woman in their forties, an archive clerk in a grey cardigan with spectacles on a chain, sharp, grey hair in an updo, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 310650267
+ },
+ {
+  "id": "halloway",
+  "name": "Jim Halloway",
+  "prompt": "portrait of one man in their forties, a big gasworks stoker in a sooty jersey and cap, beard, dark short cropped hair, a full beard, round wire glasses, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 185025760
+ },
+ {
+  "id": "wright",
+  "name": "Amos Wright",
+  "prompt": "portrait of one man elderly, lined face, a weathered canal lock keeper in an oilskin and cap, pipe-less, grey receding hairline, balding, a full beard, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 1137971916
+ },
+ {
+  "id": "benedetti",
+  "name": "Rosa Benedetti",
+  "prompt": "portrait of one woman in their forties, an Italian market stallholder in a headscarf and shawl, warm smile, dark hair in an updo, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 3640856743
+ },
+ {
+  "id": "ziegler",
+  "name": "Max Ziegler",
+  "prompt": "portrait of one man elderly, lined face, an elderly pawnbroker with an eyeglass and a velvet waistcoat, grey receding hairline, balding, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 3318549121
+ },
+ {
+  "id": "brace",
+  "name": "Ida Brace",
+  "prompt": "portrait of one woman in their forties, a tram depot dispatcher in a uniform jacket and cap, clipboard, dark short cropped hair, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 294401676
+ },
+ {
+  "id": "lark",
+  "name": "Sid Lark",
+  "prompt": "portrait of one man in their forties, a stage doorman in a braided uniform coat and cap, dark slicked-back hair, a moustache, wry half-smile, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9778933
+ },
+ {
+  "id": "cobbett",
+  "name": "Ernie Cobbett",
+  "prompt": "portrait of one man elderly, lined face, an elderly hospital night porter in a brown uniform coat, grey receding hairline, balding, clean-shaven, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 254682770
+ },
+ {
+  "id": "rusk",
+  "name": "Davy Rusk",
+  "prompt": "portrait of one man in their twenties, a seventeen-year-old printer’s apprentice with ink on his fingers, curly hair, cap, dark curly hair, clean-shaven, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9976930
+ },
+ {
+  "id": "frye",
+  "name": "Lucas Frye",
+  "prompt": "portrait of one man in their forties, a mortuary attendant in a rubber apron over a white coat, calm, dark short cropped hair, clean-shaven, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9616735
+ },
+ {
+  "id": "marlow",
+  "name": "Edith Marlow",
+  "prompt": "portrait of one woman in their forties, a librarian in a high-collared blouse with spectacles, severe, grey hair in an updo, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 836253693
+ },
+ {
+  "id": "roper",
+  "name": "Hannah Roper",
+  "prompt": "portrait of one woman in their twenties, a young schoolteacher in a plain dress with a white collar, kind, dark bobbed hair, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 309103129
+ },
+ {
+  "id": "hobden",
+  "name": "Jack Hobden",
+  "prompt": "portrait of one man in their forties, a coal merchant in a leather cap and coal-dusted waistcoat, dark short cropped hair, a moustache, stern, hard stare, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 705552569
+ },
+ {
+  "id": "kane",
+  "name": "Bridget Kane",
+  "prompt": "portrait of one woman in their forties, a worn Irish woman of fifty in a black shawl, grief in the eyes, grey hair in an updo, worried, tired eyes, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9749012
+ },
+ {
+  "id": "sayer",
+  "name": "Leonard Sayer",
+  "prompt": "portrait of one man elderly, lined face, an elderly coroner’s clerk in a wing collar and pince-nez, grey receding hairline, balding, clean-shaven, round wire glasses, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 309618225
+ },
+ {
+  "id": "bird",
+  "name": "Silas Bird",
+  "prompt": "portrait of one man elderly, lined face, an old cemetery sexton in a battered hat and coat, spade handle, grey receding hairline, balding, a full beard, calm expression, solo, one person alone, 1950s pulp crime paperback cover art, oil painting, chiaroscuro light, muted colours, dark smoky background, bust portrait, looking at viewer",
+  "negative": "two people, couple, multiple people, crowd, second face, cigarette, cigar, pipe, smoke, smoking, photograph, modern clothes, text, letters, lettering, writing, words, logo, typography, caption, watermark, signature, blurry, deformed, disfigured, extra fingers, bad anatomy, cartoon, anime, low quality, frame, border",
+  "seed": 9488704
  }
 ]

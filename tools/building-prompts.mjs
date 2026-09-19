@@ -24,12 +24,31 @@ const WHAT = {
   florist: 'a flower shop with orchids in a lit window', tower: 'a tall brick water tower', cemetery: 'a cemetery gate with an iron arch and gravestones',
   tram: 'a tram stop with a shelter and a tram waiting', radio: 'a wireless station with a tall mast and a red light',
 };
-const STYLE = '1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people';
-const NEGATIVE = 'text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame';
+const STYLE = 'exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people';
+const NEGATIVE = 'interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame';
 
 // Places the generic type does not describe well enough to be recognised.
 // Keyed `case-location`; the text replaces the type description.
 const LANDMARKS = {
+  'bell-chapterhouse': 'a medieval stone chapter house with a slate roof and arched windows beside a cathedral, seen from the close',
+  'bell-crypt': 'the crypt entrance at the foot of a cathedral wall: a low stone doorway with iron gates, steps going down, one lamp',
+  'bell-sanatorium': 'a small brick Victorian school infirmary building at the back of a school, barred windows, one lit, a locked door',
+  'bell-cottage': 'a stone verger’s cottage beside a cathedral close with a lit window and a garden gate',
+  'bell-observ': 'a small Victorian observatory with a copper dome on a hill at night, the dome slit open',
+  'bell-watertower': 'a tall Victorian brick water tower with a crenellated top on a hill at night',
+  'bell-deanery': 'a Georgian stone diocesan office building with a brass plate and a lamp over the door',
+  'bell-inn': 'a small stone hill pub with a hanging painted sign, warm windows, no neon',
+  'lamp-bathhouse': 'a Victorian brick public bathhouse exterior with a domed roof and an arched lit entrance',
+  'lamp-gasoffice': 'a Victorian gas company office building exterior with a brass plate, tall lit windows and iron railings',
+  'lamp-mission': 'a poor brick mission hall exterior at night with a lit doorway and a queue of men with bowls outside',
+  'lamp-pub': 'a small Victorian corner pub exterior with etched glass windows and a hanging gas lamp sign, no neon',
+  'lamp-crowe': 'a tall narrow brick boarding house with nine windows, one lit, a fanlight over the door',
+  'orchid-baths': 'a tiled public bathhouse exterior with a domed roof, steam from the vents, a lit entrance',
+  'salt-bank': 'a granite harbour bank exterior with columns and a lit doorway on a wet street',
+  'salt-baths': 'a brick harbour bathhouse exterior with a domed roof and a lit arched door',
+  'salt-hall': 'a longshoremen’s union hall exterior, a brick hall with a lit doorway and a notice board',
+  'salt-hospital': 'a seamen’s infirmary exterior, a brick hospital with lit ward windows and an ambulance at the door',
+  'salt-shipping': 'a small shipping agent’s office on the quay with one window lit all night and a brass plate',
   'salt-brine': 'a low dockside pub with sawdust on the floor, a hanging brass bell over a plain wooden door, small yellow windows, no neon',
   'salt-customs': 'a stone customs house with a clock tower, a flagpole, a colonnade and a lit brass-lamped doorway on the quay',
   'salt-harbourmaster': 'a harbourmaster\'s office on the end of a quay, a signal mast with flags, a wide lit window over the water and a slipway',

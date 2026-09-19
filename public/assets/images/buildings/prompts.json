@@ -2,631 +2,855 @@
  {
   "id": "orchid-gilded",
   "name": "The Gilded Hotel",
-  "prompt": "a grand art deco hotel with a lit entrance canopy and a doorman, called The Gilded Hotel, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a grand art deco hotel with a lit entrance canopy and a doorman, called The Gilded Hotel, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1957173381
  },
  {
   "id": "orchid-herald",
   "name": "The Ashgrave Herald",
-  "prompt": "a newspaper building with tall lit windows and delivery trucks, called The Ashgrave Herald, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a newspaper building with tall lit windows and delivery trucks, called The Ashgrave Herald, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1982284528
  },
  {
   "id": "orchid-lyceum",
   "name": "The Lyceum",
-  "prompt": "a theatre with a lit marquee and rows of bulbs, called The Lyceum, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a theatre with a lit marquee and rows of bulbs, called The Lyceum, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2114828819
  },
  {
   "id": "orchid-belvedere",
   "name": "Café Belvedere",
-  "prompt": "an all-night cafe with a green awning and steamed windows, called Café Belvedere, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "an all-night cafe with a green awning and steamed windows, called Café Belvedere, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 257639264
  },
  {
   "id": "orchid-gardens",
   "name": "Ordell Gardens",
-  "prompt": "a city park gate with iron railings, trees and a bandstand, called Ordell Gardens, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a city park gate with iron railings, trees and a bandstand, called Ordell Gardens, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 319341010
  },
  {
   "id": "orchid-trust",
   "name": "Ashgrave Trust",
-  "prompt": "a granite bank with tall columns, called Ashgrave Trust, in The Heights, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a granite bank with tall columns, called Ashgrave Trust, in The Heights, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1183796300
  },
  {
   "id": "orchid-precinct",
   "name": "Ashgrave Precinct",
-  "prompt": "a stone police station with two globe lamps at the door, called Ashgrave Precinct, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone police station with two globe lamps at the door, called Ashgrave Precinct, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1644737538
  },
  {
   "id": "orchid-cathedral",
   "name": "St. Ordell’s",
-  "prompt": "a stone gothic church with a tall steeple, called St. Ordell’s, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone gothic church with a tall steeple, called St. Ordell’s, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2473144064
  },
  {
   "id": "orchid-mercy",
   "name": "Mercy Hospital",
-  "prompt": "a hospital with a red cross sign and lit ward windows, called Mercy Hospital, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a hospital with a red cross sign and lit ward windows, called Mercy Hospital, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1176940996
  },
  {
   "id": "orchid-market",
   "name": "Lantern Market",
-  "prompt": "a covered market with stalls and hanging lanterns, called Lantern Market, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a covered market with stalls and hanging lanterns, called Lantern Market, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2121745608
  },
  {
   "id": "orchid-library",
   "name": "Carnegie Library",
-  "prompt": "a library with stone steps and columns, called Carnegie Library, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a library with stone steps and columns, called Carnegie Library, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 676562351
  },
  {
   "id": "orchid-exchange",
   "name": "Central Exchange",
-  "prompt": "a narrow office building with rows of lit windows, called Central Exchange, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a narrow office building with rows of lit windows, called Central Exchange, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 630868911
  },
  {
   "id": "orchid-morgue",
   "name": "City Morgue",
-  "prompt": "a low stone morgue building with barred windows, called City Morgue, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a low stone morgue building with barred windows, called City Morgue, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2134671539
  },
  {
   "id": "orchid-tram",
   "name": "Tram Terminus",
-  "prompt": "a tram stop with a shelter and a tram waiting, called Tram Terminus, in Old Town, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tram stop with a shelter and a tram waiting, called Tram Terminus, in Old Town, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2532038326
  },
  {
   "id": "orchid-jade",
   "name": "The Jade Room",
-  "prompt": "a nightclub with a neon sign and a doorman, called The Jade Room, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a nightclub with a neon sign and a doorman, called The Jade Room, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2531724164
  },
  {
   "id": "orchid-imports",
   "name": "Mireaux Imports",
-  "prompt": "a flower shop with orchids in a lit window, called Mireaux Imports, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a flower shop with orchids in a lit window, called Mireaux Imports, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2436391522
  },
  {
   "id": "orchid-pharmacy",
   "name": "Pike’s Pharmacy",
-  "prompt": "a corner shop with a striped awning and a lit window, called Pike’s Pharmacy, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Pike’s Pharmacy, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1259078207
  },
  {
   "id": "orchid-baths",
   "name": "Lantern Baths",
-  "prompt": "a tiled public bathhouse with a domed roof and steam, called Lantern Baths, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tiled public bathhouse exterior with a domed roof, steam from the vents, a lit entrance, called Lantern Baths, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1166665172
  },
  {
   "id": "orchid-cannery",
   "name": "The Old Cannery",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called The Old Cannery, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called The Old Cannery, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1060897538
  },
  {
   "id": "orchid-ferry",
   "name": "Ferry Landing",
-  "prompt": "a ferry pier with a ticket booth and a boat, called Ferry Landing, in Lantern Quarter, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a ferry pier with a ticket booth and a boat, called Ferry Landing, in Lantern Quarter, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1170476814
  },
  {
   "id": "orchid-parrot",
   "name": "The Blue Parrot",
-  "prompt": "a small jazz bar with a neon sign and a lit doorway, called The Blue Parrot, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a small jazz bar with a neon sign and a lit doorway, called The Blue Parrot, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2207640098
  },
  {
   "id": "orchid-tenement",
   "name": "Tenement Row",
-  "prompt": "a brick tenement with fire escapes, called Tenement Row, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick tenement with fire escapes, called Tenement Row, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1633018578
  },
  {
   "id": "orchid-pawn",
   "name": "Cobb’s Pawnshop",
-  "prompt": "a corner shop with a striped awning and a lit window, called Cobb’s Pawnshop, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Cobb’s Pawnshop, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2531903508
  },
  {
   "id": "orchid-garage",
   "name": "Rainer Garage",
-  "prompt": "a garage with a big open door, a car on a lift and a petrol pump, called Rainer Garage, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a garage with a big open door, a car on a lift and a petrol pump, called Rainer Garage, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1949961139
  },
  {
   "id": "orchid-union",
   "name": "Dockers’ Union Hall",
-  "prompt": "a narrow office building with rows of lit windows, called Dockers’ Union Hall, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a narrow office building with rows of lit windows, called Dockers’ Union Hall, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1184588995
  },
  {
   "id": "orchid-docks",
   "name": "Rainer Docks",
-  "prompt": "a harbour dock with a crane, wet planks and a moored boat, called Rainer Docks, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a harbour dock with a crane, wet planks and a moored boat, called Rainer Docks, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1168913044
  },
  {
   "id": "orchid-warehouse",
   "name": "Bonded Warehouse 4",
-  "prompt": "a bonded warehouse with big loading doors, called Bonded Warehouse 4, in The Flats, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a bonded warehouse with big loading doors, called Bonded Warehouse 4, in The Flats, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3120967351
  },
  {
   "id": "orchid-chapel",
   "name": "Sailors’ Chapel",
-  "prompt": "a stone gothic church with a tall steeple, called Sailors’ Chapel, in The Bluff, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone gothic church with a tall steeple, called Sailors’ Chapel, in The Bluff, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1841417095
  },
  {
   "id": "orchid-manor",
   "name": "Voss Manor",
-  "prompt": "a large mansion on a hill behind iron gates, called Voss Manor, in The Bluff, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a large mansion on a hill behind iron gates, called Voss Manor, in The Bluff, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1176818353
  },
  {
   "id": "orchid-baylight",
   "name": "Bay Light",
-  "prompt": "a lighthouse on a point with the beam on, called Bay Light, in The Bluff, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a lighthouse on a point with the beam on, called Bay Light, in The Bluff, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1393424072
  },
  {
   "id": "salt-pier9",
   "name": "Pier Nine",
-  "prompt": "a long wooden pier at night with one gas lamp at the end, storm boards, police tape and a ladder down to black water, called Pier Nine, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a long wooden pier at night with one gas lamp at the end, storm boards, police tape and a ladder down to black water, called Pier Nine, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2238052026
  },
  {
   "id": "salt-harbourmaster",
   "name": "Harbourmaster’s Office",
-  "prompt": "a harbourmaster's office on the end of a quay, a signal mast with flags, a wide lit window over the water and a slipway, called Harbourmaster’s Office, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a harbourmaster's office on the end of a quay, a signal mast with flags, a wide lit window over the water and a slipway, called Harbourmaster’s Office, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1955969292
  },
  {
   "id": "salt-customs",
   "name": "The Customs House",
-  "prompt": "a stone customs house with a clock tower, a flagpole, a colonnade and a lit brass-lamped doorway on the quay, called The Customs House, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone customs house with a clock tower, a flagpole, a colonnade and a lit brass-lamped doorway on the quay, called The Customs House, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 693329801
  },
  {
   "id": "salt-marconi",
   "name": "Marconi Station",
-  "prompt": "a wireless station with a tall mast and a red light, called Marconi Station, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a wireless station with a tall mast and a red light, called Marconi Station, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 404419052
  },
  {
   "id": "salt-excise",
   "name": "Dockside Café",
-  "prompt": "an all-night cafe with a green awning and steamed windows, called Dockside Café, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "an all-night cafe with a green awning and steamed windows, called Dockside Café, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 359001892
  },
  {
   "id": "salt-bondstore",
   "name": "Bond Store 12",
-  "prompt": "a bonded warehouse with big loading doors, called Bond Store 12, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a bonded warehouse with big loading doors, called Bond Store 12, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4208787109
  },
  {
   "id": "salt-pawnshop",
   "name": "Lundy’s Pawn",
-  "prompt": "a corner shop with a striped awning and a lit window, called Lundy’s Pawn, in Customs Row, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Lundy’s Pawn, in Customs Row, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 738970615
  },
  {
   "id": "salt-hall",
   "name": "Longshoremen’s Hall",
-  "prompt": "a narrow office building with rows of lit windows, called Longshoremen’s Hall, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a longshoremen’s union hall exterior, a brick hall with a lit doorway and a notice board, called Longshoremen’s Hall, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2427254066
  },
  {
   "id": "salt-printers",
   "name": "The Docker’s Voice",
-  "prompt": "a newspaper building with tall lit windows and delivery trucks, called The Docker’s Voice, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a newspaper building with tall lit windows and delivery trucks, called The Docker’s Voice, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2540850194
  },
  {
   "id": "salt-station",
   "name": "Harbour Station",
-  "prompt": "a stone police station with two globe lamps at the door, called Harbour Station, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone police station with two globe lamps at the door, called Harbour Station, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1963228571
  },
  {
   "id": "salt-chandler",
   "name": "Vetch & Son, Chandlers",
-  "prompt": "a corner shop with a striped awning and a lit window, called Vetch & Son, Chandlers, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Vetch & Son, Chandlers, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 844546560
  },
  {
   "id": "salt-shipping",
   "name": "Salvi Shipping",
-  "prompt": "a narrow office building with rows of lit windows, called Salvi Shipping, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a small shipping agent’s office on the quay with one window lit all night and a brass plate, called Salvi Shipping, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3190943271
  },
  {
   "id": "salt-bank",
   "name": "Harbour Savings",
-  "prompt": "a granite bank with tall columns, called Harbour Savings, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a granite harbour bank exterior with columns and a lit doorway on a wet street, called Harbour Savings, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2427075381
  },
  {
   "id": "salt-hospital",
   "name": "Seamen’s Infirmary",
-  "prompt": "a hospital with a red cross sign and lit ward windows, called Seamen’s Infirmary, in The Hall, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a seamen’s infirmary exterior, a brick hospital with lit ward windows and an ambulance at the door, called Seamen’s Infirmary, in The Hall, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3403550387
  },
  {
   "id": "salt-light",
   "name": "Grieve Point Light",
-  "prompt": "a tall white lighthouse on a rocky point with the beam sweeping over black water, called Grieve Point Light, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tall white lighthouse on a rocky point with the beam sweeping over black water, called Grieve Point Light, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2234359613
  },
  {
   "id": "salt-raskhouse",
   "name": "The Rask House",
-  "prompt": "a large mansion on a hill behind iron gates, called The Rask House, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a large mansion on a hill behind iron gates, called The Rask House, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2762431840
  },
  {
   "id": "salt-chapel",
   "name": "Fishermen’s Chapel",
-  "prompt": "a stone gothic church with a tall steeple, called Fishermen’s Chapel, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone gothic church with a tall steeple, called Fishermen’s Chapel, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 286913972
  },
  {
   "id": "salt-coastguard",
   "name": "Coastguard Tower",
-  "prompt": "a square stone coastguard watch tower with a glass observation room, a radio mast and a searchlight, no lighthouse, called Coastguard Tower, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a square stone coastguard watch tower with a glass observation room, a radio mast and a searchlight, no lighthouse, called Coastguard Tower, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 689609736
  },
  {
   "id": "salt-icehouse",
   "name": "The Ice House",
-  "prompt": "a windowless stone ice house on the water with a wide door, steps down to the harbour and a boat unloading, called The Ice House, in Grieve Point, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a windowless stone ice house on the water with a wide door, steps down to the harbour and a boat unloading, called The Ice House, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2678235118
  },
  {
   "id": "salt-brine",
   "name": "The Brine & Bell",
-  "prompt": "a low dockside pub with sawdust on the floor, a hanging brass bell over a plain wooden door, small yellow windows, no neon, called The Brine & Bell, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a low dockside pub with sawdust on the floor, a hanging brass bell over a plain wooden door, small yellow windows, no neon, called The Brine & Bell, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2225394615
  },
  {
   "id": "salt-seamen",
   "name": "Seamen’s Mission",
-  "prompt": "a brick tenement with fire escapes, called Seamen’s Mission, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick tenement with fire escapes, called Seamen’s Mission, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 742206944
  },
  {
   "id": "salt-tram",
   "name": "Quay Tram Stop",
-  "prompt": "a tram stop with a shelter and a tram waiting, called Quay Tram Stop, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tram stop with a shelter and a tram waiting, called Quay Tram Stop, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2427627555
  },
  {
   "id": "salt-drydock",
   "name": "Number Four Drydock",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called Number Four Drydock, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called Number Four Drydock, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1500010181
  },
  {
   "id": "salt-baths",
   "name": "Harbour Baths",
-  "prompt": "a tiled public bathhouse with a domed roof and steam, called Harbour Baths, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick harbour bathhouse exterior with a domed roof and a lit arched door, called Harbour Baths, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2224898567
  },
  {
   "id": "salt-saltworks",
   "name": "The Salt Works",
-  "prompt": "a salt works with white salt heaps, brick kilns and sacks stacked under a lamp, called The Salt Works, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a salt works with white salt heaps, brick kilns and sacks stacked under a lamp, called The Salt Works, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3603898259
  },
  {
   "id": "salt-ropewalk",
   "name": "The Ropewalk",
-  "prompt": "a bonded warehouse with big loading doors, called The Ropewalk, in The Salt Yards, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a bonded warehouse with big loading doors, called The Ropewalk, in The Salt Yards, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3556137524
  },
  {
   "id": "salt-trawler",
   "name": "The Trawler Berths",
-  "prompt": "trawler berths with three fishing boats tied up, nets hung to dry, gulls and a fish market shed, called The Trawler Berths, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "trawler berths with three fishing boats tied up, nets hung to dry, gulls and a fish market shed, called The Trawler Berths, in The Narrows, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2793565900
  },
  {
   "id": "salt-cannery",
   "name": "Narrows Cannery",
-  "prompt": "a corrugated iron cannery on the water with FISH painted out, a conveyor, tin cans stacked and a chimney, boats alongside, called Narrows Cannery, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corrugated iron cannery on the water with FISH painted out, a conveyor, tin cans stacked and a chimney, boats alongside, called Narrows Cannery, in The Narrows, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 115940981
  },
  {
   "id": "salt-morgue",
   "name": "Harbour Morgue",
-  "prompt": "a low stone morgue building with barred windows, called Harbour Morgue, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a low stone morgue building with barred windows, called Harbour Morgue, in The Narrows, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 580168416
+ },
+ {
+  "id": "salt-saltstairs",
+  "name": "The Old Salt Stairs",
+  "prompt": "old stone steps cut into a sea cliff under a lighthouse at night, a rowing boat pulled up, a bundle of blankets in a cave mouth, no lights, called The Old Salt Stairs, in Grieve Point, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 4236256345
  },
  {
   "id": "salt-slip",
   "name": "Ferry Slip",
-  "prompt": "a ferry pier with a ticket booth and a boat, called Ferry Slip, in The Narrows, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a ferry pier with a ticket booth and a boat, called Ferry Slip, in The Narrows, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2427592249
  },
  {
   "id": "bell-tower",
   "name": "The Bell Tower",
-  "prompt": "a stone gothic church with a tall steeple, called The Bell Tower, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone gothic church with a tall steeple, called The Bell Tower, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4137725981
  },
  {
   "id": "bell-rectory",
   "name": "The Rectory",
-  "prompt": "a large mansion on a hill behind iron gates, called The Rectory, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a large mansion on a hill behind iron gates, called The Rectory, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1430597286
  },
  {
   "id": "bell-chapterhouse",
   "name": "The Chapter House",
-  "prompt": "a library with stone steps and columns, called The Chapter House, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a medieval stone chapter house with a slate roof and arched windows beside a cathedral, seen from the close, called The Chapter House, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 727550815
  },
  {
   "id": "bell-almshouse",
   "name": "The Almshouse",
-  "prompt": "a brick tenement with fire escapes, called The Almshouse, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick tenement with fire escapes, called The Almshouse, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 641101251
  },
  {
   "id": "bell-deanery",
   "name": "Diocesan Office",
-  "prompt": "a narrow office building with rows of lit windows, called Diocesan Office, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a Georgian stone diocesan office building with a brass plate and a lamp over the door, called Diocesan Office, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1888412242
  },
  {
   "id": "bell-foundry",
   "name": "Ordell Bell Foundry",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called Ordell Bell Foundry, in Cathedral Hill, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called Ordell Bell Foundry, in Cathedral Hill, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3968180573
  },
  {
   "id": "bell-division",
   "name": "Hill Division",
-  "prompt": "a stone police station with two globe lamps at the door, called Hill Division, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone police station with two globe lamps at the door, called Hill Division, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2558254873
  },
  {
   "id": "bell-cottage",
   "name": "Verger’s Cottage",
-  "prompt": "a brick tenement with fire escapes, called Verger’s Cottage, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone verger’s cottage beside a cathedral close with a lit window and a garden gate, called Verger’s Cottage, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1304921511
  },
  {
   "id": "bell-green",
   "name": "The Close Green",
-  "prompt": "a city park gate with iron railings, trees and a bandstand, called The Close Green, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a city park gate with iron railings, trees and a bandstand, called The Close Green, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4125792279
  },
  {
   "id": "bell-academy",
   "name": "Ordell Academy",
-  "prompt": "a boarding school with a gatehouse and a clock, called Ordell Academy, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a boarding school with a gatehouse and a clock, called Ordell Academy, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3463312128
+ },
+ {
+  "id": "bell-sanatorium",
+  "name": "The Academy Sanatorium",
+  "prompt": "a locked Victorian school infirmary ward at night, iron beds, one lamp, a barred window, a heavy door with a small glass panel, called The Academy Sanatorium, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 855253815
  },
  {
   "id": "bell-cemetery",
   "name": "Ordell Cemetery",
-  "prompt": "a cemetery gate with an iron arch and gravestones, called Ordell Cemetery, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a cemetery gate with an iron arch and gravestones, called Ordell Cemetery, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1299066718
  },
  {
   "id": "bell-dispensary",
   "name": "Hill Dispensary",
-  "prompt": "a corner shop with a striped awning and a lit window, called Hill Dispensary, in The Close, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Hill Dispensary, in The Close, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2349654220
  },
  {
   "id": "bell-observ",
   "name": "The Observatory",
-  "prompt": "a lighthouse on a point with the beam on, called The Observatory, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a small Victorian observatory with a copper dome on a hill at night, the dome slit open, called The Observatory, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3560183253
  },
  {
   "id": "bell-glasshouse",
   "name": "The Glasshouse",
-  "prompt": "a covered market with stalls and hanging lanterns, called The Glasshouse, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a covered market with stalls and hanging lanterns, called The Glasshouse, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2384580752
  },
  {
   "id": "bell-asylum",
   "name": "Marrow House",
-  "prompt": "a hospital with a red cross sign and lit ward windows, called Marrow House, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a hospital with a red cross sign and lit ward windows, called Marrow House, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3175260553
  },
  {
   "id": "bell-inn",
   "name": "The Lamplighter’s Arms",
-  "prompt": "a small jazz bar with a neon sign and a lit doorway, called The Lamplighter’s Arms, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a small stone hill pub with a hanging painted sign, warm windows, no neon, called The Lamplighter’s Arms, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3226637821
  },
  {
   "id": "bell-villa",
   "name": "The Quint Villa",
-  "prompt": "a large mansion on a hill behind iron gates, called The Quint Villa, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a large mansion on a hill behind iron gates, called The Quint Villa, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4139383906
  },
  {
   "id": "bell-bookshop",
   "name": "Amsel’s Books",
-  "prompt": "a corner shop with a striped awning and a lit window, called Amsel’s Books, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Amsel’s Books, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4199098315
  },
  {
   "id": "bell-tearooms",
   "name": "Terrace Tea Rooms",
-  "prompt": "an all-night cafe with a green awning and steamed windows, called Terrace Tea Rooms, in The Terraces, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "an all-night cafe with a green awning and steamed windows, called Terrace Tea Rooms, in The Terraces, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 530387796
  },
  {
   "id": "bell-depot",
   "name": "The Tram Depot",
-  "prompt": "a tram stop with a shelter and a tram waiting, called The Tram Depot, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tram stop with a shelter and a tram waiting, called The Tram Depot, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4122645320
  },
  {
   "id": "bell-pawn",
   "name": "Hobb’s Pawn",
-  "prompt": "a corner shop with a striped awning and a lit window, called Hobb’s Pawn, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a corner shop with a striped awning and a lit window, called Hobb’s Pawn, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1241721076
  },
  {
   "id": "bell-mission",
   "name": "Lower Chapel",
-  "prompt": "a stone gothic church with a tall steeple, called Lower Chapel, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a stone gothic church with a tall steeple, called Lower Chapel, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1417303456
  },
  {
   "id": "bell-laundry",
   "name": "Hill Laundry",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called Hill Laundry, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called Hill Laundry, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 302459953
  },
  {
   "id": "bell-tallow",
   "name": "Tallow Street",
-  "prompt": "a brick tenement with fire escapes, called Tallow Street, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick tenement with fire escapes, called Tallow Street, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 3702203585
  },
  {
   "id": "bell-waterboard",
   "name": "Ordell Water Board",
-  "prompt": "a narrow office building with rows of lit windows, called Ordell Water Board, in Lower Ordell, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a narrow office building with rows of lit windows, called Ordell Water Board, in Lower Ordell, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1121813403
  },
  {
   "id": "bell-reservoir",
   "name": "The Reservoir",
-  "prompt": "an iron bridge over dark water, called The Reservoir, in The Water, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "an iron bridge over dark water, called The Reservoir, in The Water, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1303060355
  },
  {
   "id": "bell-boathouse",
   "name": "Reservoir Boathouse",
-  "prompt": "a ferry pier with a ticket booth and a boat, called Reservoir Boathouse, in The Water, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a ferry pier with a ticket booth and a boat, called Reservoir Boathouse, in The Water, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2030597364
  },
  {
   "id": "bell-pumphouse",
   "name": "The Pump House",
-  "prompt": "a brick factory with a chimney and a sawtooth roof, called The Pump House, in The Water, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called The Pump House, in The Water, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 2013591756
  },
  {
   "id": "bell-crypt",
   "name": "The Crypt",
-  "prompt": "a granite bank with tall columns, called The Crypt, in The Water, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "the crypt entrance at the foot of a cathedral wall: a low stone doorway with iron gates, steps going down, one lamp, called The Crypt, in The Water, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 4122117762
  },
  {
   "id": "bell-watertower",
   "name": "Waterworks Tower",
-  "prompt": "a tall brick water tower, called Waterworks Tower, in The Water, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
-  "negative": "text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "prompt": "a tall Victorian brick water tower with a crenellated top on a hill at night, called Waterworks Tower, in The Water, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
   "seed": 1138457534
+ },
+ {
+  "id": "lamp-wickstation",
+  "name": "Ward Station",
+  "prompt": "a stone police station with two globe lamps at the door, called Ward Station, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2833890467
+ },
+ {
+  "id": "lamp-crowe",
+  "name": "Crowe’s Boarding House",
+  "prompt": "a tall narrow brick boarding house with nine windows, one lit, a fanlight over the door, called Crowe’s Boarding House, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1794714327
+ },
+ {
+  "id": "lamp-mission",
+  "name": "St. Jude’s Mission",
+  "prompt": "a poor mission hall at night with a lit doorway, a queue of men with bowls, a nun at the door, called St. Jude’s Mission, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2469604725
+ },
+ {
+  "id": "lamp-pub",
+  "name": "The Gas Lamp",
+  "prompt": "a small Victorian corner pub exterior with etched glass windows and a hanging gas lamp sign, no neon, called The Gas Lamp, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 4252154726
+ },
+ {
+  "id": "lamp-chemist",
+  "name": "Nunn’s Chemist",
+  "prompt": "a corner shop with a striped awning and a lit window, called Nunn’s Chemist, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2142765446
+ },
+ {
+  "id": "lamp-cafe",
+  "name": "The Copper Kettle",
+  "prompt": "an all-night cafe with a green awning and steamed windows, called The Copper Kettle, in Wick Street, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2967371348
+ },
+ {
+  "id": "lamp-gasoffice",
+  "name": "Gas Company, Ward Office",
+  "prompt": "a Victorian gas company office with a brass plate, tall windows full of card index drawers, one lamp lit, called Gas Company, Ward Office, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 3547847806
+ },
+ {
+  "id": "lamp-gasworks",
+  "name": "The Gasworks",
+  "prompt": "a Victorian gasworks at night with two huge iron gasholders and a row of brick retort houses, smoke, one lit window, called The Gasworks, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 3170155904
+ },
+ {
+  "id": "lamp-lamp41",
+  "name": "Lamp 41, Gasworks Lane",
+  "prompt": "a lone Victorian gas street lamp on a corner between soot-black tenements and a high brick gasworks wall at night, the lamp unlit, chalk marks on the wet pavement, called Lamp 41, Gasworks Lane, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 43464012
+ },
+ {
+  "id": "lamp-tenement",
+  "name": "Gasworks Lane Tenements",
+  "prompt": "a four-storey Victorian brick tenement at night with a fire-blackened top floor, washing lines, one lit window, called Gasworks Lane Tenements, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 3447060093
+ },
+ {
+  "id": "lamp-coal",
+  "name": "Hobden’s Coal Yard",
+  "prompt": "a coal merchant’s yard at night with sacks of coke stacked under a lamp, a cart, a weighing scale, called Hobden’s Coal Yard, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2967384654
+ },
+ {
+  "id": "lamp-retort",
+  "name": "The Old Retort House",
+  "prompt": "a derelict bricked-up Victorian retort house behind a gasholder at night, a faint glow from a stove through a crack, weeds, no lamps, called The Old Retort House, in Gasworks Lane, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 219142567
+ },
+ {
+  "id": "lamp-music",
+  "name": "The Alhambra Music Hall",
+  "prompt": "a Victorian music hall at night with a lit marquee, bills for a dancer, a stage door down an alley, called The Alhambra Music Hall, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1804042318
+ },
+ {
+  "id": "lamp-pawn",
+  "name": "Ziegler’s Pawn",
+  "prompt": "a corner shop with a striped awning and a lit window, called Ziegler’s Pawn, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2967759167
+ },
+ {
+  "id": "lamp-market",
+  "name": "The Night Market",
+  "prompt": "a night market under canvas awnings with hanging lanterns, stalls of buttons and chalk and thread, wet cobbles, called The Night Market, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 72238899
+ },
+ {
+  "id": "lamp-depot",
+  "name": "Wick Street Tram Depot",
+  "prompt": "a tram stop with a shelter and a tram waiting, called Wick Street Tram Depot, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1795251293
+ },
+ {
+  "id": "lamp-garage",
+  "name": "Fenwick Motors",
+  "prompt": "a garage with a big open door, a car on a lift and a petrol pump, called Fenwick Motors, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 4195421726
+ },
+ {
+  "id": "lamp-exchange",
+  "name": "Wards Telephone Exchange",
+  "prompt": "a wireless station with a tall mast and a red light, called Wards Telephone Exchange, in The Alhambra, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 2444910426
+ },
+ {
+  "id": "lamp-canal",
+  "name": "The Canal Lock",
+  "prompt": "a canal lock at night with a lock keeper’s cottage, black water, a towpath with no lamps, called The Canal Lock, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1794206244
+ },
+ {
+  "id": "lamp-bridge",
+  "name": "Canal Bridge",
+  "prompt": "an iron canal bridge at night with a single gas lamp at its foot, unlit, black water below, called Canal Bridge, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 4067710592
+ },
+ {
+  "id": "lamp-laundry",
+  "name": "Brill & Daughters, Sewing",
+  "prompt": "a brick factory with a chimney and a sawtooth roof, called Brill & Daughters, Sewing, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1354761222
+ },
+ {
+  "id": "lamp-bathhouse",
+  "name": "Wick Street Baths",
+  "prompt": "a Victorian brick public bathhouse exterior with a domed roof and an arched lit entrance, called Wick Street Baths, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 389445046
+ },
+ {
+  "id": "lamp-library",
+  "name": "Wards Reading Room",
+  "prompt": "a library with stone steps and columns, called Wards Reading Room, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1566363812
+ },
+ {
+  "id": "lamp-printworks",
+  "name": "Klein & Sons, Printers",
+  "prompt": "a jobbing printer’s shop at night with a lit window full of broadsheets and a press inside, called Klein & Sons, Printers, in Canal Side, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 3754454124
+ },
+ {
+  "id": "lamp-church",
+  "name": "Holy Cross Church",
+  "prompt": "a stone gothic church with a tall steeple, called Holy Cross Church, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 4087475358
+ },
+ {
+  "id": "lamp-cemetery",
+  "name": "Wards Cemetery",
+  "prompt": "a cemetery gate with an iron arch and gravestones, called Wards Cemetery, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 3855634985
+ },
+ {
+  "id": "lamp-school",
+  "name": "The Ragged School",
+  "prompt": "a boarding school with a gatehouse and a clock, called The Ragged School, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 245567083
+ },
+ {
+  "id": "lamp-courthouse",
+  "name": "The Coroner’s Court",
+  "prompt": "a small Victorian coroner’s court with stone steps and a lamp over the door at night, called The Coroner’s Court, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 1821643756
+ },
+ {
+  "id": "lamp-hospital",
+  "name": "Ward Infirmary",
+  "prompt": "a hospital with a red cross sign and lit ward windows, called Ward Infirmary, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 151506801
+ },
+ {
+  "id": "lamp-morgue",
+  "name": "Ward Mortuary",
+  "prompt": "a low stone morgue building with barred windows, called Ward Mortuary, in Holy Cross, exterior view of the building from across the street, 1950s Chicago street at night in the rain, painted illustration, pulp paperback cover art, oil painting, neon reflections on wet street, film noir, dramatic light, no people",
+  "negative": "interior, indoors, corridor, hallway, room, text, letters, words, signage text, watermark, blurry, deformed, people, faces, cartoon, anime, photograph, modern cars, daytime, low quality, frame",
+  "seed": 85164830
  }
 ]
