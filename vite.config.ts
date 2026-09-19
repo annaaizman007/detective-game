@@ -12,7 +12,8 @@ export default defineConfig({
       '@assets': fileURLToPath(new URL('./public/assets', import.meta.url)),
     },
   },
-  server: { port: 5173, host: true },
+  // The desktop app's preview may hand us a port via PORT; otherwise 5173.
+  server: { port: Number(process.env.PORT) || 5173, host: true },
   preview: { port: 4173 },
   build: {
     target: 'es2020',

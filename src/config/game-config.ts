@@ -24,6 +24,8 @@ export function gameConfig(parent: HTMLElement): Phaser.Types.Core.GameConfig {
       // at boot, and WebGL cannot make a framebuffer that size.
       width: Math.max(320, parent.clientWidth || window.innerWidth),
       height: Math.max(240, parent.clientHeight || window.innerHeight),
+      // A hidden tab reports 0x0 on resize; never let the renderer go there.
+      min: { width: 320, height: 240 },
     },
     render: { pixelArt: false, powerPreference: 'high-performance' },
     input: { activePointers: 3 },
