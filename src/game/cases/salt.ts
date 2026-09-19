@@ -379,7 +379,7 @@ const def: CaseDef = {
       spentLine: 'I have crates to watch. I’m watching them.',
       opinions: { wren: 'Miss Wren signs at the door and never comes inside. I’ve offered her a lamp. She’s never taken it.', salvi: 'Salvi’s name is on the manifest, on the seals, and on the envelope he leaves for me. I haven’t opened it.', ledoux: 'Ledoux breaks a customs seal the way other men open a bottle of beer.' },
       topics: [
-        { id: 'night', q: 'Which crate was opened?', a: 'Bay four, seal number 4471. One twist. Ledoux did it at nine in the evening, on Salvi’s orders, before he sailed. He took out a small case and carried it to the shipping office.' },
+        { id: 'night', q: 'Which crate was opened?', a: 'Bay four, seal number 2216. One twist. Ledoux did it at nine in the evening, on Salvi’s orders, before he sailed. He took out a small case and carried it to the shipping office.' },
         { id: 'case', q: 'What was in the case?', a: 'I don’t open crates. I know what a crate of morphine ampoules sounds like when it’s set down, and that one sounded like it. It went to Salvi. Whatever else happened tonight, that happened first.', after: 'night', cost: 1, effect: { type: 'lead', at: 'shipping' } },
         { id: 'bask', q: 'Bask came to the bond store.', a: 'On the 9th. He asked me what was in the crates. I said I was only a watchman. He said: then watch. I’ve been watching ever since.' },
       ] },
@@ -620,7 +620,7 @@ const def: CaseDef = {
         { person: 'penrose', line: 'Whose hair?', reply: 'Ambrose Rask’s. She showed me once. She came to the chapel at half past four and chalked Bask’s name and I let her. Whoever told her he was drowned told her before the tide did. Ask at the ice house who was walking toward the point at four.',
           effect: { type: 'lead', at: 'icehouse' } },
       ] },
-    { id: 'obj:salt:seal', at: 'bondstore', name: 'A customs seal, broken, no. 4471', drawing: 'button',
+    { id: 'obj:salt:seal', at: 'bondstore', name: 'A customs seal, broken, no. 2216', drawing: 'button',
       desc: 'From bay four. Broken in one twist. Whoever did it had done it before.',
       spoken: 'A customs seal from bay four, broken in one twist.',
       unlocks: [
@@ -658,7 +658,7 @@ const def: CaseDef = {
     ],
     timeline: [
       { time: '8:00 PM', text: 'Okafor closes the chandlery. Forty feet of line and a needle are sold to a man in an oilskin, and signed for in Okafor’s own hand.' },
-      { time: '9:00 PM', text: 'Seal 4471 is broken in the bond store. A small case goes to the shipping office.' },
+      { time: '9:00 PM', text: 'Seal 2216 is broken in the bond store. A small case goes to the shipping office.' },
       { time: '10:00 PM', text: 'A hundredweight of rock salt leaves the salt works on a man’s shoulder. Bask tells Dr. Fenn about a meeting at the pier.' },
       { time: '11:00 PM', text: 'The Marie-Louise clears out. No cargo declared. She anchors in the Narrows with no lights.' },
       { time: '11:15 PM', text: 'A rowing boat goes from the trawler to Pier Nine, one man aboard. Bask leaves the Brine with a note in his hand.' },
