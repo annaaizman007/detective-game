@@ -165,6 +165,15 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
     video.addEventListener('playing', () => { started = true; el.classList.add('is-film', 'is-walking'); });
     const p = video.play();
     if (p && typeof p.catch === 'function') p.catch(() => { if (!done) drawn(); });
+    // A browser that will not run the soundtrack sits at frame zero with
+    // 'playing' fired. Mute it and let the room's foley stand in.
+    at(1800, () => {
+      if (done || !started || video.currentTime > 0.15) return;
+      video.muted = true;
+      void video.play().catch(() => {});
+      foley?.footsteps(9, 300);
+      timers.push(setTimeout(() => foley?.lampClick(), 3600));
+    });
     // If nothing has started in a few seconds (slow network), fall back.
     at(4000, () => { if (!started && !done) drawn(); });
     return { cancel: finish };

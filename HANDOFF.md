@@ -75,10 +75,18 @@ and `src/ui/buildings.ts` draw anything missing. Hair and build in the
 notebook are pinned to the paintings (`traits:` on each suspect) — if you
 re-render a suspect with different hair, change the pin.
 
-The opening film: `tools/intro/prompts.json` → `python3
-tools/render-portraits.py --dir tools/intro --size 896x512 --steps 32` →
-`python3 tools/make-intro.py` (Ken Burns, crossfades, lamp-on, phone
-rattle, grain, synthesised foley) → `public/assets/video/intro.mp4`.
+The opening film (the squad room: the detectives at the table, a man
+running the corridor, the door flung open, the sergeant telling it):
+`tools/intro2/prompts.json` → `python3 tools/render-portraits.py --dir
+tools/intro2 --size 896x512 --steps 34` → `python3 tools/make-intro.py`
+(Ken Burns, crossfades, hand-held shake, grain, synthesised foley) →
+`public/assets/video/intro.mp4`. If a browser will not run the soundtrack
+the film goes muted and the room's foley stands in.
+
+The map is drawn as a model city (`bakeCity` in `src/scenes/board-scene.ts`):
+dense extruded buildings on a grid with roofs and lit/shadowed faces, kept
+off the water, the parks, the streets, the roads and the facade plates;
+bridges only where a street meets water (cartography decides).
 
 ## 5. The narrator
 

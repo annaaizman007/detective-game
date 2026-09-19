@@ -4,6 +4,73 @@ import { BELL_CLUES } from './bell-clues';
 // The Ninth Bell. Cathedral Hill: thirty locations from the tower down to the
 // water, twenty people who will talk if the diocese does not hear about it,
 // and twenty-six documents, most of them written by people who were lying.
+//
+// The suspects lie. The witnesses do not: every witness line below is written
+// from this night and nothing else.
+//
+// The true night, minute by minute (Friday April 9th, 1948):
+//  10:30 PM  Peter Nane leaves the Glasshouse boilers. He tells Lister he has a
+//            hole to fill.
+//  10:45 PM  Tom Harris lets himself out of the Academy with the porter's gate
+//            key and the verger's tower key, meaning to return the tower key.
+//  10:50 PM  Nane signs valve key three out at the Water Board in the Canon's
+//            name, as he does every month for the Glasshouse water. Miss Coyle
+//            knows his hand.
+//  11:00 PM  Nane meets Harris on the reservoir path, takes the tower key out of
+//            his pocket and tells him to forget it. Harris sees his hands in the
+//            lamp and nothing else.
+//  11:30 PM  Constance comes to the verger's cottage for the key, as every night.
+//            It is not on its hook. She goes up anyway. The tower door is already
+//            unlocked, and Nane is on the ringing floor above her.
+//  11:40 PM  Quaile opens the Marrow House gate for Beatrix Ayre on the Matron's
+//            word. She has a bag.
+//  11:45 PM  Rosalind Fay takes car seven out of the depot, unsigned, lights off,
+//            and picks Beatrix up at the Marrow House gate for five pounds.
+//  11:55 PM  Constance reaches the ringing floor. Nane strikes her from behind.
+//            She falls down the stairs with her keys in her hand.
+//  11:58 PM  Shale stops the pump house engines to listen, as he does every night.
+//  12:00 AM  Nane cuts the rope and rings nine with the cut end, badly. Beatrix
+//            stands on the Close Green and counts. Quint, Blake and two boys hear
+//            it in the Observatory, and Quint turns the telescope on the tower.
+//  12:04 AM  Nane comes down the iron rungs on the outside of the tower, cutting
+//            both palms on the rust, and goes toward the reservoir, not the Close.
+//            Quint draws him. Beatrix sees him and runs the other way.
+//  12:05 AM  The Canon, who has heard nine and knows what Constance was about to
+//            find, goes out by the garden door toward the cemetery.
+//  12:20 AM  Nane digs up the Canon's tin box in plot forty-four, takes the four
+//            hundred pounds, leaves the box, and goes down toward the Water Board.
+//  12:25 AM  The Canon reaches plot forty-four, finds the box open and empty,
+//            tears his cassock on the railings, and goes home with the box.
+//  12:30 AM  It begins to rain. Fay, who left Beatrix on the Green, has run the
+//            car down to the reservoir stop and sits on the wall. The Matron goes
+//            out to look for Beatrix.
+//  12:40 AM  Beatrix takes skiff two from the wall stage and rows for the far
+//            side, badly. She loses the oars, then her rosary, and rows with her
+//            hands.
+//  12:45 AM  The Canon is back at the Rectory, mud to the knee. He puts the
+//            cassock in the laundry basket himself and writes to the Dean.
+//   1:00 AM  Nane crosses the reservoir wall on the valve walkway with the bag.
+//            He drops the tower key on the stones; it rings. Fay sees him. Shale
+//            sees him. Quaile closes the Marrow House gate. The Canon's letter
+//            reaches the Dean by hand. The Matron comes into the Glasshouse to get
+//            warm, with reservoir mud on her shoes.
+//   1:10 AM  Nane comes off the walkway at the boathouse. Ferris sees him go
+//            along the bank toward the Lamplighter's.
+//   1:20 AM  Fay brings car seven back to the depot, wet to the knees.
+//   1:30 AM  Nane drinks two rums at the Lamplighter's, wet boots, cut hands, no
+//            money, and says he rang it. Beatrix lands skiff two at the boathouse
+//            stage and walks up toward the Terraces.
+//   2:15 AM  Nane bangs Amsel up, buys the 1939 diocesan report, and tears the
+//            plates of the rungs out in the doorway.
+//   3:00 AM  Nane returns valve key three to the Water Board and initials it P.N.
+//   3:30 AM  Nane comes back to the Glasshouse and sits on the coal with his hands
+//            in a rag.
+//   4:00 AM  The Matron finds Beatrix on the tea room step, wet to the waist. They
+//            argue inside. A glove is left on a chair.
+//   4:30 AM  Quaile lets the Matron and Beatrix back in through the gate.
+//   5:15 AM  Nane sells his watch to Hobb, outright, for money he can spend.
+//   5:30 AM  He buys lint and iodine from Miss Lamb.
+//   6:00 AM  The verger finds Constance at the foot of the stairs, and washes them.
 
 const def: CaseDef = {
   id: 'bell',
@@ -76,7 +143,7 @@ const def: CaseDef = {
     { id: 'tearooms', name: 'Terrace Tea Rooms', type: 'cafe', x: 1040, y: 430, district: 'The Terraces', desc: 'Where the hill takes its gossip with milk and two sugars.' },
     // ---- Lower Ordell
     { id: 'depot', name: 'The Tram Depot', type: 'tram', x: 164, y: 590, district: 'Lower Ordell', desc: 'The last tram up the hill leaves at eleven. Somebody took one out at a quarter to midnight without signing for it.' },
-    { id: 'pawn', name: 'Hobb’s Pawn', type: 'shop', x: 220, y: 470, district: 'Lower Ordell', desc: 'A rosary, a telescope lens, and a set of keys on a church key-ring.' },
+    { id: 'pawn', name: 'Hobb’s Pawn', type: 'shop', x: 220, y: 470, district: 'Lower Ordell', desc: 'A rosary, a telescope lens, and a watch that has been in and out of this window every year for ten years.' },
     { id: 'mission', name: 'Lower Chapel', type: 'church', x: 290, y: 630, district: 'Lower Ordell', desc: 'The poor parish. Their bell is a handbell, and it rang at midnight too.' },
     { id: 'laundry', name: 'Hill Laundry', type: 'factory', x: 100, y: 710, district: 'Lower Ordell', desc: 'Every sheet and church robe on the hill, washed by nuns who see the stains.' },
     { id: 'tallow', name: 'Tallow Street', type: 'home', x: 380, y: 730, district: 'Lower Ordell', desc: 'The street where the hill’s servants live. They see everything and are asked about nothing.' },
@@ -129,7 +196,7 @@ const def: CaseDef = {
       bio: 'Fifteen. Third form at the Academy. Borrows the verger’s tower key to meet a girl from Marrow House on the ringing floor. He was on the reservoir path at eleven on Friday with the key in his pocket.',
       alibi: 'In the sanatorium since Saturday morning. He says he was in his bed by half past eleven on Friday. The porter says he came in at half past twelve without the key.',
       secret: 'Peter Nane stopped him on the reservoir path at eleven, took the tower key from him, and told him that if he said a word the girl would be sent somewhere worse than Marrow House. He has not said a word. He saw Nane’s hands in the lamp when he took the key.',
-      opinions: { verger: 'Mr. Ill lends me the key. He thinks it is harmless. He is kind, and he is wrong.', canon: 'The Canon caned me in September for being out of bounds. He did not ask where I had been.', matron: 'The Matron lets the girl out on Fridays if I bring her a shilling. I bring her a shilling.', tutor: 'Mr. Blake knows about the key. He said he would not tell as long as I brought it back. I did not bring it back.', astro: 'Dr. Quint lets us look at Saturn. She looked at the tower instead on Friday. I saw her turn the telescope.', gardener: 'Nane brings flowers to Marrow House on Sundays. The girl says he stands at the gate for an hour and never goes in.', driver: 'Miss Fay drove past me on the path at a quarter to twelve with the lights off. I ducked.', sister: 'Miss Ayre is the one Nane brings the flowers for. The girl says she never comes to the gate.' },
+      opinions: { verger: 'Mr. Ill lends me the key. He thinks it is harmless. He is kind, and he is wrong.', canon: 'The Canon caned me in September for being out of bounds. He did not ask where I had been.', matron: 'The Matron lets the girl out on Fridays if I bring her a shilling. I bring her a shilling.', tutor: 'Mr. Blake knows about the key. He said he would not tell as long as I brought it back. I did not bring it back.', astro: 'Dr. Quint lets us look at Saturn. On Friday she sent down for the boys and I did not go. I was on the path.', gardener: 'Nane brings flowers to Marrow House on Sundays. The girl says he stands at the gate for an hour and never goes in.', driver: 'Miss Fay drove past me on the path at a quarter to twelve with the lights off. I ducked.', sister: 'Miss Ayre is the one Nane brings the flowers for. The girl says she never comes to the gate.' },
       topics: [
         { id: 'night', q: 'You had the tower key on Friday.', a: 'He will not look up. I lost it. On the path. I have told Mr. Wick. I lost it.' },
         { id: 'lost', needs: ['brannock.mud', 'verger.boy', 'tutor.boy'], q: 'You did not lose it. Somebody took it from you on the path, and you know who.', a: 'He starts to cry. A man. By the reservoir wall at eleven. He put his hand on my chest and took the key out of my pocket and said if I told anybody the girl would be sent somewhere worse. I have not told anybody. I am telling you.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'harris' } },
@@ -143,12 +210,12 @@ const def: CaseDef = {
       bio: 'Fifty-nine. Verger of St. Ordell’s for thirty years. He holds every key on the hill. He found Sister Constance at six and had scrubbed the stairs by seven.',
       alibi: 'Asleep in the verger’s cottage. Nobody can confirm it.',
       secret: 'He lends the tower key to a boy from the Academy who meets a girl from Marrow House up there. The tower key was not on its hook that night because the boy had it.',
-      opinions: { canon: 'The Canon is a good man with a bad ledger. I have kept his keys for twenty years. I have never kept his books.', matron: 'The Matron comes to Mass and sits at the back. She looks at the Ayre pew the whole time.', tutor: 'Mr. Blake takes the boys up the tower to see the view. I let him. I should not have.', astro: 'Dr. Quint looks at the tower more than she looks at the sky. She told me so herself.', gardener: 'Nane digs when Grimm is drunk. He dug on Tuesday. Nobody had died on Tuesday.', driver: 'Miss Fay drives the last tram and drives it too fast. She was not on it at midnight. Somebody else was.', sister: 'The younger Ayre girl came to the tower door on Wednesday and asked for her sister. I said no. I have thought about that no every hour since.' },
+      opinions: { canon: 'The Canon is a good man with a bad ledger. I have kept his keys for twenty years. I have never kept his books.', matron: 'The Matron comes to Mass and sits at the back. She looks at the Ayre pew the whole time.', tutor: 'Mr. Blake takes the boys up the tower to see the view. I let him. I should not have.', astro: 'Dr. Quint looks at the tower more than she looks at the sky. She told me so herself.', gardener: 'Nane digs when Grimm is drunk. He dug on Tuesday. Nobody had died on Tuesday.', driver: 'Miss Fay drives the last tram and drives it too fast. Constance would not ride with her. She said a tram was a bell on wheels rung by somebody with no ear.', sister: 'The younger Ayre girl came to the tower door on Wednesday and asked for her sister. I said no. I have thought about that no every hour since.' },
       topics: [
         { id: 'night', q: 'Where were you at midnight?', a: 'In my bed in the cottage. I heard the bell. I counted nine and I thought I had miscounted. I went back to sleep. God forgive me.' },
         { id: 'stairs', q: 'You washed the stairs before we came.', a: 'I did. I found her at six and I could not leave her like that. I know what I did. I would do it again.' },
         { id: 'key', needs: ['item:bell:key-board', 'brannock.night', 'wick.night'], q: 'The tower key was not on its hook.', a: 'He looks at his hands. I lend it out. To a boy from the school. He meets a girl up there. I thought it was harmless. I think about that word now.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'verger' } },
-        { id: 'boy', q: 'Which boy?', a: 'Blake’s third form. The tall one. He was to bring the key back by eleven. He did not. He has not come near me since.', after: 'key', cost: 1, effect: { type: 'lead' } },
+        { id: 'boy', q: 'Which boy?', a: 'Blake’s third form. The thin one. He was to bring the key back by eleven. He did not. He has not come near me since.', after: 'key', cost: 1, effect: { type: 'lead', at: 'academy' } },
         { id: 'constance', q: 'What was Sister Constance like?', a: 'Exact. She rang twelve strokes for twenty years and never one more or less. She counted everything. She had started counting the Canon’s money.' },
       ] },
     { id: 'canon', name: 'Canon Aldritch', role: 'Canon of St. Ordell’s',
@@ -163,7 +230,7 @@ const def: CaseDef = {
         { id: 'night', q: 'Where were you at midnight?', a: 'Asleep. Mrs. Tull will tell you my light went out at eleven. I did not hear the bell. I am told it rang nine. I have no idea what that means.' },
         { id: 'fund', needs: ['item:bell:crypt-ledger', 'item:bell:crypt-tin', 'pym.constance'], q: 'Four hundred pounds is missing from the crypt fund. Every slip has your signature.', a: 'He goes very still. Yes. I took it. Constance asked to see the box on Thursday. I said Monday. There was not going to be a Monday.' },
         { id: 'where', q: 'Where did the money go?', a: 'To a woman in the city. And a child. He has my eyes and not my name. I buried the money in a tin box on Tuesday because Constance was coming and I panicked. I am a foolish old man, not a murderer.', after: 'fund', cost: 1, effect: { type: 'suspectTrait', suspectId: 'canon' } },
-        { id: 'box', needs: ['item:bell:crypt-tin', 'grimm.night', 'gardener.grave'], q: 'The box is empty now.', a: 'Somebody dug it up on Friday night. Somebody who knew where it was. Only Nane knew where it was. And whoever Nane told.', after: 'where', cost: 1, effect: { type: 'lead' } },
+        { id: 'box', needs: ['item:bell:crypt-tin', 'grimm.night', 'gardener.grave'], q: 'The box is empty now.', a: 'Somebody dug it up on Friday night. Somebody who knew where it was. Only Nane knew where it was. And whoever Nane told.', after: 'where', cost: 1, effect: { type: 'lead', at: 'cemetery' } },
         { id: 'constance', q: 'Tell me about her.', a: 'The best of us. She rang the bell for twenty years and never asked for a thing. Then she asked for the books. She was going to put everything right. On this hill, that is the one thing nobody can afford.' },
       ] },
     { id: 'matron', name: 'Matron Sybil Crake', role: 'Marrow House',
@@ -173,12 +240,12 @@ const def: CaseDef = {
       bio: 'Fifty. Matron of Marrow House asylum for eleven years. She keeps one bed for a patient who has never been ill: Beatrix Ayre, Constance’s sister, kept there on the family’s money.',
       alibi: 'In her office at Marrow House all night. The orderly saw her.',
       secret: 'She has kept Beatrix Ayre locked up for nine years knowing there was nothing wrong with her. The Ayre family paid. She stopped asking why long ago.',
-      opinions: { verger: 'The verger let my patient up the tower. Then he lets a schoolboy up it. The man will lend anyone a key.', canon: 'The Canon pays the Ayre bill on the family’s behalf. Late. Every quarter.', tutor: 'Mr. Blake brought a boy to my gate on Wednesday. The boy had a letter for Beatrix. I did not take it.', astro: 'Dr. Quint signs for chloral at the dispensary. For sleep, she says. Astronomers do not sleep.', gardener: 'Nane brings the Glasshouse flowers to my wards on Sundays. He stays longer than flowers take.', driver: 'Miss Fay drove one of my patients away at midnight. I have not reported it. I should have.', sister: 'Beatrix Ayre is not ill. She has never been ill. I have written her up as ill every month for nine years.' },
+      opinions: { verger: 'The verger let my patient up the tower. Then he lets a schoolboy up it. The man will lend anyone a key.', canon: 'The Canon pays the Ayre bill on the family’s behalf. Late. Every quarter.', tutor: 'Mr. Blake brought a boy to my gate on Wednesday. The boy had a letter for Beatrix. I did not take it.', astro: 'Dr. Quint signs for chloral at the dispensary. For sleep, she says. Astronomers do not sleep.', gardener: 'Nane brings the Glasshouse flowers to my wards on Sundays. He stays longer than flowers take.', driver: 'Miss Fay drove one of my patients away at a quarter to midnight. I have not reported it. I should have.', sister: 'Beatrix Ayre is not ill. She has never been ill. I have written her up as ill every month for nine years.' },
       topics: [
         { id: 'night', q: 'Where were you at midnight?', a: 'In my office. Quaile brought me tea at twelve. The gate was open. I logged it open. I did not go through it.' },
         { id: 'gate', needs: ['quaile.night', 'item:bell:depot-sheet', 'driver.who'], q: 'Who went through the gate at eleven-forty?', a: 'She does not answer for a long time. Beatrix. With a bag. I let her go because her sister had told me on Thursday it would stop. I thought that meant she was going home.' },
         { id: 'beatrix', q: 'Is Beatrix Ayre ill?', a: 'No. Never. The family paid for a bed and I gave them one. Constance signed the papers nine years ago. On Thursday she came to unsign them. I told her there was no such thing.', after: 'gate', cost: 1, effect: { type: 'suspectTrait', suspectId: 'matron' } },
-        { id: 'bag', needs: ['quaile.night', 'marley.parcel'], q: 'What was in the bag?', a: 'Her things. And a rosary. And a letter from a schoolmaster that I did not read. She went down the hill toward the tram depot.', after: 'beatrix', cost: 1, effect: { type: 'lead' } },
+        { id: 'bag', needs: ['quaile.night', 'marley.night'], q: 'What was in the bag?', a: 'Her things. And a rosary. And a letter from a schoolmaster that I did not read. She went down the hill toward the tram depot.', after: 'beatrix', cost: 1, effect: { type: 'lead', at: 'depot' } },
       ] },
     { id: 'tutor', name: 'Mr. Ewan Blake', role: 'Master at Ordell Academy',
       traits: { build: 'slight', hair: 'fair' },
@@ -201,10 +268,10 @@ const def: CaseDef = {
       bio: 'Forty-one. Runs the Observatory. At midnight her telescope was not pointed at the sky. Her log says ‘tower’. Twice.',
       alibi: 'At the Observatory all night, observing. Her log shows it.',
       secret: 'She watched somebody climb down the outside of the tower at four minutes past midnight. She drew them in the margin of her log. She has not said who, because she is not sure, and she will not guess at a hanging.',
-      opinions: { verger: 'The verger climbs the tower every day and has never once looked up.', canon: 'The Canon’s window faces the tower. His curtains were closed at midnight. They are never closed.', matron: 'The Matron keeps a patient who is not a patient. Constance told me. She told me a lot, at the end.', tutor: 'Ewan Blake was in my dome at midnight with two of his boys. I will say that in court. Nobody will believe it.', gardener: 'Nane was in the Glasshouse until two. I can see the Glasshouse from here. The boiler light was on.', driver: 'The tram went up the hill at midnight with its lights off. I saw it. Miss Fay was driving.', sister: 'Beatrix Ayre stood on the Close Green at midnight, looking up at the tower. I saw her through the glass. She was counting.' },
+      opinions: { verger: 'The verger climbs the tower every day and has never once looked up.', canon: 'The Canon’s window faces the tower. His curtains were closed at midnight. They are never closed.', matron: 'The Matron keeps a patient who is not a patient. Constance told me. She told me a lot, at the end.', tutor: 'Ewan Blake was in my dome at midnight with two of his boys. I will say that in court. Nobody will believe it.', gardener: 'The Glasshouse boiler light was on until two. I can see it from here. I cannot tell you who was under it.', driver: 'The tram went up the hill just before midnight with its lights off. I saw it from the dome. Miss Fay was driving.', sister: 'Beatrix Ayre stood on the Close Green at midnight, looking up at the tower. I saw her through the glass. She was counting.' },
       topics: [
         { id: 'night', needs: ['item:bell:tower-view', 'tutor.observatory', 'wick.night'], q: 'Your log says ‘tower’ at midnight. Not the sky.', a: 'The bell rang nine. I turned the telescope. I saw the tower door. Then I saw someone on the outside of the tower, on the iron rungs, coming down.' },
-        { id: 'who', q: 'Who?', a: 'I do not know. A figure in dark clothes. I drew what I saw. I will not put a name to a drawing when the name means a rope. Ask me anything else.' },
+        { id: 'who', q: 'Who?', a: 'I do not know. A figure in dark clothes. I drew what I saw. I will not put a name to a drawing when the name means a rope. Ask me anything else.', after: 'night' },
         { id: 'rungs', q: 'Describe what you saw.', a: 'She takes a breath. Someone who came down fast. Someone who knew the rungs were there. At the bottom they went toward the reservoir, not the Close. They did not look back once.', after: 'who', cost: 1, effect: { type: 'culpritTrait' } },
         { id: 'chloral', needs: ['item:bell:poisons', 'lamb.night'], q: 'You sign for chloral at the dispensary.', a: 'For sleep. I cannot sleep. I have not slept properly since Wednesday, when Constance told me what this hill has been doing to her sister.', cost: 1, effect: { type: 'suspectTrait', suspectId: 'astro' } },
       ] },
@@ -220,21 +287,21 @@ const def: CaseDef = {
         { id: 'night', q: 'Where were you at midnight?', a: 'At the Glasshouse. Stoking. Lister will tell you. I heard the bell. I counted nine. I sat down on the coal.' },
         { id: 'grave', needs: ['grimm.night', 'item:bell:crypt-tin', 'canon.where'], q: 'You dug plot forty-four on Tuesday.', a: 'For the Canon. He said dig a hole four feet deep and do not tell Grimm. He put a tin box in it. I filled it in. That is all I did.' },
         { id: 'box', needs: ['grimm.night', 'canon.box', 'item:bell:crypt-tin'], q: 'The box is empty now.', a: 'He rubs his face. I told one person where it was. I should not have. I told her because she asked me, and I have never said no to her.', after: 'grave', cost: 1, effect: { type: 'suspectTrait', suspectId: 'gardener' } },
-        { id: 'her', q: 'Who did you tell?', a: 'Beatrix. On Sunday. I told her the Canon had buried money in the cemetery. I thought it would make her laugh. She did not laugh.', after: 'box', cost: 1, effect: { type: 'lead' } },
+        { id: 'her', q: 'Who did you tell?', a: 'Beatrix. On Sunday. I told her the Canon had buried money in the cemetery. I thought it would make her laugh. She did not laugh.', after: 'box', cost: 1, effect: { type: 'lead', at: 'asylum' } },
       ] },
     { id: 'driver', name: 'Rosalind Fay', role: 'Tram driver',
       traits: { build: 'slight', hair: 'red' },
-      blurb: 'Signed a tram out of the depot at midnight and brought it back wet.',
+      blurb: 'Took a tram out of the depot at a quarter to midnight without signing for it, and brought it back at twenty past one, wet.',
       motive: 'because she was paid five pounds to drive a passenger up the hill and forget it, and Constance had found out.',
-      bio: 'Twenty-nine. Drives the hill tram. She took a car out at a quarter to midnight without permission and brought it back at ten to one, wet.',
+      bio: 'Twenty-nine. Drives the hill tram. She took a car out at a quarter to midnight without permission and brought it back at twenty past one, wet.',
       alibi: 'Home in bed. The car went out; she says she did not take it.',
       secret: 'She drove Beatrix Ayre from Marrow House to the Close Green at midnight, for five pounds and a promise. She has not been paid.',
       opinions: { verger: 'The verger rides my tram to the depot every Saturday to drink where nobody knows him. Everybody knows him.', canon: 'The Canon has never been on a tram in his life. He sent his housekeeper down with an envelope for me once.', matron: 'The Matron pays me to forget who I drive from Marrow House. Then she forgets to pay.', tutor: 'Mr. Blake rides with his boys and looks out of the window the whole way so he does not have to talk to them.', astro: 'Dr. Quint rides up at dusk and down at dawn and never once sits down.', gardener: 'Peter Nane talks about the Ayre girl the whole way down the hill. I have told him it is no use. He knows.', sister: 'I drove Beatrix Ayre up the hill at midnight with the lights off. She sat with a rosary round her wrist and did not speak.' },
       topics: [
         { id: 'night', needs: ['item:bell:depot-sheet', 'marley.night'], q: 'Car seven went out at a quarter to midnight.', a: 'It did. I was in bed. She looks away. No. I took it. I drove somebody up the hill with the lights off for five pounds and I have not been paid.' },
         { id: 'who', q: 'Who did you drive?', a: 'Beatrix Ayre. From the Marrow House gate to the Close Green. She got out and stood on the grass and looked up at the tower. I waited. Then I did not wait.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'driver' } },
-        { id: 'wet', needs: ['marley.night', 'ferris.night', 'shale.walkway'], q: 'The car came back wet.', a: 'I went down to the reservoir after. To think. I sat on the wall. Somebody came along the walkway at one with a key and a bag and did not see me. I saw them.', after: 'who', cost: 1, effect: { type: 'lead' } },
-        { id: 'paid', needs: ['marley.parcel', 'obj:bell:pass'], q: 'Who promised the five pounds?', a: 'A note under the depot door. Five pounds to drive a patient to the Green at midnight, no questions. Handwriting like a schoolboy’s. I needed the money. I always need the money.' },
+        { id: 'wet', needs: ['marley.night', 'shale.night', 'shale.walkway'], q: 'The car came back wet.', a: 'I ran the car down to the reservoir stop after. To think. I sat on the wall in the rain. Somebody came along the walkway at one with a key and a bag and did not see me. I saw them. They dropped something that rang on the stone.', after: 'who', cost: 1, effect: { type: 'lead', at: 'reservoir' } },
+        { id: 'paid', needs: ['driver.who', 'obj:bell:pass'], q: 'Who promised the five pounds?', a: 'A note under the depot door. Five pounds to drive a patient to the Green at midnight, no questions. Handwriting like a schoolboy’s. I needed the money. I always need the money.' },
       ] },
     { id: 'sister', name: 'Beatrix Ayre', role: 'The victim’s sister',
       traits: { build: 'tall', hair: 'dark' },
@@ -246,9 +313,9 @@ const def: CaseDef = {
       opinions: { verger: 'The verger would not let me up the tower on Wednesday. He said Constance had told him not to. She had not.', canon: 'The Canon signed the papers that put me away. He signed them in green ink. I have thought about that green ink for nine years.', matron: 'Matron Crake is not cruel. That would be easier. She is careful.', tutor: 'Mr. Blake gave my letter to my sister. He is the only person on this hill who did what I asked.', astro: 'The astronomer watched me from her dome at midnight. I saw the lens catch the light. I waved. She did not wave back.', gardener: 'Peter brings me flowers. He told me where the Canon buried his money. I did not dig it up. I wanted to.', driver: 'Rosalind drove me up the hill. I promised her five pounds I do not have. I will pay her when I have it.' },
       topics: [
         { id: 'night', q: 'Where were you at midnight?', a: 'On the Close Green, under the tower. Looking up. The bell rang nine. I thought it was for me. I thought she was saying sorry.' },
-        { id: 'nine', q: 'Why nine?', a: 'Nine years. Every night in Marrow House I rang nine on the water pipe with a spoon, so she would hear it up the hill. She never heard. I thought at midnight she finally had.' },
-        { id: 'after', needs: ['ferris.night', 'quaile.back', 'obj:bell:rosary'], q: 'What did you do after the bell?', a: 'She looks at her hands. I ran. Down to the reservoir. I took a boat. I lost my rosary and the oars and I rowed with my hands. I was on the far bank when the sun came up.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'sister' } },
-        { id: 'saw', q: 'Did you see anyone at the tower?', a: 'Somebody on the outside of it. On the rungs. Coming down fast, while the ninth bell was still ringing. They went the other way from me. Toward the pump house.', after: 'after', cost: 1, effect: { type: 'lead' } },
+        { id: 'nine', q: 'Why nine?', a: 'Nine years. Every night in Marrow House I rang nine on the water pipe with a spoon, so she would hear it up the hill. She never heard. I thought at midnight she finally had.', after: 'night' },
+        { id: 'after', needs: ['ferris.night', 'quaile.back', 'obj:bell:rosary'], q: 'What did you do after the bell?', a: 'She looks at her hands. I ran. Down to the reservoir. I took a boat from the wall stage. I lost the oars and then my rosary and I rowed with my hands. I was on the far side before I knew it. I walked up the hill wet and sat on the tea room step until they opened.', after: 'night', cost: 1, effect: { type: 'suspectTrait', suspectId: 'sister' } },
+        { id: 'saw', q: 'Did you see anyone at the tower?', a: 'Somebody on the outside of it. On the rungs. Coming down fast, while the ninth bell was still ringing. They went the other way from me. Toward the pump house.', after: 'after', cost: 1, effect: { type: 'lead', at: 'pumphouse' } },
         { id: 'letter', needs: ['tutor.letter', 'matron.bag', 'quaile.night'], q: 'You sent your sister a letter.', a: 'Through Mr. Blake. It said: I know you signed it. I know why. Ring nine for me once and I will forgive you. She rang nine. Somebody rang nine.' },
       ] },
   ],
@@ -262,12 +329,12 @@ const def: CaseDef = {
       bio: 'Housekeeper at the Rectory for twenty-five years. She pours the Canon’s sherry and counts the glasses.',
       knows: ['canon', 'verger', 'sister'],
       aboutLine: 'They take tea in this house. I’ve poured it and I’ve watched.',
-      leadLine: 'Somebody came down the hill in the dark and left through the garden. There were footprints toward',
+      leadLine: 'Somebody came down the hill in the dark and left through the garden. There were footprints toward', leadAt: 'cemetery',
       spentLine: 'The Canon wouldn’t want me talking. Neither do I.',
-      opinions: { canon: 'The Canon’s light went out at eleven. It came on again at half past twelve. He was not in his bed. His curtains were shut.', verger: 'Cormac Ill came to the kitchen door at half past six with his hands red from scrubbing and said, she has fallen. She had not fallen.', sister: 'The younger Miss Ayre came to this door on Wednesday and asked for the Canon. He would not see her. I gave her tea in the kitchen. She did not drink it.' },
+      opinions: { canon: 'The Canon’s light went out at eleven. It came on again at a quarter to one. He was not in his bed. His curtains were shut.', verger: 'Cormac Ill came to the kitchen door at half past six with his hands red from scrubbing and said, she has fallen. She had not fallen.', sister: 'The younger Miss Ayre came to this door on Wednesday and asked for the Canon. He would not see her. I gave her tea in the kitchen. She did not drink it.' },
       topics: [
-        { id: 'night', q: 'What happened in this house at midnight?', a: 'The bell rang nine. I counted. The Canon’s door opened. I heard him on the stairs. Then the garden door. He was out for half an hour.' },
-        { id: 'garden', q: 'Where did he go?', a: 'Down the hill. There were footprints in the morning, toward the cemetery. Big footprints. He came back with mud to the knee and put his cassock in the laundry basket himself. He has never done that.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'What happened in this house at midnight?', a: 'The bell rang nine. I counted. The Canon’s door opened. I heard him on the stairs. Then the garden door. He was out the best part of an hour.' },
+        { id: 'garden', q: 'Where did he go?', a: 'Down the hill. There were footprints in the morning, toward the cemetery. Big footprints. He came back at a quarter to one with mud to the knee and put his cassock in the laundry basket himself. He has never done that. Then he sat up writing.', after: 'night', cost: 1, effect: { type: 'lead', at: 'cemetery' } },
         { id: 'constance', q: 'Did Sister Constance come here?', a: 'Thursday. She sat in the study with the Canon for an hour and came out white. She said to me, Ivy, I have been part of something wicked for nine years. I said, we all have, Sister.' },
       ] },
     { id: 'wick', at: 'academy', name: 'Josiah Wick', role: 'porter, Ordell Academy',
@@ -275,11 +342,11 @@ const def: CaseDef = {
       bio: 'Porter at the Academy for thirty years. He rings the school bell every morning and counts the boys every night.',
       knows: ['tutor', 'astro'],
       aboutLine: 'On the staff, or near enough. I see them across the quad every morning.',
-      leadLine: 'A boy found something on the playing fields at dawn and was too scared to say so. It ended up at',
+      leadLine: 'A boy found something on the playing fields at dawn and was too scared to say so. It ended up at', leadAt: 'observ',
       spentLine: 'The gate is shut and I have a bell to ring in three hours.',
       opinions: { tutor: 'Mr. Blake went out at half past eleven with two boys and came back at one. He signed nothing. He never does.', astro: 'Dr. Quint sends a note down for the boys on clear nights. Friday was not clear. She sent the note anyway.' },
       topics: [
-        { id: 'night', q: 'Who had a key that wasn’t yours?', a: 'Harris, third form. He has the verger’s tower key and the gate key both. He went out at eleven and came back at half past twelve without either.' },
+        { id: 'night', q: 'Who had a key that wasn’t yours?', a: 'Harris, third form. He has the verger’s tower key and the gate key both. He went out at half past ten and came back at half past twelve without either.' },
         { id: 'harris', q: 'Where is Harris now?', a: 'In the sanatorium at the back of the school, with a fever he has not got. It is a locked ward; nobody outside the school knows the door is there. He will not come out. He says a man took the key from him on the path by the reservoir and told him to forget it.', after: 'night', cost: 1, effect: { type: 'reveal', locationId: 'sanatorium', suspectId: 'harris' } },
         { id: 'constance', q: 'Did you know Sister Constance?', a: 'She rang for the school every morning at seven. Twelve strokes, then seven. Never one out. Friday morning nobody rang. That is how I knew before anyone told me.' },
       ] },
@@ -288,25 +355,25 @@ const def: CaseDef = {
       bio: 'Born on the hill. Has outlived three canons and most of her neighbours. She does not sleep.',
       knows: ['matron', 'gardener', 'driver'],
       aboutLine: 'I’ve known that one since they were small. Small people grow into big people. They don’t turn into different ones.',
-      leadLine: 'I don’t sleep. I heard the side door, and I saw somebody carry a bundle toward',
+      leadLine: 'I don’t sleep. I heard the Canon’s garden gate, and I saw a cassock go down the path toward', leadAt: 'cemetery',
       spentLine: 'I’m tired, child. Come back when it’s light, and bring biscuits.',
       opinions: { matron: 'Sybil Crake was a nurse in this almshouse before she was a matron. She was kind then. Money is a hard thing to be kind through.', gardener: 'Peter Nane brings me tobacco and takes my advice, which is a fair trade. I told him to leave the Ayre girl alone. He did not.', driver: 'Rosalind Fay’s mother died in bed nine here. Rosalind drove the tram past the window every day for a year and never came in.' },
       topics: [
-        { id: 'night', q: 'What did you hear?', a: 'Nine bells. Then the side door of this house. Then somebody on the path with a bundle, going down toward the water. Big steps. A man’s.' },
-        { id: 'bundle', q: 'What was in the bundle?', a: 'Something that clinked. Keys, or coins, or a rosary. He held it against his chest the way you hold something you should not have.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'What did you hear?', a: 'Nine bells. Then the Canon’s garden gate, which squeals. Then a man on the path under my window going down toward the cemetery, fast, holding his skirts up. A cassock. I have seen enough cassocks to know one in the dark.' },
+        { id: 'bundle', q: 'Did he come back?', a: 'At a quarter to one, slower, with a square tin under his arm and mud to the knee. He held it against his chest the way you hold something you should not have. Empty, by the way it swung.', after: 'night', cost: 1, effect: { type: 'lead', at: 'rectory' } },
         { id: 'constance', q: 'Did you know Sister Constance?', a: 'I taught her to ring. Sixty years ago I rang that bell myself. She came to me on Thursday and asked whether a person could be forgiven for something they signed. I said only if they unsigned it. She said she was going to try.' },
       ] },
     { id: 'marley', at: 'depot', name: 'Fen Marley', role: 'night dispatcher, the Tram Depot',
-      intro: 'Marley. I sign the trams out and back in. The last car is at eleven. Tonight one went out at midnight and I didn’t sign it.',
+      intro: 'Marley. I sign the trams out and back in. The last car is at eleven. Tonight one went out at a quarter to midnight and I didn’t sign it.',
       bio: 'Night dispatcher for eight years. The schedule is the only thing on the hill he trusts.',
       knows: ['driver', 'tutor', 'sister'],
       aboutLine: 'They ride the last car. You learn a person by which seat they take.',
-      leadLine: 'A parcel came off the midnight tram and was left on the bench. Somebody carried it up to',
+      leadLine: 'Rosalind ran car seven down to the reservoir stop after the Green and left it standing. Whatever she saw there, she saw from', leadAt: 'reservoir',
       spentLine: 'The schedule is the schedule. I’ve said what I know.',
-      opinions: { driver: 'Rosalind took car seven at a quarter to midnight with the lights off. I saw her hands on the brake from the office. She brought it back wet.', tutor: 'Mr. Blake rode down at one with two boys and a face like a funeral.', sister: 'The Ayre woman got off car seven at the Close Green at ten past midnight. Alone. She had a bag. She did not have a ticket.' },
+      opinions: { driver: 'Rosalind took car seven at a quarter to midnight with the lights off. I saw her hands on the brake from the office. She brought it back at twenty past one, wet to the knees.', tutor: 'Mr. Blake rode down on Wednesday with the Ayre woman two seats behind him and did not know it. She knew him. She watched the back of his head the whole way.', sister: 'The Ayre woman rode up on my car on Wednesday with one bag and no ticket. She sat in the front seat and looked at the tower the whole way up.' },
       topics: [
-        { id: 'night', q: 'Car seven.', a: 'Out at a quarter to midnight, unsigned. Back at ten to one, wet. Rosalind Fay driving. One passenger up, from the Marrow House gate to the Close Green. None down.' },
-        { id: 'parcel', q: 'A parcel came off the midnight car.', a: 'Left on the bench. A bag. Somebody carried it up the hill toward the cemetery at half past one. Not Rosalind. A man.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'Car seven.', a: 'Out at a quarter to midnight, unsigned. Back at twenty past one, wet. Rosalind Fay driving. One passenger up, from the Marrow House gate to the Close Green. None down.' },
+        { id: 'route', q: 'Where did she take it after the Green?', a: 'Down to the reservoir stop. The trip wheel counts the stops, and it counted that one and then nothing for half an hour. She left the car standing by the wall with the lights off and sat out in the rain. Then she brought it home.', after: 'night', cost: 1, effect: { type: 'lead', at: 'reservoir' } },
         { id: 'constance', q: 'Did Sister Constance ride the tram?', a: 'Never. She walked. Two hundred and eleven steps up the tower and a mile down the hill and back every day for twenty years. She said the walk was the prayer.' },
       ] },
     { id: 'lister', at: 'glasshouse', name: 'Bo Lister', role: 'stoker, the Glasshouse',
@@ -314,12 +381,12 @@ const def: CaseDef = {
       bio: 'Stoker at the Glasshouse for six years. He sees the hill come in from the cold and talk.',
       knows: ['gardener', 'astro', 'matron'],
       aboutLine: 'They come in to get warm. You see a person clearly in this light.',
-      leadLine: 'Somebody burned something in my firebox tonight and didn’t burn all of it. What was left went up the hill to',
+      leadLine: 'The Canon burned a page in my firebox on Friday afternoon and didn’t burn all of it. The number on the corner belongs to', leadAt: 'cemetery',
       spentLine: 'The boilers need me. The police don’t.',
-      opinions: { gardener: 'Nane was here till two. He heard the bell and sat down on the coal and did not get up for an hour.', astro: 'Dr. Quint sends down for orchids and I carry them up. Her dome smelled of chloral on Friday.', matron: 'The Matron comes in to get warm on her way down from Marrow House. Friday she came in at one with river mud on her shoes.' },
+      opinions: { gardener: 'Nane left at half past ten and said he had a hole to fill. He came back at half past three, wet to the knee, and sat down on the coal with his hands wrapped in a rag. He did not get up till six.', astro: 'Dr. Quint sends down for orchids and I carry them up. Her dome smelled of chloral on Friday.', matron: 'The Matron came in at one to get warm, with reservoir mud on her shoes and her cap gone. She asked whether I had seen the Ayre girl. I had not.' },
       topics: [
-        { id: 'night', q: 'What was burned in your firebox?', a: 'Paper. A ledger page, and a letter. Somebody came in at half past midnight, shoved them in and went. Not all of it burned. I pulled a corner out.' },
-        { id: 'corner', q: 'What was on it?', a: 'A number. Forty-four. And a signature in green ink. The Canon signs in green ink. Everybody on the hill knows that.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'What was burned in your firebox?', a: 'Paper. A ledger page and a letter. The Canon himself came in at five on Friday afternoon, which he never does, shoved them in and stood there until they went. Not all of it went. I pulled a corner out.' },
+        { id: 'corner', q: 'What was on it?', a: 'A number. Forty-four. And a signature in green ink. The Canon signs in green ink. Everybody on the hill knows that.', after: 'night', cost: 1, effect: { type: 'lead', at: 'cemetery' } },
         { id: 'constance', q: 'Did Sister Constance come here?', a: 'Wednesday. She stood in the warm for an hour and asked me whether the boilers could burn a ledger. I said they could burn anything. She said, good.' },
       ] },
     { id: 'grimm', at: 'cemetery', name: 'Silas Grimm', role: 'gravedigger',
@@ -327,12 +394,12 @@ const def: CaseDef = {
       bio: 'Gravedigger for twenty years, and a drinker for nineteen of them. When he is drunk, the gardener digs.',
       knows: ['verger', 'canon'],
       aboutLine: 'They stand over the graves I dig. You see what a person is at a funeral.',
-      leadLine: 'Fresh earth was moved, and something was taken out, not put in. The cart tracks run to',
+      leadLine: 'Fresh earth was moved, and something was taken out, not put in. The footprints run down to', leadAt: 'waterboard',
       spentLine: 'I have a hole to fill and I’ve said too much already.',
       opinions: { verger: 'The verger tells Nane where to dig when I am drunk. I am drunk a good deal. I still know my own cemetery.', canon: 'The Canon stood over plot forty-four on Tuesday evening with his hat off like there was somebody in it. There was not.' },
       topics: [
         { id: 'night', q: 'The hole you didn’t dig.', a: 'Plot forty-four. Dug Tuesday by Nane, four feet, with a tin box in it. Dug up again Friday night by somebody in a hurry who left the box and took what was in it.' },
-        { id: 'tracks', q: 'Cart tracks.', a: 'From the plot to the gate and down toward the water board. Somebody wheeled something heavy. Or somebody who could not walk straight.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'tracks', q: 'Footprints.', a: 'From the plot to the gate and down toward the Water Board. Deep ones, a big man’s, one foot dragging. Then a second set over the top of them, from the gate to the plot and back up the hill. Smaller, and in a hurry.', after: 'night', cost: 1, effect: { type: 'lead', at: 'waterboard' } },
         { id: 'constance', q: 'Did Sister Constance come to the cemetery?', a: 'Every Sunday to her mother. Thursday she came and stood at plot forty-four for a long time and then she went to the Rectory. She walked like a woman going to a fight.' },
       ] },
     { id: 'ansell', at: 'foundry', name: 'Hew Ansell', role: 'bell founder',
@@ -340,12 +407,12 @@ const def: CaseDef = {
       bio: 'Third generation of bell founders. He can tell who rang a bell by how it sounds.',
       knows: ['verger', 'canon'],
       aboutLine: 'They’ve been up the tower with me. You learn a person by how they climb.',
-      leadLine: 'A bolt from the bell clapper was taken from my bench last week. I found it this morning, dropped on the path toward',
+      leadLine: 'A bolt from the bell clapper was taken from my bench last week. I found it this morning, dropped on the path toward', leadAt: 'reservoir',
       spentLine: 'The furnace is lit. I’m not.',
       opinions: { verger: 'Cormac Ill has been up my tower a thousand times and cannot ring. He has no ear. Whoever rang nine had no ear either.', canon: 'The Canon climbed the tower once, in 1928, and was sick at the top. He has not been up since.' },
       topics: [
         { id: 'night', q: 'You know the bell’s voice.', a: 'Nine strokes, ragged. Rung by somebody who let go of the rope at the top of the pull. Not a ringer. Somebody who had watched ringing and never done it.' },
-        { id: 'bolt', q: 'A clapper bolt was taken from your bench.', a: 'Last week. Found this morning on the path to the reservoir. Somebody wanted the bell silenced and then changed their mind and rang it anyway.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'bolt', q: 'A clapper bolt was taken from your bench.', a: 'Last week. Found this morning on the path to the reservoir. Somebody wanted the bell silenced and then changed their mind and rang it anyway.', after: 'night', cost: 1, effect: { type: 'lead', at: 'reservoir' } },
         { id: 'constance', q: 'You knew Sister Constance.', a: 'Twenty years. The best ringer on the hill. She came to the foundry on Thursday and asked me how a rope is cut so it cannot be rung. I told her. I thought she was afraid of somebody.' },
       ] },
     { id: 'pym', at: 'chapterhouse', name: 'Dorcas Pym', role: 'archivist, the Chapter House',
@@ -353,12 +420,12 @@ const def: CaseDef = {
       bio: 'Archivist for thirty-one years. Knows which page of which book holds which secret.',
       knows: ['canon', 'tutor', 'astro'],
       aboutLine: 'They read here. You can tell a person by which books they ask for.',
-      leadLine: 'A page was cut out of the 1939 register tonight by somebody who knew exactly which page. They left toward',
+      leadLine: 'A page was cut out of the crypt ledger on Friday afternoon by somebody who knew exactly which page. The page was about', leadAt: 'cemetery',
       spentLine: 'The reading room closes at dusk, and it’s long past dusk.',
-      opinions: { canon: 'The Canon has not opened a parish register in ten years. He sent for the crypt ledger on Friday afternoon. I sent it. It came back with a page missing.', tutor: 'Mr. Blake reads the 1939 register. The year the Ayre girl was committed. He has read it three times.', astro: 'Dr. Quint reads the weather records. Every clear night for a hundred years. She is looking for something in the sky. She has not found it.' },
+      opinions: { canon: 'The Canon has not opened a parish register in ten years. He sent for the crypt ledger on Friday afternoon. I sent it. It came back at five with a page missing and glue on the stub.', tutor: 'Mr. Blake reads the 1939 register. The year the Ayre girl was committed. He has read it three times.', astro: 'Dr. Quint reads the weather records. Every clear night for a hundred years. She is looking for something in the sky. She has not found it.' },
       topics: [
-        { id: 'night', q: 'A page was cut from the 1939 register.', a: 'The committal of Beatrix Ayre. Signed by the Canon, the Matron and Sister Constance. Cut out tonight by somebody with a razor and a key to this room.' },
-        { id: 'key', q: 'Who has a key?', a: 'The Canon. The verger. And me. The razor was left on the desk. It was a barber’s razor. Somebody who shaves with it, not a woman.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'A page was cut from the crypt ledger.', a: 'Plot forty-four. The Canon sent for the ledger on Friday afternoon and it came back at five with the page gone. Cut with a razor by somebody who has never cut a page in his life; he left glue on the stub and his thumb in the glue.' },
+        { id: 'page', q: 'What was on the page?', a: 'An interment on plot forty-four in March. A fee of forty pounds. No name. Nobody was buried there. Constance and I walked up on Thursday and looked, and the earth was fresh. She did not say a word all the way back.', after: 'night', cost: 1, effect: { type: 'lead', at: 'cemetery' } },
         { id: 'constance', q: 'What did Sister Constance want from you?', a: 'The crypt ledger and the 1939 register. She read both here on Wednesday and made notes. She said, Dorcas, I signed my sister away for four hundred pounds and I did not even know it. She meant the Canon had taken the money. I think she meant more than that.' },
       ] },
     { id: 'oakes', at: 'deanery', name: 'Cyrus Oakes', role: 'clerk, Diocesan Office',
@@ -366,12 +433,12 @@ const def: CaseDef = {
       bio: 'Clerk to the Dean for nine years. He types what he is told and underlines what he thinks.',
       knows: ['canon', 'matron', 'tutor'],
       aboutLine: 'They come before the Dean. You notice who is nervous in front of a bishop.',
-      leadLine: 'A letter was delivered by hand for the Dean at one in the morning and burned unread. The ashes are at',
+      leadLine: 'A letter was delivered by hand for the Dean at one in the morning and burned unread. The corner I saved talks about', leadAt: 'crypt',
       spentLine: 'I’ve said more than the diocese would like. That’s all.',
       opinions: { canon: 'The Canon asked the Dean for discretion on Friday morning. Before anybody was dead. I typed the letter. I dated it Saturday.', matron: 'The Matron’s quarterly report on the Ayre patient is the same every quarter, word for word. I have typed it thirty-six times.', tutor: 'Mr. Blake wrote to the Dean in March offering to resign. The Dean never answered. I never sent it.' },
       topics: [
         { id: 'night', q: 'A letter came for the Dean at one in the morning.', a: 'By hand. From the Rectory. The Dean burned it in the grate unread and told me to forget the hour. I have not forgotten it.' },
-        { id: 'ash', q: 'Where is the ash?', a: 'In the grate. I raked out one corner. It says: ‘the ledger is in the crypt fund box and Constance has—’. That is where it burned.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'ash', q: 'Where is the ash?', a: 'In the grate. I raked out one corner. It says: ‘the page is burned and the box is empty and Constance has—’. That is where it burned.', after: 'night', cost: 1, effect: { type: 'lead', at: 'crypt' } },
         { id: 'constance', q: 'Did Sister Constance write to the Dean?', a: 'Twice. Once about the schoolmaster, which she never sent. Once about the crypt fund and Marrow House, which she posted on Thursday. It has not arrived. Letters from the hill take a day. It should have arrived.' },
       ] },
     { id: 'brannock', at: 'cottage', name: 'Mrs. Brannock', role: 'housekeeper, Verger’s Cottage',
@@ -379,12 +446,12 @@ const def: CaseDef = {
       bio: 'Keeps the verger’s cottage and the verger’s secrets, most of them.',
       knows: ['verger', 'sister'],
       aboutLine: 'They come to this kitchen. You learn a person by how they look at the key board.',
-      leadLine: 'The missing key came back this morning with river mud on it. That mud comes from',
+      leadLine: 'The tower key has not come back. If the boy lost it where he says he lost it, it is lying somewhere along', leadAt: 'reservoir',
       spentLine: 'The kitchen is mine and I’m closing it.',
       opinions: { verger: 'The verger was in his bed at midnight. I heard him snoring through the wall. Whatever else he is, he was asleep.', sister: 'The younger Miss Ayre came to this kitchen on Wednesday and asked for the tower key. I said no. She looked at the key board a long time and then she looked at me.' },
       topics: [
-        { id: 'night', q: 'The tower key.', a: 'Off its hook since Thursday. The verger lends it to a schoolboy. The boy did not bring it back. It came back this morning by itself, on the doorstep, with river mud on it.' },
-        { id: 'mud', q: 'River mud.', a: 'Reservoir mud. Black. It only comes from the wall walkway. Whoever put the key on my step had walked along the top of the dam in the dark.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'The tower key.', a: 'Off its hook since Thursday. The verger lends it to a schoolboy. The boy did not bring it back. Constance came for it at half past eleven on Friday and it was not there, and she went up anyway.' },
+        { id: 'mud', q: 'Where would it be now?', a: 'The boy says he lost it on the reservoir path. If it went in the water it is gone. If it is on the wall walk it is lying in that black mud, and nobody walks the wall walk at night without the Water Board’s key.', after: 'night', cost: 1, effect: { type: 'lead', at: 'reservoir' } },
         { id: 'constance', q: 'Did Sister Constance come here?', a: 'Every night at half past eleven for the key, and every night at half past twelve to hang it back. Friday she came at half past eleven and it was not on the hook. She went up anyway. Somebody had already unlocked the door.' },
       ] },
     { id: 'lamb', at: 'dispensary', name: 'Enid Lamb', role: 'dispenser, Hill Dispensary',
@@ -392,12 +459,12 @@ const def: CaseDef = {
       bio: 'The only chemist on the hill for eleven years. Remembers every hand that signed her book.',
       knows: ['matron', 'astro', 'gardener'],
       aboutLine: 'They sign my book. You notice the hand that signs for sleeping draughts.',
-      leadLine: 'Somebody came in at dawn for lint and iodine and paid with a coin that was still wet. They went to',
+      leadLine: 'Somebody came in at dawn for lint and iodine with a pawn ticket still in his hand. He had come straight from', leadAt: 'pawn',
       spentLine: 'The shop is shut and the book is locked.',
-      opinions: { matron: 'The Matron signs for chloral every month for a patient who does not need it. I have watched her sign for eleven years.', astro: 'Dr. Quint buys chloral for herself. She says she cannot sleep. On Friday she bought twice the usual.', gardener: 'Peter Nane bought iodine and lint at dawn on Saturday with a coin that was still wet.' },
+      opinions: { matron: 'The Matron signs for chloral every month for a patient who does not need it. I have watched her sign for eleven years.', astro: 'Dr. Quint buys chloral for herself. She says she cannot sleep. On Friday she bought twice the usual.', gardener: 'Peter Nane bought iodine and lint at dawn on Saturday with his hands wrapped in a rag from the Glasshouse. Coal dust and blood.' },
       topics: [
-        { id: 'night', q: 'Who came in at dawn?', a: 'Nane. Lint and iodine. His hands were cut across the palms, both of them, like a man who had gripped a rope or a rung too hard. He paid with a wet coin.' },
-        { id: 'hands', q: 'Rope or rung?', a: 'Iron. Rust in the cuts. I cleaned them. He said he had fallen in the Glasshouse. There is no iron in the Glasshouse.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'Who came in at dawn?', a: 'Nane. Lint and iodine. His hands were cut across the palms, both of them, like a man who had gripped a rope or a rung too hard. He paid with pawnshop money and did not wait for the change.' },
+        { id: 'hands', q: 'Rope or rung?', a: 'Iron. Rust in the cuts. I cleaned them. He said he had fallen in the Glasshouse. There is no iron in the Glasshouse. I had his hands in mine for ten minutes; I can tell you what else I saw.', after: 'night', cost: 1, effect: { type: 'culpritTrait' } },
         { id: 'constance', q: 'Did Sister Constance buy from you?', a: 'Nothing, ever. Thursday she came in and asked to see the poisons book. She read the Matron’s entries for nine years and said, that is a great deal of sleep for one woman.' },
       ] },
     { id: 'quaile', at: 'asylum', name: 'Sam Quaile', role: 'orderly, Marrow House',
@@ -405,38 +472,38 @@ const def: CaseDef = {
       bio: 'Orderly at Marrow House for five years. He has spent five years watching one patient who is not ill.',
       knows: ['matron', 'sister', 'tutor'],
       aboutLine: 'They’re on my ward, or they visit it. You learn a person by how they behave behind a locked door.',
-      leadLine: 'The gate was open at eleven-forty and somebody went out through it carrying a bag. They went down toward',
+      leadLine: 'The gate was open at eleven-forty and somebody went out through it carrying a bag. They went down toward', leadAt: 'depot',
       spentLine: 'The Matron would sack me for this. Out.',
-      opinions: { matron: 'The Matron was in her office at midnight. I brought her tea. She was crying. I did not ask.', sister: 'Beatrix Ayre is the sanest person in this building. I include the staff.', tutor: 'Mr. Blake came to the gate on Wednesday with a letter and a boy. The Matron would not take the letter. The boy gave it to me. I gave it to Beatrix.' },
+      opinions: { matron: 'The Matron was in her office at midnight. I brought her tea. She was crying. She went out at half past twelve to look for Beatrix and did not come back until half past four.', sister: 'Beatrix Ayre is the sanest person in this building. I include the staff.', tutor: 'Mr. Blake came to the gate on Wednesday with a letter and a boy. The Matron would not take the letter. The boy gave it to me. I gave it to Beatrix.' },
       topics: [
         { id: 'night', q: 'The gate was open at eleven-forty.', a: 'I opened it. For Beatrix. With a bag. The Matron said let her go. She went down toward the tram.' },
-        { id: 'back', q: 'Did she come back?', a: 'At dawn. Wet to the waist, no rosary, no bag. She got into her bed and she has not spoken since. Her hands are torn from rowing.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'back', q: 'Did she come back?', a: 'At half past four, with the Matron. Wet to the waist, no rosary, no bag. The Matron had found her on the tea room step. She got into her bed and she has not spoken since. Her hands are torn from rowing.', after: 'night', cost: 1, effect: { type: 'lead', at: 'tearooms' } },
         { id: 'constance', q: 'Did Sister Constance visit?', a: 'Thursday. First time in nine years. She sat with her sister for an hour. When she came out she went straight to the Matron’s office and I heard the word ‘papers’ through the door nine times. I counted.' },
       ] },
     { id: 'hobb', at: 'pawn', name: 'Zeb Hobb', role: 'pawnbroker',
-      intro: 'Hobb. Everything the hill is ashamed of comes through this door eventually. Last week it was a set of church keys.',
+      intro: 'Hobb. Everything the hill is ashamed of comes through this door eventually. This morning it was a gardener’s watch.',
       bio: 'Pawnbroker at the bottom of the hill for thirty years. He looks at hands, not faces.',
       knows: ['driver', 'gardener', 'verger'],
       aboutLine: 'They pawn things with me. I look at the hands that push them across the counter.',
-      leadLine: 'The keys were bought back at midnight by a different hand. That hand went up the lane to',
+      leadLine: 'A man sold me his watch at dawn with his hands cut across both palms. He went up the lane to', leadAt: 'dispensary',
       spentLine: 'The shop is shut. Come back with something to pawn or not at all.',
-      opinions: { driver: 'Rosalind Fay pawned her mother’s ring in April and bought it back in May with a five-pound note. Tram drivers do not have five-pound notes.', gardener: 'Peter Nane pawns his watch every winter and buys it back every spring. This year he bought it back in November.', verger: 'The verger pawned a set of church keys last week. He said they were spares. Churches do not have spares.' },
+      opinions: { driver: 'Rosalind Fay pawned her mother’s ring in April and bought it back in May with a five-pound note. Tram drivers do not have five-pound notes.', gardener: 'Peter Nane pawns his watch every winter and buys it back every spring. This morning he sold it outright, which he has never done, with a bag under his arm he would not put down to sign.', verger: 'The verger pawns his mother’s watch chain every Lent and redeems it at Easter. He says it is a penance. It is a drinking habit.' },
       topics: [
-        { id: 'night', q: 'The church keys.', a: 'Pawned by the verger last week. Bought back at midnight on Friday by a different hand. Big hands. Cut across the palms. He paid with a coin from the reservoir, still wet.' },
-        { id: 'where', q: 'Where did he go?', a: 'Up the lane toward the cemetery. Fast. He had the keys in one hand and something in a bag in the other.', after: 'night', cost: 1, effect: { type: 'lead' } },
-        { id: 'constance', q: 'Did Sister Constance ever come in?', a: 'Wednesday. She bought the eyepiece the schoolboy had pawned. Dr. Quint’s. She said she would give it back to its owner. She said the owner would need it on Friday night.' },
+        { id: 'night', q: 'Who came in at dawn?', a: 'Nane. Quarter past five. Sold me his watch outright, which he has never done in ten years. Big hands, cut across both palms, and a bag he would not put down to sign the ticket. He did not want the watch money. He wanted change he could spend.' },
+        { id: 'where', q: 'You look at hands.', a: 'I do. I looked at his for as long as it took him to sign, and he signs slowly. I can tell you what I saw.', after: 'night', cost: 1, effect: { type: 'culpritTrait' } },
+        { id: 'constance', q: 'Did Sister Constance ever come in?', a: 'Wednesday. She asked me to hold the eyepiece the schoolboy had pawned until Friday, and she would pay for it. Dr. Quint’s. She said the owner would need it on Friday night. She did not come on Friday.' },
       ] },
     { id: 'amsel', at: 'bookshop', name: 'Old Amsel', role: 'bookseller',
       intro: 'Amsel. Second-hand books. I sell the hill its own history back to it, and I know who buys which chapter.',
       bio: 'Bookseller for forty years. Stocks the diocese’s annual reports because somebody on the hill always wants one.',
       knows: ['astro', 'tutor', 'canon'],
       aboutLine: 'They browse here. You learn a person by what they don’t buy.',
-      leadLine: 'A diocesan report was bought tonight and its photographs torn out in my doorway. The torn pages went toward',
+      leadLine: 'A diocesan report was bought tonight and its photographs torn out in my doorway. The torn pages went toward', leadAt: 'observ',
       spentLine: 'The shop is closed. So is the subject.',
-      opinions: { astro: 'Dr. Quint buys every book on the eye and on seeing. She bought one on Wednesday about how a witness can be wrong.', tutor: 'Mr. Blake buys nothing. He reads standing up and puts the book back. He read the 1939 diocesan report standing up on Thursday.', canon: 'The Canon sent for the 1939 report on Friday afternoon. I had one copy. I sent it up. It came back with the plates torn out.' },
+      opinions: { astro: 'Dr. Quint buys every book on the eye and on seeing. She bought one on Wednesday about how a witness can be wrong.', tutor: 'Mr. Blake buys nothing. He reads standing up and puts the book back. He read the 1939 diocesan report standing up on Thursday.', canon: 'The Canon has never bought a book from me. He borrows them from Miss Pym and forgets to return them.' },
       topics: [
-        { id: 'night', q: 'The plates were torn out in your doorway.', a: 'By a big man with cut hands who bought the report and did not wait for change. He tore out the four plates of the tower and ran toward the water board.' },
-        { id: 'plates', q: 'What is on the plates?', a: 'The iron rungs on the outside of the tower. The only photograph anyone has of them. Whoever used them wanted nobody to know they were there.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'The plates were torn out in your doorway.', a: 'At a quarter past two in the morning. A big man with cut hands banged me up, bought the 1939 report and did not wait for change. He tore out the four plates of the tower in the doorway and ran up toward the Observatory.' },
+        { id: 'plates', q: 'What is on the plates?', a: 'The iron rungs on the outside of the tower. The only photograph anyone has of them. Whoever used them wanted nobody to know they were there.', after: 'night', cost: 1, effect: { type: 'lead', at: 'observ' } },
         { id: 'constance', q: 'Did Sister Constance buy books?', a: 'Wednesday. A book on canon law. She asked me which page covers a committal signed under false pretences. I showed her. She read it here and did not buy it.' },
       ] },
     { id: 'petty', at: 'tearooms', name: 'Mrs. Petty', role: 'proprietress, Terrace Tea Rooms',
@@ -444,12 +511,12 @@ const def: CaseDef = {
       bio: 'Has run the tea rooms for twenty years. The hill’s gossip passes across her counter twice a day.',
       knows: ['astro', 'sister', 'matron'],
       aboutLine: 'They take tea here. I’ve set a cup in front of them and watched them lift it.',
-      leadLine: 'Two women argued here at four in the morning. One left a glove on the chair. Somebody else picked it up and went to',
+      leadLine: 'Two women argued here at four in the morning. The one who paid took the other back up the hill to', leadAt: 'asylum',
       spentLine: 'The urn is cold, and so am I.',
-      opinions: { astro: 'Dr. Quint takes her tea at six after a night in the dome. Saturday she did not come. She sent a note asking me to keep the papers from her.', sister: 'Beatrix Ayre sat at that table at four in the morning with her hands shaking so badly she left a glove behind.', matron: 'The Matron argued with the Ayre girl here at four in the morning and paid for both teas. She never pays for anybody’s tea.' },
+      opinions: { astro: 'Dr. Quint takes her tea at six after a night in the dome. Saturday she did not come. She sent a note asking me to keep the papers from her.', sister: 'Beatrix Ayre was on my step when I came down at four, wet to the waist. She sat at that table with her hands shaking so badly she left a glove behind.', matron: 'The Matron argued with the Ayre girl here at four in the morning and paid for both teas. She never pays for anybody’s tea.' },
       topics: [
         { id: 'night', q: 'Two women argued here at four.', a: 'The Matron and Beatrix Ayre. Beatrix was wet to the waist. The Matron said, you were not there. Beatrix said, I was under it, I counted nine. The Matron said, then you saw.' },
-        { id: 'saw', q: 'Saw what?', a: 'Beatrix said, a man on the outside of the tower. The Matron went white and paid and took her back up the hill. The glove stayed on the chair. A schoolmaster came in at seven and took it.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'saw', q: 'Saw what?', a: 'Beatrix said, a man on the outside of the tower. The Matron went white and paid and took her back up the hill to Marrow House. The glove stayed on the chair. It is there now. I have not touched it.', after: 'night', cost: 1, effect: { type: 'lead', at: 'asylum' } },
         { id: 'constance', q: 'Did Sister Constance take tea here?', a: 'Thursday. With the Canon. He talked and she did not touch her cup. When he left she sat for an hour and then she said to me, Mrs. Petty, if I fall down the stairs, I did not fall.' },
       ] },
     { id: 'rudge', at: 'inn', name: 'Tam Rudge', role: 'landlord, the Lamplighter’s Arms',
@@ -457,12 +524,12 @@ const def: CaseDef = {
       bio: 'Landlord for fifteen years. He chalks what the hill owes him on a slate, and remembers what it says.',
       knows: ['gardener', 'driver', 'verger'],
       aboutLine: 'They drink in my pub. You see a person clearest after the third drink.',
-      leadLine: 'A man came in with wet boots and a dry throat and left without paying. He went out the back toward',
+      leadLine: 'A man came in with wet boots and a dry throat and left without paying. He went out the back toward', leadAt: 'bookshop',
       spentLine: 'Time, gentlemen. That includes you.',
-      opinions: { gardener: 'Nane came in at half past one with wet boots and cut hands and drank two rums and said he had rung it and laughed. He says that every night. Friday he was not laughing.', driver: 'Rosalind Fay drinks here on Saturdays and talks about the city. Friday she came in at one and did not talk.', verger: 'The verger drinks at the depot, not here. He thinks nobody knows. The whole hill knows.' },
+      opinions: { gardener: 'Nane came in at half past one with wet boots and cut hands and drank two rums and said he had rung it and laughed. He says that every night. Friday he was not laughing.', driver: 'Rosalind Fay drinks here on Saturdays and talks about the city. Friday she did not come in at all.', verger: 'The verger drinks at the depot, not here. He thinks nobody knows. The whole hill knows.' },
       topics: [
         { id: 'night', q: 'The man with wet boots.', a: 'Nane. Half past one. Cut hands, wet to the knee, two rums, no money. He said, I rang it, Tam, and laughed. He says that every night. Friday his voice was wrong.' },
-        { id: 'back', q: 'He went out the back.', a: 'Toward the cemetery. With a bag he had not come in with. It was on the floor by the door when he sat down and it was gone when he went.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'back', q: 'He went out the back.', a: 'Up the Terrace steps toward the bookshop, with a bag he held against his chest the whole time he drank. He had not put it down once, not even for the second rum.', after: 'night', cost: 1, effect: { type: 'lead', at: 'bookshop' } },
         { id: 'constance', q: 'Did Sister Constance ever come in?', a: 'Once. Thursday. She stood at the bar and ordered nothing and said to the room, whoever has been up my tower at night, I know, and it stops now. Then she left. The room did not breathe for a minute.' },
       ] },
     { id: 'shale', at: 'pumphouse', name: 'Wat Shale', role: 'pumpman, the Pump House',
@@ -470,25 +537,25 @@ const def: CaseDef = {
       bio: 'Pumpman for twelve years. He stops the engines when he wants to hear the hill.',
       knows: ['gardener', 'driver'],
       aboutLine: 'They pass the engine house at night. You learn a person by how they walk past a noise.',
-      leadLine: 'Somebody used the valve walkway at one in the morning and dropped something in the channel. It washed up at',
+      leadLine: 'Somebody used the valve walkway at one in the morning and dropped something on the stones. Then they went along the wall to', leadAt: 'boathouse',
       spentLine: 'The engines don’t stop, and neither can I.',
-      opinions: { gardener: 'Nane walked past the engine house at one with a bag and did not look at the noise. Everybody looks at the noise.', driver: 'Miss Fay sat on the reservoir wall from half past midnight till one. I saw her from the engine door. She was not there to think. She was there to watch.' },
+      opinions: { gardener: 'Nane walked past the engine house at one with a bag and did not look at the noise. Everybody looks at the noise.', driver: 'Miss Fay sat on the reservoir wall from half past midnight till one, in the rain. I saw her from the engine door. She was there to think, she says. She was there to watch, I say.' },
       topics: [
         { id: 'night', q: 'You stopped the engines at midnight.', a: 'For four minutes, to listen. Nine bells. I wrote the number down. I have written twelve every night for twelve years. Nine is not a mistake. Nine is a message.' },
-        { id: 'walkway', q: 'Somebody used the valve walkway at one.', a: 'With the Water Board key. They dropped something in the channel. It fetched up at the boathouse. A rosary. Then they went along the wall to the far bank.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'walkway', q: 'Somebody used the valve walkway at one.', a: 'With the Water Board key. They dropped something that rang on the stone, and did not stop for it. Then they went along the top of the wall to the boathouse side with a bag against their chest.', after: 'night', cost: 1, effect: { type: 'lead', at: 'boathouse' } },
         { id: 'constance', q: 'Did you know Sister Constance?', a: 'By the bell. Twelve years, twelve strokes, and I set my engines by her. Friday I stopped them to listen and I have not been able to start them right since.' },
       ] },
     { id: 'ferris', at: 'boathouse', name: 'Old Ferris', role: 'boatman, the Reservoir',
-      intro: 'Ferris. Two rowing boats and a tally book. Tonight one boat went out without a tally and came back without its oars.',
+      intro: 'Ferris. Two rowing boats and a tally book. Tonight one went out from the wall stage without a tally and came in to mine without its oars.',
       bio: 'Boatman at the reservoir for twenty years. He counts the boats out and in, and the oars with them.',
       knows: ['astro', 'gardener'],
       aboutLine: 'They take a boat out sometimes. You learn a person by how they row.',
-      leadLine: 'The oars were found on the far bank this morning, with a set of footprints beside them going up to',
+      leadLine: 'Skiff two came in to my stage at half past one without oars. The footprints from it go up the bank toward', leadAt: 'inn',
       spentLine: 'The water is cold and I’m colder. Go.',
-      opinions: { astro: 'Dr. Quint rows out to the middle on clear nights to see the sky in the water. She was not out on Friday. Friday was not clear.', gardener: 'Nane took a boat out on Friday at half past one and brought it back at two with no oars and his hands bleeding.' },
+      opinions: { astro: 'Dr. Quint rows out to the middle on clear nights to see the sky in the water. She was not out on Friday. Friday was not clear.', gardener: 'Nane came off the wall walk at ten past one with a bag against his chest and his hands wrapped in a rag, and went along the bank toward the Lamplighter’s. He did not look at the boats. Everybody looks at the boats.' },
       topics: [
-        { id: 'night', q: 'One boat went out without a tally.', a: 'Skiff two. At one. A woman, rowing badly. Then skiff one, at half past one. A man, rowing well. Both came back without their oars.' },
-        { id: 'bank', q: 'The far bank.', a: 'Footprints going up from the water to the tram depot path. Two sets. A woman’s, then a man’s over the top of them, an hour later.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'One boat went out without a tally.', a: 'Skiff two, from the wall stage on the Close side, at twenty to one. A woman, rowing badly, for this side. She lost the oars halfway. She came in against my stage at half past one with her hands, and left the boat and went up the bank. I found a rosary in the bottom of it this morning.' },
+        { id: 'bank', q: 'Where did she go?', a: 'Up the bank toward the Lamplighter’s, and past it. Small steps, wandering. Wet to the waist. I did not go after her. I should have.', after: 'night', cost: 1, effect: { type: 'lead', at: 'inn' } },
         { id: 'constance', q: 'Did Sister Constance come to the water?', a: 'Every Sunday after the last bell. She sat in skiff two and did not row. She told me once the reservoir was the only place on the hill where she could not hear herself think. I think she meant that kindly.' },
       ] },
     { id: 'agnes', at: 'laundry', name: 'Sister Agnes', role: 'laundress, Hill Laundry',
@@ -496,25 +563,25 @@ const def: CaseDef = {
       bio: 'Runs the laundry for the diocese. Knows the hill by its stains.',
       knows: ['sister', 'matron'],
       aboutLine: 'They send their linen here. You learn a lot from a person’s linen.',
-      leadLine: 'A cassock came in at dawn with mud up to the knee and a tear at the shoulder. The bundle it came in was sent back to',
+      leadLine: 'A cassock came in at dawn with mud up to the knee and a tear at the shoulder. The bundle it came in was sent back to', leadAt: 'rectory',
       spentLine: 'The coppers are boiling. I’ve said my piece.',
       opinions: { sister: 'Beatrix Ayre’s things came to the laundry on Saturday morning from Marrow House. Wet through. Reservoir water. The Matron sent them herself.', matron: 'The Matron sends her own linen here. It is always clean. That is the strange thing.' },
       topics: [
         { id: 'night', q: 'A cassock came in at dawn.', a: 'From the Rectory. Mud to the knee, a tear at the right shoulder. The Canon’s size. Somebody in the Canon’s cassock was in the river.' },
-        { id: 'tear', q: 'The tear.', a: 'Iron. Rust in the thread. Whoever wore it caught it on something iron, high up, and pulled hard. I sent the bundle back to the Rectory with the tear mended. I should not have mended it.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'tear', q: 'The tear.', a: 'Iron. Rust in the thread. Whoever wore it caught it on something iron and pulled hard. The cemetery railings are iron, and nothing else on that path is. I sent the bundle back to the Rectory with the tear mended. I should not have mended it.', after: 'night', cost: 1, effect: { type: 'lead', at: 'rectory' } },
         { id: 'constance', q: 'Did you know Sister Constance?', a: 'We were novices together. She rang and I washed. Thursday she brought me her own habit to wash and said, Agnes, I want to be clean for Sunday. I did not know what she meant. I do now.' },
       ] },
     { id: 'coyle', at: 'waterboard', name: 'Hettie Coyle', role: 'clerk, Ordell Water Board',
-      intro: 'Coyle. Every gallon that leaves the reservoir goes in my book, and every key to the valves hangs behind me. One didn’t come back last night.',
+      intro: 'Coyle. Every gallon that leaves the reservoir goes in my book, and every key to the valves hangs behind me. One went out at ten to eleven last night and did not come back till three.',
       bio: 'Clerk at the Water Board for seven years. Nobody signs for a valve key without her seeing their hand.',
       knows: ['canon', 'driver'],
       aboutLine: 'They come for the valve key. You learn a person by how they sign for it.',
-      leadLine: 'The valve key came back at three with somebody else’s initials in the book. That somebody walked out toward',
+      leadLine: 'The valve key came back at three with somebody else’s initials in the book. That somebody walked out toward', leadAt: 'glasshouse',
       spentLine: 'The board is closed. Good night.',
-      opinions: { canon: 'The Canon has a standing order for valve key three. He has never once used it himself. Somebody always signs for him.', driver: 'Miss Fay signed for the valve key in the Canon’s name on Friday at ten to midnight. I know her hand. She was not supposed to be here.' },
+      opinions: { canon: 'The Canon has a standing order for valve key three, for the Glasshouse water. He has never once used it himself. Nane signs for him.', driver: 'Miss Fay has never signed my book. She rides past the door twice a day and has never once looked in. Friday her car stood at the reservoir stop for half an hour with its lights off. I saw it from the back window.' },
       topics: [
-        { id: 'night', q: 'Key three.', a: 'Out at ten to midnight against the Canon’s order, signed in a hand that was not his. Back at three with initials that were not the first hand’s either. Two people had that key in one night.' },
-        { id: 'initials', q: 'Whose initials came back?', a: 'P.N. Peter Nane. He does not have a standing order. He has never signed for a key in his life. He signed on Saturday morning at three with cut hands.', after: 'night', cost: 1, effect: { type: 'lead' } },
+        { id: 'night', q: 'Key three.', a: 'Out at ten to eleven against the Canon’s standing order, in the hand that always signs for him. Back at three in the morning, initialled by that same hand under its own name for once. Nobody waters anything at ten to eleven at night.' },
+        { id: 'initials', q: 'Whose initials came back?', a: 'P.N. Peter Nane. He signs the Canon’s name for the Glasshouse water every month. On Saturday morning at three he signed his own, with his hands cut, and went up toward the Glasshouse.', after: 'night', cost: 1, effect: { type: 'lead', at: 'glasshouse' } },
         { id: 'constance', q: 'Did Sister Constance come to the Water Board?', a: 'Wednesday. She asked who had keys to the walkway. I read her the list. She wrote down one name and underlined it. I did not see which.' },
       ] },
   ],
@@ -525,11 +592,11 @@ const def: CaseDef = {
       body: ['Twelve of sherry, six of port, and a note from the merchant: “Canon — the crypt fund cheque was returned again. We must ask.” Mrs. Tull has watched him drink the twelve.'],
       spoken: 'The Canon’s wine account, and a note about a returned cheque.',
       reading: 'Mrs. Tull knows what the Canon drinks and how. It tells you something about him. Check his row in the Notebook.', about: ['canon'], effect: { type: 'suspectTrait', suspectId: 'canon' } },
-    { id: 'item:bell:crypt-ledger', at: 'chapterhouse', kind: 'ledger', label: 'Crypt ledger, 1939, page razored', stamp: 'CONFIDENTIAL',
-      source: 'THE CHAPTER HOUSE · CRYPT REGISTER', title: 'Interments, 1939',
-      body: ['Plot forty-four: a name, a date, a fee of forty pounds, and the page it was on razored out tonight. The stub is still in the binding, and Miss Pym knows which page it was because she gave it to Constance last week.', 'Whoever cut it left a fingerprint in the glue.'],
-      spoken: 'The crypt ledger with a page razored out tonight, and a fingerprint in the glue.',
-      reading: 'Somebody wanted plot forty-four forgotten. A red mark on the map shows where to look.', about: ['canon', 'gardener'], effect: { type: 'lead' } },
+    { id: 'item:bell:crypt-ledger', at: 'chapterhouse', kind: 'ledger', label: 'Crypt ledger, a page razored out', stamp: 'CONFIDENTIAL',
+      source: 'THE CHAPTER HOUSE · CRYPT REGISTER', title: 'Interments and fees, this year',
+      body: ['Plot forty-four: an interment in March, a fee of forty pounds, no name, and the page it was on razored out on Friday afternoon while the Canon had the book in his study. The stub is still in the binding, and Miss Pym knows which page it was because she gave the book to Constance on Wednesday.', 'Whoever cut it left a thumbprint in the glue.'],
+      spoken: 'The crypt ledger with a page razored out on Friday afternoon, and a thumbprint in the glue.',
+      reading: 'Somebody wanted plot forty-four forgotten. A red mark on the map shows where to look.', about: ['canon', 'gardener'], effect: { type: 'lead', at: 'cemetery' } },
     { id: 'item:bell:key-board', at: 'cottage', kind: 'photo', label: 'Photograph, the key board',
       source: 'HILL DIVISION · PHOTOGRAPHIC UNIT', title: 'Plate 3: the verger’s key board',
       body: ['Forty hooks, thirty-nine keys, and the empty hook labelled TOWER in the verger’s hand. In the flash, the verger himself, caught in the doorway, and something about him the constable did not notice at the time.'],
@@ -547,14 +614,14 @@ const def: CaseDef = {
       reading: 'Miss Lamb has watched the Matron sign for eleven years. It tells you something about her. Check her row in the Notebook.', about: ['matron'], effect: { type: 'suspectTrait', suspectId: 'matron' } },
     { id: 'item:bell:depot-sheet', at: 'depot', kind: 'ledger', label: 'Depot sign-out sheet',
       source: 'THE TRAM DEPOT · CARS', title: 'Sign-out, night of the 9th',
-      body: ['Car 7 — out 00:02 — R. FAY — back 00:51 — “wet”. The dispatcher did not sign it and does not know how she got the key. He watched her bring it back, and what she did with her hands while he asked.'],
-      spoken: 'The depot sheet: car seven out at a quarter to midnight, signed Fay, back at ten to one, wet.',
+      body: ['Car 7 — out 23:45 — unsigned — back 01:20 — “wet”. The dispatcher did not sign it out and does not know how she got the key. He watched her bring it back, and what she did with her hands while he asked.'],
+      spoken: 'The depot sheet: car seven out at a quarter to midnight, unsigned, back at twenty past one, wet.',
       reading: 'Marley watched Rosalind Fay bring the tram back. It tells you something about her. Check her row in the Notebook.', about: ['driver'], effect: { type: 'suspectTrait', suspectId: 'driver' } },
     { id: 'item:bell:valve-book', at: 'waterboard', kind: 'ledger', label: 'Valve key book',
       source: 'ORDELL WATER BOARD · KEYS', title: 'Valve keys, the 9th',
-      body: ['Key 3 out at 23:50 against the Canon’s standing order, returned 03:00 with initials that are not his. The walkway it opens runs along the top of the reservoir wall, and the wet prints on it run one way.'],
-      spoken: 'The valve key book: key three out at ten to midnight and back at three with the wrong initials.',
-      reading: 'The wet footprints on the walkway go somewhere. A red mark on the map shows where.', effect: { type: 'lead' } },
+      body: ['Key 3 out at 22:50 against the Canon’s standing order, in the hand that always signs for him; returned 03:00, initialled P.N. The walkway it opens runs along the top of the reservoir wall, and the wet prints on it run one way.'],
+      spoken: 'The valve key book: key three out at ten to eleven in the Canon’s name, and back at three initialled P.N.',
+      reading: 'The wet footprints on the walkway go somewhere. A red mark on the map shows where.', effect: { type: 'lead', at: 'reservoir' } },
     { id: 'item:bell:crypt-tin', at: 'crypt', kind: 'report', label: 'The crypt fund, counted', stamp: 'CONFIDENTIAL',
       source: 'THE CRYPT · FUND BOX', title: 'Crypt restoration fund',
       fields: [['Should hold', '£412'], ['Holds', '£31'], ['Signatures on withdrawals', 'one, throughout']],
@@ -590,14 +657,14 @@ const def: CaseDef = {
       unlocks: [
         { person: 'brannock', line: 'This is the key from the empty hook.', reply: 'It is. It went missing on Thursday. The verger lends it to a boy from the Academy. He thinks I don’t know. The boy meets a girl from Marrow House up there.',
           effect: { type: 'suspectTrait', suspectId: 'verger' } },
-        { person: 'verger', line: 'Your key. Found in the reservoir.', reply: 'I lent it to a boy. Blake’s boy, the tall one. He was to bring it back by eleven. He didn’t. I was in my bed, Inspector. I found her at six and I washed the stairs because I could not look at them.',
+        { person: 'verger', line: 'Your key. Found in the reservoir.', reply: 'I lent it to a boy. Blake’s boy, the thin one. He was to bring it back by eleven. He didn’t. I was in my bed, Inspector. I found her at six and I washed the stairs because I could not look at them.',
           effect: { type: 'clear', suspectId: 'verger' } },
       ] },
     { id: 'obj:bell:rosary', at: 'boathouse', name: 'A rosary with a bent cross', drawing: 'rosary',
-      desc: 'Found on the far bank of the reservoir, beside the missing oars. The beads are still wet.',
-      spoken: 'A rosary on the far bank, the beads wet, the cross bent.',
+      desc: 'Found in the bottom of skiff two when the boatman pulled it in. The beads are still wet.',
+      spoken: 'A rosary from the bottom of skiff two, the beads wet, the cross bent.',
       unlocks: [
-        { person: 'sister', line: 'Is this yours?', reply: 'Mine. I dropped it in the boat. I rowed across because the tram driver would not take me back and I could not walk past the gate. I stood under the tower at midnight. I counted nine. Then I ran.',
+        { person: 'sister', line: 'Is this yours?', reply: 'Mine. I dropped it in the boat, after the oars. I rowed across because the tram driver had gone and I could not walk past the gate. I stood under the tower at midnight. I counted nine. Then I ran.',
           effect: { type: 'clear', suspectId: 'sister' } },
         { person: 'agnes', line: 'Do you know this rosary?', reply: 'Beatrix Ayre’s. I mended the string for her in ’39, before they took her up the hill. She wears it round her wrist. If it came off, she was struggling with something.',
           effect: { type: 'suspectTrait', suspectId: 'sister' } },
@@ -617,7 +684,7 @@ const def: CaseDef = {
       unlocks: [
         { person: 'astro', line: 'Yours. Pawned on Tuesday.', reply: 'One of the boys took it. Blake’s third form. I let them use the telescope and one of them steals from me. I was at the eyepiece at midnight, Inspector. I saw the tower. I saw someone come down the outside. I drew them. I will not say who, because I am not sure.',
           effect: { type: 'clear', suspectId: 'astro' } },
-        { person: 'hobb', line: 'Who pawned this?', reply: 'A schoolboy. Tall. Academy scarf. He said it was his father’s. He came back on Friday and bought it out with a five-pound note. Schoolboys don’t have five-pound notes. Somebody gave it to him.',
+        { person: 'hobb', line: 'Who pawned this?', reply: 'A schoolboy. Thin. Academy scarf. He said it was his father’s. Sister Constance came in on Wednesday and asked me to hold it until Friday and she would pay. Nobody has bought it out.',
           effect: { type: 'suspectTrait', suspectId: 'tutor' } },
       ] },
     { id: 'obj:bell:glove', at: 'tearooms', name: 'A grey glove, left hand', drawing: 'glove',
@@ -627,7 +694,7 @@ const def: CaseDef = {
         { person: 'petty', line: 'Whose glove?', reply: 'The younger Ayre girl’s. She argued with the Matron here at four. She took her gloves off to hold her tea and her hands shook so badly she left one behind.',
           effect: { type: 'suspectTrait', suspectId: 'sister' } },
         { person: 'tutor', line: 'Do you know this glove?', reply: 'Beatrix Ayre’s. She came to the Academy on Wednesday and asked me to give her sister a letter. I did. I have not told anyone that. I was at the Observatory at midnight with Dr. Quint and two boys. Ask her.',
-          effect: { type: 'lead' } },
+          effect: { type: 'lead', at: 'observ' } },
       ] },
     { id: 'obj:bell:photo', at: 'bookshop', name: 'A photograph of the tower’s iron rungs', drawing: 'photo',
       desc: 'Torn from a diocese report. It shows iron rungs on the outside of the bell tower, from the top to the ground.',
@@ -648,20 +715,29 @@ const def: CaseDef = {
     ],
     timeline: [
       { time: '10:00 PM', text: 'The Academy gates are locked. Somebody has a key that is not the porter’s.' },
-      { time: '11:40 PM', text: 'The Marrow House gate is logged open. Somebody goes out carrying a bag.' },
+      { time: '10:50 PM', text: 'A valve key is signed out at the Water Board in the Canon’s name. Nobody waters anything at that hour.' },
+      { time: '11:00 PM', text: 'A schoolboy on the reservoir path has the tower key taken out of his pocket by a man whose face he cannot see.' },
+      { time: '11:30 PM', text: 'Sister Constance comes for the tower key. It is not on its hook. She goes up anyway; the door is already unlocked.' },
+      { time: '11:40 PM', text: 'The Marrow House gate is logged open. Beatrix Ayre goes out carrying a bag.' },
       { time: '11:45 PM', text: 'Tram car 7 leaves the depot, unsigned, lights off, for the Marrow House gate.' },
-      { time: '11:50 PM', text: 'A valve key is signed out at the Water Board, against the Canon’s standing order.' },
       { time: '11:58 PM', text: 'The pump house engines are stopped for four minutes, ‘to listen’.' },
-      { time: '12:00 AM', text: 'The bell rings nine times, rung by somebody who does not know how.' },
-      { time: '12:04 AM', text: 'The Observatory log says ‘tower’. The astronomer sees somebody climb down the outside of it.' },
-      { time: '1:00 AM', text: 'Somebody crosses the reservoir wall and takes a boat. The Marrow House gate is closed again.' },
+      { time: '12:00 AM', text: 'The bell rings nine times, rung by somebody who does not know how. Beatrix counts them from the Close Green.' },
+      { time: '12:04 AM', text: 'The Observatory log says ‘tower’. The astronomer sees somebody climb down the outside of it and go toward the reservoir.' },
+      { time: '12:05 AM', text: 'The Canon goes out by the Rectory garden door toward the cemetery. He is back at a quarter to one, mud to the knee.' },
+      { time: '12:20 AM', text: 'Plot forty-four is dug up. The tin box is left. What was in it is not.' },
+      { time: '12:30 AM', text: 'It begins to rain. A tram stands at the reservoir stop with its lights off.' },
+      { time: '12:40 AM', text: 'Skiff two leaves the wall stage without a tally, rowed badly.' },
+      { time: '1:00 AM', text: 'Somebody crosses the reservoir wall with the valve key and a bag. The Marrow House gate is closed again. A letter reaches the Dean by hand.' },
+      { time: '1:30 AM', text: 'A man with cut hands and wet boots drinks two rums at the Lamplighter’s and says he rang it.' },
+      { time: '3:00 AM', text: 'The valve key comes back to the Water Board, initialled P.N.' },
       { time: '4:00 AM', text: 'Two women argue in the tea rooms. A glove is left on a chair.' },
       { time: '6:00 AM', text: 'The verger finds Sister Constance at the foot of the stairs.' },
     ],
     truth: [
-      'Peter Nane took the tower key from the schoolboy on the reservoir path at eleven. He was at the top of the two hundred and eleven steps when Constance came up to ring twelve.',
+      'Peter Nane signed the valve key out at ten to eleven, took the tower key from the schoolboy on the reservoir path at eleven, and was at the top of the two hundred and eleven steps when Constance came up to ring twelve.',
       'He struck her from behind, cut the rope so nobody could ring for help, and then rang nine himself, badly, with the cut end. He thought it was what Beatrix wanted. He had taken her flowers every Sunday for four years and built a whole life out of it that she knew nothing about.',
-      'He came down the iron rungs on the outside of the tower, cutting his hands, crossed the reservoir wall with the valve key Rosalind Fay had signed out for the Canon, dug up the Canon’s tin box on the way past, and was drinking at the Lamplighter’s by half past one, saying he had rung it, and laughing.',
+      'He came down the iron rungs on the outside of the tower, cutting his hands, dug up the Canon’s tin box on the way past the cemetery, crossed the reservoir wall at one with the valve key and four hundred pounds in a bag, and was drinking at the Lamplighter’s by half past one, saying he had rung it, and laughing. He spent the rest of the night trying to make the rungs disappear and the money go unnoticed, and failed at both.',
+      'The Canon heard nine, went out to move his money and found it gone; he tore his cassock on the cemetery railings and wrote to the Dean. Rosalind Fay drove Beatrix to the Green for five pounds and sat on the reservoir wall in the rain to see who came along it. Neither of them killed anybody.',
       'Beatrix Ayre stood under the tower at midnight and counted the bells. She thought her sister was ringing nine for her. She thought it was an apology. She has not been told otherwise. You should be the one to tell her.',
     ],
   },
