@@ -197,9 +197,46 @@ export function howToPlay() {
   </div>`;
 }
 
-export function settingsSheet(narrator) {
-  const voices = narrator.voices.map((v) => `
-    <option value="${v.voiceURI}" ${v.voiceURI === narrator.voiceURI ? 'selected' : ''}>${v.name} (${v.lang})</option>`).join('');
+export function settingsSheet(narrator, ambience) {
+  const options = narrator.voiceOptions();
+  const current = options.find((o) => o.uri === narrator.voiceURI);
+  const groups = ['Natural', 'Network', 'Standard']
+    .map((q) => {
+      const rows = options.filter((o) => o.quality === q);
+      if (!rows.length) return '';
+      return `<optgroup label="${q}${q === 'Natural' ? ' \u2014 best available' : ''}">${
+        rows.map((o) => `<option value="${o.uri}" ${o.uri === narrator.voiceURI ? 'selected' : ''}>${o.name} (${o.lang})</option>`).join('')
+      }</optgroup>`;
+    }).join('');
+
+  // Which voices a browser can reach is decided by the operating system, and
+  // most systems ship a far better set than the default for free. Saying so is
+  // worth more than any slider on this panel.
+  const note = !narrator.voices.length
+    ? '<p class="sheet-note">No voices reported yet. Reload the page, or see below.</p>'
+    : narrator.hasNaturalVoice
+      ? `<p class="sheet-note">The voices grouped under <b>Natural</b> are the good ones on this
+          machine. The rest are older synthesisers and will sound mechanical however they are tuned.</p>`
+      : '';
+
+  const advice = `<details class="help">
+      <summary>Still sounds robotic? Install a better voice</summary>
+      <p>The browser can only use voices your system has installed, and every system ships a much
+        better set than the default \u2014 free, and a night-and-day difference.</p>
+      <ul>
+        <li><b>macOS</b> \u2014 System Settings \u203a Accessibility \u203a Spoken Content \u203a System Voice \u203a
+          Manage Voices. Download an English voice marked <i>Premium</i> or <i>Enhanced</i>
+          (Daniel and Oliver suit this game). Reload the page afterwards.</li>
+        <li><b>Windows 11</b> \u2014 Settings \u203a Time &amp; language \u203a Speech \u203a Manage voices \u203a Add
+          voices. Opening the game in <b>Edge</b> also exposes the <i>Natural</i> online voices,
+          which are far better than anything Chrome can see.</li>
+        <li><b>Android</b> \u2014 Settings \u203a Accessibility \u203a Text-to-speech, then install the Google
+          Speech Services voices.</li>
+        <li><b>iPhone / iPad</b> \u2014 Settings \u203a Accessibility \u203a Spoken Content \u203a Voices, then
+          download an Enhanced English voice.</li>
+      </ul>
+    </details>`;
+
   return `
   <div class="sheet">
     <h3>Narration</h3>
@@ -209,18 +246,28 @@ export function settingsSheet(narrator) {
           <span>Read the case aloud</span>
         </label>
         <label class="field">
-          <span>Narrator voice</span>
-          <select data-act="pick-voice">${voices || '<option>Loading voices…</option>'}</select>
+          <span>Narrator voice ${current ? `<i class="q q--${current.quality.toLowerCase()}">${current.quality}</i>` : ''}</span>
+          <select data-act="pick-voice" id="voice-pick">${groups || '<option>Loading voices\u2026</option>'}</select>
         </label>
-        <button class="btn btn--ghost" data-act="test-voice">${icon('speaker')} Test the voice</button>
-        <p class="sheet-note">Voices come from your browser and operating system, so the list differs
-          between machines. A deep English voice suits the material. Subtitles show every line either way.</p>`
+        <label class="field">
+          <span>Pace</span>
+          <input type="range" data-act="set-rate" id="voice-rate" min="0.75" max="1.3" step="0.05"
+                 value="${narrator.rateScale}">
+          <em class="field-ends"><span>Slower</span><span>Faster</span></em>
+        </label>
+        <button class="btn btn--ghost btn--wide" data-act="test-voice">${icon('speaker')} Hear a dispatch</button>
+        ${note}${advice}`
       : '<p class="sheet-note">This browser has no speech synthesis, so narration runs as subtitles only.</p>'}
-    <h4>Comfort</h4>
+
+    <h4>Atmosphere</h4>
+    <label class="switch">
+      <input type="checkbox" data-act="toggle-ambience" ${ambience?.enabled ? 'checked' : ''}>
+      <span>Rain and precinct radio <i>(the narrator comes in over the wire)</i></span>
+    </label>
     <label class="switch">
       <input type="checkbox" data-act="toggle-motion" ${localStorage.getItem('ashgrave.motion') !== 'off' ? 'checked' : ''}>
-      <span>Rain, grain and typewriter effects</span>
+      <span>On-screen rain, grain and typewriter effects</span>
     </label>
-    <button class="btn btn--hero" data-act="close-modal">Close</button>
+    <button class="btn btn--hero btn--wide" data-act="close-modal">Close</button>
   </div>`;
 }

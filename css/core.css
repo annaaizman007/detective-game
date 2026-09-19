@@ -164,9 +164,35 @@ ul, ol, dl { margin: 0; padding: 0; list-style: none; }
 .switch input:checked::after { left: 21px; background: var(--brass-hi); }
 .switch i { display: block; color: var(--text-faint); font-style: normal; font-size: .84em; }
 
+optgroup { background: var(--panel); color: var(--brass); font-style: normal; }
+option { background: var(--panel-2); color: var(--text); }
+
 .field { display: block; margin: 1rem 0; }
 .field > span { display: block; font-family: var(--display); letter-spacing: .1em;
                 text-transform: uppercase; font-size: .78rem; color: var(--text-faint); margin-bottom: .35rem; }
+.field-ends { display: flex; justify-content: space-between; font-style: normal;
+  font-size: .72rem; color: var(--text-faint); margin-top: .2rem; }
+
+/* quality badge beside the chosen narrator voice */
+.q { font-style: normal; font-size: .64rem; letter-spacing: .12em; padding: .1em .45em;
+  margin-left: .5em; border-radius: 999px; border: 1px solid currentColor; }
+.q--natural { color: var(--moss); }
+.q--network { color: var(--neon); }
+.q--standard { color: var(--text-faint); }
+
+.help { margin: .9rem 0; border: 1px solid var(--line); border-radius: var(--r-s);
+  background: var(--panel-2); }
+.help summary { padding: .6rem .8rem; cursor: pointer; font-size: .86rem; color: var(--brass); }
+.help summary::marker { color: var(--brass-dim); }
+.help p, .help ul { padding: 0 .9rem; font-size: .84rem; color: var(--text-dim); }
+.help ul { padding-bottom: .9rem; display: grid; gap: .5rem; }
+.help li { padding-left: .9rem; position: relative; }
+.help li::before { content: ''; position: absolute; left: 0; top: .6em;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--brass-dim); }
+.help b { color: var(--text); }
+
+input[type="range"] { width: 100%; accent-color: var(--brass); }
+
 .field select, .seat-char, select {
   width: 100%; padding: .6em .8em; background: var(--panel-2);
   border: 1px solid var(--line); border-radius: var(--r-s); color: var(--text);

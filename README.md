@@ -64,10 +64,37 @@ turn it is. Argue about the board together.
 ## Narration
 
 Every briefing, clue, tell and event is spoken through the browser's built-in
-speech synthesis. No API key, no audio files, works offline. The voice list
-comes from your operating system, so pick one under **Narration** — a deep
-English voice suits the material. Subtitles show every line whether speech is on
-or off.
+speech synthesis. No API key, no audio files, works offline.
+
+The synthesiser itself belongs to your operating system, so `js/voice.js`
+concentrates on the parts that are ours:
+
+- **Voice ranking.** Voices are scored by class (natural/neural, network,
+  standard), penalised if they are known low-fidelity engines, and nudged
+  toward English accents that suit the material. The best one is picked
+  automatically; the settings list is grouped and labelled so you can see which
+  of yours are the good ones.
+- **No mangling.** Pitch-shifting a neural voice is exactly what makes it sound
+  synthetic, so prosody is per voice class — the good ones are left alone and
+  only the older engines get nudged.
+- **Phrasing.** Lines are split at sentence and clause boundaries and spoken
+  with real silence between them, weighted by punctuation: a comma is a breath,
+  an em dash is a beat, a question mark is longer than a full stop. Tiny
+  fragments are merged so the reading never turns choppy, and the rate drifts a
+  fraction phrase to phrase, because dead-even timing is the most machine-like
+  thing about synthesised speech.
+- **A room to speak in.** Browser speech cannot be routed through Web Audio —
+  there is no way to capture it — so the voice itself cannot be processed. What
+  `js/audio.js` can do is put something behind it: generated rain under
+  everything, and a precinct-radio carrier that opens with a relay click when
+  the narrator starts and ducks the rain while they talk. Dry speech in silence
+  reads as a machine; the same speech over a radio in a rainy room does not.
+  All synthesised from noise buffers and oscillators, so there is nothing to
+  download.
+
+If it still sounds mechanical, the machine has no natural voice installed and
+the settings panel explains how to add one per platform — it is free and it is
+the single biggest improvement available. Subtitles show every line either way.
 
 ## How it is built
 
@@ -82,7 +109,8 @@ js/
   traits.js         the deduction alphabet
   characters.js     the six playable detectives
   events.js         what the city does every four hours
-  voice.js          the narrator, and two Web Speech API workarounds
+  voice.js          the narrator: voice ranking, prosody, phrase timing
+  audio.js          generated rain and precinct-radio ambience
   cases/            three hand-authored cases with their maps
   ui/               app.js (controller), map.js, notebook.js, screens.js, icons.js, fx.js
   net/              the transport seam where online play plugs in

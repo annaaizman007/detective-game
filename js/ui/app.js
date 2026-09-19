@@ -8,6 +8,7 @@ import { CASES, caseById } from '../cases/index.js';
 import { CHARACTERS, characterById } from '../characters.js';
 import { TRAITS, traitLabel } from '../traits.js';
 import { Narrator } from '../voice.js';
+import { Ambience } from '../audio.js';
 import { LocalTransport } from '../net/transport.js';
 import { CityMap } from './map.js';
 import { renderNotebook } from './notebook.js';
@@ -19,6 +20,7 @@ export class App {
   constructor(root) {
     this.root = root;
     this.narrator = new Narrator();
+    this.ambience = new Ambience();
     this.transport = new LocalTransport();
     this.state = null;
     this.map = null;
@@ -36,13 +38,12 @@ export class App {
       seats: [{ name: '', charId: 'hale' }],
     };
 
-    try {
-      if (localStorage.getItem('ashgrave.voiceOn') === '0') this.narrator.enabled = false;
-    } catch { /* private mode */ }
-
     this.narrator.subscribe((ev) => {
       if (ev.type === 'line') { this.subtitle = ev.text; this.paintSubtitle(true); }
-      if (ev.type === 'idle') { this.paintSubtitle(false); }
+      // The radio opens when the narrator starts and closes when they stop,
+      // so the voice always arrives inside a room rather than in a vacuum.
+      if (ev.type === 'speaking') this.ambience.openChannel();
+      if (ev.type === 'idle') { this.paintSubtitle(false); this.ambience.closeChannel(); }
       if (ev.type === 'voices' && this.modal === 'settings') this.renderModal();
     });
 
@@ -57,6 +58,7 @@ export class App {
 
   bind() {
     this.root.addEventListener('click', (e) => {
+      this.ambience.start(); // audio contexts only start from a gesture
       const el = e.target.closest('[data-act]');
       if (!el) return;
       const act = el.dataset.act;
@@ -146,8 +148,21 @@ export class App {
       case 'handoff-ready': this.pendingHandoff = null; return this.render();
 
       case 'toggle-voice': this.narrator.setEnabled(el.checked); return;
-      case 'pick-voice': this.narrator.setVoice(el.value); return;
-      case 'test-voice': this.narrator.stop(); return this.narrator.say('Ashgrave Bay. Two in the morning, and it is still raining.', 'brief');
+      case 'pick-voice':
+        this.narrator.setVoice(el.value);
+        this.renderModal();
+        this.narrator.stop();
+        return this.narrator.say('Ashgrave Bay, two in the morning, and it is still raining.', 'brief');
+      case 'set-rate':
+        this.narrator.setRate(el.value);
+        return;
+      case 'test-voice':
+        this.narrator.stop();
+        return this.narrator.say(
+          'Dispatch to all cars. A woman is dead at the Gilded Hotel, and nobody heard a thing. Take it slow, detective \u2014 this one has lawyers.',
+          'brief',
+        );
+      case 'toggle-ambience': this.ambience.setEnabled(el.checked); return;
       case 'toggle-motion': {
         try { localStorage.setItem('ashgrave.motion', el.checked ? 'on' : 'off'); } catch { /* ignore */ }
         return window.location.reload();
@@ -324,7 +339,7 @@ export class App {
   modalBody() {
     switch (this.modal) {
       case 'how': return S.howToPlay();
-      case 'settings': return S.settingsSheet(this.narrator);
+      case 'settings': return S.settingsSheet(this.narrator, this.ambience);
       case 'location': return this.locationPanel();
       case 'suspect': return this.suspectPanel();
       case 'accuse': return this.accusePanel();
