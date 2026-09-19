@@ -6,3 +6,6 @@ node_modules/
 # whichever engine and voice rendered it. Delete these lines if you want to
 # commit a voice pack so other people get it too.
 voice/
+
+# Neural voice model, downloaded once by `npm run voices -- --setup`.
+models/

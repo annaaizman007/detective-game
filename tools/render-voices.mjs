@@ -15,12 +15,13 @@
 // Engines, in the order they are chosen:
 //   elevenlabs  ELEVENLABS_API_KEY  best, costs money
 //   openai      OPENAI_API_KEY      very good, costs money
-//   piper       `piper` on PATH     good, free, offline
-//   say         macOS built-in      good with a Premium/Enhanced voice, free
+//   kokoro      a local neural model, free, offline   -- `npm run voices -- --setup`
+//   piper       `piper` on PATH     smaller local model, free, offline
+//   say         macOS built-in      a formant synthesiser; the weakest option
 //
 // No dependencies: node built-ins only.
 
-import { mkdir, writeFile, readFile, stat } from 'node:fs/promises';
+import { mkdir, writeFile, stat, rm, open as openFile } from 'node:fs/promises';
 import { spawn } from 'node:child_process';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -51,6 +52,29 @@ const has = async (cmd) => {
 };
 
 // ---------------------------------------------------------------- engines
+
+const MODELS = join(ROOT, 'models');
+const KOKORO_FILES = [
+  { name: 'kokoro-v1.0.onnx', url: 'https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx' },
+  { name: 'voices-v1.0.bin', url: 'https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin' },
+];
+
+const exists = async (p) => { try { return (await stat(p)).size > 1024; } catch { return false; } };
+
+async function download(url, dest) {
+  const res = await fetch(url, { redirect: 'follow' });
+  if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+  const total = Number(res.headers.get('content-length') || 0);
+  const fh = await openFile(dest, 'w');
+  let got = 0;
+  for await (const chunk of res.body) {
+    await fh.write(chunk);
+    got += chunk.length;
+    if (total) process.stdout.write(`\r    ${(got / 1e6).toFixed(0)}/${(total / 1e6).toFixed(0)} MB   `);
+  }
+  await fh.close();
+  process.stdout.write('\n');
+}
 
 const ENGINES = {
   elevenlabs: {
@@ -95,6 +119,56 @@ const ENGINES = {
     },
   },
 
+  // A real neural model, running locally on the CPU. Free, offline, and the
+  // best option that does not involve an account. Batched deliberately: the
+  // model takes seconds to load and milliseconds to run, so it is loaded once
+  // for the whole script rather than once per line.
+  kokoro: {
+    format: 'wav',
+    batch: true,
+    async detect() {
+      if (!(await has('python3'))) return false;
+      try { await run('python3', ['-c', 'import kokoro_onnx, soundfile']); } catch { return false; }
+      for (const f of KOKORO_FILES) if (!(await exists(join(MODELS, f.name)))) return false;
+      return true;
+    },
+    describe: () => `Kokoro, local neural model (${flag('voice', 'bm_george')})`,
+    async renderAll(lines, outDir, onProgress) {
+      const args = [
+        join(ROOT, 'tools', 'kokoro_render.py'),
+        '--model', join(MODELS, KOKORO_FILES[0].name),
+        '--voices', join(MODELS, KOKORO_FILES[1].name),
+        '--voice', String(flag('voice', 'bm_george')),
+        '--speed', String(flag('speed', '0.95')),
+        '--out', outDir,
+      ];
+      if (flag('force')) args.push('--force');
+      if (flag('lang')) args.push('--lang', String(flag('lang')));
+
+      return new Promise((resolve, reject) => {
+        const ch = spawn('python3', args, { stdio: ['pipe', 'pipe', 'inherit'] });
+        let tail = '';
+        let last = { done: 0, skipped: 0, failed: 0 };
+        ch.stdout.on('data', (d) => {
+          tail += d;
+          const rows = tail.split('\n');
+          tail = rows.pop();
+          for (const row of rows) {
+            if (!row.trim()) continue;
+            let msg; try { msg = JSON.parse(row); } catch { continue; }
+            if (msg.event === 'progress') { last = msg; onProgress(msg); }
+            if (msg.event === 'clip-failed') console.log(`\n  clip ${msg.id}: ${msg.message}`);
+            if (msg.event === 'error') reject(new Error(msg.message));
+          }
+        });
+        ch.on('error', reject);
+        ch.on('close', (code) => (code === 0 ? resolve(last) : reject(new Error(`kokoro_render.py exited ${code}`))));
+        ch.stdin.write(JSON.stringify(lines));
+        ch.stdin.end();
+      });
+    },
+  },
+
   piper: {
     format: 'wav',
     detect: () => has('piper'),
@@ -127,7 +201,7 @@ async function pickEngine() {
     if (!ENGINES[asked]) throw new Error(`Unknown engine "${asked}". One of: ${Object.keys(ENGINES).join(', ')}`);
     return asked;
   }
-  for (const name of ['elevenlabs', 'openai', 'piper', 'say']) {
+  for (const name of ['elevenlabs', 'openai', 'kokoro', 'piper', 'say']) {
     if (await ENGINES[name].detect()) return name;
   }
   return null;
@@ -156,6 +230,36 @@ if (flag('list-voices')) {
   process.exit(0);
 }
 
+// One command to get the local neural model working from nothing.
+if (flag('setup')) {
+  console.log('\nSetting up Kokoro, a local neural voice. Nothing leaves this machine after this.\n');
+  console.log('  1/2  python packages');
+  try {
+    await run('python3', ['-m', 'pip', 'install', '--quiet', 'kokoro-onnx', 'soundfile'], { stdio: 'inherit' });
+    console.log('       kokoro-onnx, soundfile installed');
+  } catch (e) {
+    console.error(`       pip install failed: ${e.message}`);
+    console.error('       try:  python3 -m pip install --user kokoro-onnx soundfile');
+    process.exit(1);
+  }
+  console.log('  2/2  model files (about 340 MB, once)');
+  await mkdir(MODELS, { recursive: true });
+  for (const f of KOKORO_FILES) {
+    const dest = join(MODELS, f.name);
+    if (await exists(dest)) { console.log(`       ${f.name} already here`); continue; }
+    console.log(`       ${f.name}`);
+    try {
+      await download(f.url, dest);
+    } catch (e) {
+      console.error(`\n       could not download ${f.name}: ${e.message}`);
+      console.error(`       fetch it by hand into models/ from:\n         ${f.url}`);
+      process.exit(1);
+    }
+  }
+  console.log('\nReady. Now run:  npm run voices\n');
+  process.exit(0);
+}
+
 const { collectLines } = await import(new URL('../js/lines.js', import.meta.url));
 const lines = collectLines();
 
@@ -174,23 +278,24 @@ if (flag('list')) {
 const engine = await pickEngine();
 if (!engine) {
   console.error(`
-No text-to-speech engine found on this machine.
+No text-to-speech engine is set up on this machine yet.
 
-  macOS    nothing to install -- rerun this and it will use \`say\`.
-           First install a good voice: System Settings > Accessibility >
-           Spoken Content > System Voice > Manage Voices, and take an
-           English one marked Premium or Enhanced. Then:
-             npm run voices -- --voice="Daniel (Enhanced)"
+  Recommended -- a real neural model, free, local, nothing sent anywhere:
 
-  Piper    free, offline, any platform. Install piper and a voice from
-           https://github.com/OKC-piper/piper, then:
-             npm run voices -- --engine=piper --voice=/path/to/en_GB-alan-medium.onnx
+      npm run voices -- --setup     (installs two python packages and
+                                     downloads ~340 MB of model, once)
+      npm run voices
 
-  Paid     export OPENAI_API_KEY=...       (or ELEVENLABS_API_KEY=...)
-           npm run voices
+  Other options:
 
-Without any of these the game still narrates, using the browser's own
-speech synthesis. It just will not sound as good.`);
+      export OPENAI_API_KEY=...     then: npm run voices
+      export ELEVENLABS_API_KEY=... then: npm run voices     (best, paid)
+      npm run voices -- --engine=piper --voice=/path/to/en_GB-alan-medium.onnx
+      npm run voices -- --engine=say --voice="Daniel (Premium)"   (macOS only,
+                                     a formant synthesiser, the weakest option)
+
+Without any of these the game still narrates using the browser's own speech
+synthesis. It just will not sound as good.`);
   process.exit(1);
 }
 
@@ -225,10 +330,26 @@ async function renderOne(line) {
   }
 }
 
-const queue = lines.slice();
-await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
-  while (queue.length) await renderOne(queue.shift());
-}));
+if (spec.batch) {
+  // The engine renders the whole script itself, in one process.
+  try {
+    const res = await spec.renderAll(lines, OUT, (m) => {
+      process.stdout.write(`\r  ${m.done + m.skipped + m.failed}/${m.total}  rendered ${m.done}  reused ${m.skipped}  failed ${m.failed}   `);
+    });
+    done = res.done ?? 0; skipped = res.skipped ?? 0; failed = res.failed ?? 0;
+  } catch (e) {
+    // A missing model or package is the normal way this fails, and the
+    // message already says how to fix it. No stack trace required.
+    console.error(`\n${e.message}\n`);
+    console.error('Run `npm run voices -- --setup` to install and download everything.\n');
+    process.exit(1);
+  }
+} else {
+  const queue = lines.slice();
+  await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
+    while (queue.length) await renderOne(queue.shift());
+  }));
+}
 process.stdout.write('\n');
 
 if (failures.length) {
@@ -236,12 +357,42 @@ if (failures.length) {
   failures.slice(0, 8).forEach((f) => console.log(`    ${f}`));
 }
 
+// WAV from a local model is about 46 MB for the whole script. If ffmpeg is
+// around, squeeze it to mp3 -- a seventh of the size, no audible cost for
+// speech, and much quicker to load. Entirely optional.
+let format = spec.format;
+if (spec.format === 'wav' && !flag('no-mp3') && (await has('ffmpeg'))) {
+  console.log('\n  ffmpeg found -- compressing to mp3');
+  const todo = lines.slice();
+  let conv = 0;
+  await Promise.all(Array.from({ length: 4 }, async () => {
+    while (todo.length) {
+      const l = todo.shift();
+      const wav = join(OUT, `${l.id}.wav`);
+      const mp3 = join(OUT, `${l.id}.mp3`);
+      if (!(await exists(wav))) continue;
+      if (await exists(mp3)) { conv++; continue; }
+      try {
+        await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', wav,
+          '-codec:a', 'libmp3lame', '-b:a', '64k', '-ac', '1', mp3]);
+        await rm(wav, { force: true });
+        conv++;
+      } catch { /* keep the wav; the manifest below follows what is on disk */ }
+      if (conv % 20 === 0) process.stdout.write(`\r  ${conv}/${lines.length}   `);
+    }
+  }));
+  process.stdout.write('\n');
+  // Only claim mp3 if effectively everything converted.
+  if (conv >= lines.length - 2) format = 'mp3';
+  else console.log('  some clips stayed as wav; keeping wav in the manifest');
+}
+
 // The manifest is what the game reads; without it the clips are ignored.
 const manifest = {
   version: 1,
   engine,
   voice: String(flag('voice', 'default')),
-  format: spec.format,
+  format,
   generated: new Date().toISOString().slice(0, 10),
   clips: lines.map((l) => ({ id: l.id, group: l.group, text: l.text })),
 };
@@ -249,7 +400,7 @@ await writeFile(join(OUT, 'manifest.json'), `${JSON.stringify(manifest, null, 1)
 
 let bytes = 0;
 for (const l of lines) {
-  try { bytes += (await stat(join(OUT, `${l.id}.${spec.format}`))).size; } catch { /* missing */ }
+  try { bytes += (await stat(join(OUT, `${l.id}.${format}`))).size; } catch { /* missing */ }
 }
 console.log(`\n  Wrote voice/manifest.json -- ${(bytes / 1e6).toFixed(1)} MB of audio.`);
 console.log('  Reload the game; it will use these instead of the browser voice.\n');

@@ -36,62 +36,80 @@ Settings › General › Default branch, then `git fetch && git checkout main`.
 
 ## 2. The one thing worth doing first: a real narrator
 
-This is the open complaint, and on a Mac it is about five minutes of work.
+This is the open complaint. Browser speech synthesis cannot be made to sound
+good from inside a browser — the synthesiser belongs to the operating system,
+and macOS's built-in voices, `say` included, are formant synthesisers. They
+sound like machines because they are.
 
-Browser speech synthesis cannot be made to sound good from inside a browser —
-the synthesiser belongs to macOS, not to the page. So the game can instead
-play **pre-rendered audio**, baked once by a proper voice.
-
-**Step 1 — install a good voice.** The ones macOS ships with by default are the
-old robotic set. The good ones are free and have to be downloaded:
-
-> System Settings › Accessibility › Spoken Content › System Voice ›
-> Manage Voices… › English — download one marked **Premium** (best) or
-> **Enhanced**. *Daniel* (British) and *Oliver* suit this game.
-
-**Step 2 — see what you now have:**
+The fix is to run an actual **neural TTS model** on your Mac, bake the whole
+script to audio once, and have the game play the files. Kokoro is the one to
+use: genuinely natural, free, runs on the CPU, no account, and nothing leaves
+the machine.
 
 ```bash
-npm run voices -- --list-voices
+npm run voices -- --setup     # pip installs two packages, downloads ~340 MB
+npm run voices                # bakes 302 clips, a few minutes
 ```
 
-It prints the Premium/Enhanced voices first. If that list is empty, step 1 did
-not take.
+Then reload the game. It finds `voice/manifest.json` by itself and uses the
+recordings; there is a toggle under the badge icon › Narration if you ever
+want the synthesised voice back.
 
-**Step 3 — bake the narration:**
+### Choosing a voice
 
 ```bash
-npm run voices -- --voice="Daniel (Premium)"
+python3 tools/kokoro_render.py --list-voices   --model models/kokoro-v1.0.onnx --voices models/voices-v1.0.bin
 ```
 
-About 300 clips, roughly sixteen minutes of audio, a few minutes to render.
-It is incremental — rerunning only does what changed — and concurrent.
-
-**Step 4 — reload the game.** It finds `voice/manifest.json` on its own and
-uses the recordings. There is a toggle under the badge icon › Narration if you
-ever want the synthesised voice back.
-
-### If you want better than macOS
-
-The same command takes other engines, chosen automatically if a key is set:
+`bm_george` (British) is the default and suits the material. `bm_lewis` is
+lower and slower; `am_michael` is American. Re-render with:
 
 ```bash
-export OPENAI_API_KEY=sk-...        # then: npm run voices
-export ELEVENLABS_API_KEY=...       # best quality, costs per character
+npm run voices -- --voice=bm_lewis --force
+```
+
+`--speed` adjusts pace (0.95 by default — a shade under natural, which reads
+as weary rather than slow). If `ffmpeg` happens to be installed, the clips are
+compressed to mp3 automatically, which takes the pack from about 46 MB to 7.
+
+### If the setup step fails
+
+It does two things, and either can be done by hand:
+
+```bash
+python3 -m pip install kokoro-onnx soundfile
+mkdir -p models
+curl -L -o models/kokoro-v1.0.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+curl -L -o models/voices-v1.0.bin  https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+```
+
+If the release URLs have moved, any `kokoro-v1.0.onnx` and `voices-v1.0.bin`
+will do — the script only needs the two paths.
+
+### Other engines
+
+The same command takes others, picked automatically when available:
+
+```bash
+export ELEVENLABS_API_KEY=...   # best quality, paid
+export OPENAI_API_KEY=...       # very good, paid
+npm run voices
 npm run voices -- --engine=piper --voice=/path/to/en_GB-alan-medium.onnx
+npm run voices -- --engine=say  --voice="Daniel (Premium)"   # last resort
 ```
 
-`npm run voices -- --list` prints the whole script without rendering anything,
-if you want to read what the narrator says before paying for it.
+`npm run voices -- --list` prints the whole script without rendering, if you
+want to read what the narrator says first.
 
-### Why this was not done for you
+### What was and was not verified
 
-The cloud sandbox this was built in cannot reach HuggingFace, so no neural
-voice model could be downloaded there. The pipeline and the playback path are
-both finished and tested (against generated test tones); the only step left is
-running it somewhere with a model, which is your Mac.
-
----
+The pipeline is finished and tested end to end — the Node side, the Python
+batch renderer, the manifest, and the browser playback including fragment
+sequencing and the fallback — but with a stubbed model standing in for the
+real weights. The cloud sandbox this was built in cannot reach HuggingFace or
+GitHub release assets, so no neural weights could be downloaded there and no
+real speech was ever generated. Your Mac can reach both. If `--setup` works,
+everything downstream of it has been exercised.
 
 ## 3. Publishing changes to the shared link
 

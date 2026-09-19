@@ -86,28 +86,22 @@ can be voiced, and the game prefers the better one when it is available.
 ### Baked audio (recommended)
 
 Browser speech synthesis is the weakest part of this project and there is no
-fixing it from inside a browser. So the whole script is enumerable ahead of
-time — `js/lines.js` collects every line the narrator can say — and
-`tools/render-voices.mjs` bakes it to audio with a real model:
+fixing it from inside a browser — the synthesiser belongs to the operating
+system. So the whole script is enumerable ahead of time (`js/lines.js` collects
+every line the narrator can say) and `tools/render-voices.mjs` bakes it with a
+real model:
 
 ```bash
-npm run voices -- --list-voices     # what this machine has
-npm run voices                      # bake it
+npm run voices -- --setup     # installs Kokoro and downloads it, once
+npm run voices                # 302 clips, a few minutes
 ```
 
-It picks the best engine present: ElevenLabs or OpenAI if you export a key,
-Piper if it is on your PATH, and macOS `say` otherwise. On a Mac, install a
-free Premium voice first (System Settings › Accessibility › Spoken Content ›
-System Voice › Manage Voices) and pass it:
-
-```bash
-npm run voices -- --voice="Daniel (Enhanced)"
-```
-
-Clips land in `voice/` with a manifest; reload and the game uses them. Around
-300 clips, roughly sixteen minutes of audio. Rendering is incremental, so a
-rerun only does what changed, and a half-finished render still works — the
-game falls back per line.
+Kokoro is a neural TTS model that runs locally on the CPU — free, offline, no
+account. The tool will instead use ElevenLabs or OpenAI if you export a key,
+Piper if it is on your PATH, or macOS `say` as a last resort. Clips land in
+`voice/` with a manifest; reload and the game uses them. Rendering is
+incremental, and a half-finished render still works — the game falls back per
+line.
 
 The trick that makes this possible is that composite lines are narrated as
 **fragments**. "Vera Lang strikes the match left-handed" would need every name
