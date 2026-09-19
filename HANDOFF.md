@@ -1,8 +1,8 @@
-# Handoff — continuing on a Mac
+# Handoff — The Ashgrave Files
 
-Everything below has been committed on `claude/browser-detective-game-gwbcny`,
-which is the repository's default branch. This file exists so you can pick the
-project up without reading back through a conversation.
+Last updated 2026-09-19 (evening). Everything below is committed on `master`
+(mirrored on `claude/browser-detective-game-gwbcny`). This file exists so
+anyone can pick the project up without reading a conversation.
 
 ---
 
@@ -13,94 +13,117 @@ git clone https://github.com/annaaizman007/detective-game
 cd detective-game
 npm install
 npm run dev                   # http://localhost:5173
-npm test                      # 16 checks, ~10 s
+npm test                      # 20 checks, ~15 s
 npm run build                 # static dist/
 ```
 
-The project is Vite + TypeScript + Phaser 3, laid out on the `web-game`
-skill's scaffold. Node 18+.
+Vite 5 + TypeScript (strict) + Phaser 3.90, on the `web-game` skill's
+scaffold. Node 18+. Python 3 with `diffusers`, `torch` (MPS) and `Pillow`
+for the art pipeline; `ffmpeg` for the opening film and audio loops.
 
-## 2. The narrator
+## 2. What it is
 
-The neural voice pack is baked and works. `public/voice/` is gitignored
-(24 MB), so on a fresh clone:
+A co-operative detective board game for one to six players around one
+device. Three cases (`src/game/cases/`), thirty streets each, ~2 hours at
+a table. Each case has a fixed culprit; the proof (a dealt trait table and
+where the evidence lies) shuffles per seed. Every find is a document you
+open and read; the notebook only crosses people off from your own marks.
+
+Engine: a pure seeded reducer (`src/game/state.ts`, `applyAction`), saves
+are action logs, replays are byte-identical (tested).
+
+## 3. Where things live
+
+| Thing | Where |
+|---|---|
+| Cases: locations, suspects, witnesses, items, objects, story, the opening call | `src/game/cases/{orchid,salt,bell}.ts` |
+| Per-city clue documents (24 each; Orchid uses the shared set) | `src/game/cases/{salt,bell}-clues.ts`, `src/game/exhibits.ts` |
+| Trait table, tells | `src/game/traits.ts`; pins per suspect in `SuspectDef.traits` |
+| Search narrative (where you looked / what looked off) | `src/game/search.ts` |
+| Voice corpus (every spoken line, enumerable) | `src/game/lines.ts` |
+| UI: controller, screens, dialogue, locker, journal | `src/ui/app.ts`, `screens.ts`, `dialogue.ts`, `exhibits.ts`, `journal.ts` |
+| Opening film + drawn fallback | `src/ui/intro.ts`, `tools/make-intro.py`, `public/assets/video/` |
+| Board (Phaser): map, pins, facades, cinematic drift | `src/scenes/board-scene.ts`, `preload-scene.ts` |
+| Audio: rain/fire recordings, generative band, foley | `src/systems/audio-manager.ts`, `synth-music.ts`, `foley.ts` |
+| Narrator (baked clips → sprites) | `src/systems/narrator.ts` |
+
+## 4. The art pipeline (local Stable Diffusion, DreamShaper 8)
 
 ```bash
-npm run voices -- --setup     # pip installs kokoro-onnx + soundfile, downloads ~340 MB
-npm run voices                # ~700 clips, a few minutes; reuses what exists
+npx vite-node tools/portrait-prompts.mjs        # writes people/prompts.json (casting notes inside the script)
+python3 tools/render-portraits.py               # renders missing portraits → public/assets/images/people/<id>.jpg
+python3 tools/render-portraits.py --force --only ledoux,vera   # re-render some
+npx vite-node tools/building-prompts.mjs        # facades (landmark overrides inside)
+python3 tools/render-portraits.py --dir public/assets/images/buildings --size 640x448 --steps 26
 ```
 
-The manifest, the per-clip mp3s and eleven sprite files under
-`public/voice/sprites/` are produced together. The game plays the sprites
-through Web Audio and falls back to the per-clip files, then to browser
-speech. `--voice=bm_lewis --force` re-renders with another voice;
-`--list` prints the script.
+Portraits are 512², facades 640×448, all JPEG q90. `people.json` /
+`manifest.json` list what exists; the SVG fallbacks in `src/ui/portraits.ts`
+and `src/ui/buildings.ts` draw anything missing. Hair and build in the
+notebook are pinned to the paintings (`traits:` on each suspect) — if you
+re-render a suspect with different hair, change the pin.
 
-Every time a spoken line is added anywhere (a case file, an exhibit, a
-witness), the corpus test tells you immediately if it is not covered, and a
-re-bake renders only the new lines.
+The opening film: `tools/intro/prompts.json` → `python3
+tools/render-portraits.py --dir tools/intro --size 896x512 --steps 32` →
+`python3 tools/make-intro.py` (Ken Burns, crossfades, lamp-on, phone
+rattle, grain, synthesised foley) → `public/assets/video/intro.mp4`.
 
-## 3. What was built on 2026-09-19
+## 5. The narrator
 
-- **Migration** to Vite/TS/Phaser. The engine (`src/game/`) is a faithful,
-  typed port of the original reducer; the tests are the original suite plus
-  six new ones.
-- **Exhibits.** Every find is a document (`src/game/exhibits.ts`) drawn as
-  paper in the locker (`src/ui/exhibits.ts`, figures in `src/ui/figures.ts`).
-  A clue exhibit states the observation; the conclusion is the table's.
-- **Witnesses** (`ASK` action) at two-thirds of the locations.
-- **Case documents** — 26 per city, some with effects (`suspectTrait`,
-  `lead`, `time`), most only story.
-- **Thirty-location cities**, five quarters each, generated map.
-- **Portraits**: painted with Stable Diffusion (`tools/portrait-prompts.mjs`
-  → `tools/render-portraits.py`, PNGs in `public/assets/images/people/`),
-  with the SVG bust in `src/ui/portraits.ts` as the fallback. Build and hair
-  in the notebook are pinned to the painting (`SuspectDef.traits`).
-- **Facades**: one painted building per location, same pipeline
-  (`tools/building-prompts.mjs`, `--dir public/assets/images/buildings`).
-- **Per-city evidence**: Salt and Bell carry their own 24 clue sheets
-  (`src/game/cases/*-clues.ts`); Orchid uses the shared set.
-- **Search narrative** (`src/game/search.ts`): where you looked, what looked
-  off, what turned up; every paper carries a "how it came to hand" line.
-- **Dialogue** presentation (`src/ui/dialogue.ts`).
-- **Detective's notebook** (manual marks, cross-outs from your marks) with
-  an assisted mode.
-- **Journal** with notes and export; **save/resume** as an action log.
-- **Room audio**: fire, generative music, file-first channels.
-- **PWA** (manifest, service worker, icons), Netlify config, GitHub Actions
-  build, itch.io deploy workflow.
+Kokoro (local) bakes every line in the corpus:
 
-## 4. Publishing to the shared link
+```bash
+npm run voices -- --setup     # once: pip installs kokoro-onnx, downloads ~340 MB
+npm run voices                # incremental; ~2100 clips, 13 sprite files, ~100 MB
+```
 
-The game is published as a private Claude artifact:
+`public/voice/` is gitignored. Re-bake after any text change; the corpus
+test fails if a spoken fragment is not enumerable. There is no browser
+speech fallback once a pack exists (Anna's rule: never the robot voice).
 
-**https://claude.ai/artifact/U3tLGyS5AmBU12M345ogWK**
+## 6. Serving and sharing
 
-The host supplies its own `<head>`/`<body>`, so what is published is a body
-fragment: `npm run build && node tools/artifact-wrapper.mjs` writes
-`dist/artifact.html`, which goes up as the page with `dist/assets/*` and
-`public/voice/*` as files. Ask Claude in a session to republish that URL.
-Constraints: no outbound network calls from the page (so the voice must be
-shipped as files, which it is), 255 files and 64 MB per version.
+- Local: `npm run dev`.
+- Her machine, on Tailscale: `node tools/serve-dist.mjs` (127.0.0.1:4173) +
+  `tailscale serve --bg 4173` → https://annas-macbook-pro.tail2143ad.ts.net/
+  Rebuild with `npm run build`; the server serves `dist/` directly.
+- Public without Tailscale on the other end: `tailscale funnel --bg 4173`
+  (same URL, open to the internet; `tailscale funnel --bg off` to close).
+- Claude artifact: https://claude.ai/artifact/U3tLGyS5AmBU12M345ogWK —
+  publish `dist/artifact.html` (from `node tools/artifact-wrapper.mjs`) with
+  `dist/assets/*`, `public/assets/*` and `public/voice/*` as files, in
+  chunks under 64 MB per version.
 
-## 5. Not done, in the order I would do them
+The game is pass-the-device; there is no online play yet (`src/net/` holds
+the seam and a plan).
 
-1. **Real recordings for rain and fire.** The synthesised versions are
-   decent; a CC0 recording is better. Drop `rain.ogg` and `fire.ogg` into
-   `public/assets/audio/sfx/` and they are used automatically.
-2. **Online multiplayer.** `src/net/transport.ts` has the seam and
-   `src/net/README.md` the plan: a ~60-line `ws` relay and a lobby screen.
-3. **More cases.** One file in `src/game/cases/`. The tests catch a
-   disconnected map, an unsolvable board, a witness at an unknown location.
-4. **Art polish.** Re-render any portrait or facade that reads wrong with
-   `python3 tools/render-portraits.py --force --only <id>` after editing the
-   casting notes in the prompt scripts. Eyeball with `public/dev/portraits.html`.
+## 7. Writing rules (from Anna, 2026-09-19)
 
-## 6. Known rough edges
+- Plain, complete sentences. No noir fragments. A first-time player must
+  understand what just happened.
+- Every artifact says how it was found: the found screen, the paper's "How
+  it came to hand", the journal entry with a link.
+- Not every place has something.
+- Painted 1950s pulp art for people and buildings, not paper dolls.
+- Fix the story first (one true minute-by-minute timeline per case), then
+  write witnesses from it. `REVIEW.md` is the audit that found the gaps and
+  the record of how they were closed.
 
+## 8. Not done, in the order I would do them
+
+1. Play-test all three cases end to end at a table; tune the timeline and
+   the ~75–80 % bot win rate (`test/logic.test.ts` has the bot).
+2. Online multiplayer (a ~60-line ws relay and a lobby; see `src/net/README.md`).
+3. A fourth case. One file in `src/game/cases/` plus its `-clues.ts`; the
+   tests catch a disconnected map, an unsolvable board, a missing exhibit.
+4. Reduce voice pack size (opus/lower bitrate) so the artifact publish is one
+   version instead of three.
+5. Rookie/Detective drop suspects from the roster but the remaining topics
+   still name them; harmless, could be filtered.
+
+## 9. Known rough edges
+
+- Portrait prompts longer than 77 CLIP tokens are truncated (a warning in
+  the render log); keep casting notes short.
 - With no voice pack the console logs a 404 for `voice/manifest.json`.
-  Handled, harmless.
-- The notebook table scrolls sideways at six trait columns on narrow panels.
-- The hand-off curtain does not hide the board: all knowledge is shared.
-- Phaser's first-boot needs explicit pixel dimensions (see
-  `src/config/game-config.ts`); a percentage resolves to 0×0 on a fixed parent.
+- The service worker caches aggressively; hard-reload after a rebuild.
