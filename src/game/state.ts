@@ -81,7 +81,7 @@ export function createGame({ caseId, difficulty = 'detective', seed, players = [
     shown: {},
     asked: {},
     cold: 0,
-    coldMax: DIFFICULTIES[difficulty].budget,
+    coldMax: DIFFICULTIES[difficulty].budget + (def.clockBonus ?? 0),
 
     round: 1,
     turn: 0,

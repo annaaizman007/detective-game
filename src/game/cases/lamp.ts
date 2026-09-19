@@ -32,6 +32,7 @@ const def: CaseDef = {
   victim: 'Miriam Weiss',
   scene: 'lamp41',
   startHour: 8,
+  clockBonus: 10,
   difficultyHint: 'The hardest case. The killer is not on your list when you start.',
   publicTraits: ['build', 'hair'],
   traitPool: ['hand', 'mark', 'vice', 'scent', 'shoe'],

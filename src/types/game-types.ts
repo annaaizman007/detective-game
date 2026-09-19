@@ -228,6 +228,8 @@ export interface CaseDef {
   scene: string;
   /** Hour of the day the investigation opens (24h). Default two in the morning. */
   startHour?: number;
+  /** Extra hours on the clock at every difficulty: a bigger case needs more night. */
+  clockBonus?: number;
   difficultyHint: string;
   publicTraits: TraitId[];
   traitPool: TraitId[];
