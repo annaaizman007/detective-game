@@ -11,7 +11,7 @@ import { reduceMotion } from './fx';
 /** The painted film, cut by tools/make-intro.py. The SVG scene below is the fallback. */
 export const VIDEO_BASE = 'assets/video/';
 
-export function introHtml(): string {
+export function introHtml(caseId = ''): string {
   const streaks = Array.from({ length: 26 }, (_, i) => {
     const x = 44 + ((i * 37) % 300);
     const len = 30 + ((i * 53) % 70);
@@ -22,7 +22,7 @@ export function introHtml(): string {
   const blinds = Array.from({ length: 11 }, (_, i) => `<rect x="40" y="${58 + i * 22}" width="310" height="7" fill="#05060a" opacity=".85"/>`).join('');
   return `
   <div class="intro" data-act="skip-intro" role="button" aria-label="Skip the opening">
-    <video class="intro-video" src="${VIDEO_BASE}intro.mp4" playsinline preload="auto"></video>
+    <video class="intro-video" src="${VIDEO_BASE}intro${caseId ? `-${caseId}` : ''}.mp4" playsinline preload="auto"></video>
     <svg class="intro-svg" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <radialGradient id="lampCone" cx="0.5" cy="0" r="0.9">

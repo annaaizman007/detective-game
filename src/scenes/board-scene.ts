@@ -225,6 +225,18 @@ export class BoardScene extends Phaser.Scene {
     this.fitted = false;
     this.proj = makeProjection(state.map.locations, def.terrain?.sea !== false);
     const placed = state.map.locations.map(this.proj.project);
+    // Facade plates are 168 wide and 144 tall; two that would overlap are
+    // nudged apart so every name stays readable.
+    for (let pass = 0; pass < 12; pass++) {
+      for (let i = 0; i < placed.length; i++) for (let j = i + 1; j < placed.length; j++) {
+        const a = placed[i]; const b = placed[j];
+        const dx = b.px - a.px; const dy = b.py - a.py;
+        const ox = 180 - Math.abs(dx); const oy = 156 - Math.abs(dy);
+        if (ox <= 0 || oy <= 0) continue;
+        if (ox < oy) { const push = (ox / 2 + 2) * (dx >= 0 ? 1 : -1); a.px -= push; b.px += push; }
+        else { const push = (oy / 2 + 2) * (dy >= 0 ? 1 : -1); a.py -= push; b.py += push; }
+      }
+    }
     this.placed = new Map(placed.map((l) => [l.id, l]));
     this.city = buildCity(def, placed, this.proj);
 
@@ -256,7 +268,10 @@ export class BoardScene extends Phaser.Scene {
     g.fillStyle(COLOR.paperDark, 0.35); g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
 
     // Hills in the margins: contour rings around a few rises, outside the city.
-    const rises = Array.from({ length: 5 }, () => ({ x: rnd() * BOARD.w, y: rnd() < 0.5 ? rnd() * 90 : BOARD.h - 60 - rnd() * 200, r: 90 + rnd() * 160 }));
+    const cx0 = Math.min(...city.blocks.map((b) => b.x)) - 60; const cx1 = Math.max(...city.blocks.map((b) => b.x + b.w)) + 60;
+    const cy0 = Math.min(...city.blocks.map((b) => b.y)) - 60; const cy1 = Math.max(...city.blocks.map((b) => b.y + b.h)) + 60;
+    const rises = Array.from({ length: 12 }, () => ({ x: rnd() * BOARD.w, y: rnd() * BOARD.h, r: 90 + rnd() * 160 }))
+      .filter((r) => r.x < cx0 || r.x > cx1 || r.y < cy0 || r.y > cy1).slice(0, 5);
     for (const rise of rises) {
       for (let k = 1; k <= 5; k++) {
         const r = (rise.r * k) / 5;
@@ -268,14 +283,27 @@ export class BoardScene extends Phaser.Scene {
     }
 
     // The street grid and the avenues, as the ground the model stands on.
-    for (const b of city.blocks) { g.fillStyle(0xd9ccab, 1); g.fillRect(b.x, b.y, b.w, b.h); }
     g.lineStyle(4, COLOR.street, 0.9);
     for (const [a, b] of city.streets) g.lineBetween(a[0], a[1], b[0], b[1]);
     for (const [a, b] of city.avenues) { g.lineStyle(26, COLOR.paper, 1); g.lineBetween(a[0], a[1], b[0], b[1]); g.lineStyle(2, COLOR.ink, 0.35); g.lineBetween(a[0], a[1], b[0], b[1]); }
 
     // Water: sea, river, lake, with ripples; the harbour gets a quay, piers and boats.
     const waters: Phaser.Geom.Polygon[] = [];
-    const water = (pts: Pt[]) => {
+    // Chaikin's corner cutting: a river without elbows, a lake without teeth.
+    const smooth = (pts: Pt[], passes = 2): Pt[] => {
+      let out = pts;
+      for (let k = 0; k < passes; k++) {
+        const next: Pt[] = [];
+        for (let i = 0; i < out.length; i++) {
+          const a = out[i]; const b = out[(i + 1) % out.length];
+          next.push([a[0] * 0.75 + b[0] * 0.25, a[1] * 0.75 + b[1] * 0.25], [a[0] * 0.25 + b[0] * 0.75, a[1] * 0.25 + b[1] * 0.75]);
+        }
+        out = next;
+      }
+      return out;
+    };
+    const water = (raw: Pt[]) => {
+      const pts = smooth(raw);
       const poly = new Phaser.Geom.Polygon(toPoints(pts)); waters.push(poly);
       g.fillStyle(0x8fb3b8, 1); g.fillPoints(toPoints(pts), true);
       const xs = pts.map((p) => p[0]); const ys = pts.map((p) => p[1]);
@@ -305,6 +333,7 @@ export class BoardScene extends Phaser.Scene {
         for (let k = 0; k < 6; k++) {
           const i = Math.floor(rnd() * (shore.length - 2)) + 1;
           const [x, y] = shore[i]; const len = 40 + rnd() * 60; const w = 10 + rnd() * 8;
+          if (!waters.some((poly) => poly.contains(x, y + len) && poly.contains(x, y + 8))) continue;
           g.fillStyle(0xb7a27a, 1); g.fillRect(x - w / 2, y, w, len);
           g.lineStyle(1.5, COLOR.ink, 0.6); g.strokeRect(x - w / 2, y, w, len);
           for (let t = 8; t < len; t += 10) g.lineBetween(x - w / 2, y + t, x + w / 2, y + t);
@@ -317,7 +346,6 @@ export class BoardScene extends Phaser.Scene {
     }
     if (city.river) { water(city.river.band); const sp = city.river.spine; if (sp.length > 6) for (let k = 0; k < 3; k++) { const [x, y] = sp[Math.floor(rnd() * (sp.length - 1))]; boat(x, y, false); } }
     if (city.lake) water(city.lake);
-    if (city.shoreEcho) { g.lineStyle(1.5, COLOR.waterInk, 0.45); g.strokePoints(toPoints(city.shoreEcho), false); }
 
     // The playable connections: roads between the places, under the buildings.
     const hiddenIds = new Set(state.map.locations.filter((l) => l.hidden).map((l) => l.id));
@@ -351,7 +379,13 @@ export class BoardScene extends Phaser.Scene {
     interface Bld { x: number; y: number; w: number; h: number; z: number; wall: number; roof: number; dome: boolean }
     const blds: Bld[] = [];
     const WALLS = [0xe6d9b8, 0xdcc9a3, 0xd9b98f, 0xc9b9a6, 0xe2cfb4, 0xd4c4b0, 0xcdb894];
-    const ROOFS = [0xa8503a, 0x9c4a36, 0x7a5a48, 0x6b6f78, 0x8a4c3c, 0x5f6a72];
+    const PALETTES = [
+      [0xa8503a, 0x9c4a36, 0x8a4c3c, 0x7a5a48], // terracotta and rust
+      [0x5f6a72, 0x6b6f78, 0x515a63, 0x7a5a48], // slate
+      [0x4a4340, 0x5a4e46, 0x6b5a4c, 0x3f3a38], // soot
+      [0x7f6a3f, 0x8a7444, 0x6b5a48, 0x9c4a36], // tarred felt and tile
+      [0x6a7a5a, 0x5f6a72, 0x7a5a48, 0x8a4c3c], // copper-green and slate
+    ];
     const distToSeg = (px: number, py: number, [a, b]: [Pt, Pt]) => {
       const vx = b[0] - a[0]; const vy = b[1] - a[1]; const L2 = vx * vx + vy * vy || 1;
       const t = Math.max(0, Math.min(1, ((px - a[0]) * vx + (py - a[1]) * vy) / L2));
@@ -377,8 +411,15 @@ export class BoardScene extends Phaser.Scene {
       if (roadSegs.some((seg) => distToSeg(cx, cy, seg) < 9 + Math.min(w, hh) / 2)) continue;
       if (pins.some((l) => Math.abs(cx - l.px) < 72 && cy > l.py - 125 && cy < l.py + 22)) continue;
       if (city.rail && city.rail.line.some((pt, i, arr) => i < arr.length - 1 && distToSeg(cx, cy, [pt, arr[i + 1]]) < 12)) continue;
-      const z = 14 + rnd() * 24 + (rnd() < 0.15 ? 20 : 0);
-      blds.push({ x, y, w, h: hh, z, wall: WALLS[Math.floor(rnd() * WALLS.length)], roof: ROOFS[Math.floor(rnd() * ROOFS.length)], dome: rnd() < 0.03 });
+      // Each quarter has its own roofs: slate here, rust there, soot elsewhere.
+      let nearest = pins[0]; let best = Infinity;
+      for (const l of pins) { const d = Math.hypot(l.px - cx, l.py - cy); if (d < best) { best = d; nearest = l; } }
+      const quarter = nearest?.district ?? '';
+      let qh = 7; for (const ch of quarter) qh = (qh * 31 + ch.charCodeAt(0)) >>> 0;
+      const pal = PALETTES[qh % PALETTES.length];
+      const nearRoad = Math.min(...roadSegs.map((seg) => distToSeg(cx, cy, seg)));
+      const z = 12 + rnd() * 18 + (nearRoad < 60 ? 10 : 0) + (rnd() < 0.12 ? 18 : 0);
+      blds.push({ x, y, w, h: hh, z, wall: WALLS[Math.floor(rnd() * WALLS.length)], roof: pal[Math.floor(rnd() * pal.length)], dome: rnd() < 0.03 });
     }
     blds.sort((a, b) => (a.y + a.h) - (b.y + b.h));
     const shade = (c: number, k: number) => {
@@ -409,15 +450,29 @@ export class BoardScene extends Phaser.Scene {
       g.lineStyle(1, COLOR.ink, 0.45); g.strokeRect(b.x + dx, b.y + dy, b.w, b.h);
     }
 
-    // Bridges: a deck across the water where a street meets it (only there).
-    for (const b of city.bridges) {
-      const ddx = Math.cos(b.angle) * b.len / 2; const ddy = Math.sin(b.angle) * b.len / 2;
-      g.lineStyle(20, COLOR.roadCase, 1); g.lineBetween(b.x - ddx, b.y - ddy, b.x + ddx, b.y + ddy);
-      g.lineStyle(12, COLOR.road, 1); g.lineBetween(b.x - ddx, b.y - ddy, b.x + ddx, b.y + ddy);
-      g.lineStyle(2, COLOR.ink, 0.6);
-      const nx = -Math.sin(b.angle) * 12; const ny = Math.cos(b.angle) * 12;
-      g.lineBetween(b.x - ddx + nx, b.y - ddy + ny, b.x + ddx + nx, b.y + ddy + ny);
-      g.lineBetween(b.x - ddx - nx, b.y - ddy - ny, b.x + ddx - nx, b.y + ddy - ny);
+    // Bridges: a deck wherever a playable road crosses water, and nowhere
+    // else. The road is sampled along its length; each run of samples that
+    // sits in water gets a deck with parapets.
+    for (const [A, B] of roadSegs) {
+      const len = Math.hypot(B[0] - A[0], B[1] - A[1]); const n = Math.max(2, Math.round(len / 6));
+      let inside = false; let t0 = 0;
+      const deck = (ta: number, tb: number) => {
+        const ax = A[0] + (B[0] - A[0]) * ta; const ay = A[1] + (B[1] - A[1]) * ta;
+        const bx = A[0] + (B[0] - A[0]) * tb; const by = A[1] + (B[1] - A[1]) * tb;
+        const ang = Math.atan2(by - ay, bx - ax); const nx = -Math.sin(ang) * 11; const ny = Math.cos(ang) * 11;
+        g.lineStyle(24, COLOR.roadCase, 1); g.lineBetween(ax, ay, bx, by);
+        g.lineStyle(14, 0xcdbf9f, 1); g.lineBetween(ax, ay, bx, by);
+        g.lineStyle(2.5, COLOR.ink, 0.8); g.lineBetween(ax + nx, ay + ny, bx + nx, by + ny); g.lineBetween(ax - nx, ay - ny, bx - nx, by - ny);
+        const steps = Math.max(2, Math.round(Math.hypot(bx - ax, by - ay) / 18));
+        for (let k = 0; k <= steps; k++) { const t = k / steps; const px = ax + (bx - ax) * t; const py = ay + (by - ay) * t; g.lineBetween(px + nx, py + ny, px - nx, py - ny); }
+      };
+      for (let i = 0; i <= n; i++) {
+        const t = i / n; const px = A[0] + (B[0] - A[0]) * t; const py = A[1] + (B[1] - A[1]) * t;
+        const wet = waters.some((poly) => poly.contains(px, py));
+        if (wet && !inside) { inside = true; t0 = Math.max(0, t - 1.5 / n); }
+        if (!wet && inside) { inside = false; deck(t0, Math.min(1, t + 1.5 / n)); }
+      }
+      if (inside) deck(t0, 1);
     }
     // The El: a double line on ties, with its stations.
     if (city.rail) {
@@ -425,14 +480,16 @@ export class BoardScene extends Phaser.Scene {
       for (let i = 0; i < pts.length - 1; i++) {
         const [x0, y0] = pts[i]; const [x1, y1] = pts[i + 1];
         const len = Math.hypot(x1 - x0, y1 - y0); const ux = (x1 - x0) / len; const uy = (y1 - y0) / len;
-        g.lineStyle(9, COLOR.ink, 0.75); g.lineBetween(x0, y0, x1, y1);
-        g.lineStyle(3, COLOR.paper, 0.9); g.lineBetween(x0, y0, x1, y1);
-        g.lineStyle(2, COLOR.ink, 0.7);
-        for (let t = 0; t < len; t += 14) g.lineBetween(x0 + ux * t - uy * 7, y0 + uy * t + ux * 7, x0 + ux * t + uy * 7, y0 + uy * t - ux * 7);
+        g.lineStyle(1.6, COLOR.ink, 0.6);
+        for (let t = 0; t < len; t += 12) {
+          const e = Math.min(len, t + 7);
+          g.lineBetween(x0 + ux * t - uy * 3, y0 + uy * t + ux * 3, x0 + ux * e - uy * 3, y0 + uy * e + ux * 3);
+          g.lineBetween(x0 + ux * t + uy * 3, y0 + uy * t - ux * 3, x0 + ux * e + uy * 3, y0 + uy * e - ux * 3);
+        }
       }
       for (const [x, y] of city.rail.stations) {
-        g.fillStyle(COLOR.plate, 1); g.fillRect(x - 12, y - 8, 24, 16);
-        g.lineStyle(2, COLOR.ink, 0.9); g.strokeRect(x - 12, y - 8, 24, 16);
+        g.fillStyle(COLOR.plate, 1); g.fillCircle(x, y, 5);
+        g.lineStyle(1.6, COLOR.ink, 0.9); g.strokeCircle(x, y, 5);
       }
     }
 
@@ -449,11 +506,11 @@ export class BoardScene extends Phaser.Scene {
       const water = l.kind === 'water';
       const t = this.add.text(l.x, l.y, l.text, {
         fontFamily: water ? '"Oswald"' : '"Special Elite"',
-        fontSize: `${l.size}px`,
+        fontSize: `${Math.round(l.size * (water ? 1 : 1.35))}px`,
         color: water ? '#5c7573' : '#5a4a38',
         fontStyle: water ? '300' : 'normal',
         letterSpacing: water ? 14 : 8,
-      }).setOrigin(0.5).setAlpha(water ? 0.8 : 0.55).setRotation(Phaser.Math.DegToRad(l.rot || 0));
+      }).setOrigin(0.5).setAlpha(water ? 0.85 : 0.7).setRotation(Phaser.Math.DegToRad(l.rot || 0)).setStroke('#e9dfc8', water ? 0 : 6);
       this.layers.ground.add(t);
       this.labels.push(t);
     }

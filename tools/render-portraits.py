@@ -17,7 +17,7 @@ ap.add_argument('--steps', type=int, default=28)
 ap.add_argument('--size', default='512x640')
 ap.add_argument('--only', default='')
 ap.add_argument('--force', action='store_true')
-ap.add_argument('--guidance', type=float, default=7.0)
+ap.add_argument('--guidance', type=float, default=6.0)
 ap.add_argument('--dir', default='public/assets/images/people', help='folder with prompts.json; manifest.json lists what exists')
 args = ap.parse_args()
 

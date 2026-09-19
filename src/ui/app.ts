@@ -511,7 +511,7 @@ export class App {
     this.root.className = `screen-${this.screen}`;
     if (this.screen === 'title') this.root.innerHTML = S.titleScreen(this.saves.peek());
     else if (this.screen === 'setup') this.root.innerHTML = S.setupScreen(this.draft);
-    else if (this.screen === 'briefing' && this.state) this.root.innerHTML = S.briefingScreen(this.state, caseById(this.state.caseId)) + (this.introPending ? introHtml() : '');
+    else if (this.screen === 'briefing' && this.state) this.root.innerHTML = S.briefingScreen(this.state, caseById(this.state.caseId)) + (this.introPending ? introHtml(this.state.caseId) : '');
     else if (this.screen === 'end' && this.state) this.root.innerHTML = S.endScreen(this.state, caseById(this.state.caseId));
     else if (this.state) this.root.innerHTML = this.gameScreen();
 

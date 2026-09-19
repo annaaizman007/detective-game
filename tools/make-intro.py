@@ -11,8 +11,13 @@ vignette over everything, and a foley track (rain is the room's job) made
 from noise and sine waves. Output: public/assets/video/intro.mp4 and a
 poster frame.
 """
-import math, os, subprocess, sys, wave, struct
+import math, os, subprocess, sys, wave, struct, argparse
 import numpy as np
+
+ap = argparse.ArgumentParser()
+ap.add_argument('--case', default='', help="case id: picks tools/intro2/tell-<case>.jpg and writes intro-<case>.mp4")
+ap.add_argument('--squad', default='squad2')
+args = ap.parse_args()
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'intro2')
@@ -24,12 +29,14 @@ W, H = 1280, 720
 # ---- the cut: (still, seconds, zoom-in per frame)
 # The squad room: the detectives at the table, a man running the corridor,
 # the door bursting open, the sergeant leaning in to tell it.
+TELL = f'tell-{args.case}' if args.case else 'tell'
 SHOTS = [
-    ('squad2', 4.0, 0.0009),
+    (args.squad, 4.0, 0.0009),
     ('run', 2.6, 0.0040),
     ('burst', 1.8, 0.0030),
-    ('tell', 3.6, 0.0012),
+    (TELL, 3.6, 0.0012),
 ]
+OUT_NAME = f'intro-{args.case}.mp4' if args.case else 'intro.mp4'
 XF = 0.4  # crossfade seconds
 TOTAL = sum(s[1] for s in SHOTS) - XF * (len(SHOTS) - 1)
 
@@ -43,7 +50,7 @@ def start_of(name):
 
 T_STEPS = start_of('run') - 0.6
 T_DOOR = start_of('burst') + 0.25
-T_CHAIR = start_of('tell') + 0.2
+T_CHAIR = start_of(TELL) + 0.2
 
 # ---------------------------------------------------------------- audio
 SR = 44100
@@ -103,7 +110,7 @@ add(T_CHAIR, bandpass(noise(seconds(0.35)), 200, 900) * env(seconds(0.35), 0.02,
 
 peak = np.max(np.abs(audio)) or 1.0
 audio = np.clip(audio / peak * 0.85, -1, 1)
-wav_path = os.path.join(OUT_DIR, 'intro-foley.wav')
+wav_path = os.path.join(OUT_DIR, f'intro-foley-{args.case or "x"}.wav')
 with wave.open(wav_path, 'wb') as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((audio * 32767).astype('<i2').tobytes())
@@ -135,10 +142,10 @@ for n, _, _ in SHOTS:
     cmd += ['-loop', '1', '-i', os.path.join(SRC, f'{n}.jpg')]
 cmd += ['-i', wav_path, '-filter_complex', ';'.join(filters), '-map', '[vout]', '-map', f'{len(SHOTS)}:a',
         '-t', f'{TOTAL:.2f}', '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p',
-        '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', os.path.join(OUT_DIR, 'intro.mp4')]
+        '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', os.path.join(OUT_DIR, OUT_NAME)]
 print(' '.join(cmd)[:400], '...')
 subprocess.run(cmd, check=True)
-subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of("squad2") + 1.0:.2f}', '-i', os.path.join(OUT_DIR, 'intro.mp4'), '-frames:v', '1', '-q:v', '3',
+subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of(args.squad) + 1.0:.2f}', '-i', os.path.join(OUT_DIR, OUT_NAME), '-frames:v', '1', '-q:v', '3',
                 os.path.join(OUT_DIR, 'intro-poster.jpg')], check=True)
 os.remove(wav_path)
-print(f'wrote intro.mp4 ({TOTAL:.1f}s) and intro-poster.jpg')
+print(f'wrote {OUT_NAME} ({TOTAL:.1f}s) and intro-poster.jpg')
