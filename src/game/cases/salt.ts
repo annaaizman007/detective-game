@@ -183,7 +183,7 @@ const def: CaseDef = {
         { id: 'hand', needs: ['ives.hands', 'fenn.night', 'cully.hands'], q: 'Your hand is bandaged.', a: 'Rope. On the 12th, in the shop. He looks at it. I know what it looks like. I know what the doctor thought. It was rope.' },
       ] },
     { id: 'salvi', name: 'Nunzio Salvi', role: 'Shipping agent',
-      traits: { build: 'slight', hair: 'dark' },
+      traits: { build: 'tall', hair: 'dark' },
       blurb: 'Shipping agent. Three companies, one office, no employees.',
       motive: 'because a strike on Thursday would have cost him a season he could not afford.',
       bio: 'Forty-five. Agent for the Corvina and two other ships that exist only on paper. He owes money in three ports. A strike on Thursday would finish him.',

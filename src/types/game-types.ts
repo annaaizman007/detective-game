@@ -161,6 +161,11 @@ export interface WitnessDef {
   aboutLine: string;
   /** In-character line that points at where something was dropped. */
   leadLine: string;
+  /**
+   * The place `leadLine` is written to end in. Used while there is still
+   * something there to find; after that the city picks somewhere else.
+   */
+  leadAt?: string;
   /** What they say when they have nothing left. */
   spentLine: string;
   /** Who they are. Shown when you talk to them. */

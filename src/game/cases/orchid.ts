@@ -134,7 +134,7 @@ const def: CaseDef = {
         { id: 'who', q: 'If it wasn’t you, then who?', a: 'Somebody with a key. That side door locks from the inside. I only got in because it was open, and it was open because somebody was expected.', after: 'side-door' },
       ] },
     { id: 'strand', name: 'Emil Strand', role: 'Night manager, The Gilded',
-      traits: { build: 'tall', hair: 'dark' },
+      traits: { build: 'broad', hair: 'dark' },
       blurb: 'Night manager. He has a key to every door in the hotel.',
       motive: 'because Lillian knew which hotel rooms he rented by the hour, and to whom.',
       bio: 'Forty-four. Night manager for nine years. He rents rooms by the hour to people who want privacy, and he keeps a book of their names. Lillian found the book.',

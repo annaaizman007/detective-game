@@ -46,6 +46,17 @@ export const BOONS: Record<BoonId, BoonDef> = {
 /** Every witness starts fresh: two paid questions and a lead to give. */
 export const WITNESS_PATIENCE = 2;
 
+/**
+ * How many innocent people in every roster must share the killer's public
+ * traits. Two means the build and hair papers leave three names standing,
+ * and the case has to be solved on the hidden facts and the story.
+ */
+export const LOOKALIKES = 2;
+
+/** Pinned to the same public traits as the killer, so the public papers cannot tell them apart. */
+export const looksLike = (x: { traits?: Partial<Record<TraitId, string>> }, killer: { traits?: Partial<Record<TraitId, string>> }, publicTraits: TraitId[]): boolean =>
+  publicTraits.every((t) => !!killer.traits?.[t] && x.traits?.[t] === killer.traits[t]);
+
 type Dealt = Record<string, Record<TraitId, string>>;
 
 /** Deal trait values so every category is genuinely spread across the suspects. */
@@ -94,9 +105,17 @@ export function buildCase(caseDef: CaseDef, { difficulty = 'detective' as Diffic
   // The killer is always in it; the rest of the roster is drawn.
   // Hidden suspects are story, not filler: they are always in, on top of the draw.
   const hiddenOnes = caseDef.suspects.filter((x) => x.hidden && x.id !== caseDef.culprit);
-  const others = rng.shuffle(caseDef.suspects.filter((x) => x.id !== caseDef.culprit && !x.hidden));
   const killer = caseDef.suspects.find((x) => x.id === caseDef.culprit) ?? caseDef.suspects[0];
-  const roster = rng.shuffle([killer, ...others.slice(0, Math.min(diff.suspects, caseDef.suspects.length) - 1), ...hiddenOnes]);
+  // Build and hair are public, so the two documents that name them would
+  // pick the killer out on day one if nobody else looked like them. Every
+  // roster therefore seats at least LOOKALIKES people the writing has pinned
+  // to the killer's public traits; the hidden facts are what separate them.
+  const others = rng.shuffle(caseDef.suspects.filter((x) => x.id !== caseDef.culprit && !x.hidden));
+  const twins = others.filter((x) => looksLike(x, killer, caseDef.publicTraits));
+  const rest = others.filter((x) => !twins.includes(x));
+  const seats = Math.min(diff.suspects, caseDef.suspects.length) - 1;
+  const seated = [...twins.slice(0, Math.min(LOOKALIKES, seats)), ...rest, ...twins.slice(LOOKALIKES)].slice(0, seats);
+  const roster = rng.shuffle([killer, ...seated, ...hiddenOnes]);
   const ids = roster.map((s) => s.id);
 
   // What the writing has already decided about each person.

@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { createGame, applyAction } from '../src/game/state';
 import { CASES } from '../src/game/cases/index';
 import { CHARACTERS } from '../src/game/characters';
-import { DIFFICULTIES } from '../src/game/gen';
+import { DIFFICULTIES, LOOKALIKES, looksLike } from '../src/game/gen';
 import * as R from '../src/game/rules';
 import { stream } from '../src/game/rng';
 import { APPROACHES } from '../src/game/dialogue';
@@ -323,6 +323,31 @@ describe('THE ASHGRAVE FILES -- logic suite', () => {
           }
         }
       }
+    }
+  });
+
+  it('the public papers never single the killer out: every roster seats lookalikes', () => {
+    for (const c of CASES) {
+      const killer = c.suspects.find((x) => x.id === c.culprit)!;
+      const twins = c.suspects.filter((x) => x.id !== c.culprit && !x.hidden && looksLike(x, killer, c.publicTraits));
+      expect(twins.length, `${c.id}: only ${twins.length} suspects are pinned to the killer's build and hair`).toBeGreaterThanOrEqual(LOOKALIKES);
+      for (const d of DIFFS) for (let i = 0; i < 20; i++) {
+        const s = newGame(c.id, d, `twin${i}`, 1);
+        const me = s.suspects.find((x) => x.id === s.culpritId)!;
+        const still = s.suspects.filter((x) => x.id !== me.id && !x.hidden && s.publicTraits.every((t) => x.traits[t] === me.traits[t]));
+        expect(still.length, `${c.id}/${d}/twin${i}: build and hair leave ${still.length} others standing`).toBeGreaterThanOrEqual(LOOKALIKES);
+      }
+    }
+  });
+
+  it('a suspect written with a home never leaves it', () => {
+    for (const c of CASES) {
+      const homed = c.suspects.filter((x) => x.home);
+      if (!homed.length) continue;
+      let s = newGame(c.id, 'commissioner', `home-${c.id}`, 2);
+      for (const x of s.suspects) if (x.home) x.hidden = false; // as if every one had been revealed
+      for (let i = 0; i < 40 && s.phase === 'play'; i++) s = applyAction(s, { type: 'END_TURN', playerId: R.currentPlayer(s)!.id });
+      for (const x of s.suspects) if (x.home) expect(x.at, `${c.id}: ${x.id} wandered to ${x.at}`).toBe(x.home);
     }
   });
 

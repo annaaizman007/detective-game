@@ -70,6 +70,7 @@ in five quarters.
 - **The Ash and the Orchid** — a singer dies in the best suite in the city.
 - **Salt and Silence** — the union boss comes out of the bay with his pockets sewn shut.
 - **The Ninth Bell** — the cathedral bell rings nine at midnight; the ringer is dead by morning.
+- **The Lamplighter** — three women under three dark gas lamps, and a killer who is not on the list until you dig him out of an archive.
 
 Each case has a fixed culprit, so the story and the answer agree. What changes
 every playthrough is the proof: the trait table is dealt from a seed (build and

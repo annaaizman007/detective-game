@@ -24,10 +24,18 @@ for the art pipeline; `ffmpeg` for the opening film and audio loops.
 ## 2. What it is
 
 A co-operative detective board game for one to six players around one
-device. Three cases (`src/game/cases/`), thirty streets each, ~2 hours at
+device. Four cases (`src/game/cases/`), thirty streets each, ~2 hours at
 a table. Each case has a fixed culprit; the proof (a dealt trait table and
 where the evidence lies) shuffles per seed. Every find is a document you
 open and read; the notebook only crosses people off from your own marks.
+
+Cases two to four are the hard ones. They have **hidden places** (not on
+the map until a conversation, paper or object reveals them) and **hidden
+people** (not in the frame until named; in *The Lamplighter* the killer is
+one). Questions are **gated** (`needs:` on a topic — a document, an object,
+or `person.topic` already asked) so nobody hands you a fact before you have
+the paper. When every visible name is crossed off, the notebook says
+somebody is missing.
 
 Engine: a pure seeded reducer (`src/game/state.ts`, `applyAction`), saves
 are action logs, replays are byte-identical (tested).
@@ -36,8 +44,10 @@ are action logs, replays are byte-identical (tested).
 
 | Thing | Where |
 |---|---|
-| Cases: locations, suspects, witnesses, items, objects, story, the opening call | `src/game/cases/{orchid,salt,bell}.ts` |
-| Per-city clue documents (24 each; Orchid uses the shared set) | `src/game/cases/{salt,bell}-clues.ts`, `src/game/exhibits.ts` |
+| Cases: locations, suspects, witnesses, items, objects, story, the opening call | `src/game/cases/{orchid,salt,bell,lamp}.ts` |
+| Per-city clue documents (24 each; Orchid uses the shared set) | `src/game/cases/{salt,bell,lamp}-clues.ts`, `src/game/exhibits.ts` |
+| Hidden/reveal mechanics, question gating | `reveal()`, `hasNeed()` in `src/game/state.ts`; `knownSuspects`, `openLocations`, `everyoneCrossedOff` in `rules.ts` |
+| Painted city maps (img2img over the drawn one) | `tools/map-geometry.ts` → `tools/paint-maps.py` → `public/assets/images/maps/` |
 | Trait table, tells | `src/game/traits.ts`; pins per suspect in `SuspectDef.traits` |
 | Search narrative (where you looked / what looked off) | `src/game/search.ts` |
 | Voice corpus (every spoken line, enumerable) | `src/game/lines.ts` |
@@ -57,7 +67,9 @@ npx vite-node tools/building-prompts.mjs        # facades (landmark overrides in
 python3 tools/render-portraits.py --dir public/assets/images/buildings --size 640x448 --steps 26
 ```
 
-Portraits are 512², facades 640×448, all JPEG q90. `people.json` /
+Portraits are 512², facades 640×448, all JPEG q90. Nobody smokes unless
+listed in `SMOKES` in the prompt script (phrased as "held between two
+fingers", or the model paints cigarettes floating in the air). `people.json` /
 `manifest.json` list what exists; the SVG fallbacks in `src/ui/portraits.ts`
 and `src/ui/buildings.ts` draw anything missing. Hair and build in the
 notebook are pinned to the paintings (`traits:` on each suspect) — if you
@@ -70,11 +82,16 @@ rattle, grain, synthesised foley) → `public/assets/video/intro.mp4`.
 
 ## 5. The narrator
 
-Kokoro (local) bakes every line in the corpus:
+Kokoro (local) bakes every line in the corpus. Women speak in `bf_emma`
+(their lines are separate clips, id = hash of `f|text`); men and the
+narrator share `bm_george`. Narration is **on request** by default: the
+speaker button on the subtitle bar, on every answer and every paper plays
+the last thing said; Settings → "When the narrator speaks" switches to
+reading everything.
 
 ```bash
 npm run voices -- --setup     # once: pip installs kokoro-onnx, downloads ~340 MB
-npm run voices                # incremental; ~2100 clips, 13 sprite files, ~100 MB
+npm run voices                # incremental; ~3000 clips, sprite parts under 15 min each
 ```
 
 The per-clip files in `public/voice/` are gitignored; the manifest and the sprite parts are committed (force-added) so a clone has the voice. Re-bake after any text change; the corpus
@@ -117,7 +134,7 @@ the seam and a plan).
 
 ## 8. Not done, in the order I would do them
 
-1. Play-test all three cases end to end at a table; tune the timeline and
+1. Play-test all four cases end to end at a table; tune the timeline and
    the ~75–80 % bot win rate (`test/logic.test.ts` has the bot).
 2. Online multiplayer (a ~60-line ws relay and a lobby; see `src/net/README.md`).
 3. A fourth case. One file in `src/game/cases/` plus its `-clues.ts`; the

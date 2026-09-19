@@ -209,7 +209,9 @@ function revealSuspectTrait(s: GameState, suspectId: string | null = null, count
 
 function moveSuspects(s: GameState) {
   for (const x of s.suspects) {
-    if (x.dead || x.hidden) continue;
+    // Somebody written with a `home` stays there, found or not: the man who
+    // sleeps rough in the salt stairs does not turn up at the union hall.
+    if (x.dead || x.hidden || x.home) continue;
     if (x.frozen > 0) { x.frozen -= 1; continue; }
     const options = (s.map.adj[x.at] || []).filter((id) => !s.sealed[id] && isOpen(s, id));
     if (options.length) x.at = drawPick(s, options);
@@ -612,9 +614,12 @@ export function applyAction(prev: GameState, action: Action): GameState {
         const ask = WITNESS_ASKS.lead[drawInt(s, WITNESS_ASKS.lead.length)];
         pushLog(s, `${p.name} asks ${def.name} what they saw.`, 'action', p.id);
         tell(s, ask, 'talk', 'ask');
+        // The witness's line names a place. It is honoured while there is
+        // still something there; only then does the city pick somewhere else.
+        const authored = def.leadAt && def.leadAt !== p.at ? s.evidence.find((e) => !e.found && e.at === def.leadAt) : undefined;
         const candidates = s.evidence.filter((e) => !e.found && e.at !== p.at && !s.leads[e.at]);
         const pickFrom = candidates.length ? candidates : s.evidence.filter((e) => !e.found && e.at !== p.at);
-        const ev = pickFrom.length ? drawPick(s, pickFrom) : null;
+        const ev = authored ?? (pickFrom.length ? drawPick(s, pickFrom) : null);
         if (!ev) {
           const reply = WITNESS_ASKS.noLead;
           s.testimony = { witnessId: w.id, question: 'lead', ask, reply };
