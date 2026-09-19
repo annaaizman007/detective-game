@@ -78,12 +78,13 @@ async function download(url, dest) {
 
 const ENGINES = {
   elevenlabs: {
+    defaultVoice: 'onwK4e9ZLuTAKqWW03F9',
     format: 'mp3',
     detect: () => !!process.env.ELEVENLABS_API_KEY,
     // A low, unhurried voice suits the material; override with --voice=<id>.
-    describe: () => `ElevenLabs (${flag('voice', 'onwK4e9ZLuTAKqWW03F9')})`,
+    describe: () => `ElevenLabs (${flag('voice', ENGINES.elevenlabs.defaultVoice)})`,
     async render(text, file) {
-      const id = flag('voice', 'onwK4e9ZLuTAKqWW03F9');
+      const id = flag('voice', ENGINES.elevenlabs.defaultVoice);
       const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${id}`, {
         method: 'POST',
         headers: { 'xi-api-key': process.env.ELEVENLABS_API_KEY, 'content-type': 'application/json' },
@@ -99,16 +100,17 @@ const ENGINES = {
   },
 
   openai: {
+    defaultVoice: 'onyx',
     format: 'mp3',
     detect: () => !!process.env.OPENAI_API_KEY,
-    describe: () => `OpenAI TTS (${flag('voice', 'onyx')})`,
+    describe: () => `OpenAI TTS (${flag('voice', ENGINES.openai.defaultVoice)})`,
     async render(text, file) {
       const res = await fetch('https://api.openai.com/v1/audio/speech', {
         method: 'POST',
         headers: { authorization: `Bearer ${process.env.OPENAI_API_KEY}`, 'content-type': 'application/json' },
         body: JSON.stringify({
           model: flag('model', 'gpt-4o-mini-tts'),
-          voice: flag('voice', 'onyx'),
+          voice: flag('voice', ENGINES.openai.defaultVoice),
           input: text,
           instructions: 'Read as a weary 1940s film-noir narrator. Low, unhurried, matter of fact. No theatrics.',
           response_format: 'mp3',
@@ -124,6 +126,7 @@ const ENGINES = {
   // model takes seconds to load and milliseconds to run, so it is loaded once
   // for the whole script rather than once per line.
   kokoro: {
+    defaultVoice: 'bm_george',
     format: 'wav',
     batch: true,
     async detect() {
@@ -132,13 +135,13 @@ const ENGINES = {
       for (const f of KOKORO_FILES) if (!(await exists(join(MODELS, f.name)))) return false;
       return true;
     },
-    describe: () => `Kokoro, local neural model (${flag('voice', 'bm_george')})`,
+    describe: () => `Kokoro, local neural model (${flag('voice', ENGINES.kokoro.defaultVoice)})`,
     async renderAll(lines, outDir, onProgress) {
       const args = [
         join(ROOT, 'tools', 'kokoro_render.py'),
         '--model', join(MODELS, KOKORO_FILES[0].name),
         '--voices', join(MODELS, KOKORO_FILES[1].name),
-        '--voice', String(flag('voice', 'bm_george')),
+        '--voice', String(flag('voice', ENGINES.kokoro.defaultVoice)),
         '--speed', String(flag('speed', '0.95')),
         '--out', outDir,
       ];
@@ -170,23 +173,25 @@ const ENGINES = {
   },
 
   piper: {
+    defaultVoice: 'en_GB-alan-medium',
     format: 'wav',
     detect: () => has('piper'),
-    describe: () => `Piper (${flag('voice', 'en_GB-alan-medium')})`,
+    describe: () => `Piper (${flag('voice', ENGINES.piper.defaultVoice)})`,
     async render(text, file) {
-      await run('piper', ['-m', flag('voice', 'en_GB-alan-medium'), '-f', file], { input: text });
+      await run('piper', ['-m', flag('voice', ENGINES.piper.defaultVoice), '-f', file], { input: text });
     },
   },
 
   say: {
+    defaultVoice: 'Daniel',
     format: 'wav',
     detect: async () => platform() === 'darwin' && has('say'),
-    describe: () => `macOS say (${flag('voice', 'Daniel')})`,
+    describe: () => `macOS say (${flag('voice', ENGINES.say.defaultVoice)})`,
     async render(text, file) {
       // Premium/Enhanced voices are a large step up and are free to install:
       // System Settings > Accessibility > Spoken Content > Manage Voices.
       await run('say', [
-        '-v', flag('voice', 'Daniel'),
+        '-v', flag('voice', ENGINES.say.defaultVoice),
         '-r', String(flag('rate', '168')),
         '--file-format=WAVE', '--data-format=LEI16@22050',
         '-o', file, text,
@@ -312,6 +317,17 @@ let done = 0; let skipped = 0; let failed = 0;
 const failures = [];
 const CONCURRENCY = engine === 'say' || engine === 'piper' ? 4 : 6;
 
+// A clip that was already compressed to mp3 has no wav left on disk, so the
+// engines' own wav check would render it again. Take those out up front.
+let pending = lines;
+if (!force) {
+  pending = [];
+  for (const l of lines) {
+    if (await exists(join(OUT, `${l.id}.mp3`))) skipped++;
+    else pending.push(l);
+  }
+}
+
 async function renderOne(line) {
   const file = join(OUT, `${line.id}.${spec.format}`);
   if (!force) {
@@ -333,10 +349,14 @@ async function renderOne(line) {
 if (spec.batch) {
   // The engine renders the whole script itself, in one process.
   try {
-    const res = await spec.renderAll(lines, OUT, (m) => {
-      process.stdout.write(`\r  ${m.done + m.skipped + m.failed}/${m.total}  rendered ${m.done}  reused ${m.skipped}  failed ${m.failed}   `);
-    });
-    done = res.done ?? 0; skipped = res.skipped ?? 0; failed = res.failed ?? 0;
+    const reused = skipped;
+    const res = pending.length
+      ? await spec.renderAll(pending, OUT, (m) => {
+        const n = reused + m.done + m.skipped + m.failed;
+        process.stdout.write(`\r  ${n}/${lines.length}  rendered ${m.done}  reused ${reused + m.skipped}  failed ${m.failed}   `);
+      })
+      : { done: 0, skipped: 0, failed: 0 };
+    done = res.done ?? 0; skipped = reused + (res.skipped ?? 0); failed = res.failed ?? 0;
   } catch (e) {
     // A missing model or package is the normal way this fails, and the
     // message already says how to fix it. No stack trace required.
@@ -345,12 +365,12 @@ if (spec.batch) {
     process.exit(1);
   }
 } else {
-  const queue = lines.slice();
+  const queue = pending.slice();
   await Promise.all(Array.from({ length: CONCURRENCY }, async () => {
     while (queue.length) await renderOne(queue.shift());
   }));
 }
-process.stdout.write('\n');
+process.stdout.write(`\r  ${done + skipped + failed}/${lines.length}  rendered ${done}  reused ${skipped}  failed ${failed}   \n`);
 
 if (failures.length) {
   console.log(`\n  ${failures.length} failed:`);
@@ -370,8 +390,9 @@ if (spec.format === 'wav' && !flag('no-mp3') && (await has('ffmpeg'))) {
       const l = todo.shift();
       const wav = join(OUT, `${l.id}.wav`);
       const mp3 = join(OUT, `${l.id}.mp3`);
-      if (!(await exists(wav))) continue;
-      if (await exists(mp3)) { conv++; continue; }
+      if (!(await exists(wav))) { if (await exists(mp3)) conv++; continue; }
+      // A wav next to an mp3 is newer -- a forced re-render, or a run that was
+      // cut off between rendering and compressing -- so it always wins.
       try {
         await run('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-y', '-i', wav,
           '-codec:a', 'libmp3lame', '-b:a', '64k', '-ac', '1', mp3]);
@@ -391,7 +412,7 @@ if (spec.format === 'wav' && !flag('no-mp3') && (await has('ffmpeg'))) {
 const manifest = {
   version: 1,
   engine,
-  voice: String(flag('voice', 'default')),
+  voice: String(flag('voice', ENGINES[engine].defaultVoice)),
   format,
   generated: new Date().toISOString().slice(0, 10),
   clips: lines.map((l) => ({ id: l.id, group: l.group, text: l.text })),
