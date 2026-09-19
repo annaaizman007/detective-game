@@ -184,16 +184,24 @@ export class BoardScene extends Phaser.Scene {
     const sw = this.scale.width;
     const sh = this.scale.height;
     if (!sw || !sh) return;
-    const kFit = Math.min(sw / (BOARD.w + pad * 2), sh / (BOARD.h + pad * 2));
+    // The hint pill sits over the top of the canvas and the narration bar
+    // over the bottom, so the board is framed in the strip between them
+    // and the names along the edges are not lost under either.
+    const top = 48; const bottom = 84;
+    const vh = Math.max(120, sh - top - bottom);
+    const kFit = Math.min(sw / (BOARD.w + pad * 2), vh / (BOARD.h + pad * 2));
     // A phone panel is tall and the board is wide. Fitting both axes there
     // shrinks the street names past reading, so a portrait panel fills the
     // height and pans sideways -- which is how people read maps.
     const portrait = sh / sw > 1.15;
-    const k = clamp(portrait ? Math.max(kFit, (sh / (BOARD.h + pad * 2)) * 0.8) : kFit, ZOOM.min, ZOOM.max);
+    const k = clamp(portrait ? Math.max(kFit, (vh / (BOARD.h + pad * 2)) * 0.8) : kFit, ZOOM.min, ZOOM.max);
     cam.setZoom(k);
     const anchor = focusId ? this.placed.get(focusId) : null;
-    if (anchor && k > kFit + 0.001) cam.centerOn(anchor.px, anchor.py);
-    else cam.centerOn(BOARD.w / 2, BOARD.h / 2);
+    // The visible middle is a little below the canvas middle; the offset is
+    // in screen pixels and shrinks with the zoom.
+    const lift = ((top - bottom) / 2) / k;
+    if (anchor && k > kFit + 0.001) cam.centerOn(anchor.px, anchor.py - lift);
+    else cam.centerOn(BOARD.w / 2, BOARD.h / 2 - lift);
     this.fitted = true;
   }
 
@@ -399,9 +407,23 @@ export class BoardScene extends Phaser.Scene {
     const by0 = Math.min(...city.blocks.map((b) => b.y)) - 20; const by1 = Math.max(...city.blocks.map((b) => b.y + b.h)) + 20;
     const parkPolys = city.parks.map((p) => new Phaser.Geom.Polygon(toPoints(p.pts)));
     const STEP = 30;
+    // A city is thick around the places that matter and thins toward its
+    // edge; and here and there a whole coarse cell is left as open ground
+    // (a goods yard, a burial ground, a bombed lot) so the quarters read as
+    // quarters and not as one even field.
+    const YARD = 150;
+    const yards = new Set<string>();
+    for (let yy = by0; yy < by1; yy += YARD) for (let xx = bx0; xx < bx1; xx += YARD) {
+      const nearPin = Math.min(...pins.map((l) => Math.hypot(l.px - (xx + YARD / 2), l.py - (yy + YARD / 2))));
+      if (nearPin > 110 && rnd() < 0.07) yards.add(`${Math.floor((xx - bx0) / YARD)}:${Math.floor((yy - by0) / YARD)}`);
+    }
     for (let gy = by0; gy < by1; gy += STEP) for (let gx = bx0; gx < bx1; gx += STEP) {
-      if (rnd() < 0.08) continue; // a yard, a gap
-      const w = 18 + rnd() * 9; const hh = 18 + rnd() * 9;
+      if (yards.has(`${Math.floor((gx - bx0) / YARD)}:${Math.floor((gy - by0) / YARD)}`)) continue;
+      const nearPin = Math.min(...pins.map((l) => Math.hypot(l.px - (gx + STEP / 2), l.py - (gy + STEP / 2))));
+      const gap = nearPin < 140 ? 0.05 : nearPin < 260 ? 0.14 : nearPin < 380 ? 0.35 : 0.6;
+      if (rnd() < gap) continue; // a yard, a gap
+      const big = nearPin < 140;
+      const w = (big ? 20 : 16) + rnd() * 9; const hh = (big ? 20 : 16) + rnd() * 9;
       const x = gx + (STEP - w) / 2 + (rnd() - 0.5) * 4; const y = gy + (STEP - hh) / 2 + (rnd() - 0.5) * 4;
       const cx = x + w / 2; const cy = y + hh / 2;
       if (waters.some((poly) => poly.contains(cx, cy) || poly.contains(x, y) || poly.contains(x + w, y + hh) || poly.contains(x, y + hh) || poly.contains(x + w, y))) continue;
@@ -418,7 +440,7 @@ export class BoardScene extends Phaser.Scene {
       let qh = 7; for (const ch of quarter) qh = (qh * 31 + ch.charCodeAt(0)) >>> 0;
       const pal = PALETTES[qh % PALETTES.length];
       const nearRoad = Math.min(...roadSegs.map((seg) => distToSeg(cx, cy, seg)));
-      const z = 12 + rnd() * 18 + (nearRoad < 60 ? 10 : 0) + (rnd() < 0.12 ? 18 : 0);
+      const z = (big ? 16 : 10) + rnd() * 18 + (nearRoad < 60 ? 10 : 0) + (rnd() < (big ? 0.16 : 0.06) ? 18 : 0);
       blds.push({ x, y, w, h: hh, z, wall: WALLS[Math.floor(rnd() * WALLS.length)], roof: pal[Math.floor(rnd() * pal.length)], dome: rnd() < 0.03 });
     }
     blds.sort((a, b) => (a.y + a.h) - (b.y + b.h));

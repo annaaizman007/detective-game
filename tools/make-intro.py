@@ -135,7 +135,8 @@ for i in range(1, len(SHOTS)):
     out = f'[x{i}]' if i < len(SHOTS) - 1 else '[xf]'
     filters.append(f"{prev}[v{i}]xfade=transition=fade:duration={XF}:offset={offset:.3f}{out}")
     prev = out
-filters.append(f"[xf]noise=alls=9:allf=t+u,vignette=PI/4.2,fade=t=in:st=0:d=0.9,fade=t=out:st={TOTAL - 0.9:.2f}:d=0.9[vout]")
+# one grade over every shot, so the painted frames and the darker ones read as one film
+filters.append(f"[xf]eq=saturation=0.78:contrast=1.06:brightness=-0.02,noise=alls=9:allf=t+u,vignette=PI/4.2,fade=t=in:st=0:d=0.9,fade=t=out:st={TOTAL - 0.9:.2f}:d=0.9[vout]")
 
 cmd = ['ffmpeg', '-y']
 for n, _, _ in SHOTS:

@@ -24,14 +24,14 @@ const WHAT = {
   florist: 'a flower shop with orchids in a lit window', tower: 'a tall brick water tower', cemetery: 'a cemetery gate with an iron arch and gravestones',
   tram: 'a tram stop with a shelter and a tram waiting', radio: 'a wireless station with a tall mast and a red light',
 };
-const STYLE = 'exterior view from across the street, a small 1940s English industrial city at night in the rain, low brick and stone buildings no more than four storeys, gas lamps and sodium light, wet cobbles, painted illustration, pulp paperback cover art, oil painting, film noir, dramatic light, no people, no signs';
-const NEGATIVE = 'interior, indoors, corridor, hallway, room, text, letters, words, signage, shop sign, lettering, neon, neon sign, skyscraper, skyline, tall tower, modern, glass tower, cyberpunk, watermark, blurry, deformed, people, faces, crowd, figures, cartoon, anime, photograph, modern cars, daytime, snow, full moon, low quality, frame, border, lantern festival, asian';
+const STYLE = 'exterior view from across the street, a small 1940s English industrial city at night in the rain, low brick and stone buildings no more than four storeys, gas lamps and sodium light, wet cobbles, in full colour, deep night, black sky, only the windows and the gas lamps lit, painted illustration, pulp paperback cover art, oil painting, film noir, dramatic light, no people, no signs';
+const NEGATIVE = 'sunset, dusk, orange sky, bright sky, black and white, monochrome, greyscale, desaturated, interior, indoors, corridor, hallway, room, text, letters, words, signage, shop sign, lettering, neon, neon sign, skyscraper, skyline, tall tower, modern, glass tower, cyberpunk, watermark, blurry, deformed, people, faces, crowd, figures, cartoon, anime, photograph, modern cars, daytime, snow, full moon, low quality, frame, border, lantern festival, asian';
 
 // Places the generic type does not describe well enough to be recognised.
 // Keyed `case-location`; the text replaces the type description.
 const LANDMARKS = {
   'lamp-chemist': 'a Victorian chemist’s shop at night with big glass carboys glowing in the window, no lettering',
-  'lamp-garage': 'a 1940s motor garage at night with a wide open door, a car on a lift inside, one petrol pump, no signs',
+  'lamp-garage': 'a 1940s motor garage at night with a wide open door, a car on a lift inside, one petrol pump, a blank brick wall above the door',
   'lamp-library': 'a small Victorian public reading room exterior at night, stone steps, lit arched windows, a lamp by the door',
   'lamp-hospital': 'a Victorian brick infirmary at night with lit ward windows, a porter’s lodge and an arched gate, a gas lamp, no neon',
   'lamp-exchange': 'a Victorian brick telephone exchange at night with tall windows lit, a lattice of telephone wires on the roof, no neon',
@@ -85,7 +85,7 @@ const LANDMARKS = {
   'salt-icehouse': 'a windowless stone ice house on the water with a wide door, steps down to the harbour and a boat unloading',
   'lamp-lamp41': 'a lone Victorian gas street lamp on a corner between soot-black tenements and a high brick gasworks wall at night, the lamp unlit, chalk marks on the wet pavement',
   'lamp-gasworks': 'a Victorian gasworks at night with two huge iron gasholders and a row of brick retort houses, smoke, one lit window',
-  'lamp-retort': 'a derelict bricked-up Victorian retort house behind a gasholder at night, a faint glow from a stove through a crack, weeds, rain, no moon',
+  'lamp-retort': 'a derelict bricked-up Victorian retort house behind a gasholder on an overcast rainy night, a faint glow from a stove through a crack, weeds, low cloud',
   'lamp-gasoffice': 'a Victorian gas company office with a brass plate, tall windows full of card index drawers, one lamp lit',
   'lamp-canal': 'a canal lock at night with a lock keeper’s cottage, black water, a towpath with no lamps',
   'lamp-bridge': 'an iron canal bridge at night with a single gas lamp at its foot, unlit, black water below',
@@ -101,12 +101,14 @@ const LANDMARKS = {
   'salt-saltworks': 'a salt works with white salt heaps, brick kilns and sacks stacked under a lamp',
 };
 
+// A second try for the ones the first seed drew in black and white or with signs.
+const RESEED = { 'salt-marconi': 7, 'salt-bank': 13, 'salt-morgue': 13, 'bell-asylum': 13, 'lamp-exchange': 7, 'lamp-gasoffice': 7, 'lamp-garage': 7, 'lamp-retort': 13 };
 const out = [];
 for (const c of CASES) {
   for (const l of c.locations) {
     const what = LANDMARKS[`${c.id}-${l.id}`] ?? WHAT[l.type] ?? 'a city building';
-    out.push({ id: `${c.id}-${l.id}`, name: l.name, prompt: `${what}, called ${l.name}, in ${l.district ?? 'the city'}, ${STYLE}`, negative: NEGATIVE,
-      seed: [...`${c.id}:${l.id}`].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 11) });
+    out.push({ id: `${c.id}-${l.id}`, name: l.name, prompt: `${what}, in ${l.district ?? 'the city'}, ${STYLE}`, negative: NEGATIVE,
+      seed: [...`${c.id}:${l.id}`].reduce((h, ch) => (h * 31 + ch.charCodeAt(0)) >>> 0, 11) + (RESEED[`${c.id}-${l.id}`] ?? 0) });
   }
 }
 await mkdir('public/assets/images/buildings', { recursive: true });

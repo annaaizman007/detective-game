@@ -9,9 +9,9 @@
  {
   "id": "burst",
   "name": "burst",
-  "prompt": "solo, a single breathless police sergeant in a wet raincoat bursting through a door into a smoky squad room, one hand flinging the door open, backlit from the corridor, seen from inside the room, 1940s film noir, painted illustration, pulp paperback cover art, oil painting, chiaroscuro, deep shadows, muted colours, cinematic, highly detailed",
-  "negative": "two people, two men, twins, duplicate, multiple people, crowd, second figure, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
-  "seed": 41
+  "prompt": "solo, a single breathless plain-clothes police sergeant of fifty in a wet brown overcoat and felt hat bursting through a door into a smoky squad room, one hand flinging the door open, backlit from the corridor, seen from inside the room, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "two people, twins, duplicate, extra person, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, bright, low quality, frame, american badge, whistle, helmet on table, peaked cap, glamour, lipstick, young, pretty, smooth skin, airbrushed",
+  "seed": 410
  },
  {
   "id": "squad2",
@@ -30,29 +30,29 @@
  {
   "id": "tell-orchid",
   "name": "tell-orchid",
-  "prompt": "close-up of one breathless middle-aged British police sergeant in a wet dark raincoat, hat pushed back, leaning both hands on a table and talking urgently, green lamp light on his face, rain on the window behind, sergeant stripes on the sleeve, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
-  "negative": "two people, twins, duplicate, extra person, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, moustache on a woman, pen in face, cartoon, anime, photograph, modern, daytime, bright, low quality, frame, american badge, whistle",
-  "seed": 17
+  "prompt": "medium shot of one breathless plain-clothes police sergeant of fifty, whole head in frame, heavy tired face, grey moustache, rumpled brown tweed jacket, loosened tie, wet felt hat pushed back, standing and leaning forward over a wooden table on both hands, talking urgently toward the viewer, mouth open mid-sentence, in a dark smoky police squad room at night, only a green-shaded desk lamp lit, deep shadows, rain on the black window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "two people, two women, two men, twins, duplicate, extra person, second face, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cropped head, cut off head, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, daylight, bright room, window light, sunny, plants, low quality, frame, american badge, whistle, helmet, peaked cap, glamour, lipstick, pretty, smooth skin, airbrushed, sitting calmly, resting chin on hand",
+  "seed": 171
  },
  {
   "id": "tell-salt",
   "name": "tell-salt",
-  "prompt": "close-up of one breathless woman police sergeant of forty in a wet dark 1940s police tunic and cape, hair pinned under a small dark cap, sergeant stripes, leaning both hands on a table and talking urgently, green lamp light on her face, rain on the window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
-  "negative": "two people, twins, duplicate, extra person, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, moustache on a woman, pen in face, cartoon, anime, photograph, modern, daytime, bright, low quality, frame, american badge, whistle",
-  "seed": 31
+  "prompt": "medium shot of one stern matronly woman police sergeant of forty-five, whole head in frame, grey-streaked dark hair in a tight bun, lined face, no makeup, plain dark wool jacket with sergeant stripes, standing and leaning forward over a wooden table on both hands, talking urgently toward the viewer, mouth open mid-sentence, in a dark smoky police squad room at night, only a green-shaded desk lamp lit, deep shadows, rain on the black window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "two people, two women, two men, twins, duplicate, extra person, second face, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cropped head, cut off head, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, daylight, bright room, window light, sunny, plants, low quality, frame, american badge, whistle, helmet, peaked cap, glamour, lipstick, pretty, smooth skin, airbrushed, sitting calmly, resting chin on hand",
+  "seed": 319
  },
  {
   "id": "tell-bell",
   "name": "tell-bell",
-  "prompt": "close-up of one breathless young British police constable of twenty in a wet dark tunic, tall dark custodian helmet with a silver badge, leaning both hands on a table and talking urgently, green lamp light on his face, rain on the window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
-  "negative": "two people, twins, duplicate, extra person, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, moustache on a woman, pen in face, cartoon, anime, photograph, modern, daytime, bright, low quality, frame, american badge, whistle",
-  "seed": 53
+  "prompt": "medium shot of one breathless bare-headed young British police constable of twenty, whole head in frame, short dark hair wet from rain, plain dark wool tunic with a high collar and silver buttons, standing and leaning forward over a wooden table on both hands, talking urgently toward the viewer, mouth open mid-sentence, in a dark smoky police squad room at night, only a green-shaded desk lamp lit, deep shadows, rain on the black window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "two people, two women, two men, twins, duplicate, extra person, second face, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cropped head, cut off head, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, daylight, bright room, window light, sunny, plants, low quality, frame, american badge, whistle, helmet, peaked cap, glamour, lipstick, pretty, smooth skin, airbrushed, sitting calmly, resting chin on hand",
+  "seed": 531
  },
  {
   "id": "tell-lamp",
   "name": "tell-lamp",
-  "prompt": "close-up of one breathless woman police sergeant of forty in a wet dark 1940s police tunic, dark hair pinned under a small dark cap, sergeant stripes, leaning both hands on a table and talking urgently, lamp light on her face, rain on the window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
-  "negative": "two people, twins, duplicate, extra person, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, moustache on a woman, pen in face, cartoon, anime, photograph, modern, daytime, bright, low quality, frame, american badge, whistle",
-  "seed": 71
+  "prompt": "medium shot of one stout stern woman police sergeant of fifty, whole head in frame, grey hair pinned back, weathered face, no makeup, plain dark wool jacket with sergeant stripes, standing and leaning forward over a wooden table on both hands, talking urgently toward the viewer, mouth open mid-sentence, in a dark smoky police squad room at night, only a green-shaded desk lamp lit, deep shadows, rain on the black window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "two people, two women, two men, twins, duplicate, extra person, second face, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cropped head, cut off head, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, daylight, bright room, window light, sunny, plants, low quality, frame, american badge, whistle, helmet, peaked cap, glamour, lipstick, pretty, smooth skin, airbrushed, sitting calmly, resting chin on hand",
+  "seed": 717
  }
 ]
