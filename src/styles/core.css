@@ -298,3 +298,9 @@ input[type="range"] { width: 100%; accent-color: var(--brass); }
 .grain { animation: none; opacity: .1; }
   * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Painted portraits: a 512x640 painting, cropped to the face for chips. */
+.portrait--painted { object-fit: cover; object-position: 50% 18%; background: #0d0f14; }
+.portrait--painted.portrait--face { border-radius: 50%; object-position: 50% 14%; }
+.portrait--painted.portrait--bust { object-position: 50% 0; border-radius: 6px; }
+.portrait--painted.is-muted { filter: grayscale(.9) brightness(.7); }

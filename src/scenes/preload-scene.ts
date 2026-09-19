@@ -2,7 +2,8 @@ import Phaser from 'phaser';
 import { CASES } from '../game/cases/index';
 import { CHARACTERS } from '../game/characters';
 import { iconSvg, svgDataUri, ICON_NAMES } from '../ui/icons';
-import { portraitSvg } from '../ui/portraits';
+import { portraitSvg, isPainted, paintedUrl } from '../ui/portraits';
+import { buildingSvg } from '../ui/buildings';
 
 export const INK = '#2a2118';
 
@@ -25,21 +26,29 @@ export class PreloadScene extends Phaser.Scene {
     });
     this.load.on('complete', () => bar.destroy());
 
+    // One drawn facade per location, at night, in the rain.
+    for (const c of CASES) {
+      for (const l of c.locations) this.load.svg(`bld-${c.id}-${l.id}`, svgDataUri(buildingSvg(l.type, `${c.id}:${l.id}`)), { width: 200, height: 170 });
+    }
     for (const name of ICON_NAMES) {
       this.load.svg(`ico-${name}`, svgDataUri(iconSvg(name, INK, 64, 1.6)), { width: 64, height: 64 });
     }
-    // Faces for the chips: the "unknown" drawing, so the map never gives
-    // away a trait the table has not established.
+    // Faces for the chips. A painted person loads their painting (cut round
+    // in create); a drawn one gets the "unknown" drawing, so the map never
+    // gives away a trait the table has not established.
+    const face = (id: string, svg: () => string) => {
+      if (isPainted(id)) this.load.image(`paint-${id}`, paintedUrl(id));
+      else this.load.svg(`face-${id}`, svgDataUri(svg()), { width: 72, height: 72 });
+    };
     for (const c of CASES) {
-      for (const x of c.suspects) this.load.svg(`face-${x.id}`, svgDataUri(portraitSvg(x.id, { size: 72, frame: 'face' })), { width: 72, height: 72 });
-      for (const w of c.witnesses) this.load.svg(`face-${w.id}`, svgDataUri(portraitSvg(w.id, { size: 72, frame: 'face', reveal: true })), { width: 72, height: 72 });
+      for (const x of c.suspects) face(x.id, () => portraitSvg(x.id, { size: 72, frame: 'face' }));
+      for (const w of c.witnesses) face(w.id, () => portraitSvg(w.id, { size: 72, frame: 'face', reveal: true }));
     }
-    for (const d of CHARACTERS) {
-      this.load.svg(`face-${d.id}`, svgDataUri(portraitSvg(d.id, { size: 72, frame: 'face', reveal: true, accent: d.color })), { width: 72, height: 72 });
-    }
+    for (const d of CHARACTERS) face(d.id, () => portraitSvg(d.id, { size: 72, frame: 'face', reveal: true, accent: d.color }));
   }
 
   create(): void {
+    this.cutFaces();
     this.makeGrain();
     this.makeStreak();
     this.makeDisc();
@@ -48,6 +57,26 @@ export class PreloadScene extends Phaser.Scene {
     this.scene.launch('board');
     this.scene.sleep('board');
     this.game.events.emit('assets-ready');
+  }
+
+  /** A painting is 512x640; the chip wants a round face. Cut it out once. */
+  private cutFaces(): void {
+    const ids = [...CASES.flatMap((c) => [...c.suspects.map((x) => x.id), ...c.witnesses.map((w) => w.id)]), ...CHARACTERS.map((d) => d.id)];
+    for (const id of ids) {
+      if (!this.textures.exists(`paint-${id}`)) continue;
+      const src = this.textures.get(`paint-${id}`).getSourceImage() as HTMLImageElement;
+      const size = 96;
+      const tex = this.textures.createCanvas(`face-${id}`, size, size);
+      if (!tex) continue;
+      const ctx = tex.getContext();
+      ctx.save();
+      ctx.beginPath(); ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2); ctx.clip();
+      // The face sits in the upper middle of the painting.
+      const cw = src.width * 0.62; const ch = cw;
+      ctx.drawImage(src, (src.width - cw) / 2, src.height * 0.08, cw, ch, 0, 0, size, size);
+      ctx.restore();
+      tex.refresh();
+    }
   }
 
   /** Paper grain: a tile of soft noise the map is stamped with. */

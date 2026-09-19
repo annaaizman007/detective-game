@@ -1,15 +1,15 @@
 // Character models.
 //
-// Everyone in Ashgrave -- detectives, suspects, witnesses -- is drawn from the
-// same layered figure: shoulders and coat, neck, head, features, hair, hat,
-// glasses, and whatever the case has taught you about them. It is a police
-// sketch, not a photograph: inked, flat, a little cruel.
+// A painted bust for everyone in Ashgrave: pulp-cover noir, one hard key
+// light from the upper left, cel shading in three tones, a rim of light on
+// the far cheek, and grain over the lot. Everything is SVG built from a few
+// shapes and a lot of clipped, blurred shading -- the blur is what makes it
+// read as paint rather than paper.
 //
 // Suspects are the point of it. What you know about a suspect is drawn and
-// what you do not know is left as ink. Hair is black ink until a witness says
-// "copper red, badly hidden under the brim"; a scar appears the moment
-// somebody mentions it; the shoulders widen when the build comes in. So the
-// dossier literally fills in as the table works.
+// what you do not know is left as ink. Hair is black until a witness says
+// "copper red"; a scar appears the moment somebody mentions it; the shoulders
+// widen when the build comes in.
 
 import type { TraitId } from '../types/game-types';
 import { hash32 } from '../utils/math-utils';
@@ -25,80 +25,86 @@ export interface Look {
   coat: number;
   collar: number;
   mood: number;
+  /** Something in the hand or mouth: 0 none, 1 cigarette, 2 cigar, 3 pipe. */
+  smoke: number;
   accent: string;
 }
 
 export type Known = Partial<Record<TraitId, boolean | string | null>>;
 
-const SKIN = ['#e8c9a6', '#d9b48c', '#c49a6c', '#a97b55', '#7d5a3c', '#f0d9c0'];
-const COAT = ['#2b2e36', '#4a3728', '#1f2a3d', '#4d2430', '#3a4030', '#c9b99a', '#5b5f6a', '#2d3b2d'];
-const HAIR: Record<string, string> = { ink: '#151515', dark: '#241a14', fair: '#d8b678', red: '#a8482a', grey: '#a9a6a0' };
+// Skin as [base, shadow, light].
+const SKIN: [string, string, string][] = [
+  ['#e2b891', '#a8724c', '#f6dcc0'],
+  ['#d3a276', '#95613a', '#efcaa6'],
+  ['#b9865a', '#7a4f2c', '#dcae86'],
+  ['#946040', '#5b361b', '#bf8a66'],
+  ['#6e4530', '#3d2314', '#96694f'],
+  ['#efcfae', '#b98a66', '#fbe8d4'],
+];
+const COAT: [string, string][] = [
+  ['#2a2c33', '#101116'], ['#4b3826', '#2a1d11'], ['#243349', '#121a28'], ['#4e2530', '#2b1219'],
+  ['#3d4432', '#22271a'], ['#b8a684', '#7d6e52'], ['#5d616b', '#33363d'], ['#6b5a2e', '#3f3418'],
+];
+const HAIR: Record<string, [string, string]> = {
+  ink: ['#17171a', '#000'], dark: ['#2b1d15', '#120b07'], fair: ['#cfae6e', '#8e7040'],
+  red: ['#a3462a', '#5e2412'], grey: ['#a9a6a0', '#66635e'],
+};
 
-/**
- * Hand-set looks for the people the cases are about. Anything not set here
- * falls to the hash, which is stable per id, so a face is always its own.
- */
+/** Hand-set looks. Anything not here falls to the hash, stable per id. */
 const LOOKS: Record<string, Partial<Look>> = {
-  // detectives
-  hale: { fem: false, age: 2, hair: 6, hat: 1, beard: 1, coat: 0, collar: 0, mood: 2, glasses: false },
+  hale: { fem: false, age: 2, hair: 6, hat: 1, beard: 1, coat: 0, collar: 0, mood: 2, smoke: 2 },
   vale: { fem: true, age: 1, hair: 4, hat: 0, coat: 6, collar: 1, glasses: true, mood: 0 },
-  crane: { fem: false, age: 1, hair: 1, hat: 1, beard: 0, coat: 4, collar: 0, mood: 1 },
+  crane: { fem: false, age: 1, hair: 1, hat: 1, beard: 0, coat: 4, collar: 3, mood: 1, smoke: 1 },
   ruby: { fem: true, age: 1, hair: 3, hat: 6, coat: 3, collar: 2, mood: 1 },
-  kell: { fem: false, age: 2, hair: 2, hat: 0, beard: 0, coat: 0, collar: 3, mood: 0 },
+  kell: { fem: false, age: 2, hair: 2, hat: 0, beard: 0, coat: 0, collar: 5, mood: 0 },
   quist: { fem: true, age: 0, hair: 2, hat: 4, coat: 2, collar: 0, mood: 2 },
-  // orchid
-  vera: { fem: true, age: 0, hair: 5, hat: 0, coat: 3, collar: 4, mood: 1 },
+  vera: { fem: true, age: 0, hair: 5, hat: 0, coat: 3, collar: 4, mood: 1, smoke: 1 },
   strand: { fem: false, age: 1, hair: 0, hat: 0, beard: 1, coat: 0, collar: 3, mood: 2 },
   pike: { fem: false, age: 2, hair: 6, hat: 6, beard: 3, coat: 5, collar: 3, glasses: true, mood: 0 },
   mireaux: { fem: true, age: 1, hair: 4, hat: 2, coat: 7, collar: 2, mood: 0 },
   tovar: { fem: true, age: 2, hair: 4, hat: 5, coat: 0, collar: 1, mood: 2 },
-  roland: { fem: false, age: 0, hair: 1, hat: 0, beard: 0, coat: 5, collar: 3, mood: 3 },
-  brandt: { fem: false, age: 1, hair: 2, hat: 3, beard: 2, coat: 1, collar: 2, mood: 2 },
+  roland: { fem: false, age: 0, hair: 1, hat: 0, beard: 0, coat: 5, collar: 3, mood: 3, smoke: 1 },
+  brandt: { fem: false, age: 1, hair: 2, hat: 3, beard: 2, coat: 1, collar: 2, mood: 2, smoke: 2 },
   shaw: { fem: true, age: 1, hair: 3, hat: 2, coat: 6, collar: 1, glasses: true, mood: 1 },
-  // salt
-  hollis: { fem: false, age: 1, hair: 2, hat: 3, beard: 1, coat: 1, collar: 2, mood: 2 },
+  hollis: { fem: false, age: 1, hair: 2, hat: 3, beard: 1, coat: 1, collar: 2, mood: 2, smoke: 2 },
   wren: { fem: true, age: 1, hair: 4, hat: 4, coat: 2, collar: 0, glasses: true, mood: 0 },
-  okafor: { fem: false, age: 2, hair: 6, hat: 0, beard: 2, coat: 1, collar: 1, mood: 0 },
-  salvi: { fem: false, age: 1, hair: 0, hat: 6, beard: 1, coat: 5, collar: 3, mood: 1 },
+  okafor: { fem: false, age: 2, hair: 6, hat: 0, beard: 2, coat: 1, collar: 1, mood: 0, smoke: 3 },
+  salvi: { fem: false, age: 1, hair: 0, hat: 6, beard: 1, coat: 5, collar: 3, mood: 1, smoke: 2 },
   tilda: { fem: true, age: 2, hair: 4, hat: 2, coat: 3, collar: 4, mood: 2 },
-  keeper: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 7, collar: 2, mood: 0 },
+  keeper: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 7, collar: 2, mood: 0, smoke: 3 },
   fenn: { fem: true, age: 1, hair: 3, hat: 0, coat: 6, collar: 1, glasses: true, mood: 0 },
-  ledoux: { fem: false, age: 1, hair: 7, hat: 3, beard: 3, coat: 2, collar: 2, mood: 1 },
-  // bell
-  verger: { fem: false, age: 2, hair: 6, hat: 0, beard: 0, coat: 0, collar: 3, mood: 2 },
-  canon: { fem: false, age: 2, hair: 2, hat: 0, beard: 0, coat: 0, collar: 3, glasses: true, mood: 0 },
+  ledoux: { fem: false, age: 1, hair: 7, hat: 3, beard: 3, coat: 2, collar: 2, mood: 1, smoke: 1 },
+  verger: { fem: false, age: 2, hair: 6, hat: 0, beard: 0, coat: 0, collar: 5, mood: 2 },
+  canon: { fem: false, age: 2, hair: 2, hat: 0, beard: 0, coat: 0, collar: 5, glasses: true, mood: 0 },
   matron: { fem: true, age: 2, hair: 4, hat: 5, coat: 6, collar: 1, mood: 2 },
-  tutor: { fem: false, age: 1, hair: 1, hat: 0, beard: 0, coat: 1, collar: 3, glasses: true, mood: 3 },
+  tutor: { fem: false, age: 1, hair: 1, hat: 0, beard: 0, coat: 1, collar: 3, glasses: true, mood: 3, smoke: 3 },
   astro: { fem: true, age: 1, hair: 4, hat: 0, coat: 2, collar: 2, glasses: true, mood: 0 },
   gardener: { fem: false, age: 0, hair: 7, hat: 3, beard: 0, coat: 7, collar: 2, mood: 1 },
-  driver: { fem: true, age: 0, hair: 2, hat: 4, coat: 2, collar: 0, mood: 1 },
+  driver: { fem: true, age: 0, hair: 2, hat: 4, coat: 2, collar: 0, mood: 1, smoke: 1 },
   sister: { fem: true, age: 0, hair: 3, hat: 5, coat: 0, collar: 1, mood: 2 },
-  // witnesses: the ones a hash would get badly wrong
   pruett: { fem: true, age: 1, hair: 4, hat: 0, coat: 5, collar: 1, glasses: true, mood: 0 },
   marlowe: { fem: false, age: 1, hair: 0, hat: 0, beard: 1, coat: 6, collar: 3, mood: 1 },
   flett: { fem: true, age: 1, hair: 4, hat: 5, coat: 6, collar: 1, mood: 2 },
-  rainer: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 7, collar: 2, mood: 0 },
+  rainer: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 7, collar: 2, mood: 0, smoke: 3 },
   wyn: { fem: false, age: 2, hair: 6, hat: 0, beard: 3, coat: 0, collar: 2, mood: 0 },
   cobb: { fem: false, age: 2, hair: 6, hat: 0, beard: 0, coat: 1, collar: 3, glasses: true, mood: 2 },
   teague: { fem: true, age: 2, hair: 4, hat: 0, coat: 3, collar: 1, mood: 1 },
   aldous: { fem: false, age: 0, hair: 1, hat: 0, beard: 0, coat: 6, collar: 3, glasses: true, mood: 3 },
   vetch: { fem: false, age: 0, hair: 7, hat: 3, beard: 0, coat: 7, collar: 2, mood: 1 },
   kite: { fem: false, age: 1, hair: 2, hat: 0, beard: 0, coat: 6, collar: 1, mood: 0 },
-  pell: { fem: false, age: 0, hair: 2, hat: 3, beard: 0, coat: 2, collar: 2, mood: 3 },
+  pell: { fem: false, age: 0, hair: 2, hat: 3, beard: 0, coat: 2, collar: 2, mood: 3, smoke: 1 },
   harrow: { fem: true, age: 1, hair: 3, hat: 0, coat: 5, collar: 1, mood: 1 },
   tull: { fem: true, age: 2, hair: 4, hat: 0, coat: 0, collar: 1, mood: 2 },
-  wick: { fem: false, age: 2, hair: 6, hat: 4, beard: 1, coat: 0, collar: 0, mood: 2 },
+  wick: { fem: false, age: 2, hair: 6, hat: 4, beard: 1, coat: 0, collar: 0, mood: 2, smoke: 3 },
   greer: { fem: true, age: 2, hair: 4, hat: 2, coat: 1, collar: 2, mood: 0 },
-  marley: { fem: false, age: 1, hair: 0, hat: 4, beard: 0, coat: 2, collar: 0, mood: 0 },
+  marley: { fem: false, age: 1, hair: 0, hat: 4, beard: 0, coat: 2, collar: 0, mood: 0, smoke: 1 },
   lister: { fem: false, age: 1, hair: 2, hat: 3, beard: 2, coat: 7, collar: 2, mood: 1 },
-  grimm: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 1, collar: 2, mood: 2 },
+  grimm: { fem: false, age: 2, hair: 6, hat: 3, beard: 2, coat: 1, collar: 2, mood: 2, smoke: 3 },
 };
 
 export function lookFor(id: string, accent = '#c8963e'): Look {
   const h = hash32(id);
-  // Unsigned shifts: a plain >> on a hash above 2^31 goes negative and
-  // indexes off the front of every palette.
-  const pick = (shift: number, n: number) => ((h >>> shift) % n);
+  const pick = (shift: number, n: number) => (h >>> shift) % n;
   const base: Look = {
     fem: !!(h & 1),
     age: pick(1, 3) as 0 | 1 | 2,
@@ -110,208 +116,271 @@ export function lookFor(id: string, accent = '#c8963e'): Look {
     coat: pick(18, COAT.length),
     collar: pick(21, 5),
     mood: pick(24, 4),
+    smoke: pick(26, 9) === 0 ? 1 + pick(28, 3) : 0,
     accent,
   };
-  const set = LOOKS[id] || {};
-  const look = { ...base, ...set, accent };
+  const look = { ...base, ...(LOOKS[id] || {}), accent };
   if (look.fem) look.beard = 0;
   return look;
 }
 
-// ------------------------------------------------------------------ parts
+// The head is an egg centred at (150,150), rx 62, ry 76, jaw at y 226. Men
+// get a squarer jaw and a heavier brow line.
+const HEAD_F = 'M88 140c0-48 26-78 62-78s62 30 62 78c0 34-10 58-26 74-10 10-22 16-36 16s-26-6-36-16c-16-16-26-40-26-74z';
+const HEAD_M = 'M86 138c0-46 26-76 64-76s64 30 64 76c0 30-6 52-18 68-8 12-22 24-46 24s-38-12-46-24c-12-16-18-38-18-68z';
 
-const hairStyle = (n: number, c: string, fem: boolean): string => {
-  const back = `<path d="M54 92c-4-30 14-52 46-52s50 22 46 52c-6-18-22-30-46-30s-40 12-46 30z" fill="${c}"/>`;
+function hairShape(n: number, fem: boolean): string {
   switch (n) {
-    case 0: // slicked back
-      return `<path d="M56 86c0-28 16-46 44-46s44 18 44 46c-4-12-16-24-44-24s-40 12-44 24z" fill="${c}"/><path d="M62 66c10-6 22-9 38-9" stroke="#000" stroke-opacity=".3" stroke-width="1.5" fill="none"/>`;
-    case 1: // side part
-      return `${back}<path d="M58 78c8-14 20-22 38-24 20-2 30 6 46 22-6-8-14-14-30-14-8 0-14 4-22 10-10-2-20 0-32 6z" fill="${c}"/><path d="M84 60c4-4 10-6 16-6" stroke="#000" stroke-opacity=".25" stroke-width="1.4" fill="none"/>`;
-    case 2: // cropped
-      return `<path d="M56 84c0-26 16-42 44-42s44 16 44 42c-6-14-18-22-44-22s-38 8-44 22z" fill="${c}"/>`;
-    case 3: // bob
-      return `${back}<path d="M50 96c-2-40 16-60 50-60s52 20 50 60l-4 40c-4 6-10 8-16 6l2-40c-2-14-14-24-32-24s-30 10-32 24l2 40c-6 2-12 0-16-6z" fill="${c}"/>`;
-    case 4: // bun / updo
-      return `${back}<circle cx="100" cy="46" r="17" fill="${c}"/><path d="M60 86c2-22 18-38 40-38s38 16 40 38c-8-14-22-22-40-22s-32 8-40 22z" fill="${c}"/>`;
-    case 5: // long waves
-      return `${back}<path d="M48 100c-4-36 18-64 52-64s56 28 52 64c2 22-2 46-10 66-6 2-10 0-12-4 4-20 4-40 0-58-4-14-14-24-30-24s-26 10-30 24c-4 18-4 38 0 58-2 4-6 6-12 4-8-20-12-44-10-66z" fill="${c}"/>`;
-    case 6: // receding / bald sides
-      return `<path d="M56 96c-2-14 2-26 10-34 2 12 2 24 0 36zM144 96c2-14-2-26-10-34-2 12-2 24 0 36z" fill="${c}"/>`;
-    default: // curls
-      return `${back}<g fill="${c}">${[60, 74, 88, 102, 116, 130, 140].map((x, i) => `<circle cx="${x}" cy="${58 + Math.abs(i - 3) * 5}" r="11"/>`).join('')}</g>`;
+    case 0: return 'M86 132c0-46 24-70 64-70s64 24 64 70c-8-22-30-38-64-38s-56 16-64 38z';                           // slicked
+    case 1: return 'M84 136c4-42 26-72 66-72 28 0 48 10 62 32-10-4-20-4-30 4-12-6-22-8-36-6-22 2-40 14-62 42z';       // side part, swept
+    case 2: return 'M88 128c0-40 24-66 62-66s62 26 62 66c-8-18-30-30-62-30s-54 12-62 30z';                            // cropped
+    case 3: return 'M76 146c-2-52 24-84 74-84s76 32 74 84l-4 66c-6 8-16 8-22 4l2-56c-2-24-20-42-50-42s-48 18-50 42l2 56c-6 4-16 4-22-4z'; // bob
+    case 4: return 'M84 134c2-38 28-66 66-66s64 28 66 66c-12-22-34-34-66-34s-54 12-66 34zM128 62c0-14 10-22 22-22s22 8 22 22-10 20-22 20-22-6-22-20z'; // updo
+    case 5: return 'M70 150c-4-56 26-92 80-92s84 36 80 92c4 40 0 80-12 116-8 4-14 2-18-4 8-34 8-64 0-96-6-24-22-40-50-40s-44 16-50 40c-8 32-8 62 0 96-4 6-10 8-18 4-12-36-16-76-12-116z'; // long waves
+    case 6: return 'M90 150c-4-20 0-40 12-56 4 20 4 40 0 60zM210 150c4-20 0-40-12-56-4 20-4 40 0 60z';               // receding
+    default: return 'M84 140c-6-46 24-80 66-80s72 34 66 80c-6-14-14-22-22-22-4-12-14-20-24-20-12 0-20 8-24 20-8 0-16 8-22 22-4-10-10-14-16-14-4 6-4 10 0 14 4 2 4 6 0 8-6-4-10-6-14-8z'; // curls
   }
   void fem;
-};
+}
 
-const hatShape = (n: number, coat: string, fem: boolean): string => {
-  const band = '#0d0d0d';
+function hatShape(n: number, fem: boolean, tone: string, tone2: string): string {
   switch (n) {
     case 1: // fedora
-      return `<path d="M40 76c20-8 100-8 120 0 4 2 2 6-2 6H42c-4 0-6-4-2-6z" fill="${band}"/><path d="M60 74c2-22 14-38 40-38s38 16 40 38c-14-4-28-6-40-6s-26 2-40 6z" fill="#181818"/><path d="M62 70h76" stroke="#3a3a3a" stroke-width="5" fill="none"/>`;
+      return `<path d="M56 118c30-14 158-14 188 0 6 3 4 10-3 10H59c-7 0-9-7-3-10z" fill="${tone2}"/>
+              <path d="M84 116c2-38 22-64 66-64s64 26 66 64c-20-8-42-12-66-12s-46 4-66 12z" fill="${tone}"/>
+              <path d="M104 76c14-6 30-8 46-8 18 0 32 2 44 8-4 14-6 24-4 36-14-4-26-6-40-6s-28 2-42 6c2-12 0-22-4-36z" fill="${tone2}" opacity=".55"/>
+              <path d="M86 112c20-8 108-8 128 0" stroke="#0b0b0d" stroke-width="7" fill="none" stroke-linecap="round"/>`;
     case 2: // cloche
-      return `<path d="M52 92c-2-36 18-56 48-56s50 20 48 56c-4 6-8 8-14 8H66c-6 0-10-2-14-8z" fill="#241c18"/><path d="M60 82c16 4 64 4 80 0" stroke="${fem ? '#8b2f3d' : '#3a3a3a'}" stroke-width="4" fill="none"/>`;
+      return `<path d="M76 146c-4-58 26-92 74-92s78 34 74 92c-6 10-14 14-24 14H100c-10 0-18-4-24-14z" fill="${tone}"/>
+              <path d="M84 130c22 6 110 6 132 0" stroke="${fem ? '#8b2f3d' : tone2}" stroke-width="7" fill="none"/>`;
     case 3: // flat cap
-      return `<path d="M54 74c4-22 18-36 46-36s42 14 46 36c-14-6-30-8-46-8s-32 2-46 8z" fill="#2c2620"/><path d="M96 76c14-2 34 0 52 4-16 2-38 2-52-4z" fill="#1c1814"/>`;
+      return `<path d="M82 118c6-36 28-58 68-58s62 22 68 58c-20-8-44-12-68-12s-48 4-68 12z" fill="${tone}"/>
+              <path d="M150 120c22-2 52 0 76 6-24 3-56 3-76-6z" fill="${tone2}"/>`;
     case 4: // peaked cap
-      return `<path d="M58 72c2-20 16-32 42-32s40 12 42 32c-14-4-28-6-42-6s-28 2-42 6z" fill="#1b2130"/><path d="M52 76h96c4 0 4 4 0 6H52c-4-2-4-6 0-6z" fill="#0b0d12"/><circle cx="100" cy="62" r="5" fill="#c8963e"/>`;
-    case 5: // wimple / nurse cap
-      return `<path d="M56 96c-2-40 16-58 44-58s46 18 44 58c-8-10-22-16-44-16s-36 6-44 16z" fill="#efe9dc"/><path d="M62 96c8-8 20-12 38-12s30 4 38 12" stroke="#c9c1b0" stroke-width="2" fill="none"/>`;
+      return `<path d="M86 114c4-32 26-52 64-52s60 20 64 52c-20-6-42-10-64-10s-44 4-64 10z" fill="#1b2130"/>
+              <path d="M78 118h144c6 0 6 8 0 10H78c-6-2-6-10 0-10z" fill="#0b0d12"/>
+              <circle cx="150" cy="98" r="8" fill="#c8963e"/>`;
+    case 5: // wimple
+      return `<path d="M82 152c-2-62 24-92 68-92s70 30 68 92c-12-16-34-24-68-24s-56 8-68 24z" fill="#efe9dc"/>
+              <path d="M90 152c12-12 30-18 60-18s48 6 60 18" stroke="#c9c1b0" stroke-width="3" fill="none"/>`;
     case 6: // bowler
-      return `<path d="M46 78c16-6 92-6 108 0 4 2 2 6-2 6H48c-4 0-6-4-2-6z" fill="${band}"/><path d="M62 76c0-24 16-38 38-38s38 14 38 38c-12-4-26-6-38-6s-26 2-38 6z" fill="#161616"/>`;
-    default:
-      return '';
-  }
-  void coat;
-};
-
-const collarShape = (n: number, coat: string, fem: boolean): string => {
-  switch (n) {
-    case 0: // trench lapels
-      return `<path d="M76 160l24 30 24-30-10-4-14 22-14-22z" fill="#0f1116"/><path d="M84 158l16 22 16-22" stroke="${coat}" stroke-width="3" fill="none"/>`;
-    case 1: // round blouse / shirt collar
-      return `<path d="M82 160c6 10 30 10 36 0v-6c-6 8-30 8-36 0z" fill="#e6dfd0"/>`;
-    case 2: // scarf / high collar
-      return `<path d="M72 168c10-14 46-14 56 0-4 10-12 12-28 12s-24-2-28-12z" fill="${fem ? '#8b2f3d' : '#3a3f4a'}"/>`;
-    case 3: // shirt and tie
-      return `<path d="M84 158l16 16 16-16-6-3-10 10-10-10z" fill="#e6dfd0"/><path d="M96 170h8l-2 22-2 4-2-4z" fill="#5a1f28"/>`;
-    default: // pearls
-      return `<g fill="#f2ecdf" stroke="#b7ad9a" stroke-width=".6">${[-18, -12, -6, 0, 6, 12, 18].map((x, i) => `<circle cx="${100 + x}" cy="${168 + Math.abs(i - 3) * -2 + 6}" r="3.2"/>`).join('')}</g>`;
-  }
-};
-
-const beardShape = (n: number, c: string): string => {
-  switch (n) {
-    case 1: return `<path d="M82 128c6-4 30-4 36 0-4 6-32 6-36 0z" fill="${c}"/>`;
-    case 2: return `<path d="M60 112c6 30 20 44 40 44s34-14 40-44c-8 16-22 24-40 24s-32-8-40-24z" fill="${c}"/><path d="M82 128c6-4 30-4 36 0-4 6-32 6-36 0z" fill="${c}"/>`;
-    case 3: return `<path d="M88 138c4 10 20 10 24 0-2 12-22 12-24 0z" fill="${c}"/><path d="M84 128c6-4 26-4 32 0-4 5-28 5-32 0z" fill="${c}"/>`;
+      return `<path d="M66 122c24-10 144-10 168 0 6 3 4 9-3 9H69c-7 0-9-6-3-9z" fill="${tone2}"/>
+              <path d="M86 118c0-36 24-58 64-58s64 22 64 58c-18-6-40-10-64-10s-46 4-64 10z" fill="${tone}"/>`;
     default: return '';
   }
-};
+}
 
-const mouthShape = (n: number, fem: boolean): string => {
-  const lip = fem ? '#8b2f3d' : '#6b3a36';
+function collarShape(n: number, coat: string, coat2: string, fem: boolean): string {
   switch (n) {
-    case 1: return `<path d="M88 136q12 8 24 0" stroke="${lip}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-    case 2: return `<path d="M88 138q12-6 24 0" stroke="${lip}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
-    case 3: return `<path d="M88 136q12 3 24 0q-12 8-24 0z" fill="${lip}"/>`;
-    default: return `<path d="M89 137h22" stroke="${lip}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+    case 0: // trench, wide lapels
+      return `<path d="M100 236l50 66 50-66-16-8-34 50-34-50z" fill="#0e1014"/>
+              <path d="M112 232l38 54 38-54" stroke="${coat2}" stroke-width="6" fill="none"/>`;
+    case 1: // blouse / shirt collar
+      return `<path d="M112 238c10 18 66 18 76 0v-10c-10 14-66 14-76 0z" fill="#e8e1d2"/>`;
+    case 2: // scarf
+      return `<path d="M96 250c14-24 94-24 108 0-8 16-22 20-54 20s-46-4-54-20z" fill="${fem ? '#8b2f3d' : '#3a3f4a'}"/>
+              <path d="M104 256c12-10 80-10 92 0" stroke="#000" stroke-opacity=".25" stroke-width="3" fill="none"/>`;
+    case 3: // shirt and tie
+      return `<path d="M112 236l38 32 38-32-10-6-28 24-28-24z" fill="#e8e1d2"/>
+              <path d="M142 262h16l-4 46-4 8-4-8z" fill="#5a1f28"/><path d="M142 262h16l-8 10z" fill="#3c1219"/>`;
+    case 4: // pearls
+      return `<g fill="#f2ecdf" stroke="#b7ad9a" stroke-width="1">${[-32, -22, -11, 0, 11, 22, 32].map((x, i) => `<circle cx="${150 + x}" cy="${268 - Math.abs(i - 3) * 4}" r="5"/>`).join('')}</g>`;
+    default: // clerical collar
+      return `<path d="M118 240c10 12 54 12 64 0v10c-10 10-54 10-64 0z" fill="#f2efe8"/><path d="M142 244h16v10h-16z" fill="#0e1014"/>`;
   }
-};
+  void coat;
+}
 
-// ------------------------------------------------------------------ render
+function beardShape(n: number, c: string, c2: string): string {
+  switch (n) {
+    case 1: return `<path d="M120 190c8-6 52-6 60 0-6 10-54 10-60 0z" fill="${c}"/>`;
+    case 2: return `<path d="M90 160c8 46 30 70 60 70s52-24 60-70c-12 26-34 40-60 40s-48-14-60-40z" fill="${c}"/><path d="M120 190c8-6 52-6 60 0-6 10-54 10-60 0z" fill="${c2}"/>`;
+    case 3: return `<path d="M128 206c6 16 38 16 44 0-4 20-40 20-44 0z" fill="${c}"/><path d="M122 190c8-6 48-6 56 0-6 8-50 8-56 0z" fill="${c}"/>`;
+    default: return '';
+  }
+}
+
+function mouthShape(n: number, fem: boolean, skin2: string): string {
+  const lip = fem ? '#8b2f3d' : skin2;
+  const w = fem ? 3.6 : 3;
+  switch (n) {
+    case 1: return `<path d="M128 200q22 12 44 0" stroke="${lip}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
+    case 2: return `<path d="M128 204q22-10 44 0" stroke="${lip}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
+    case 3: return `<path d="M128 200q22 4 44 0q-22 12-44 0z" fill="${lip}"/>`;
+    default: return `<path d="M129 202h42" stroke="${lip}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
+  }
+}
+
+function smokeShape(n: number): string {
+  if (!n) return '';
+  const smoke = `<path d="M196 178c4-14-4-22 2-34s-2-18 4-30" stroke="#d8d2c4" stroke-opacity=".45" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#SOFT)"/>`;
+  switch (n) {
+    case 1: return `<path d="M166 200l30 8" stroke="#f1eadc" stroke-width="4" stroke-linecap="round"/><circle cx="197" cy="208.5" r="2.6" fill="#e0632a"/>${smoke}`;
+    case 2: return `<path d="M166 202l34 10" stroke="#4a2c1a" stroke-width="7" stroke-linecap="round"/><circle cx="201" cy="212" r="3.6" fill="#c8472a"/>${smoke}`;
+    default: return `<path d="M166 202l38 12" stroke="#3a2a1a" stroke-width="5" stroke-linecap="round"/><ellipse cx="206" cy="216" rx="8" ry="6" fill="#3a2a1a"/>${smoke.replace('196 178', '206 196')}`;
+  }
+}
+
+// ------------------------------------------------------------ painted
+
+/**
+ * Painted portraits, rendered by tools/render-portraits.py, live under
+ * public/assets/images/people/<id>.png with people.json listing who has one.
+ * When a person has a painting it is used everywhere; the drawing is the
+ * fallback, and the only version that can change with what the table knows.
+ */
+export const PAINTED = new Set<string>();
+export const PEOPLE_BASE = 'assets/images/people/';
+
+export async function loadPainted(): Promise<Set<string>> {
+  try {
+    const res = await fetch(`${PEOPLE_BASE}people.json`, { cache: 'no-cache' });
+    if (res.ok) {
+      const j = (await res.json()) as { people?: string[] };
+      for (const id of j.people ?? []) PAINTED.add(id);
+    }
+  } catch { /* no paintings; draw everyone */ }
+  return PAINTED;
+}
+
+export const isPainted = (id: string): boolean => PAINTED.has(id);
+export const paintedUrl = (id: string): string => `${PEOPLE_BASE}${id}.png`;
 
 export interface PortraitOptions {
   size?: number;
   known?: Known;
-  /** The traits the suspect actually has; only those in `known` are drawn. */
   traits?: Partial<Record<TraitId, string>>;
   accent?: string;
   muted?: boolean;
-  /** 'bust' shows shoulders and coat; 'face' crops to the head for chips. */
   frame?: 'bust' | 'face';
-  /** Draw every trait regardless: for witnesses, detectives, the epilogue. */
   reveal?: boolean;
   cls?: string;
 }
 
-/**
- * The figure, as an SVG string. Inline it in the DOM or hand it to
- * svgDataUri() for a Phaser texture.
- */
 export function portraitSvg(id: string, opts: PortraitOptions = {}): string {
   const { size = 96, known = {}, traits = {}, muted = false, frame = 'bust', reveal = false } = opts;
+  if (PAINTED.has(id)) {
+    // The painting is 512x640. A face crop shows the top of it, round.
+    const h = frame === 'face' ? size : Math.round(size * 1.25);
+    return `<img class="portrait portrait--painted portrait--${frame} ${muted ? 'is-muted' : ''} ${opts.cls ?? ''}" src="${paintedUrl(id)}" width="${size}" height="${h}" alt="" draggable="false">`;
+  }
   const look = lookFor(id, opts.accent);
-  const uid = `p${hash32(id + frame).toString(36)}`;
+  const u = `p${hash32(id + frame).toString(36)}`;
   const seen = (t: TraitId): string | null => (reveal || known[t] ? traits[t] ?? null : null);
 
   const hairKnown = seen('hair');
-  const hairColor = muted ? '#2a2d33' : HAIR[hairKnown ?? 'ink'];
-  const skin = muted ? '#6b6f78' : SKIN[look.skin];
-  const coat = muted ? '#33363d' : COAT[look.coat];
+  const [hair, hair2] = muted ? ['#3a3d44', '#24262b'] : HAIR[hairKnown ?? 'ink'];
+  const [skin, skin2, skin3] = muted ? ['#7a7f88', '#4e525a', '#9aa0a8'] : SKIN[look.skin];
+  const [coat, coat2] = muted ? ['#3b3e45', '#24262b'] : COAT[look.coat];
   const build = seen('build');
   const mark = seen('mark');
   const vice = seen('vice');
   const scent = seen('scent');
   const accent = muted ? '#5b6472' : look.accent;
-
-  const sx = build === 'broad' ? 1.22 : build === 'slight' ? 0.86 : 1;
-  const lift = build === 'tall' ? -10 : 0;
-  const shade = '#000';
-
-  const ageLines = look.age === 2
-    ? `<g stroke="#000" stroke-opacity=".28" stroke-width="1.3" fill="none"><path d="M72 118q4 8 10 10M128 118q-4 8-10 10M78 92q-6 2-10 6M122 92q6 2 10 6"/></g>`
-    : look.age === 1 ? `<g stroke="#000" stroke-opacity=".16" stroke-width="1.2" fill="none"><path d="M74 118q3 6 8 8M126 118q-3 6-8 8"/></g>` : '';
+  const sx = build === 'broad' ? 1.2 : build === 'slight' ? 0.86 : 1;
+  const lift = build === 'tall' ? -12 : 0;
+  const smoke = vice === 'opium' ? 3 : scent === 'tobacco' ? 1 : look.smoke;
 
   const brows = [
-    'M76 92q12-6 24 0M100 92q12-6 24 0',            // neutral
-    'M76 90q12-2 24 4M100 94q12-6 24-2',             // wry
-    'M76 96q12-10 24-4M100 92q12-6 24 4',            // stern
-    'M76 88q12 2 24 6M100 94q12-4 24-6',             // worried
+    'M114 138q18-9 36 0M150 138q18-9 36 0',
+    'M114 134q18-3 36 6M150 140q18-9 36-2',
+    'M114 144q18-15 36-6M150 138q18-9 36 6',
+    'M114 130q18 3 36 10M150 140q18-6 36-10',
   ][look.mood];
+  const browColor = hairKnown === 'fair' ? '#8a6a3a' : hairKnown === 'grey' ? '#6e6b66' : '#1d1a18';
 
-  const eyes = `<g>
-    <ellipse cx="86" cy="104" rx="7" ry="4.2" fill="#f4efe6"/><ellipse cx="114" cy="104" rx="7" ry="4.2" fill="#f4efe6"/>
-    <circle cx="87" cy="104.4" r="3.1" fill="#1a1a1a"/><circle cx="115" cy="104.4" r="3.1" fill="#1a1a1a"/>
-    <circle cx="88" cy="103.4" r=".9" fill="#fff"/><circle cx="116" cy="103.4" r=".9" fill="#fff"/>
-    <path d="M78 102q8-6 16 0M106 102q8-6 16 0" stroke="#1a1a1a" stroke-width="1.6" fill="none"/>
-    <path d="${brows}" stroke="${hairKnown === 'fair' ? '#8a6a3a' : '#1a1a1a'}" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-  </g>`;
+  const ageLines = look.age === 2
+    ? `<g stroke="${skin2}" stroke-opacity=".9" stroke-width="2" fill="none" stroke-linecap="round"><path d="M110 176q4 12 12 18M190 176q-4 12-12 18M118 128q-8 2-14 8M182 128q8 2 14 8M104 150q-6 8-4 18M196 150q6 8 4 18"/></g>`
+    : look.age === 1 ? `<g stroke="${skin2}" stroke-opacity=".7" stroke-width="1.8" fill="none" stroke-linecap="round"><path d="M112 178q4 10 10 14M188 178q-4 10-10 14"/></g>` : '';
+  const stubble = !look.fem && look.beard === 0 && look.age > 0
+    ? `<path d="M100 178c10 40 30 58 50 58s40-18 50-58c-10 26-28 40-50 40s-40-14-50-40z" fill="url(#${u}-stub)"/>` : '';
 
-  const nose = `<path d="M100 104v14q-4 5 2 6" stroke="#000" stroke-opacity=".38" stroke-width="1.6" fill="none" stroke-linecap="round"/>`;
+  const eyes = `
+    <path d="M118 156q16-12 32 0q-16 8-32 0z" fill="#f2ede4"/><path d="M150 156q16-12 32 0q-16 8-32 0z" fill="#f2ede4"/>
+    <circle cx="135" cy="155" r="5.4" fill="#2b2420"/><circle cx="165" cy="155" r="5.4" fill="#2b2420"/>
+    <circle cx="135" cy="155" r="2.6" fill="#000"/><circle cx="165" cy="155" r="2.6" fill="#000"/>
+    <circle cx="137" cy="153" r="1.3" fill="#fff"/><circle cx="167" cy="153" r="1.3" fill="#fff"/>
+    <path d="M118 156q16-12 32 0M150 156q16-12 32 0" stroke="#1d1a18" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M118 150q16-14 32-2M150 148q16-12 32 2" stroke="#000" stroke-opacity=".35" stroke-width="5" fill="none" stroke-linecap="round" filter="url(#${u}-soft)"/>
+    <path d="${brows}" stroke="${browColor}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+
+  const nose = `
+    <path d="M150 150v30q-8 8 3 10" stroke="${skin2}" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M150 158v24q-6 6 0 8" stroke="#000" stroke-opacity=".28" stroke-width="7" fill="none" stroke-linecap="round" filter="url(#${u}-soft)"/>`;
+
   const glasses = look.glasses
-    ? `<g fill="none" stroke="#2a2a2a" stroke-width="1.6"><circle cx="86" cy="105" r="10"/><circle cx="114" cy="105" r="10"/><path d="M96 105h8M76 104l-8-4M124 104l8-4"/></g>`
-    : '';
+    ? `<g fill="none" stroke="#2a2724" stroke-width="2.4"><circle cx="134" cy="156" r="16"/><circle cx="166" cy="156" r="16"/><path d="M150 156h0M118 154l-12-6M182 154l12-6"/></g>
+       <circle cx="128" cy="150" r="5" fill="#fff" fill-opacity=".25"/><circle cx="160" cy="150" r="5" fill="#fff" fill-opacity=".25"/>` : '';
 
   const marks = mark === 'scar'
-    ? `<path d="M126 100l6 28" stroke="#8b3a3a" stroke-width="2.2" stroke-linecap="round"/><path d="M124 110l8-2M125 118l8-2" stroke="#8b3a3a" stroke-width="1.2"/>`
-    : mark === 'tattoo'
-      ? `<path d="M118 152c4 2 6 6 4 10-3 4-9 2-9-2" stroke="#2a4d8a" stroke-width="2" fill="none"/><circle cx="121" cy="150" r="1.6" fill="#2a4d8a"/>`
-      : '';
+    ? `<path d="M186 150l8 40" stroke="#8b3a3a" stroke-width="3" stroke-linecap="round"/><path d="M184 162l10-3M186 176l10-3" stroke="#8b3a3a" stroke-width="1.6"/>`
+    : mark === 'tattoo' ? `<path d="M176 228c6 3 9 9 6 15-4 6-13 3-13-3" stroke="#2a4d8a" stroke-width="3" fill="none"/><circle cx="180" cy="225" r="2.4" fill="#2a4d8a"/>` : '';
 
-  const props = vice === 'opium'
-    ? `<path d="M110 137l30 10" stroke="#3a2a1a" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="141" cy="148" rx="5" ry="3.5" fill="#3a2a1a"/>`
-    : scent === 'tobacco'
-      ? `<path d="M110 137l16 6" stroke="#f1eadc" stroke-width="3" stroke-linecap="round"/><circle cx="127" cy="143.5" r="1.8" fill="#e0632a"/>`
-      : vice === 'cards'
-        ? `<g transform="translate(58 176) rotate(-14)"><rect width="14" height="20" rx="1.5" fill="#f2ecdf" stroke="#3a3a3a"/><path d="M3 4h4M3 16h4" stroke="#b3252d" stroke-width="1.6"/></g>`
-        : scent === 'perfume'
-          ? `<circle cx="70" cy="178" r="6" fill="#b8567a"/><circle cx="70" cy="178" r="2.5" fill="#f2ecdf"/>`
-          : vice === 'drink'
-            ? `<path d="M132 176l4 20h10l4-20z" fill="#f2ecdf" fill-opacity=".8" stroke="#3a3a3a"/><rect x="137" y="186" width="8" height="8" fill="#b8791f"/>`
-            : '';
+  const props = vice === 'cards'
+    ? `<g transform="translate(88 266) rotate(-14)"><rect width="20" height="28" rx="2" fill="#f2ecdf" stroke="#3a3a3a"/><path d="M4 6h6M4 22h6" stroke="#b3252d" stroke-width="2.4"/></g>`
+    : scent === 'perfume' ? `<circle cx="104" cy="268" r="9" fill="#b8567a"/><circle cx="104" cy="268" r="3.5" fill="#f2ecdf"/>`
+      : vice === 'drink' ? `<path d="M198 262l6 30h14l6-30z" fill="#f2ecdf" fill-opacity=".85" stroke="#3a3a3a"/><rect x="206" y="278" width="10" height="12" fill="#b8791f"/>` : '';
+
+  const hat = hatShape(look.hat, look.fem, coat, coat2);
+  const hairPath = hairShape(look.hair, look.fem);
+  const HEAD = look.fem ? HEAD_F : HEAD_M;
 
   const head = `
     <g transform="translate(0 ${lift})">
-      <ellipse cx="100" cy="106" rx="42" ry="50" fill="${skin}"/>
-      <ellipse cx="100" cy="106" rx="42" ry="50" fill="url(#${uid}-sh)"/>
-      <ellipse cx="58" cy="108" rx="7" ry="10" fill="${skin}"/><ellipse cx="142" cy="108" rx="7" ry="10" fill="${skin}"/>
-      <path d="M78 148q22 18 44 0" fill="${shade}" fill-opacity=".12"/>
-      ${ageLines}${eyes}${nose}${mouthShape(look.mood, look.fem)}${beardShape(look.beard, hairColor)}
-      ${hairStyle(look.hair, hairColor, look.fem)}
-      ${marks}${glasses}${hatShape(look.hat, coat, look.fem)}
+      <path d="${HEAD}" fill="${skin}"/>
+      <g clip-path="url(#${u}-head)">
+        <ellipse cx="184" cy="150" rx="60" ry="96" fill="${skin2}" fill-opacity=".85" filter="url(#${u}-blur)"/>
+        <ellipse cx="120" cy="118" rx="42" ry="46" fill="${skin3}" fill-opacity=".8" filter="url(#${u}-blur)"/>
+        <ellipse cx="150" cy="236" rx="60" ry="26" fill="${skin2}" fill-opacity=".7" filter="url(#${u}-blur)"/>
+        <ellipse cx="128" cy="150" rx="22" ry="14" fill="#000" fill-opacity=".22" filter="url(#${u}-blur)"/>
+        <ellipse cx="172" cy="150" rx="22" ry="14" fill="#000" fill-opacity=".28" filter="url(#${u}-blur)"/>
+        <path d="M212 120c6 30 4 70-10 100" stroke="${skin3}" stroke-opacity=".9" stroke-width="5" fill="none" filter="url(#${u}-soft)"/>
+        ${stubble}
+      </g>
+      <path d="M88 150c-8-2-14 6-12 16 2 8 8 12 14 10M212 150c8-2 14 6 12 16-2 8-8 12-14 10" fill="${skin}" stroke="${skin2}" stroke-width="2"/>
+      ${ageLines}${eyes}${nose}${mouthShape(look.mood, look.fem, skin2)}${beardShape(look.beard, hair, hair2)}
+      <path d="${hairPath}" fill="${hair}"/>
+      <g clip-path="url(#${u}-hair)"><ellipse cx="190" cy="130" rx="60" ry="80" fill="${hair2}" fill-opacity=".9" filter="url(#${u}-blur)"/><ellipse cx="118" cy="80" rx="30" ry="24" fill="#fff" fill-opacity=".14" filter="url(#${u}-blur)"/></g>
+      ${marks}${glasses}${hat}
+      <g clip-path="url(#${u}-head)"><ellipse cx="150" cy="120" rx="80" ry="30" fill="#000" fill-opacity="${look.hat ? 0.35 : 0}" filter="url(#${u}-blur)"/></g>
     </g>`;
 
   const body = `
-    <g transform="translate(100 0) scale(${sx} 1) translate(-100 0)">
-      <path d="M40 240c0-46 22-70 60-78 38 8 60 32 60 78z" fill="${coat}"/>
-      <path d="M100 162c38 8 60 32 60 78h-60z" fill="${shade}" fill-opacity=".18"/>
-      <path d="M40 240c0-46 22-70 60-78 38 8 60 32 60 78" fill="url(#${uid}-hatch)"/>
-      ${collarShape(look.collar, coat, look.fem)}
+    <g transform="translate(150 0) scale(${sx} 1) translate(-150 0)">
+      <path d="M40 360c0-66 40-100 110-118 70 18 110 52 110 118z" fill="${coat}"/>
+      <g clip-path="url(#${u}-body)">
+        <ellipse cx="230" cy="300" rx="110" ry="110" fill="${coat2}" fill-opacity=".95" filter="url(#${u}-blur)"/>
+        <ellipse cx="150" cy="250" rx="80" ry="24" fill="#000" fill-opacity=".45" filter="url(#${u}-blur)"/>
+        <ellipse cx="80" cy="300" rx="34" ry="80" fill="#fff" fill-opacity=".1" filter="url(#${u}-blur)"/>
+        <rect x="150" y="230" width="150" height="140" fill="url(#${u}-hatch)"/>
+      </g>
+      ${collarShape(look.collar, coat, coat2, look.fem)}
     </g>
-    <path d="M86 150q14 20 28 0v-14h-28z" fill="${skin}"/>
-    <path d="M86 150q14 20 28 0" fill="${shade}" fill-opacity=".22"/>`;
+    <path d="M128 226q22 30 44 0v-22h-44z" fill="${skin}"/>
+    <path d="M128 226q22 30 44 0v-6q-22 14-44 0z" fill="${skin2}" fill-opacity=".9"/>
+    <path d="M128 232q22 20 44 0" fill="#000" fill-opacity=".3" filter="url(#${u}-blur)"/>`;
 
-  const vb = frame === 'face' ? '40 30 120 130' : '0 0 200 240';
-  const bgR = frame === 'face' ? 'cx="100" cy="95" r="70"' : 'cx="100" cy="120" r="120"';
+  const vb = frame === 'face' ? '62 40 176 200' : '0 0 300 360';
+  const bg = frame === 'face'
+    ? `<circle cx="150" cy="140" r="100" fill="url(#${u}-bg)"/>`
+    : `<rect width="300" height="360" fill="url(#${u}-bg)"/><ellipse cx="110" cy="80" rx="170" ry="150" fill="url(#${u}-key)"/>`;
 
   return `<svg class="portrait ${opts.cls ?? ''}" viewBox="${vb}" width="${size}" height="${frame === 'face' ? size : Math.round(size * 1.2)}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
-      <radialGradient id="${uid}-bg"><stop offset="0" stop-color="${accent}" stop-opacity=".55"/><stop offset="1" stop-color="${accent}" stop-opacity=".05"/></radialGradient>
-      <linearGradient id="${uid}-sh" x1="0" x2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></linearGradient>
-      <pattern id="${uid}-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0v6" stroke="#000" stroke-opacity=".18" stroke-width="1.2"/></pattern>
+      <radialGradient id="${u}-bg" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="${accent}" stop-opacity=".5"/><stop offset=".6" stop-color="#0d0f14" stop-opacity=".9"/><stop offset="1" stop-color="#05060a"/></radialGradient>
+      <radialGradient id="${u}-key"><stop offset="0" stop-color="#fff3d6" stop-opacity=".22"/><stop offset="1" stop-color="#fff3d6" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${u}-stub" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="${hair2}" stop-opacity=".45"/><stop offset="1" stop-color="${hair2}" stop-opacity="0"/></radialGradient>
+      <pattern id="${u}-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(38)"><path d="M0 0v7" stroke="#000" stroke-opacity=".2" stroke-width="1.4"/></pattern>
+      <clipPath id="${u}-head"><path d="${HEAD}"/></clipPath>
+      <clipPath id="${u}-body"><path d="M40 360c0-66 40-100 110-118 70 18 110 52 110 118z"/></clipPath>
+      <clipPath id="${u}-hair"><path d="${hairPath}"/></clipPath>
+      <filter id="${u}-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+      <filter id="${u}-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="SOFT" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter>
+      <filter id="${u}-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".18"/></feComponentTransfer><feBlend in2="SourceGraphic" mode="multiply"/></filter>
     </defs>
-    <circle ${bgR} fill="url(#${uid}-bg)"/>
-    ${body}${head}${props}
+    ${bg}
+    <g filter="url(#${u}-grain)">${body}${head}${smokeShape(smoke)}${props}</g>
   </svg>`;
 }
 

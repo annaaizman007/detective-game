@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { FONTS } from '../config/asset-manifest';
+import { loadPainted } from '../ui/portraits';
 
 /**
  * Boot waits for the web fonts, because the board draws street names and
@@ -15,6 +16,8 @@ export class BootScene extends Phaser.Scene {
       ? Promise.all(wants.map((f) => document.fonts.load(f).catch(() => null)))
       : Promise.resolve([]);
     // Never wait longer than a beat and a half; offline, the fallback is fine.
-    Promise.race([ready, new Promise((r) => setTimeout(r, 1500))]).then(() => this.scene.start('preload'));
+    // The painted-portrait manifest rides along so preload knows whose face
+    // is a painting and whose is a drawing.
+    Promise.race([Promise.all([ready, loadPainted()]), new Promise((r) => setTimeout(r, 1500))]).then(() => this.scene.start('preload'));
   }
 }

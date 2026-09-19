@@ -56,7 +56,7 @@ interface Node {
   loc: Placed;
   root: Phaser.GameObjects.Container;
   halo: Phaser.GameObjects.Image;
-  plate: Phaser.GameObjects.Graphics;
+  building: Phaser.GameObjects.Image;
   ring: Phaser.GameObjects.Graphics;
   flag: Phaser.GameObjects.Text;
   flagBg: Phaser.GameObjects.Graphics;
@@ -244,24 +244,49 @@ export class BoardScene extends Phaser.Scene {
     g.fillRect(0, 0, BOARD.w, BOARD.h);
     g.fillStyle(COLOR.paperDark, 0.35);
     g.fillRect(-40, BOARD.h * 0.45, BOARD.w + 80, BOARD.h * 0.6);
-    // Blocks.
-    g.fillStyle(COLOR.block, 1);
+    // Blocks: the lots between the streets, with a hairline of ink.
     for (const b of city.blocks) {
-      g.save();
-      g.translateCanvas(b.x, b.y);
-      g.rotateCanvas(Phaser.Math.DegToRad(b.r));
-      g.fillRect(0, 0, b.w, b.h);
-      g.restore();
+      g.fillStyle(COLOR.block, 1);
+      g.fillRect(b.x, b.y, b.w, b.h);
+      g.lineStyle(1.2, COLOR.ink, 0.35);
+      g.strokeRect(b.x, b.y, b.w, b.h);
     }
-    // Minor streets.
-    g.lineStyle(3, COLOR.street, 0.8);
+    // The grid, then the avenues cut across it.
+    g.lineStyle(4, COLOR.street, 0.9);
     for (const [a, b] of city.streets) g.lineBetween(a[0], a[1], b[0], b[1]);
+    for (const [a, b] of city.avenues) { g.lineStyle(26, COLOR.paper, 1); g.lineBetween(a[0], a[1], b[0], b[1]); g.lineStyle(2, COLOR.ink, 0.35); g.lineBetween(a[0], a[1], b[0], b[1]); }
     // Water over the grid, then the shoreline.
     const water = (pts: Pt[]) => { g.fillStyle(COLOR.water, 1); g.fillPoints(toPoints(pts), true); g.lineStyle(3, COLOR.waterInk, 0.9); g.strokePoints(toPoints(pts), true); };
     if (city.sea) water(city.sea);
     if (city.river) water(city.river.band);
     if (city.lake) water(city.lake);
     if (city.shoreEcho) { g.lineStyle(1.5, COLOR.waterInk, 0.45); g.strokePoints(toPoints(city.shoreEcho), false); }
+    // Bridges: a deck across the water where a street meets it.
+    for (const b of city.bridges) {
+      const dx = Math.cos(b.angle) * b.len / 2; const dy = Math.sin(b.angle) * b.len / 2;
+      g.lineStyle(20, COLOR.roadCase, 1); g.lineBetween(b.x - dx, b.y - dy, b.x + dx, b.y + dy);
+      g.lineStyle(12, COLOR.road, 1); g.lineBetween(b.x - dx, b.y - dy, b.x + dx, b.y + dy);
+      g.lineStyle(2, COLOR.ink, 0.6);
+      const nx = -Math.sin(b.angle) * 12; const ny = Math.cos(b.angle) * 12;
+      g.lineBetween(b.x - dx + nx, b.y - dy + ny, b.x + dx + nx, b.y + dy + ny);
+      g.lineBetween(b.x - dx - nx, b.y - dy - ny, b.x + dx - nx, b.y + dy - ny);
+    }
+    // The El: a double line on ties, with its stations.
+    if (city.rail) {
+      const pts = city.rail.line;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const [x0, y0] = pts[i]; const [x1, y1] = pts[i + 1];
+        const len = Math.hypot(x1 - x0, y1 - y0); const ux = (x1 - x0) / len; const uy = (y1 - y0) / len;
+        g.lineStyle(9, COLOR.ink, 0.75); g.lineBetween(x0, y0, x1, y1);
+        g.lineStyle(3, COLOR.paper, 0.9); g.lineBetween(x0, y0, x1, y1);
+        g.lineStyle(2, COLOR.ink, 0.7);
+        for (let t = 0; t < len; t += 14) g.lineBetween(x0 + ux * t - uy * 7, y0 + uy * t + ux * 7, x0 + ux * t + uy * 7, y0 + uy * t - ux * 7);
+      }
+      for (const [x, y] of city.rail.stations) {
+        g.fillStyle(COLOR.plate, 1); g.fillRect(x - 12, y - 8, 24, 16);
+        g.lineStyle(2, COLOR.ink, 0.9); g.strokeRect(x - 12, y - 8, 24, 16);
+      }
+    }
     // Parks.
     for (const p of city.parks) {
       g.fillStyle(COLOR.park, 1); g.fillPoints(toPoints(p.pts), true);
@@ -308,24 +333,24 @@ export class BoardScene extends Phaser.Scene {
 
   private makeNode(l: Placed, state: GameState): void {
     const root = this.add.container(l.px, l.py);
-    const halo = this.add.image(0, 0, 'disc').setScale(1.5).setTint(COLOR.live).setAlpha(0);
-    const plate = this.add.graphics();
-    plate.fillStyle(0x100b06, 0.35); plate.fillCircle(0, 4, 44);
-    plate.fillStyle(COLOR.plate, 1); plate.fillCircle(0, 0, 42);
+    const halo = this.add.image(0, -40, 'disc').setScale(2.2, 1.7).setTint(COLOR.live).setAlpha(0);
+    // The facade stands on the pin: 160x136, its base at the location.
+    const shadow = this.add.graphics();
+    shadow.fillStyle(0x100b06, 0.45); shadow.fillEllipse(0, 4, 176, 26);
+    const building = this.add.image(0, 8, `bld-${state.caseId}-${l.id}`).setOrigin(0.5, 1).setScale(0.8);
     const ring = this.add.graphics();
-    const icon = this.add.image(0, 0, `ico-${l.type}`).setScale(0.78);
-    const name = this.add.text(0, -62, l.name, {
+    const name = this.add.text(0, 30, l.name, {
       fontFamily: '"Oswald"', fontSize: '21px', color: '#2a2118', fontStyle: '500', letterSpacing: 1,
     }).setOrigin(0.5);
     const nameBg = this.add.graphics();
-    nameBg.fillStyle(COLOR.plate, 0.92);
-    nameBg.fillRoundedRect(-name.width / 2 - 10, -62 - name.height / 2 - 3, name.width + 20, name.height + 6, 4);
+    nameBg.fillStyle(COLOR.plate, 0.94);
+    nameBg.fillRoundedRect(-name.width / 2 - 10, 30 - name.height / 2 - 3, name.width + 20, name.height + 6, 4);
     nameBg.lineStyle(1.5, COLOR.ink, 0.8);
-    nameBg.strokeRoundedRect(-name.width / 2 - 10, -62 - name.height / 2 - 3, name.width + 20, name.height + 6, 4);
+    nameBg.strokeRoundedRect(-name.width / 2 - 10, 30 - name.height / 2 - 3, name.width + 20, name.height + 6, 4);
     const flagBg = this.add.graphics();
-    const flag = this.add.text(0, -96, '', { fontFamily: '"Oswald"', fontSize: '14px', color: '#f1e9d6', fontStyle: '600', letterSpacing: 2 }).setOrigin(0.5);
+    const flag = this.add.text(0, -140, '', { fontFamily: '"Oswald"', fontSize: '14px', color: '#f1e9d6', fontStyle: '600', letterSpacing: 2 }).setOrigin(0.5);
     // A red tag: a witness pointed here.
-    const lead = this.add.container(36, -34, [
+    const lead = this.add.container(72, -118, [
       this.add.graphics().fillStyle(COLOR.lead, 1).fillCircle(0, 0, 12),
       this.add.text(0, 0, '!', { fontFamily: '"Oswald"', fontSize: '17px', color: '#fff', fontStyle: '700' }).setOrigin(0.5, 0.55),
     ]).setVisible(false);
@@ -335,22 +360,24 @@ export class BoardScene extends Phaser.Scene {
     let witness: Phaser.GameObjects.Container | null = null;
     if (w) {
       const wb = this.add.graphics().fillStyle(COLOR.plate, 1).fillCircle(0, 0, 18).lineStyle(2, COLOR.ink, 1).strokeCircle(0, 0, 18);
-      const face = this.add.image(0, 0, `face-${w.id}`).setScale(0.5);
+      const face = this.add.image(0, 0, `face-${w.id}`);
+      face.setScale(36 / (face.width || 72));
       // A Container's hit area is measured from its top-left (Phaser adds
       // half the size back), so shapes are centred at (w/2, h/2).
-      witness = this.add.container(-40, 30, [wb, face]).setSize(40, 40)
+      witness = this.add.container(-76, -10, [wb, face]).setSize(40, 40)
         .setInteractive(new Phaser.Geom.Circle(20, 20, 20), Phaser.Geom.Circle.Contains);
       witness.on('pointerup', (p: Phaser.Input.Pointer) => { if (p.getDistance() < 10) this.handlers.onWitness?.(w.id); });
       this.hoverable(witness, 1.12);
     }
 
-    root.add([halo, plate, ring, icon, nameBg, name, flagBg, flag, lead]);
+    root.add([halo, shadow, building, ring, nameBg, name, flagBg, flag, lead]);
     if (witness) root.add(witness);
-    root.setSize(100, 100).setInteractive(new Phaser.Geom.Circle(50, 50, 46), Phaser.Geom.Circle.Contains);
+    // Hit area: the facade plus the name plate, centred on the container's box.
+    root.setSize(170, 180).setInteractive(new Phaser.Geom.Rectangle(5, 0, 160, 180), Phaser.Geom.Rectangle.Contains);
     root.on('pointerup', (p: Phaser.Input.Pointer) => { if (p.getDistance() < 10) this.handlers.onLocation?.(l.id); });
-    this.hoverable(root, 1.06);
+    this.hoverable(root, 1.05);
     this.layers.pins.add(root);
-    this.nodes.set(l.id, { loc: l, root, halo, plate, ring, flag, flagBg, lead, witness, pulse: null });
+    this.nodes.set(l.id, { loc: l, root, halo, building, ring, flag, flagBg, lead, witness, pulse: null });
   }
 
   private hoverable(obj: Phaser.GameObjects.Container, scale: number): void {
@@ -368,19 +395,20 @@ export class BoardScene extends Phaser.Scene {
       const target = choosing ? v.reachable.has(id) && !sealed : true;
 
       n.ring.clear();
-      n.ring.lineStyle(3, here ? COLOR.live : COLOR.ink, 1); n.ring.strokeCircle(0, 0, 42);
-      n.ring.lineStyle(1.5, COLOR.ink, 0.7); n.ring.strokeCircle(0, 0, 34);
-      if (sealed) { n.ring.lineStyle(4, COLOR.sealed, 0.9); n.ring.strokeCircle(0, 0, 48); }
+      // A frame round the facade: gold where you stand, red where it is sealed.
+      if (here) { n.ring.lineStyle(4, COLOR.live, 1); n.ring.strokeRoundedRect(-84, -132, 168, 144, 6); }
+      if (sealed) { n.ring.lineStyle(5, COLOR.sealed, 0.95); n.ring.strokeRoundedRect(-88, -136, 176, 152, 6); n.ring.lineBetween(-80, -128, 80, 8); n.ring.lineBetween(80, -128, -80, 8); }
       n.root.setAlpha(target ? 1 : 0.45);
+      n.building.setTint(sealed ? 0x8a8a8a : 0xffffff);
 
       // Halo: lit when it is a legal destination, pulsing on the selection.
       const lit = choosing && v.reachable.has(id) && !sealed;
       if (lit && !n.pulse) {
         n.halo.setAlpha(0.5);
-        n.pulse = this.tweens.add({ targets: n.halo, alpha: 0.85, scale: 1.7, yoyo: true, repeat: -1, duration: 700, ease: 'Sine.easeInOut' });
+        n.pulse = this.tweens.add({ targets: n.halo, alpha: 0.85, scaleX: 2.5, scaleY: 1.9, yoyo: true, repeat: -1, duration: 700, ease: 'Sine.easeInOut' });
       } else if (!lit && n.pulse) {
         n.pulse.stop(); n.pulse = null;
-        n.halo.setAlpha(here ? 0.22 : 0).setScale(1.5);
+        n.halo.setAlpha(here ? 0.22 : 0).setScale(2.2, 1.7);
       } else if (!lit) {
         n.halo.setAlpha(here ? 0.22 : 0);
       }
@@ -391,7 +419,7 @@ export class BoardScene extends Phaser.Scene {
       if (flag) {
         const w = n.flag.width + 16;
         n.flagBg.fillStyle(sealed ? COLOR.sealed : rec.empty ? COLOR.grey : 0x8a6a3a, 1);
-        n.flagBg.fillRoundedRect(-w / 2, -96 - 10, w, 20, 3);
+        n.flagBg.fillRoundedRect(-w / 2, -140 - 10, w, 20, 3);
       }
       n.lead.setVisible(!!s.leads[id] && !rec.empty);
       if (n.witness) {
@@ -421,7 +449,8 @@ export class BoardScene extends Phaser.Scene {
     ring.fillStyle(0x100b06, 0.4); ring.fillCircle(0, 3, size + 3);
     ring.fillStyle(color, 1); ring.fillCircle(0, 0, size + 3);
     ring.fillStyle(COLOR.plate, 1); ring.fillCircle(0, 0, size);
-    const face = this.add.image(0, 0, faceKey).setScale((size * 2) / 72);
+    const face = this.add.image(0, 0, faceKey);
+    face.setScale((size * 2) / (face.width || 72)); // drawn faces are 72px, painted cut-outs 96px
     const slash = this.add.graphics().setVisible(false);
     slash.lineStyle(4, COLOR.sealed, 0.95); slash.lineBetween(-size, size, size, -size);
     const dead = this.add.text(0, 0, '†', { fontFamily: '"Oswald"', fontSize: `${size * 1.4}px`, color: '#f1e9d6' }).setOrigin(0.5).setVisible(false);
@@ -455,7 +484,7 @@ export class BoardScene extends Phaser.Scene {
         if (!x || !c) return;
         const n = ids.length;
         const tx = l.px - (n - 1) * 26 + i * 52;
-        const ty = l.py + 68;
+        const ty = l.py + 78;
         const out = v.eliminated.has(id);
         c.slash.setVisible(out && !x.dead);
         c.dead.setVisible(x.dead);
@@ -484,8 +513,8 @@ export class BoardScene extends Phaser.Scene {
       ids.forEach((id, i) => {
         const t = this.pawns.get(id) as Token;
         const n = ids.length;
-        const tx = l.px + 44 + i * 0 - (n - 1) * 18 + i * 36;
-        const ty = l.py + (crowd ? -4 : 40) + (crowd ? -60 : 0) + 60;
+        const tx = l.px + 92 - (n - 1) * 18 + i * 36;
+        const ty = l.py + (crowd ? 78 : 40);
         const active = id === v.currentPlayerId;
         if (active && !t.pulse) {
           t.pulse = this.tweens.add({ targets: t.root, scale: 1.12, yoyo: true, repeat: -1, duration: 800, ease: 'Sine.easeInOut' });

@@ -30,6 +30,9 @@ export interface Block { x: number; y: number; w: number; h: number; r: number }
 export interface Park { cx: number; cy: number; r: number; pts: Pt[] }
 export interface Label { text: string; x: number; y: number; size: number; kind: 'water' | 'district'; rot?: number }
 
+export interface Bridge { x: number; y: number; angle: number; len: number }
+export interface Rail { line: Pt[]; stations: Pt[] }
+
 export interface City {
   sea: Pt[] | null;
   shore: Pt[] | null;
@@ -37,8 +40,13 @@ export interface City {
   river: { band: Pt[]; spine: Pt[] } | null;
   lake: Pt[] | null;
   parks: Park[];
+  /** The grid: every street, as a segment. */
   streets: [Pt, Pt][];
+  /** The two or three diagonal avenues the grid was cut by. */
+  avenues: [Pt, Pt][];
   blocks: Block[];
+  bridges: Bridge[];
+  rail: Rail | null;
   labels: Label[];
   maxY: number;
 }
@@ -148,6 +156,13 @@ function blobAt(rng: Stream, cx: number, cy: number, r: number): Pt[] {
   return pts;
 }
 
+function segDistPt(px: number, py: number, a: Pt, b: Pt): number {
+  const dx = b[0] - a[0]; const dy = b[1] - a[1];
+  const len = dx * dx + dy * dy;
+  const t = len ? Math.max(0, Math.min(1, ((px - a[0]) * dx + (py - a[1]) * dy) / len)) : 0;
+  return dist(px, py, a[0] + t * dx, a[1] + t * dy);
+}
+
 /** Ray-cast point in polygon. */
 export function inside(pt: Pt, poly: Pt[]): boolean {
   let c = false;
@@ -198,31 +213,90 @@ export function buildCity(caseDef: CaseDef, projected: Placed[], proj: Projectio
   }
 
   // --- the street grid --------------------------------------------------
+  // A Chicago grid: north-south and east-west streets on a regular pitch,
+  // cut by a couple of diagonal avenues. The pitch is what makes it read as
+  // a plan of a city rather than a diagram.
+  const PX = 124; const PY = 108;
+  const xs: number[] = []; const ys: number[] = [];
+  for (let x = 40 + rng.int(30); x < BOARD.w; x += PX) xs.push(x);
+  for (let y = 30 + rng.int(30); y < BOARD.h; y += PY) ys.push(y);
   const streets: [Pt, Pt][] = [];
-  const skew = -0.16 + rng.float() * 0.32;
-  for (let i = -8; i < 36; i++) {
-    const x = i * 116 + rng.float() * 32;
-    streets.push([[x, -80], [x + BOARD.h * skew, BOARD.h + 80]]);
-  }
-  for (let i = -6; i < 26; i++) {
-    const y = i * 112 + rng.float() * 28;
-    streets.push([[-80, y], [BOARD.w + 80, y + BOARD.w * skew * 0.4]]);
+  for (const x of xs) streets.push([[x, -80], [x, BOARD.h + 80]]);
+  for (const y of ys) streets.push([[-80, y], [BOARD.w + 80, y]]);
+  const avenues: [Pt, Pt][] = [];
+  const nAv = 2 + rng.int(2);
+  for (let i = 0; i < nAv; i++) {
+    const fromLeft = rng.float() < 0.5;
+    const x0 = fromLeft ? -60 : BOARD.w + 60;
+    const y0 = rng.float() * BOARD.h * 0.5;
+    const x1 = fromLeft ? BOARD.w + 60 : -60;
+    const y1 = y0 + (rng.float() < 0.5 ? 1 : -1) * (BOARD.w * (0.3 + rng.float() * 0.35));
+    avenues.push([[x0, y0], [x1, y1]]);
   }
 
-  // --- city blocks ------------------------------------------------------
+  // --- city blocks: the cells between the streets, minus what is in the way
   const blocks: Block[] = [];
-  for (let tries = 0; tries < 6000 && blocks.length < 640; tries++) {
-    const x = rng.float() * BOARD.w;
-    const y = rng.float() * (maxY + 140);
-    if (projected.some((p) => dist(x, y, p.px, p.py) < 92)) continue;
-    if (parks.some((p) => dist(x, y, p.cx, p.cy) < p.r + 24)) continue;
-    if (wet(x, y)) continue;
-    blocks.push({
-      x: Math.round(x), y: Math.round(y),
-      w: Math.round(22 + rng.float() * 52),
-      h: Math.round(18 + rng.float() * 40),
-      r: skew * -34 + (rng.float() - 0.5) * 7,
-    });
+  const STREET = 14; // half width of a street, in the plan
+  for (let i = 0; i < xs.length - 1; i++) {
+    for (let j = 0; j < ys.length - 1; j++) {
+      const x0 = xs[i] + STREET; const x1 = xs[i + 1] - STREET;
+      const y0 = ys[j] + STREET; const y1 = ys[j + 1] - STREET;
+      if (y0 > maxY + 160) continue;
+      // Split each cell into two or three lots so the texture is fine-grained.
+      const lots = 1 + rng.int(3);
+      for (let k = 0; k < lots; k++) {
+        const lx0 = x0 + ((x1 - x0) * k) / lots + 3;
+        const lx1 = x0 + ((x1 - x0) * (k + 1)) / lots - 3;
+        const cx = (lx0 + lx1) / 2; const cy = (y0 + y1) / 2;
+        if (projected.some((p) => Math.abs(cx - p.px) < 100 && Math.abs(cy - p.py) < 90)) continue;
+        if (parks.some((p) => dist(cx, cy, p.cx, p.cy) < p.r + 30)) continue;
+        if (wet(lx0, y0) || wet(lx1, y1) || wet(lx0, y1) || wet(lx1, y0) || wet(cx, cy)) continue;
+        if (avenues.some(([a, b]) => segDistPt(cx, cy, a, b) < 34)) continue;
+        // Skip a few lots outright: vacant ground, rail yards, the odd gap.
+        if (rng.float() < 0.08) continue;
+        blocks.push({ x: Math.round(lx0), y: Math.round(y0), w: Math.round(lx1 - lx0), h: Math.round(y1 - y0), r: 0 });
+      }
+    }
+  }
+
+  // --- bridges: where an east-west or north-south street crosses the river
+  const bridges: Bridge[] = [];
+  if (river) {
+    const spine = river.spine;
+    const onSpine = (px: number, py: number) => spine.reduce((best, p) => Math.min(best, dist(px, py, p[0], p[1])), Infinity);
+    for (const [a, b] of streets) {
+      const vertical = a[0] === b[0];
+      // Walk the street; the first point closest to the spine is the crossing.
+      let best: Pt | null = null; let bestD = 40;
+      for (let t = 0; t <= 1; t += 0.004) {
+        const x = a[0] + (b[0] - a[0]) * t; const y = a[1] + (b[1] - a[1]) * t;
+        if (x < 0 || x > BOARD.w || y < 0 || y > maxY + 200) continue;
+        const d = onSpine(x, y);
+        if (d < bestD) { bestD = d; best = [x, y]; }
+      }
+      if (best && !projected.some((p) => dist(best![0], best![1], p.px, p.py) < 120)) {
+        // Only every other candidate: not every street has a bridge.
+        if (rng.float() < 0.55) bridges.push({ x: best[0], y: best[1], angle: vertical ? Math.PI / 2 : 0, len: 92 });
+      }
+    }
+  }
+
+  // --- the El: an elevated loop around the densest quarter, with stations
+  let rail: Rail | null = null;
+  {
+    // Densest quarter = the location with most neighbours within 320.
+    const centre = projected.slice().sort((p, q) =>
+      projected.filter((o) => dist(o.px, o.py, q.px, q.py) < 320).length
+      - projected.filter((o) => dist(o.px, o.py, p.px, p.py) < 320).length)[0];
+    if (centre) {
+      const snapX = (v: number) => xs.reduce((b, x) => (Math.abs(x - v) < Math.abs(b - v) ? x : b), xs[0]) + STREET - 4;
+      const snapY = (v: number) => ys.reduce((b, y) => (Math.abs(y - v) < Math.abs(b - v) ? y : b), ys[0]) + STREET - 4;
+      const L = snapX(centre.px - 260); const R = snapX(centre.px + 250);
+      const T = snapY(centre.py - 220); const B = snapY(centre.py + 210);
+      const line: Pt[] = [[L, T], [R, T], [R, B], [L, B], [L, T], [L, -80]];
+      const stations: Pt[] = [[(L + R) / 2, T], [R, (T + B) / 2], [(L + R) / 2, B], [L, (T + B) / 2]];
+      rail = { line, stations };
+    }
   }
 
   // --- labels the cartographer would have set in italic ------------------
@@ -235,5 +309,5 @@ export function buildCity(caseDef: CaseDef, projected: Placed[], proj: Projectio
   // District names are authored in case space, like the locations.
   (t.districts || []).forEach((d) => labels.push({ text: d.text, x: proj.px(d.x), y: proj.py(d.y), rot: d.rot, kind: 'district', size: d.size || 44 }));
 
-  return { sea, shore, shoreEcho, river, lake, parks, streets, blocks, labels, maxY };
+  return { sea, shore, shoreEcho, river, lake, parks, streets, avenues, blocks, bridges, rail, labels, maxY };
 }
