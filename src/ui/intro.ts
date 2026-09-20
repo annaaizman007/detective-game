@@ -175,7 +175,9 @@ export function runIntro(root: HTMLElement, foley: Foley | null, caption: string
       timers.push(setTimeout(() => foley?.lampClick(), 3600));
     });
     // If nothing has started in a few seconds (slow network), fall back.
-    at(4000, () => { if (!started && !done) drawn(); });
+    // The film is nine megabytes now; give a slow line time to reach the
+    // first frames before giving up on it.
+    at(8000, () => { if (!started && !done) drawn(); });
     return { cancel: finish };
   }
 

@@ -54,5 +54,12 @@
   "prompt": "medium shot of one stout stern woman police sergeant of fifty, whole head in frame, grey hair pinned back, weathered face, no makeup, plain dark wool jacket with sergeant stripes, standing and leaning forward over a wooden table on both hands, talking urgently toward the viewer, mouth open mid-sentence, in a dark smoky police squad room at night, only a green-shaded desk lamp lit, deep shadows, rain on the black window behind, painted illustration, oil on canvas, visible brushwork, 1940s film noir, pulp paperback cover art, chiaroscuro, muted earthy palette, cinematic, highly detailed",
   "negative": "two people, two women, two men, twins, duplicate, extra person, second face, text, letters, words, watermark, blurry, deformed, disfigured, extra limbs, bad anatomy, bad hands, cropped head, cut off head, cartoon, anime, photograph, 3d render, glossy, shiny, leather, latex, modern, daytime, daylight, bright room, window light, sunny, plants, low quality, frame, american badge, whistle, helmet, peaked cap, glamour, lipstick, pretty, smooth skin, airbrushed, sitting calmly, resting chin on hand",
   "seed": 717
+ },
+ {
+  "id": "door",
+  "name": "door",
+  "prompt": "a closed door. a tall dark wooden door with four panels and a round brass doorknob fills the middle of the frame, set in a plain plaster wall, lit from the side by a single lamp, dark 1940s police station at night, painted illustration, oil on canvas, film noir, chiaroscuro, muted earthy palette, cinematic, highly detailed",
+  "negative": "people, person, figure, face, lamp on a table, table lamp, desk, window, text, letters, watermark, blurry, deformed, cartoon, anime, photograph, modern, daytime, bright, low quality, frame",
+  "seed": 619
  }
 ]
