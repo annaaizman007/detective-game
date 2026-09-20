@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Cut the opening film from the painted stills in tools/intro/.
+"""Cut the opening film from the painted stills in tools/intro2/ and, for any
+shot that tools/anim/render.py has animated, from that moving clip instead.
 
   python3 tools/render-portraits.py --dir tools/intro --size 896x512 --steps 32
   python3 tools/make-intro.py
@@ -30,8 +31,9 @@ W, H = 1280, 720
 # The squad room: the detectives at the table, a man running the corridor,
 # the door bursting open, the sergeant leaning in to tell it.
 TELL = f'tell-{args.case}' if args.case else 'tell'
+SQUAD = 'squad' if os.path.exists(os.path.join(HERE, 'anim', 'squad.mp4')) else args.squad
 SHOTS = [
-    (args.squad, 4.0, 0.0009),
+    (SQUAD, 4.0, 0.0009),
     ('run', 2.6, 0.0040),
     ('burst', 1.8, 0.0030),
     (TELL, 3.6, 0.0012),
@@ -116,11 +118,29 @@ with wave.open(wav_path, 'wb') as w:
     w.writeframes((audio * 32767).astype('<i2').tobytes())
 
 # ---------------------------------------------------------------- picture
+ANIM = os.path.join(HERE, 'anim')
+def clip_of(name):
+    """An animated shot from tools/anim/render.py, if it has been rendered."""
+    p = os.path.join(ANIM, f'{name}.mp4')
+    return p if os.path.exists(p) else None
+
+def clip_seconds(path):
+    out = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', path], capture_output=True, text=True)
+    return float(out.stdout.strip() or 2.0)
+
 def seg_filter(idx, name, dur, zrate):
     frames = int(dur * FPS)
-    f = (f"[{idx}:v]scale=2560:-2,crop=2560:1440,setsar=1,"
-         f"zoompan=z='min(zoom+{zrate},1.6)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
-         f"format=yuv420p")
+    clip = clip_of(name)
+    if clip:
+        # A moving shot: stretch its two seconds over the shot's length (so
+        # the motion reads as slow and deliberate), then a gentle push in.
+        k = dur / clip_seconds(clip)
+        f = (f"[{idx}:v]setpts={k:.4f}*PTS,fps={FPS},scale=1408:792:flags=lanczos,"
+             f"crop={W}:{H}:x='(iw-ow)/2*(1+0.6*sin(t*0.5))':y='(ih-oh)/2',setsar=1,format=yuv420p")
+    else:
+        f = (f"[{idx}:v]scale=2560:-2,crop=2560:1440,setsar=1,"
+             f"zoompan=z='min(zoom+{zrate},1.6)':d={frames}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
+             f"format=yuv420p")
     if name == 'run':
         # a hand-held shake while he runs
         f += (f",pad={W + 40}:{H + 40}:20:20,"
@@ -140,13 +160,14 @@ filters.append(f"[xf]eq=saturation=0.78:contrast=1.06:brightness=-0.02,noise=all
 
 cmd = ['ffmpeg', '-y']
 for n, _, _ in SHOTS:
-    cmd += ['-loop', '1', '-i', os.path.join(SRC, f'{n}.jpg')]
+    clip = clip_of(n)
+    cmd += ['-i', clip] if clip else ['-loop', '1', '-i', os.path.join(SRC, f'{n}.jpg')]
 cmd += ['-i', wav_path, '-filter_complex', ';'.join(filters), '-map', '[vout]', '-map', f'{len(SHOTS)}:a',
         '-t', f'{TOTAL:.2f}', '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-pix_fmt', 'yuv420p',
         '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', os.path.join(OUT_DIR, OUT_NAME)]
 print(' '.join(cmd)[:400], '...')
 subprocess.run(cmd, check=True)
-subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of(args.squad) + 1.0:.2f}', '-i', os.path.join(OUT_DIR, OUT_NAME), '-frames:v', '1', '-q:v', '3',
+subprocess.run(['ffmpeg', '-y', '-ss', f'{start_of(SQUAD) + 1.0:.2f}', '-i', os.path.join(OUT_DIR, OUT_NAME), '-frames:v', '1', '-q:v', '3',
                 os.path.join(OUT_DIR, 'intro-poster.jpg')], check=True)
 os.remove(wav_path)
 print(f'wrote {OUT_NAME} ({TOTAL:.1f}s) and intro-poster.jpg')
