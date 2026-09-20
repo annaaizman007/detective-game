@@ -20,6 +20,7 @@ ap.add_argument('--port', type=int, default=int(os.environ.get('COMFY_PORT', '81
 ap.add_argument('--only', default='')
 ap.add_argument('--case', default='', help='render the four shots one case needs')
 ap.add_argument('--force', action='store_true')
+ap.add_argument('--seed', type=int, default=None, help='override the per-shot seed (use with --only to reroll one shot)')
 ap.add_argument('--steps', type=int, default=20)
 ap.add_argument('--width', type=int, default=1280)
 ap.add_argument('--height', type=int, default=704)
@@ -40,12 +41,15 @@ NEG = ('色调艳丽，过曝，静态，细节模糊不清，字幕，风格，
 SHOTS = {
   'squad': ('squad3.jpg', 5, 'The detectives sit at the table under the lamp, cigarette smoke drifting slowly up, one of them turns a page, another looks up toward the door, rain streaks the window behind. The camera pushes in very slowly.'),
   'run':   ('run.jpg', 3, 'The man in the wet raincoat sprints down the corridor toward the camera, coat flying, hat held on with one hand, shoes splashing on the wet tiles, the bare bulb swinging as he passes. Hand-held camera.'),
-  'burst': ('burst.jpg', 3, 'The door is flung open and the sergeant bursts through into the smoky room, breathless, hat in hand, light from the corridor spilling across the floor behind him. The camera holds.'),
+  'burst': ('burst.jpg', 3, 'The door is flung open and the sergeant bursts through it toward the camera into the smoky room, breathless, hat in hand, light from the corridor spilling across the floor behind him. He keeps coming forward, face to the viewer. The camera holds.'),
   'tell-orchid': ('tell-orchid.jpg', 5, 'The sergeant leans on the table and talks urgently, out of breath, moustache moving, eyes on the viewer, one hand gesturing, the lamp light on his face, rain on the window behind. The camera holds steady.'),
   'tell-salt':   ('tell-salt.jpg', 5, 'The woman sergeant leans on the table and talks urgently, out of breath, eyes on the viewer, one hand gesturing, the lamp light on her face, rain on the window behind. The camera holds steady.'),
   'tell-bell':   ('tell-bell.jpg', 5, 'The young constable leans on the table and talks urgently, out of breath, eyes on the viewer, one hand gesturing, wet hair, the lamp light on his face, rain on the window behind. The camera holds steady.'),
   'tell-lamp':   ('tell-lamp.jpg', 5, 'The woman sergeant leans on the table and talks urgently, out of breath, eyes on the viewer, one hand gesturing, the lamp light on her face, rain on the window behind. The camera holds steady.'),
 }
+
+# Shots whose default seed misfired and were rerolled; --seed still overrides.
+SEEDS = {'burst': 20260920}
 
 def graph(image_name, prompt, frames, seed):
     """The Wan 2.2 5B text+image-to-video template, in API form."""
@@ -121,7 +125,7 @@ for i, name in enumerate(want):
     frames = seconds * 24 + 1  # Wan wants 4k+1
     t = time.time()
     img = upload(os.path.join(STILLS, still))
-    seed = sum(ord(c) for c in name) * 7919
+    seed = args.seed if args.seed is not None else SEEDS.get(name, sum(ord(c) for c in name) * 7919)
     pid = post_json('/prompt', {'prompt': graph(img, motion, frames, seed), 'client_id': 'ashgrave'})['prompt_id']
     outputs = wait(pid)
     dest = os.path.join(OUT, f'{name}.mp4')
