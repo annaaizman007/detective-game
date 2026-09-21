@@ -15,3 +15,4 @@ public/voice/
 models/
 public/dev/
 build/
+__pycache__/
